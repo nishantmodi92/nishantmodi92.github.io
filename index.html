@@ -1,1 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nishant Modi | Android Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #111111;
+      --primary: #007bff;
+      --card: #f5f5f5;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+    [data-theme="dark"] {
+      --bg: #121212;
+      --text: #f1f1f1;
+      --primary: #90caf9;
+      --card: #1f1f1f;
+      --shadow: rgba(255, 255, 255, 0.05);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: all 0.3s ease-in-out;
+    }
+    header {
+      background-color: var(--primary);
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+      position: relative;
+    }
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #fff;
+      color: #000;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    .project {
+      background: var(--card);
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px var(--shadow);
+      transition: transform 0.3s ease;
+    }
+    .project:hover {
+      transform: translateY(-5px);
+    }
+    .project img {
+      width: 100%;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: var(--primary);
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle Theme</button>
+    <h1>Nishant Modi</h1>
+    <p>Android Developer | Kotlin | Jetpack Compose | Firebase</p>
+    <p>Email: <a href="mailto:nishantmodimaster@gmail.com" style="color: #bbdefb;">nishantmodimaster@gmail.com</a></p>
+  </header>
+
+  <main class="container">
+    <h2>🚀 Projects</h2>
+
+    <div class="project">
+      <h3>🔐 ChatConnect</h3>
+      <p>A real-time encrypted chat app with group chat, Firebase notifications, and image sharing.</p>
+      <p><strong>Tech Stack:</strong> Kotlin, Jetpack Compose, Firebase, Hilt</p>
+      <a href="https://github.com/nishantmodi92/chatconnect-android" target="_blank">View on GitHub</a>
+      <img src="https://raw.githubusercontent.com/nishantmodi92/chatconnect-android/main/assets/demo.gif" alt="ChatConnect Screenshot">
+    </div>
+
+    <div class="project">
+      <h3>💸 FinMate</h3>
+      <p>A FinTech wallet app with biometric login, transaction tracking, and Google Pay integration.</p>
+      <p><strong>Tech Stack:</strong> Kotlin, Room DB, Stripe SDK, Firebase</p>
+      <a href="https://github.com/nishantmodi92/finmate-android" target="_blank">View on GitHub</a>
+      <img src="https://raw.githubusercontent.com/nishantmodi92/finmate-android/main/assets/demo.gif" alt="FinMate Screenshot">
+    </div>
+
+    <div class="project">
+      <h3>🏃 Healthify</h3>
+      <p>A fitness tracker with Google Fit sync, personal goals, and gamified motivation features.</p>
+      <p><strong>Tech Stack:</strong> Java, Jetpack Compose, Room DB, Google Fit API</p>
+      <a href="https://github.com/nishantmodi92/healthify-android" target="_blank">View on GitHub</a>
+      <img src="https://raw.githubusercontent.com/nishantmodi92/healthify-android/main/assets/demo.gif" alt="Healthify Screenshot">
+    </div>
+
+    <div class="project">
+      <h3>🍔 FoodDeliveryApp</h3>
+      <p>Live order food delivery system with real-time tracking and payment gateway support.</p>
+      <p><strong>Tech Stack:</strong> Kotlin, Jetpack Compose, Retrofit, Firebase, Google Maps</p>
+      <a href="https://github.com/nishantmodi92/fooddelivery-android" target="_blank">View on GitHub</a>
+      <img src="https://raw.githubusercontent.com/nishantmodi92/fooddelivery-android/main/assets/demo.gif" alt="FoodDeliveryApp Screenshot">
+    </div>
+
+    <div class="project">
+      <h3>📚 EduPlay</h3>
+      <p>Offline-first eLearning platform with quizzes, videos, certificates, and leaderboard.</p>
+      <p><strong>Tech Stack:</strong> Kotlin, Jetpack Compose, Firebase, ExoPlayer, Paging3</p>
+      <a href="https://github.com/nishantmodi92/eduplay-android" target="_blank">View on GitHub</a>
+      <img src="https://raw.githubusercontent.com/nishantmodi92/eduplay-android/main/assets/demo.gif" alt="EduPlay Screenshot">
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Nishant Modi. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const root = document.documentElement;
+      const isDark = root.getAttribute('data-theme') === 'dark';
+      root.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    }
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  </script>
+</body>
+</html>
 
