@@ -1,273 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nishant Modi | Android Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    :root {
-      --bg: #ffffff;
-      --text: #111111;
-      --primary: #007bff;
-      --card: #f5f5f5;
-      --shadow: rgba(0, 0, 0, 0.1);
-    }
-    [data-theme="dark"] {
-      --bg: #121212;
-      --text: #f1f1f1;
-      --primary: #90caf9;
-      --card: #1f1f1f;
-      --shadow: rgba(255, 255, 255, 0.05);
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      transition: all 0.3s ease-in-out;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      animation: colorChange 10s infinite;
+      transition: background-color 1s ease;
     }
+
+    @keyframes colorChange {
+      0% { background-color: #0f0f0f; }
+      25% { background-color: #1a1a2e; }
+      50% { background-color: #16213e; }
+      75% { background-color: #0f3460; }
+      100% { background-color: #0f0f0f; }
+    }
+
     nav {
-      position: sticky;
+      position: fixed;
       top: 0;
-      background: var(--bg);
+      width: 100%;
+      background: rgba(18, 18, 18, 0.8);
+      backdrop-filter: blur(8px);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
-      box-shadow: 0 2px 5px var(--shadow);
+      padding: 10px 30px;
       z-index: 1000;
     }
+
     nav a {
-      margin: 0 1rem;
-      color: var(--text);
+      color: #00f7ff;
+      margin: 0 15px;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: bold;
     }
-    header {
+
+    .marquee {
+      margin-top: 60px;
+      white-space: nowrap;
+      overflow: hidden;
+      color: #00f7ff;
+      font-weight: bold;
+      animation: scroll-left 15s linear infinite;
+    }
+
+    @keyframes scroll-left {
+      from { transform: translateX(100%); }
+      to { transform: translateX(-100%); }
+    }
+
+    section {
+      padding: 60px 30px;
+    }
+
+    h1, h2 {
       text-align: center;
-      padding: 4rem 1rem;
-      background: radial-gradient(circle at top, #007bff, #0056b3);
-      color: #fff;
     }
-    header h1 {
-      font-size: 3rem;
-    }
-    .typing-text {
-      font-size: 1.2rem;
-      color: #bbdefb;
-      margin-top: 1rem;
-      height: 30px;
-    }
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 2rem 1rem;
-    }
-    .filter-buttons {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    .filter-buttons button {
-      margin: 0.5rem;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 5px;
-      background: var(--primary);
-      color: white;
-      cursor: pointer;
-    }
-    .skills, .summary {
-      background: var(--card);
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px var(--shadow);
-    }
-    .project {
-      display: none;
-      background: var(--card);
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px var(--shadow);
-    }
-    .project.active {
-      display: block;
-    }
+
     .swiper {
       width: 100%;
-      height: 300px;
-      margin-top: 1rem;
+      max-width: 800px;
+      margin: auto;
     }
+
     .swiper-slide img {
       width: 100%;
       border-radius: 10px;
     }
-    .contact-form, .github-stats {
-      background: var(--card);
-      padding: 2rem;
-      border-radius: 10px;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 10px var(--shadow);
+
+    .skills {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 30px;
     }
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+
+    .skills i {
+      font-size: 40px;
+      color: #00f7ff;
     }
-    button.submit-btn {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
+
+    .contact {
+      text-align: center;
     }
+
+    .contact a {
+      display: inline-block;
+      margin: 10px;
+      color: #00f7ff;
+      font-size: 20px;
+      text-decoration: none;
+    }
+
     footer {
       text-align: center;
-      padding: 2rem;
-      background-color: var(--primary);
-      color: white;
+      padding: 20px;
+      background: #0f0f0f;
+      font-size: 14px;
+      color: #888;
     }
   </style>
 </head>
+
 <body>
   <nav>
-    <strong>Nishant Modi</strong>
+    <div class="logo">Nishant Modi</div>
     <div>
+      <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </div>
   </nav>
 
-  <header>
-    <h1>Nishant Modi</h1>
-    <div class="typing-text" id="typed"></div>
-  </header>
+  <div class="marquee">
+    🚀 Android Developer | Jetpack Compose | Firebase | Kotlin | MVVM | Real-World Projects
+  </div>
 
-  <main class="container">
-    <section class="summary" data-aos="fade-up">
-      <h2>👨‍💼 Professional Summary</h2>
-      <p>Android Developer with 5+ years of experience building secure, scalable mobile apps. Specialized in Jetpack Compose, Firebase, and clean architecture. Currently seeking full-time & freelance roles.</p>
-    </section>
+  <section id="about">
+    <h1>Hi, I'm Nishant Modi</h1>
+    <p style="text-align:center; max-width: 700px; margin:auto;">
+      🎯 A passionate Android Developer with 5+ years of experience building performance-optimized apps with Kotlin, Jetpack Compose, Firebase, and Clean Architecture. I specialize in building impactful apps like ChatConnect, FoodDeliveryApp, and GroceryEase.
+    </p>
+  </section>
 
-    <section id="skills" class="skills" data-aos="fade-up">
-      <h2>🛠 Skills</h2>
-      <ul>
-        <li><strong>Languages:</strong> Kotlin, Java, XML, JSON</li>
-        <li><strong>Frameworks:</strong> Jetpack Compose, MVVM, Room, Retrofit</li>
-        <li><strong>Tools:</strong> Android Studio, Firebase, GitHub, Hilt</li>
-      </ul>
-    </section>
-
-    <section id="projects">
-      <h2 data-aos="fade-up">🚀 Projects</h2>
-      <div class="filter-buttons">
-        <button onclick="filterProjects('all')">All</button>
-        <button onclick="filterProjects('firebase')">Firebase</button>
-        <button onclick="filterProjects('jetpack')">Jetpack Compose</button>
-        <button onclick="filterProjects('mvvm')">MVVM</button>
+  <section id="projects">
+    <h2>📸 Featured Projects</h2>
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="assets/chatconnect.gif" alt="ChatConnect"></div>
+        <div class="swiper-slide"><img src="assets/fooddelivery.gif" alt="FoodDeliveryApp"></div>
+        <div class="swiper-slide"><img src="assets/groceryease.gif" alt="GroceryEase"></div>
       </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
 
-      <div class="project firebase jetpack active" data-aos="fade-up">
-        <h3>ChatConnect</h3>
-        <p>Real-time chat with Firebase backend and group chat support.</p>
-        <div class="swiper"><div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="https://raw.githubusercontent.com/nishantmodi92/chatconnect-android/main/assets/demo.gif"></div>
-        </div></div>
-      </div>
+  <section id="skills">
+    <h2>🧠 Skills</h2>
+    <div class="skills">
+      <i class="fa-brands fa-android" title="Android"></i>
+      <i class="fa-solid fa-database" title="Room DB"></i>
+      <i class="fa-brands fa-korvue" title="Kotlin"></i>
+      <i class="fa-solid fa-fire" title="Firebase"></i>
+      <i class="fa-solid fa-sitemap" title="MVVM"></i>
+      <i class="fa-solid fa-code-branch" title="Git"></i>
+    </div>
+  </section>
 
-      <div class="project firebase mvvm active" data-aos="fade-up">
-        <h3>FinMate</h3>
-        <p>Secure FinTech app with biometric login and wallet tracking.</p>
-        <div class="swiper"><div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="https://raw.githubusercontent.com/nishantmodi92/finmate-android/main/assets/demo.gif"></div>
-        </div></div>
-      </div>
+  <section id="contact">
+    <h2>📫 Let's Connect</h2>
+    <div class="contact">
+      <a href="mailto:nishantmodimaster@gmail.com" target="_blank"><i class="fa-solid fa-envelope"></i> Gmail</a>
+      <a href="https://www.linkedin.com/in/nishantmodi92" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      <a href="https://github.com/nishantmodi92" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+    </div>
+  </section>
 
-      <div class="project jetpack mvvm active" data-aos="fade-up">
-        <h3>Healthify</h3>
-        <p>Fitness tracking app with Google Fit sync and gamification.</p>
-        <div class="swiper"><div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="https://raw.githubusercontent.com/nishantmodi92/healthify-android/main/assets/demo.gif"></div>
-        </div></div>
-      </div>
-    </section>
-
-    <section class="github-stats" data-aos="fade-up">
-      <h2>📊 GitHub Stats</h2>
-      <img src="https://github-readme-stats.vercel.app/api?username=nishantmodi92&show_icons=true&theme=radical" width="100%">
-    </section>
-
-    <section id="contact" class="contact-form" data-aos="fade-up">
-      <h2>📬 Contact Me</h2>
-      <form onsubmit="sendEmail(); return false;">
-        <input type="text" id="name" placeholder="Your Name" required>
-        <input type="email" id="email" placeholder="Your Email" required>
-        <textarea id="message" placeholder="Your Message" required></textarea>
-        <button class="submit-btn" type="submit">Send</button>
-      </form>
-      <p style="margin-top: 1rem;">📧 Email: <a href="mailto:nishantmodimaster@gmail.com">nishantmodimaster@gmail.com</a> | 🔗 <a href="https://linkedin.com/in/nishantmodi92">LinkedIn</a></p>
-    </section>
-  </main>
+  <section>
+    <h2>📊 GitHub Stats</h2>
+    <div style="text-align:center">
+      <img src="https://github-readme-stats.vercel.app/api?username=nishantmodi92&show_icons=true&theme=dark" alt="GitHub Stats">
+      <br>
+      <img src="https://github-readme-streak-stats.herokuapp.com?user=nishantmodi92&theme=dark" alt="GitHub Streak">
+    </div>
+  </section>
 
   <footer>
-    <p>© 2025 Nishant Modi. All rights reserved.</p>
+    © 2025 Nishant Modi. All rights reserved.
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script>
-    AOS.init();
-
-    new Typed('#typed', {
-      strings: [
-        'Android Developer 💻',
-        'Jetpack Compose Enthusiast 🚀',
-        'Firebase | Kotlin | MVVM ⚙️',
-        'Open to Freelance & Full-time Roles ✨'
-      ],
-      typeSpeed: 50,
-      backSpeed: 25,
-      backDelay: 2000,
-      loop: true
-    });
-
-    function filterProjects(tag) {
-      document.querySelectorAll('.project').forEach(el => {
-        el.classList.remove('active');
-        if (tag === 'all' || el.classList.contains(tag)) {
-          el.classList.add('active');
-        }
-      });
-    }
-
-    new Swiper('.swiper', {
+    const swiper = new Swiper('.swiper', {
       loop: true,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-      },
-      pagination: { el: '.swiper-pagination', clickable: true }
+      pagination: { el: '.swiper-pagination' },
+      autoplay: { delay: 3000 },
     });
-
-    function sendEmail() {
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const message = document.getElementById('message').value;
-      alert("Email sent successfully!\nName: " + name + "\nEmail: " + email + "\nMessage: " + message);
-    }
   </script>
 </body>
+
 </html>
