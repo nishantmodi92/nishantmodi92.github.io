@@ -11,17 +11,30 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      color: #fff;
-      animation: colorChange 10s infinite;
-      transition: background-color 1s ease;
+      animation: backgroundCycle 10s infinite;
+      transition: background-image 1s ease;
+      background-size: cover;
+      background-position: center;
     }
 
-    @keyframes colorChange {
-      0% { background-color: #0f0f0f; }
-      25% { background-color: #1a1a2e; }
-      50% { background-color: #16213e; }
-      75% { background-color: #0f3460; }
-      100% { background-color: #0f0f0f; }
+    @keyframes backgroundCycle {
+      0% { background-image: url('https://source.unsplash.com/1920x1080/?technology'); }
+      25% { background-image: url('https://source.unsplash.com/1920x1080/?coding'); }
+      50% { background-image: url('https://source.unsplash.com/1920x1080/?software'); }
+      75% { background-image: url('https://source.unsplash.com/1920x1080/?developer'); }
+      100% { background-image: url('https://source.unsplash.com/1920x1080/?technology'); }
+    }
+
+    body * {
+      animation: textColorChange 5s infinite;
+    }
+
+    @keyframes textColorChange {
+      0% { color: #00f7ff; }
+      25% { color: #ffd700; }
+      50% { color: #ff4ecd; }
+      75% { color: #1aff66; }
+      100% { color: #00f7ff; }
     }
 
     nav {
@@ -38,7 +51,6 @@
     }
 
     nav a {
-      color: #00f7ff;
       margin: 0 15px;
       text-decoration: none;
       font-weight: bold;
@@ -48,7 +60,6 @@
       margin-top: 60px;
       white-space: nowrap;
       overflow: hidden;
-      color: #00f7ff;
       font-weight: bold;
       animation: scroll-left 15s linear infinite;
     }
@@ -87,7 +98,6 @@
 
     .skills i {
       font-size: 40px;
-      color: #00f7ff;
     }
 
     .contact {
@@ -97,7 +107,6 @@
     .contact a {
       display: inline-block;
       margin: 10px;
-      color: #00f7ff;
       font-size: 20px;
       text-decoration: none;
     }
@@ -107,7 +116,6 @@
       padding: 20px;
       background: #0f0f0f;
       font-size: 14px;
-      color: #888;
     }
   </style>
 </head>
@@ -129,8 +137,8 @@
 
   <section id="about">
     <h1>Hi, I'm Nishant Modi</h1>
-    <p style="text-align:center; max-width: 700px; margin:auto;">
-      🎯 A passionate Android Developer with 5+ years of experience building performance-optimized apps with Kotlin, Jetpack Compose, Firebase, and Clean Architecture. I specialize in building impactful apps like ChatConnect, FoodDeliveryApp, and GroceryEase.
+    <p style="text-align:center; max-width: 700px; margin:auto; font-weight:bold;">
+      🎯 A passionate Android Developer with 5+ years of experience building performance-optimized apps using Kotlin, Jetpack Compose, Firebase, and Clean Architecture. My apps are built to solve real-world challenges and deliver seamless user experiences.
     </p>
   </section>
 
