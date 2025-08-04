@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nishant Modi | Android Developer</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -13,20 +13,24 @@
       --accent: #00bcd4;
     }
 
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       background-color: var(--bg-color);
       color: var(--text-color);
       font-family: 'Fira Code', monospace;
-      animation: colorShift 10s infinite;
+      animation: colorShift 12s infinite;
       overflow-x: hidden;
     }
 
     @keyframes colorShift {
       0% { background-color: #121212; }
       25% { background-color: #1a1a40; }
-      50% { background-color: #262626; }
-      75% { background-color: #003049; }
+      50% { background-color: #202040; }
+      75% { background-color: #2c2c54; }
       100% { background-color: #121212; }
     }
 
@@ -49,11 +53,19 @@
       color: var(--accent);
       border-bottom: 2px solid var(--accent);
       display: inline-block;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+    }
+
+    .type-indicator {
+      font-size: 1.2rem;
+      display: inline-block;
+      position: relative;
     }
 
     .type-indicator::after {
       content: '|';
+      position: absolute;
+      right: -10px;
       animation: blink 1s step-start infinite;
     }
 
@@ -66,22 +78,21 @@
       color: #00e5ff;
       padding: 10px;
       font-weight: bold;
+      text-align: center;
     }
 
-    .slider {
-      display: flex;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      padding: 10px;
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      animation: fadeIn 1.5s ease-in;
     }
 
     .project-card {
-      min-width: 300px;
       background-color: #1f1f1f;
       border: 1px solid #333;
       border-radius: 12px;
       padding: 20px;
-      margin-right: 20px;
       transition: transform 0.3s ease-in-out;
     }
 
@@ -89,20 +100,31 @@
       transform: scale(1.05);
     }
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
     .footer {
       text-align: center;
       padding: 20px;
       font-size: 0.9rem;
       color: #aaa;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      font-size: 0.9rem;
+    }
+
+    .skill-badge {
+      background-color: #00bcd4;
+      color: black;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -119,35 +141,57 @@
 
   <section class="section text-center">
     <h1 class="display-5 fw-bold">Hi, I'm Nishant 👋</h1>
-    <p class="lead type-indicator">Android Developer | Jetpack Compose | Firebase | MVVM | Clean Architecture</p>
+    <p class="type-indicator">Android Developer | Jetpack Compose | Firebase | MVVM | Clean Architecture</p>
   </section>
 
   <section class="section">
-    <h2 class="title">💼 Featured Projects</h2>
-    <div class="slider">
+    <h2 class="title">💡 Core Skills</h2>
+    <div class="skills">
+      <span class="skill-badge">Kotlin</span>
+      <span class="skill-badge">Jetpack Compose</span>
+      <span class="skill-badge">Firebase</span>
+      <span class="skill-badge">MVVM</span>
+      <span class="skill-badge">Clean Architecture</span>
+      <span class="skill-badge">Room DB</span>
+      <span class="skill-badge">Retrofit</span>
+      <span class="skill-badge">Dagger Hilt</span>
+      <span class="skill-badge">CI/CD</span>
+      <span class="skill-badge">Google Maps API</span>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="title">📂 Featured Projects</h2>
+    <div class="projects-grid">
       <div class="project-card">
-        <h4><a href="https://github.com/nishantmodi92/ChatConnect">🔐 ChatConnect</a></h4>
-        <p>Encrypted chat app with real-time messaging, group chat, Firebase push notifications.</p>
+        <h5><a href="https://github.com/nishantmodi92/ChatConnect">🔐 ChatConnect</a></h5>
+        <p>Encrypted real-time messaging with Firebase and FCM.</p>
+        <small>GitHub: github.com/nishantmodi92/ChatConnect</small>
       </div>
       <div class="project-card">
-        <h4><a href="https://github.com/nishantmodi92/FoodDeliveryApp">🍕 FoodDeliveryApp</a></h4>
-        <p>Live order tracking, Google Maps, in-app payments, Firebase integration.</p>
+        <h5><a href="https://github.com/nishantmodi92/FoodDeliveryApp">🍕 FoodDeliveryApp</a></h5>
+        <p>Live order tracking, Google Maps, Firebase payments, Compose UI.</p>
+        <small>GitHub: github.com/nishantmodi92/FoodDeliveryApp</small>
       </div>
       <div class="project-card">
-        <h4><a href="https://github.com/nishantmodi92/GroceryEase">🛒 GroceryEase</a></h4>
-        <p>Cart sync, order tracking, smart grocery shopping app using Jetpack Compose and Firebase.</p>
+        <h5><a href="https://github.com/nishantmodi92/GroceryEase">🛒 GroceryEase</a></h5>
+        <p>Smart grocery checkout, cart sync, Firebase Auth, Compose.</p>
+        <small>GitHub: github.com/nishantmodi92/GroceryEase</small>
       </div>
       <div class="project-card">
-        <h4><a href="https://github.com/nishantmodi92/FinMate">💳 FinMate</a></h4>
-        <p>Biometric auth, Stripe payments, budget insights and expense analytics.</p>
+        <h5><a href="https://github.com/nishantmodi92/FinMate">💳 FinMate</a></h5>
+        <p>Biometric login, Stripe API, expense analytics with graphs.</p>
+        <small>GitHub: github.com/nishantmodi92/FinMate</small>
       </div>
       <div class="project-card">
-        <h4><a href="https://github.com/nishantmodi92/EduPlay">🎓 EduPlay</a></h4>
-        <p>Offline learning, ExoPlayer video streaming, gamification, certification quizzes.</p>
+        <h5><a href="https://github.com/nishantmodi92/EduPlay">🎓 EduPlay</a></h5>
+        <p>Offline learning with ExoPlayer, quizzes, and gamification.</p>
+        <small>GitHub: github.com/nishantmodi92/EduPlay</small>
       </div>
       <div class="project-card">
-        <h4><a href="https://github.com/nishantmodi92/Healthify">🏃 Healthify</a></h4>
-        <p>Fitness tracker with Google Fit API, gamified rewards, and personalized insights.</p>
+        <h5><a href="https://github.com/nishantmodi92/Healthify">🏃 Healthify</a></h5>
+        <p>Fitness tracker using Google Fit API, rewards system.</p>
+        <small>GitHub: github.com/nishantmodi92/Healthify</small>
       </div>
     </div>
   </section>
@@ -160,7 +204,7 @@
   </section>
 
   <footer class="footer">
-    Made with 💙 by Nishant Modi · Kotlin · Jetpack Compose · Firebase · Scalable Android Engineering · 100% Crash-Free Delivery
+    Made with 💙 by Nishant Modi · Android Engineering · Jetpack Compose · Firebase · CI/CD · ATS-Ready Portfolio
   </footer>
 </body>
 </html>
