@@ -5,56 +5,96 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nishant Modi – Android Developer</title>
   <style>
-    /* ---------- Global Styles ---------- */
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-    body { background: #0a0a0a; color: #f5f5f5; line-height: 1.6; }
+    body { 
+      background: linear-gradient(-45deg, #0a0a0a, #1a1a1a, #111, #0f2027);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      color: #f5f5f5; line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-    /* ---------- Navbar ---------- */
-    nav { position: fixed; top: 0; width: 100%; background: #111; padding: 15px 30px;
-      display: flex; justify-content: space-between; align-items: center; z-index: 999; }
-    nav h1 { font-size: 22px; color: #0ef; }
+    /* Gradient Animation */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Particle Effect */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/stardust.png');
+      opacity: 0.2;
+      animation: particleMove 60s linear infinite;
+      z-index: -1;
+    }
+    @keyframes particleMove {
+      from { background-position: 0 0; }
+      to { background-position: 1000px 1000px; }
+    }
+
+    /* Navbar */
+    nav { position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.8);
+      padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; z-index: 999; }
+    nav h1 { font-size: 22px; animation: colorCycle 6s infinite; }
     nav ul { display: flex; gap: 20px; list-style: none; }
     nav ul li a { text-decoration: none; color: #fff; font-weight: 500; transition: 0.3s; }
     nav ul li a:hover { color: #0ef; }
 
-    /* ---------- Hero Section ---------- */
+    /* Auto Text Color Change */
+    @keyframes colorCycle {
+      0% { color: #0ef; }
+      20% { color: #ff0055; }
+      40% { color: #00ff6a; }
+      60% { color: #ffaa00; }
+      80% { color: #ff00ff; }
+      100% { color: #0ef; }
+    }
+
     header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
       text-align: center; padding: 0 20px; }
-    header h2 { font-size: 34px; margin-bottom: 15px; }
-    header h3 { font-size: 20px; color: #0ef; margin-bottom: 25px; }
-    .marquee { width: 100%; overflow: hidden; white-space: nowrap; box-sizing: border-box; margin-top: 20px; }
-    .marquee span { display: inline-block; padding-left: 100%; animation: marquee 12s linear infinite; color: #0ef; font-weight: bold; }
+    header h2 { font-size: 34px; margin-bottom: 15px; animation: colorCycle 8s infinite; }
+    header h3 { font-size: 20px; margin-bottom: 25px; animation: colorCycle 10s infinite; }
+
+    /* Marquee */
+    .marquee { width: 100%; overflow: hidden; white-space: nowrap; margin-top: 20px; }
+    .marquee span { display: inline-block; padding-left: 100%; animation: marquee 12s linear infinite, colorCycle 6s infinite;
+      font-weight: bold; font-size: 18px; }
     @keyframes marquee { 0% { transform: translate(0,0); } 100% { transform: translate(-100%,0); } }
 
-    /* ---------- Section ---------- */
+    /* Sections */
     section { padding: 100px 60px; }
-    section h2 { font-size: 28px; text-align: center; margin-bottom: 40px; color: #0ef; }
+    section h2 { font-size: 28px; text-align: center; margin-bottom: 40px; animation: colorCycle 6s infinite; }
 
-    /* ---------- Skills ---------- */
+    /* Skills */
     .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; text-align: center; }
-    .skill { background: #111; padding: 20px; border-radius: 12px; box-shadow: 0 0 10px #0ef4; transition: 0.3s; }
-    .skill:hover { transform: translateY(-5px); }
+    .skill { background: rgba(0,0,0,0.6); padding: 20px; border-radius: 12px; box-shadow: 0 0 10px #0ef4; transition: 0.3s; }
+    .skill:hover { transform: scale(1.05); }
 
-    /* ---------- Projects Slider ---------- */
+    /* Projects Slider */
     .slider { display: flex; overflow-x: auto; gap: 20px; scroll-snap-type: x mandatory; padding: 20px; }
-    .project { flex: 0 0 320px; background: #111; padding: 20px; border-radius: 15px; scroll-snap-align: start;
-      box-shadow: 0 0 15px rgba(0,238,255,0.3); }
-    .project h3 { color: #0ef; margin-bottom: 10px; }
+    .project { flex: 0 0 320px; background: rgba(0,0,0,0.6); padding: 20px; border-radius: 15px; scroll-snap-align: start;
+      box-shadow: 0 0 15px rgba(0,238,255,0.3); transition: 0.3s; }
+    .project:hover { transform: translateY(-8px); }
+    .project h3 { animation: colorCycle 8s infinite; margin-bottom: 10px; }
     .project p { font-size: 14px; margin-bottom: 10px; }
     .project a { color: #0ef; text-decoration: none; font-size: 14px; margin-right: 10px; }
 
-    /* ---------- Contact ---------- */
+    /* Contact */
     .contact { text-align: center; }
     .contact a { display: inline-block; margin: 10px; padding: 12px 20px; background: #0ef; color: #000; border-radius: 8px;
       text-decoration: none; font-weight: bold; transition: 0.3s; }
     .contact a:hover { background: #08c; color: #fff; }
 
-    /* ---------- Footer ---------- */
-    footer { background: #111; text-align: center; padding: 15px; font-size: 14px; margin-top: 30px; }
+    /* Footer */
+    footer { background: rgba(0,0,0,0.8); text-align: center; padding: 15px; font-size: 14px; margin-top: 30px; }
   </style>
 </head>
 <body>
-  <!-- ---------- Navbar ---------- -->
+  <!-- Navbar -->
   <nav>
     <h1>Nishant Modi</h1>
     <ul>
@@ -65,24 +105,24 @@
     </ul>
   </nav>
 
-  <!-- ---------- Hero ---------- -->
+  <!-- Hero -->
   <header>
     <h2>🚀 Android Developer</h2>
     <h3>Jetpack Compose | Kotlin | Firebase | Scalable Mobile Apps</h3>
-    <div class="marquee"><span>💡 Building user-centric, scalable, and high-performance Android solutions | 99.9% crash-free apps | 30% faster performance | 🚀</span></div>
+    <div class="marquee"><span>💡 99.9% crash-free apps | 30% faster performance | Boosted user engagement by 42% | 🚀</span></div>
   </header>
 
-  <!-- ---------- About ---------- -->
+  <!-- About -->
   <section id="about">
     <h2>About Me</h2>
     <p style="max-width:800px; margin:auto; text-align:center;">
-      Innovative Android Developer with 5+ years of expertise in designing and delivering scalable, 
-      high-performance apps using Jetpack Compose, Kotlin, Firebase, and Clean Architecture. 
-      Proven success in reducing crashes by 40%, improving cold start by 30%, and boosting user engagement by 42%.
+      Innovative Android Developer with 5+ years of expertise in delivering user-focused mobile apps.
+      Skilled in Jetpack Compose, Kotlin, Firebase, and scalable clean architecture. 
+      Proven impact: 40% crash reduction, 30% faster cold start, 42% engagement growth.
     </p>
   </section>
 
-  <!-- ---------- Skills ---------- -->
+  <!-- Skills -->
   <section id="skills">
     <h2>Core Skills</h2>
     <div class="skills">
@@ -97,50 +137,38 @@
     </div>
   </section>
 
-  <!-- ---------- Projects ---------- -->
+  <!-- Projects -->
   <section id="projects">
     <h2>Projects</h2>
     <div class="slider">
-      <div class="project">
-        <h3>ChatConnect</h3>
-        <p>Encrypted chat app with FCM push notifications. 🚀 Boosted DAU by 25%.</p>
+      <div class="project"><h3>ChatConnect</h3><p>Encrypted chat app. 🚀 Boosted DAU by 25%.</p>
         <a href="https://github.com/nishantmodi92/chatconnect-android" target="_blank">GitHub</a>
         <a href="https://github.com/nishantmodi92/chatconnect-android/blob/main/README.md" target="_blank">README</a>
       </div>
-      <div class="project">
-        <h3>FinMate</h3>
-        <p>Digital wallet with biometric login. 🔒 Reduced fraud attempts by 60%.</p>
+      <div class="project"><h3>FinMate</h3><p>Digital wallet with biometric login. 🔒 Reduced fraud by 60%.</p>
         <a href="https://github.com/nishantmodi92/fintech-wallet" target="_blank">GitHub</a>
         <a href="https://github.com/nishantmodi92/fintech-wallet/blob/main/README.md" target="_blank">README</a>
       </div>
-      <div class="project">
-        <h3>Healthify</h3>
-        <p>Fitness tracker integrated with Google Fit. 🏃 Boosted engagement by 42%.</p>
+      <div class="project"><h3>Healthify</h3><p>Fitness tracker integrated with Google Fit. 🏃 Engagement +42%.</p>
         <a href="https://github.com/nishantmodi92/healthify" target="_blank">GitHub</a>
         <a href="https://github.com/nishantmodi92/healthify/blob/main/README.md" target="_blank">README</a>
       </div>
-      <div class="project">
-        <h3>FoodDeliveryApp</h3>
-        <p>Real-time ordering with GPS tracking. 🍔 98% crash-free sessions.</p>
+      <div class="project"><h3>FoodDeliveryApp</h3><p>Real-time ordering, GPS tracking. 🍔 98% crash-free.</p>
         <a href="https://github.com/nishantmodi92/food-delivery-android" target="_blank">GitHub</a>
         <a href="https://github.com/nishantmodi92/food-delivery-android/blob/main/README.md" target="_blank">README</a>
       </div>
-      <div class="project">
-        <h3>EduPlay</h3>
-        <p>E-Learning with video streaming. 🎓 Increased course completion by 34%.</p>
+      <div class="project"><h3>EduPlay</h3><p>E-Learning video streaming. 🎓 Course completion +34%.</p>
         <a href="https://github.com/nishantmodi92/e-learning-android" target="_blank">GitHub</a>
         <a href="https://github.com/nishantmodi92/e-learning-android/blob/main/README.md" target="_blank">README</a>
       </div>
-      <div class="project">
-        <h3>GroceryEase</h3>
-        <p>Grocery app with offline cart sync. 🛒 Reduced abandonment by 35%.</p>
+      <div class="project"><h3>GroceryEase</h3><p>Smart grocery app with cart sync. 🛒 Abandonment -35%.</p>
         <a href="https://github.com/nishantmodi92/GroceryEase" target="_blank">GitHub</a>
         <a href="https://github.com/nishantmodi92/GroceryEase/blob/main/README.md" target="_blank">README</a>
       </div>
     </div>
   </section>
 
-  <!-- ---------- Contact ---------- -->
+  <!-- Contact -->
   <section id="contact">
     <h2>Contact</h2>
     <div class="contact">
@@ -151,7 +179,6 @@
     </div>
   </section>
 
-  <!-- ---------- Footer ---------- -->
   <footer>
     © 2025 Nishant Modi | Android Developer | Jetpack Compose | Kotlin | Firebase
   </footer>
