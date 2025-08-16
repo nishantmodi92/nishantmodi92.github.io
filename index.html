@@ -54,4 +54,135 @@
 <body class="bg-gradient-to-br from-zinc-50 to-white dark:from-zinc-900 dark:to-black text-zinc-900 dark:text-zinc-100 selection:bg-violet-300/60 dark:selection:bg-violet-500/40">
   <!-- Sticky Nav -->
   <header class="sticky top-0 z-40 backdrop-blur border-b border-zinc-200/70 dark:border-zinc-800/70 bg-white/60 dark:bg-zinc-900/50">
-    <nav class="mx-auto max-w-6xl px
+    <nav class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between" role="navigation" aria-label="Primary">
+      <a href="#home" class="flex items-center gap-2 font-semibold tracking-tight">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.39 7.36H22l-6.2 4.5 2.37 7.36L12 16.72 5.83 21.2l2.36-7.34L2 9.36h7.62L12 2z"/></svg>
+        <span>NM • Portfolio</span>
+      </a>
+      <ul class="hidden md:flex items-center gap-6 text-sm">
+        <li><a class="nav-link hover:opacity-80" href="#projects">Projects</a></li>
+        <li><a class="nav-link hover:opacity-80" href="#skills">Skills</a></li>
+        <li><a class="nav-link hover:opacity-80" href="#case-studies">Case Studies</a></li>
+        <li><a class="nav-link hover:opacity-80" href="#about">About</a></li>
+        <li><a class="nav-link hover:opacity-80" href="#contact">Contact</a></li>
+      </ul>
+      <div class="flex items-center gap-2">
+        <a href="/Nishant_Modi_Resume.pdf" class="rounded-xl px-3 py-2 text-sm ring-1 ring-zinc-300 dark:ring-zinc-700" aria-label="View Resume">Resume</a>
+        <button id="themeBtn" class="rounded-xl px-3 py-2 text-sm ring-1 ring-zinc-300 dark:ring-zinc-700" aria-label="Toggle theme">Toggle</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="relative overflow-hidden" aria-label="Hero">
+    <div class="blob pointer-events-none" aria-hidden="true"></div>
+    <div class="mx-auto max-w-6xl px-4 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight auto-color">
+          Unique • Professional • <span aria-hidden>🚀</span>
+        </h1>
+        <p id="typing" class="mt-4 text-lg md:text-xl text-zinc-600 dark:text-zinc-300 caret" aria-live="polite" role="status"></p>
+        <p class="sr-only" id="typing-desc">Key strengths and value proposition updated as animated typing text.</p>
+        <div class="mt-7 flex flex-wrap items-center gap-3">
+          <a href="#projects" class="rounded-2xl bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 px-4 py-2 text-sm">Explore Projects →</a>
+          <a href="mailto:nishantmodi92@gmail.com" class="rounded-2xl ring-1 ring-zinc-300 dark:ring-zinc-700 px-4 py-2 text-sm">Email</a>
+          <a href="https://github.com/nishantmodi92" target="_blank" rel="noopener noreferrer" class="rounded-2xl ring-1 ring-zinc-300 dark:ring-zinc-700 px-4 py-2 text-sm">GitHub</a>
+          <a href="https://www.linkedin.com/in/nishantmodi92" target="_blank" rel="noopener noreferrer" class="rounded-2xl ring-1 ring-zinc-300 dark:ring-zinc-700 px-4 py-2 text-sm">LinkedIn</a>
+        </div>
+        <div class="mt-8 marquee py-2" aria-label="Tech marquee">
+          <ul>
+            <li>Jetpack Compose</li>
+            <li>Kotlin</li>
+            <li>Firebase</li>
+            <li>Clean Architecture</li>
+            <li>MVVM</li>
+            <li>Performance</li>
+            <li>Crash‑free 99.9%</li>
+            <li>Material You</li>
+          </ul>
+          <ul aria-hidden="true">
+            <li>Jetpack Compose</li>
+            <li>Kotlin</li>
+            <li>Firebase</li>
+            <li>Clean Architecture</li>
+            <li>MVVM</li>
+            <li>Performance</li>
+            <li>Crash‑free 99.9%</li>
+            <li>Material You</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Slider -->
+      <div class="relative ring-1 ring-zinc-200 dark:ring-zinc-800 rounded-3xl overflow-hidden shadow-xl aspect-[4/3]" aria-label="Project highlight slider">
+        <div class="absolute inset-0 grid place-items-center text-center p-6 bg-white/70 dark:bg-zinc-900/70 backdrop-blur slide active" data-slide="0">
+          <div>
+            <h3 class="text-2xl font-bold">ChatConnect</h3>
+            <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">Real‑time chat • Compose + Firebase</p>
+            <a href="https://github.com/nishantmodi92/ChatConnect" target="_blank" rel="noopener noreferrer" class="inline-block mt-4 rounded-2xl px-4 py-2 text-sm ring-1 ring-zinc-300 dark:ring-zinc-700">GitHub</a>
+          </div>
+        </div>
+        <div class="absolute inset-0 grid place-items-center text-center p-6 bg-white/70 dark:bg-zinc-900/70 backdrop-blur slide" data-slide="1">
+          <div>
+            <h3 class="text-2xl font-bold">GroceryEase</h3>
+            <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">Grocery + live tracking • Offline cart</p>
+            <a href="https://github.com/nishantmodi92/GroceryEase" target="_blank" rel="noopener noreferrer" class="inline-block mt-4 rounded-2xl px-4 py-2 text-sm ring-1 ring-zinc-300 dark:ring-zinc-700">GitHub</a>
+          </div>
+        </div>
+        <div class="absolute inset-0 grid place-items-center text-center p-6 bg-white/70 dark:bg-zinc-900/70 backdrop-blur slide" data-slide="2">
+          <div>
+            <h3 class="text-2xl font-bold">FoodDeliveryApp</h3>
+            <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">In‑app payments • 98%+ crash‑free</p>
+            <a href="https://github.com/nishantmodi92/food-delivery-android" target="_blank" rel="noopener noreferrer" class="inline-block mt-4 rounded-2xl px-4 py-2 text-sm ring-1 ring-zinc-300 dark:ring-zinc-700">GitHub</a>
+          </div>
+        </div>
+        <div class="absolute bottom-3 inset-x-0 flex items-center justify-center gap-2" role="tablist" aria-label="Slides">
+          <button class="dot h-2.5 w-2.5 rounded-full bg-zinc-900 dark:bg-zinc-50" aria-label="Slide 1" role="tab"></button>
+          <button class="dot h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700" aria-label="Slide 2" role="tab"></button>
+          <button class="dot h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700" aria-label="Slide 3" role="tab"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Grid -->
+  <section id="projects" class="mx-auto max-w-6xl px-4 py-16" aria-label="Featured Projects">
+    <div class="flex items-end justify-between mb-6">
+      <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight auto-color">Featured Projects</h2>
+      <a href="https://github.com/nishantmodi92" target="_blank" rel="noopener noreferrer" class="text-sm underline underline-offset-4">See all</a>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <article class="p-6 rounded-3xl ring-1 ring-zinc-200 dark:ring-zinc-800 fade-in">
+        <h3 class="font-semibold">ChatConnect</h3>
+        <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-300">End‑to‑end chat with Compose, Firebase.</p>
+        <a class="inline-block mt-3 text-sm" href="https://github.com/nishantmodi92/ChatConnect" target="_blank" rel="noopener noreferrer">GitHub →</a>
+      </article>
+      <article class="p-6 rounded-3xl ring-1 ring-zinc-200 dark:ring-zinc-800 fade-in" style="animation-delay:.08s">
+        <h3 class="font-semibold">GroceryEase</h3>
+        <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-300">Delivery app • Maps • Offline sync.</p>
+        <a class="inline-block mt-3 text-sm" href="https://github.com/nishantmodi92/GroceryEase" target="_blank" rel="noopener noreferrer">GitHub →</a>
+      </article>
+      <article class="p-6 rounded-3xl ring-1 ring-zinc-200 dark:ring-zinc-800 fade-in" style="animation-delay:.16s">
+        <h3 class="font-semibold">FoodDeliveryApp</h3>
+        <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-300">Real‑time tracking • In‑app payments.</p>
+        <a class="inline-block mt-3 text-sm" href="https://github.com/nishantmodi92/food-delivery-android" target="_blank" rel="noopener noreferrer">GitHub →</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- Case Studies -->
+  <section id="case-studies" class="mx-auto max-w-6xl px-4 py-16" aria-label="Case Studies">
+    <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight auto-color">Case Studies & Impact</h2>
+    <div class="mt-6 grid md:grid-cols-2 gap-6">
+      <article class="p-6 rounded-3xl ring-1 ring-zinc-200 dark:ring-zinc-800">
+        <h3 class="font-semibold">ChatConnect — Real‑time Messaging</h3>
+        <ul class="mt-2 space-y-2 text-sm text-zinc-700 dark:text-zinc-300">
+          <li>Architecture: Clean + MVVM, Compose UI, Firebase Auth/Firestore, FCM.</li>
+          <li>Performance: cold start ↓ <strong>30%</strong>, memory leaks eliminated via Lifecycle‑aware scopes.</li>
+          <li>Reliability: <strong>99.9% crash‑free</strong> sessions (Crashlytics).</li>
+        </ul>
+      </article>
+      <article class="p-6 rounded-3xl ring-1 ring-zinc-200 dark:ring-zinc-800">
+        <h3 class="font-semibold">FoodDeliveryApp — Logistics & Payments</h3>
+        <ul class="mt-2 space-y-2 text-sm text-zinc-700 dark:text-zinc-300">
+          <li>Architecture: Multi‑module Clean, DI with Hilt, offline Room cache.</li>
+          <li>Features: Live order tracking (Maps), in‑app payments, push notifications.</li>
