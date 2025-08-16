@@ -4,6 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nishant Modi – Android Developer</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="Nishant Modi - Android Developer | Kotlin | Jetpack Compose | Firebase | Scalable Architecture | 99.9% crash-free apps">
+  <meta name="keywords" content="Android Developer, Kotlin, Jetpack Compose, Firebase, Mobile Engineer, FinTech Apps, Food Delivery App, Chat App, HealthTech, E-Learning">
+  <meta name="author" content="Nishant Modi">
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
     body { 
@@ -13,15 +19,13 @@
       color: #f5f5f5; line-height: 1.6;
       overflow-x: hidden;
     }
-
-    /* Gradient Animation */
     @keyframes gradientShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    /* Particle Effect */
+    /* Particle Background */
     body::before {
       content: "";
       position: fixed;
@@ -37,14 +41,14 @@
     }
 
     /* Navbar */
-    nav { position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.8);
+    nav { position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.85);
       padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; z-index: 999; }
     nav h1 { font-size: 22px; animation: colorCycle 6s infinite; }
     nav ul { display: flex; gap: 20px; list-style: none; }
     nav ul li a { text-decoration: none; color: #fff; font-weight: 500; transition: 0.3s; }
     nav ul li a:hover { color: #0ef; }
 
-    /* Auto Text Color Change */
+    /* Auto Text Color */
     @keyframes colorCycle {
       0% { color: #0ef; }
       20% { color: #ff0055; }
@@ -54,9 +58,10 @@
       100% { color: #0ef; }
     }
 
+    /* Hero */
     header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
       text-align: center; padding: 0 20px; }
-    header h2 { font-size: 34px; margin-bottom: 15px; animation: colorCycle 8s infinite; }
+    header h2 { font-size: 36px; margin-bottom: 15px; animation: colorCycle 8s infinite; }
     header h3 { font-size: 20px; margin-bottom: 25px; animation: colorCycle 10s infinite; }
 
     /* Marquee */
@@ -83,14 +88,22 @@
     .project p { font-size: 14px; margin-bottom: 10px; }
     .project a { color: #0ef; text-decoration: none; font-size: 14px; margin-right: 10px; }
 
+    /* Achievements */
+    .achievements { display: grid; gap: 20px; max-width: 800px; margin: auto; }
+    .achievement { background: rgba(0,0,0,0.6); padding: 20px; border-radius: 12px; box-shadow: 0 0 12px rgba(0,238,255,0.3); }
+
     /* Contact */
     .contact { text-align: center; }
     .contact a { display: inline-block; margin: 10px; padding: 12px 20px; background: #0ef; color: #000; border-radius: 8px;
       text-decoration: none; font-weight: bold; transition: 0.3s; }
     .contact a:hover { background: #08c; color: #fff; }
 
+    /* Resume Floating Button */
+    .resume-btn { position: fixed; bottom: 20px; right: 20px; background: #0ef; padding: 14px 22px; border-radius: 50px;
+      font-weight: bold; color: #000; text-decoration: none; box-shadow: 0 0 15px #0ef; animation: colorCycle 6s infinite; z-index: 1000; }
+
     /* Footer */
-    footer { background: rgba(0,0,0,0.8); text-align: center; padding: 15px; font-size: 14px; margin-top: 30px; }
+    footer { background: rgba(0,0,0,0.8); text-align: center; padding: 15px; font-size: 14px; color: #0ef; letter-spacing: 1px; }
   </style>
 </head>
 <body>
@@ -101,24 +114,25 @@
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#achievements">Achievements</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
   <!-- Hero -->
   <header>
-    <h2>🚀 Android Developer</h2>
-    <h3>Jetpack Compose | Kotlin | Firebase | Scalable Mobile Apps</h3>
-    <div class="marquee"><span>💡 99.9% crash-free apps | 30% faster performance | Boosted user engagement by 42% | 🚀</span></div>
+    <h2>Innovative Android Developer (5+ Yrs)</h2>
+    <h3>Jetpack Compose | Kotlin | Firebase | Scalable Mobile Architecture</h3>
+    <div class="marquee"><span>💡 99.9% crash-free apps | 🚀 30% faster performance | 📱 Boosted engagement by 42% | 🏆 Delivered portfolio-grade Android apps</span></div>
   </header>
 
   <!-- About -->
   <section id="about">
     <h2>About Me</h2>
     <p style="max-width:800px; margin:auto; text-align:center;">
-      Innovative Android Developer with 5+ years of expertise in delivering user-focused mobile apps.
-      Skilled in Jetpack Compose, Kotlin, Firebase, and scalable clean architecture. 
-      Proven impact: 40% crash reduction, 30% faster cold start, 42% engagement growth.
+      Android Developer with 5+ years delivering scalable, high-performance apps. 
+      Proven ability to cut crashes by 40%, optimize startup by 30%, and enhance user engagement by 42%. 
+      Specialized in Jetpack Compose, Kotlin, Firebase, and modern scalable architecture.
     </p>
   </section>
 
@@ -149,22 +163,32 @@
         <a href="https://github.com/nishantmodi92/fintech-wallet" target="_blank">GitHub</a>
         <a href="https://github.com/nishantmodi92/fintech-wallet/blob/main/README.md" target="_blank">README</a>
       </div>
-      <div class="project"><h3>Healthify</h3><p>Fitness tracker integrated with Google Fit. 🏃 Engagement +42%.</p>
+      <div class="project"><h3>Healthify</h3><p>Fitness tracker with Google Fit. 🏃 Engagement +42%.</p>
         <a href="https://github.com/nishantmodi92/healthify" target="_blank">GitHub</a>
         <a href="https://github.com/nishantmodi92/healthify/blob/main/README.md" target="_blank">README</a>
       </div>
-      <div class="project"><h3>FoodDeliveryApp</h3><p>Real-time ordering, GPS tracking. 🍔 98% crash-free.</p>
+      <div class="project"><h3>FoodDeliveryApp</h3><p>Real-time ordering & GPS tracking. 🍔 98% crash-free.</p>
         <a href="https://github.com/nishantmodi92/food-delivery-android" target="_blank">GitHub</a>
         <a href="https://github.com/nishantmodi92/food-delivery-android/blob/main/README.md" target="_blank">README</a>
       </div>
-      <div class="project"><h3>EduPlay</h3><p>E-Learning video streaming. 🎓 Course completion +34%.</p>
+      <div class="project"><h3>EduPlay</h3><p>E-Learning with video streaming. 🎓 Course completion +34%.</p>
         <a href="https://github.com/nishantmodi92/e-learning-android" target="_blank">GitHub</a>
         <a href="https://github.com/nishantmodi92/e-learning-android/blob/main/README.md" target="_blank">README</a>
       </div>
-      <div class="project"><h3>GroceryEase</h3><p>Smart grocery app with cart sync. 🛒 Abandonment -35%.</p>
+      <div class="project"><h3>GroceryEase</h3><p>Smart grocery app with offline cart sync. 🛒 Abandonment -35%.</p>
         <a href="https://github.com/nishantmodi92/GroceryEase" target="_blank">GitHub</a>
         <a href="https://github.com/nishantmodi92/GroceryEase/blob/main/README.md" target="_blank">README</a>
       </div>
+    </div>
+  </section>
+
+  <!-- Achievements -->
+  <section id="achievements">
+    <h2>Achievements & Recognition</h2>
+    <div class="achievements">
+      <div class="achievement">🏆 Employee of the Year 2023 – Recognized for scalable architecture excellence at EXL.</div>
+      <div class="achievement">⭐ Star Performer of the Quarter – For major performance optimization initiatives.</div>
+      <div class="achievement">👏 Client Appreciation Award – For delivering high-quality Android solutions under strict deadlines.</div>
     </div>
   </section>
 
@@ -179,8 +203,12 @@
     </div>
   </section>
 
+  <!-- Resume Floating Button -->
+  <a class="resume-btn" href="Nishant_Modi_Android_Developer.pdf" target="_blank">📄 Download Resume</a>
+
+  <!-- Footer -->
   <footer>
-    © 2025 Nishant Modi | Android Developer | Jetpack Compose | Kotlin | Firebase
+    🚀 Crafted with passion by Nishant Modi | Android Developer | 2025
   </footer>
 </body>
 </html>
