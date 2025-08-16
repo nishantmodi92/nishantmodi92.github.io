@@ -1,214 +1,297 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nishant Modi – Android Developer</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Nishant Modi — Android Developer</title>
+<meta name="description" content="Nishant Modi - Android Developer | Jetpack Compose | Kotlin | Firebase | Scalable Mobile Architecture. 99.9% crash-free apps, 30% faster cold start." />
+<meta name="keywords" content="Android Developer, Kotlin, Jetpack Compose, Firebase, Clean Architecture, Mobile, EXL" />
+<meta name="author" content="Nishant Modi" />
 
-  <!-- SEO Meta -->
-  <meta name="description" content="Nishant Modi - Android Developer | Kotlin | Jetpack Compose | Firebase | Scalable Architecture | 99.9% crash-free apps">
-  <meta name="keywords" content="Android Developer, Kotlin, Jetpack Compose, Firebase, Mobile Engineer, FinTech Apps, Food Delivery App, Chat App, HealthTech, E-Learning">
-  <meta name="author" content="Nishant Modi">
+<style>
+  :root{
+    --accent:#00e6ff;
+    --glass: rgba(255,255,255,0.03);
+    --card: rgba(255,255,255,0.04);
+    --muted: #bfc7cf;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: Inter, "Segoe UI", Roboto, system-ui, -apple-system, "Helvetica Neue", Arial;
+    color:#e8eef2;
+    background: linear-gradient(-45deg,#081018,#0f1b2a,#07121a,#072b2b);
+    background-size:400% 400%;
+    animation: bgShift 18s ease infinite;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    scroll-behavior:smooth;
+    overflow-x:hidden;
+  }
+  /* background shift */
+  @keyframes bgShift{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-    body { 
-      background: linear-gradient(-45deg, #0a0a0a, #1a1a1a, #111, #0f2027);
-      background-size: 400% 400%;
-      animation: gradientShift 15s ease infinite;
-      color: #f5f5f5; line-height: 1.6;
-      overflow-x: hidden;
-    }
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+  /* subtle particles texture (from transparenttextures) */
+  body::before{
+    content:"";
+    position:fixed; inset:0; pointer-events:none; z-index:0;
+    background-image:url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity:0.14;
+    animation: particleMove 60s linear infinite;
+    mix-blend-mode:screen;
+  }
+  @keyframes particleMove{from{background-position:0 0}to{background-position:1200px 1200px}}
 
-    /* Particle Background */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: url('https://www.transparenttextures.com/patterns/stardust.png');
-      opacity: 0.2;
-      animation: particleMove 60s linear infinite;
-      z-index: -1;
-    }
-    @keyframes particleMove {
-      from { background-position: 0 0; }
-      to { background-position: 1000px 1000px; }
-    }
+  /* Header / Nav */
+  nav{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:999;display:flex;align-items:center;gap:22px;padding:10px 20px;border-radius:999px;background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.25));backdrop-filter: blur(6px);box-shadow:0 6px 30px rgba(0,0,0,0.6)}
+  nav .brand{font-weight:700;letter-spacing:0.4px;color:var(--accent)}
+  nav ul{list-style:none;display:flex;gap:14px;margin:0;padding:0}
+  nav a{color:#dfe8ea;text-decoration:none;font-weight:600;font-size:14px;padding:8px 10px;border-radius:8px}
+  nav a:hover{color:#000;background:var(--accent);transition:all .22s ease}
 
-    /* Navbar */
-    nav { position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.85);
-      padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; z-index: 999; }
-    nav h1 { font-size: 22px; animation: colorCycle 6s infinite; }
-    nav ul { display: flex; gap: 20px; list-style: none; }
-    nav ul li a { text-decoration: none; color: #fff; font-weight: 500; transition: 0.3s; }
-    nav ul li a:hover { color: #0ef; }
+  /* hero */
+  header{min-height:84vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;text-align:center;position:relative;z-index:1}
+  header h1{font-size:34px;margin:6px 0;animation: colorCycle 8s linear infinite}
+  header h2{font-size:18px;margin:6px 0;color:var(--muted)}
+  @keyframes colorCycle{
+    0%{color:#00e6ff}20%{color:#ff7ab6}40%{color:#7aff8a}60%{color:#ffd16a}80%{color:#d18aff}100%{color:#00e6ff}
+  }
 
-    /* Auto Text Color */
-    @keyframes colorCycle {
-      0% { color: #0ef; }
-      20% { color: #ff0055; }
-      40% { color: #00ff6a; }
-      60% { color: #ffaa00; }
-      80% { color: #ff00ff; }
-      100% { color: #0ef; }
-    }
+  /* marquee */
+  .marquee{width:100%;max-width:1100px;margin-top:20px;overflow:hidden;border-radius:12px}
+  .marquee .line{display:inline-block;padding-left:100%;white-space:nowrap;animation:marq 12s linear infinite;font-weight:700}
+  @keyframes marq{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
 
-    /* Hero */
-    header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-      text-align: center; padding: 0 20px; }
-    header h2 { font-size: 36px; margin-bottom: 15px; animation: colorCycle 8s infinite; }
-    header h3 { font-size: 20px; margin-bottom: 25px; animation: colorCycle 10s infinite; }
+  main{position:relative;z-index:2}
 
-    /* Marquee */
-    .marquee { width: 100%; overflow: hidden; white-space: nowrap; margin-top: 20px; }
-    .marquee span { display: inline-block; padding-left: 100%; animation: marquee 12s linear infinite, colorCycle 6s infinite;
-      font-weight: bold; font-size: 18px; }
-    @keyframes marquee { 0% { transform: translate(0,0); } 100% { transform: translate(-100%,0); } }
+  /* sections */
+  section{padding:64px 22px;max-width:1150px;margin:0 auto;opacity:0;transform:translateY(28px);transition:all .85s cubic-bezier(.2,.9,.25,1)}
+  section.visible{opacity:1;transform:none}
+  h3.section-title{font-size:20px;color:var(--accent);margin-bottom:18px;text-align:center}
 
-    /* Sections */
-    section { padding: 100px 60px; }
-    section h2 { font-size: 28px; text-align: center; margin-bottom: 40px; animation: colorCycle 6s infinite; }
+  /* skills badges */
+  .badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  .badge{background:var(--card);padding:8px;border-radius:8px;box-shadow:inset 0 -1px 0 rgba(255,255,255,0.02);display:inline-flex;align-items:center;gap:8px}
 
-    /* Skills */
-    .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; text-align: center; }
-    .skill { background: rgba(0,0,0,0.6); padding: 20px; border-radius: 12px; box-shadow: 0 0 10px #0ef4; transition: 0.3s; }
-    .skill:hover { transform: scale(1.05); }
+  /* slider */
+  .slider-wrap{overflow:hidden;padding:14px 6px}
+  .slider{display:flex;gap:18px;padding-bottom:6px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth}
+  .card{flex:0 0 320px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:18px;box-shadow:0 8px 30px rgba(0,0,0,0.6);scroll-snap-align:start;min-height:150px;display:flex;flex-direction:column;justify-content:space-between}
+  .card h4{margin:0 0 6px 0;color:var(--accent)}
+  .card p{color:var(--muted);font-size:14px;margin:6px 0}
+  .card .links{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .chip{background:rgba(0,0,0,0.5);padding:6px 8px;border-radius:8px;color:#fff;font-size:13px;text-decoration:none}
+  .chip:hover{opacity:.95;transform:translateY(-3px);transition:all .18s ease}
 
-    /* Projects Slider */
-    .slider { display: flex; overflow-x: auto; gap: 20px; scroll-snap-type: x mandatory; padding: 20px; }
-    .project { flex: 0 0 320px; background: rgba(0,0,0,0.6); padding: 20px; border-radius: 15px; scroll-snap-align: start;
-      box-shadow: 0 0 15px rgba(0,238,255,0.3); transition: 0.3s; }
-    .project:hover { transform: translateY(-8px); }
-    .project h3 { animation: colorCycle 8s infinite; margin-bottom: 10px; }
-    .project p { font-size: 14px; margin-bottom: 10px; }
-    .project a { color: #0ef; text-decoration: none; font-size: 14px; margin-right: 10px; }
+  /* achievements/awards/experience */
+  .list-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+  .item{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:12px;border-left:3px solid rgba(0,230,255,0.12)}
+  .item strong{color:var(--accent)}
+  .muted{color:var(--muted);font-size:14px}
 
-    /* Achievements */
-    .achievements { display: grid; gap: 20px; max-width: 800px; margin: auto; }
-    .achievement { background: rgba(0,0,0,0.6); padding: 20px; border-radius: 12px; box-shadow: 0 0 12px rgba(0,238,255,0.3); }
+  /* timeline */
+  .timeline{display:flex;flex-direction:column;gap:12px}
+  .timeline .role{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:10px;border-left:4px solid rgba(0,230,255,0.12)}
+  .timeline .role h4{margin:0;color:var(--accent)}
+  .timeline .role p{margin:8px 0 0 0;color:var(--muted);font-size:14px}
 
-    /* Contact */
-    .contact { text-align: center; }
-    .contact a { display: inline-block; margin: 10px; padding: 12px 20px; background: #0ef; color: #000; border-radius: 8px;
-      text-decoration: none; font-weight: bold; transition: 0.3s; }
-    .contact a:hover { background: #08c; color: #fff; }
+  /* soft skills */
+  .soft-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;align-items:stretch}
 
-    /* Resume Floating Button */
-    .resume-btn { position: fixed; bottom: 20px; right: 20px; background: #0ef; padding: 14px 22px; border-radius: 50px;
-      font-weight: bold; color: #000; text-decoration: none; box-shadow: 0 0 15px #0ef; animation: colorCycle 6s infinite; z-index: 1000; }
+  /* contact */
+  .contact{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .contact a{background:var(--accent);color:#001; padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700}
+  .contact a:hover{filter:brightness(.95)}
 
-    /* Footer */
-    footer { background: rgba(0,0,0,0.8); text-align: center; padding: 15px; font-size: 14px; color: #0ef; letter-spacing: 1px; }
-  </style>
+  footer{text-align:center;padding:22px 10px;color:var(--muted);font-size:13px}
+
+  /* responsive */
+  @media (max-width:720px){
+    nav{left:12px;transform:none;right:12px}
+    header h1{font-size:26px}
+    .card{flex:0 0 86%}
+  }
+</style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav>
-    <h1>Nishant Modi</h1>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#achievements">Achievements</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
 
-  <!-- Hero -->
-  <header>
-    <h2>Innovative Android Developer (5+ Yrs)</h2>
-    <h3>Jetpack Compose | Kotlin | Firebase | Scalable Mobile Architecture</h3>
-    <div class="marquee"><span>💡 99.9% crash-free apps | 🚀 30% faster performance | 📱 Boosted engagement by 42% | 🏆 Delivered portfolio-grade Android apps</span></div>
-  </header>
+<!-- NAV -->
+<nav>
+  <div class="brand">Nishant Modi</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#soft">Soft Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-  <!-- About -->
-  <section id="about">
-    <h2>About Me</h2>
-    <p style="max-width:800px; margin:auto; text-align:center;">
-      Android Developer with 5+ years delivering scalable, high-performance apps. 
-      Proven ability to cut crashes by 40%, optimize startup by 30%, and enhance user engagement by 42%. 
-      Specialized in Jetpack Compose, Kotlin, Firebase, and modern scalable architecture.
+<!-- HERO -->
+<header>
+  <h1>Innovative Android Developer — 5+ Years</h1>
+  <h2>Jetpack Compose · Kotlin · Firebase · Clean Architecture · Scalable Mobile Apps</h2>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="line">💡 99.9% crash-free • 30% faster cold start • +42% engagement • 98%+ payment success • Employee of the Year 2023</div>
+  </div>
+</header>
+
+<main>
+  <!-- ABOUT -->
+  <section id="about" class="visible">
+    <h3 class="section-title">About Me</h3>
+    <p style="max-width:920px;margin:0 auto;color:var(--muted);text-align:center">
+      Innovative and results-driven Android Developer with 5+ years building production-grade mobile applications using Jetpack Compose, Kotlin, Firebase and Clean Architecture. 
+      Delivered measurable impact — 99.9% crash-free stability, 30%+ performance improvement and up to 42% uplift in user engagement across portfolio apps.
     </p>
   </section>
 
-  <!-- Skills -->
+  <!-- SKILLS -->
   <section id="skills">
-    <h2>Core Skills</h2>
-    <div class="skills">
-      <div class="skill">Kotlin / Java</div>
-      <div class="skill">Jetpack Compose</div>
-      <div class="skill">Firebase / Firestore</div>
-      <div class="skill">Clean Architecture</div>
-      <div class="skill">CI/CD Pipelines</div>
-      <div class="skill">Google Maps & Fit APIs</div>
-      <div class="skill">Dagger-Hilt / Retrofit</div>
-      <div class="skill">Material 3 / MotionLayout</div>
+    <h3 class="section-title">Core Skills</h3>
+    <div class="badges" style="margin-bottom:18px;justify-content:center">
+      <!-- shields.io badges (fast visual tokens) -->
+      <div class="badge"><img src="https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white" alt="Kotlin"></div>
+      <div class="badge"><img src="https://img.shields.io/badge/Jetpack%20Compose-4285F4?style=for-the-badge&logo=android&logoColor=white" alt="Compose"></div>
+      <div class="badge"><img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase"></div>
+      <div class="badge"><img src="https://img.shields.io/badge/Clean%20Architecture-00BFA5?style=for-the-badge" alt="Clean Arch"></div>
+      <div class="badge"><img src="https://img.shields.io/badge/Dagger--Hilt-FF5722?style=for-the-badge&logo=google&logoColor=white" alt="Hilt"></div>
+      <div class="badge"><img src="https://img.shields.io/badge/Retrofit-009688?style=for-the-badge" alt="Retrofit"></div>
+      <div class="badge"><img src="https://img.shields.io/badge/ExoPlayer-673AB7?style=for-the-badge" alt="ExoPlayer"></div>
+      <div class="badge"><img src="https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white" alt="CI/CD"></div>
     </div>
+    <p class="muted" style="text-align:center;max-width:900px;margin:0 auto">
+      Programming Languages: <strong>Kotlin</strong>, Java • Architecture: Clean Architecture, MVVM, MVI • Cloud & DB: Firebase (Auth, Firestore, FCM), Room • Libraries: Paging3, RxJava, Glide, OkHttp
+    </p>
   </section>
 
-  <!-- Projects -->
+  <!-- PROJECTS -->
   <section id="projects">
-    <h2>Projects</h2>
-    <div class="slider">
-      <div class="project"><h3>ChatConnect</h3><p>Encrypted chat app. 🚀 Boosted DAU by 25%.</p>
-        <a href="https://github.com/nishantmodi92/chatconnect-android" target="_blank">GitHub</a>
-        <a href="https://github.com/nishantmodi92/chatconnect-android/blob/main/README.md" target="_blank">README</a>
-      </div>
-      <div class="project"><h3>FinMate</h3><p>Digital wallet with biometric login. 🔒 Reduced fraud by 60%.</p>
-        <a href="https://github.com/nishantmodi92/fintech-wallet" target="_blank">GitHub</a>
-        <a href="https://github.com/nishantmodi92/fintech-wallet/blob/main/README.md" target="_blank">README</a>
-      </div>
-      <div class="project"><h3>Healthify</h3><p>Fitness tracker with Google Fit. 🏃 Engagement +42%.</p>
-        <a href="https://github.com/nishantmodi92/healthify" target="_blank">GitHub</a>
-        <a href="https://github.com/nishantmodi92/healthify/blob/main/README.md" target="_blank">README</a>
-      </div>
-      <div class="project"><h3>FoodDeliveryApp</h3><p>Real-time ordering & GPS tracking. 🍔 98% crash-free.</p>
-        <a href="https://github.com/nishantmodi92/food-delivery-android" target="_blank">GitHub</a>
-        <a href="https://github.com/nishantmodi92/food-delivery-android/blob/main/README.md" target="_blank">README</a>
-      </div>
-      <div class="project"><h3>EduPlay</h3><p>E-Learning with video streaming. 🎓 Course completion +34%.</p>
-        <a href="https://github.com/nishantmodi92/e-learning-android" target="_blank">GitHub</a>
-        <a href="https://github.com/nishantmodi92/e-learning-android/blob/main/README.md" target="_blank">README</a>
-      </div>
-      <div class="project"><h3>GroceryEase</h3><p>Smart grocery app with offline cart sync. 🛒 Abandonment -35%.</p>
-        <a href="https://github.com/nishantmodi92/GroceryEase" target="_blank">GitHub</a>
-        <a href="https://github.com/nishantmodi92/GroceryEase/blob/main/README.md" target="_blank">README</a>
+    <h3 class="section-title">Projects</h3>
+
+    <div class="slider-wrap">
+      <div class="slider" role="list">
+        <!-- ChatConnect -->
+        <article class="card" role="listitem">
+          <div>
+            <h4>ChatConnect — Encrypted Messaging</h4>
+            <p>End-to-end encrypted 1:1 & group chat with push notifications and last-seen. Boosted DAU by <strong>25%</strong>.</p>
+            <p class="muted"><strong>Stack:</strong> Kotlin · Jetpack Compose · Firebase (Firestore/FCM) · Hilt</p>
+          </div>
+          <div class="links">
+            <a class="chip" href="https://github.com/nishantmodi92/chatconnect-android" target="_blank">GitHub</a>
+            <a class="chip" href="https://github.com/nishantmodi92/chatconnect-android/blob/main/README.md" target="_blank">README</a>
+          </div>
+        </article>
+
+        <!-- FinMate -->
+        <article class="card">
+          <div>
+            <h4>FinMate — Digital Wallet & Expense Manager</h4>
+            <p>Secure wallet with biometric login, payments & analytics. Reduced fraud attempts by <strong>60%</strong>.</p>
+            <p class="muted"><strong>Stack:</strong> Kotlin · MVVM · Firebase · Retrofit · Google Pay API</p>
+          </div>
+          <div class="links">
+            <a class="chip" href="https://github.com/nishantmodi92/fintech-wallet" target="_blank">GitHub</a>
+            <a class="chip" href="https://github.com/nishantmodi92/fintech-wallet/blob/main/README.md" target="_blank">README</a>
+          </div>
+        </article>
+
+        <!-- Healthify -->
+        <article class="card">
+          <div>
+            <h4>Healthify — Fitness Tracker</h4>
+            <p>Real-time step tracking, workout logging & gamified rewards. User engagement +<strong>42%</strong>.</p>
+            <p class="muted"><strong>Stack:</strong> Java · Jetpack Compose · Google Fit API</p>
+          </div>
+          <div class="links">
+            <a class="chip" href="https://github.com/nishantmodi92/healthify" target="_blank">GitHub</a>
+            <a class="chip" href="https://github.com/nishantmodi92/healthify/blob/main/README.md" target="_blank">README</a>
+          </div>
+        </article>
+
+        <!-- FoodDeliveryApp -->
+        <article class="card">
+          <div>
+            <h4>FoodDeliveryApp — Real-Time Food Ordering</h4>
+            <p>Live GPS tracking & in-app payments. Achieved <strong>30% faster cold start</strong> and 98% crash-free sessions.</p>
+            <p class="muted"><strong>Stack:</strong> Kotlin · Clean Architecture · Maps API · Firebase · Retrofit</p>
+          </div>
+          <div class="links">
+            <a class="chip" href="https://github.com/nishantmodi92/food-delivery-android" target="_blank">GitHub</a>
+            <a class="chip" href="https://github.com/nishantmodi92/food-delivery-android/blob/main/README.md" target="_blank">README</a>
+          </div>
+        </article>
+
+        <!-- EduPlay -->
+        <article class="card">
+          <div>
+            <h4>EduPlay — E-Learning Platform</h4>
+            <p>Offline-ready video streaming with quizzes and certification. Course completion +<strong>34%</strong>.</p>
+            <p class="muted"><strong>Stack:</strong> Kotlin · ExoPlayer · Firebase · Paging3</p>
+          </div>
+          <div class="links">
+            <a class="chip" href="https://github.com/nishantmodi92/e-learning-android" target="_blank">GitHub</a>
+            <a class="chip" href="https://github.com/nishantmodi92/e-learning-android/blob/main/README.md" target="_blank">README</a>
+          </div>
+        </article>
+
+        <!-- GroceryEase -->
+        <article class="card">
+          <div>
+            <h4>GroceryEase — Grocery Shopping & Delivery</h4>
+            <p>Smart cart with offline sync & real-time tracking. Reduced cart abandonment by <strong>35%</strong>.</p>
+            <p class="muted"><strong>Stack:</strong> Kotlin · Jetpack Compose · Firebase · Google Maps API</p>
+          </div>
+          <div class="links">
+            <a class="chip" href="https://github.com/nishantmodi92/GroceryEase" target="_blank">GitHub</a>
+            <a class="chip" href="https://github.com/nishantmodi92/GroceryEase/blob/main/README.md" target="_blank">README</a>
+          </div>
+        </article>
+
       </div>
     </div>
+    <p class="muted" style="text-align:center;margin-top:12px">Tip: add screenshots/GIFs into each repo README — I left space so you can drop visuals later for stronger impact.</p>
   </section>
 
-  <!-- Achievements -->
+  <!-- SELECTED ACHIEVEMENTS -->
   <section id="achievements">
-    <h2>Achievements & Recognition</h2>
-    <div class="achievements">
-      <div class="achievement">🏆 Employee of the Year 2023 – Recognized for scalable architecture excellence at EXL.</div>
-      <div class="achievement">⭐ Star Performer of the Quarter – For major performance optimization initiatives.</div>
-      <div class="achievement">👏 Client Appreciation Award – For delivering high-quality Android solutions under strict deadlines.</div>
+    <h3 class="section-title">Selected Achievements</h3>
+    <div class="list-grid">
+      <div class="item">📱 <strong>99.9% crash-free performance</strong> maintained across multiple applications.</div>
+      <div class="item">⚡ <strong>Reduced cold start by 30%</strong> using memory profiling & startup tracing.</div>
+      <div class="item">📈 <strong>User retention +35%</strong> via UX improvements and engagement flows.</div>
+      <div class="item">💳 <strong>98%+ payment success</strong> through multi-layered security.</div>
+      <div class="item">🏗️ Recognized for <strong>architecture leadership & mentoring</strong>.</div>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <div class="contact">
-      <a href="mailto:nishantmodimaster@gmail.com">Email</a>
-      <a href="https://linkedin.com/in/nishantmodi92" target="_blank">LinkedIn</a>
-      <a href="https://github.com/nishantmodi92" target="_blank">GitHub</a>
-      <a href="https://nishantmodi92.github.io" target="_blank">Portfolio</a>
+  <!-- AWARDS -->
+  <section id="awards">
+    <h3 class="section-title">Awards & Recognition</h3>
+    <div class="list-grid">
+      <div class="item">🏆 <strong>EXL Employee of the Year 2023</strong> — Selected from 50+ engineers for scalable architecture excellence.</div>
+      <div class="item">⭐ <strong>Star Performer of the Quarter</strong> — For major performance optimization initiatives.</div>
+      <div class="item">👏 <strong>Client Appreciation Award</strong> — Delivered high-quality solutions under tight deadlines.</div>
     </div>
   </section>
 
-  <!-- Resume Floating Button -->
-  <a class="resume-btn" href="Nishant_Modi_Android_Developer.pdf" target="_blank">📄 Download Resume</a>
-
-  <!-- Footer -->
-  <footer>
-    🚀 Crafted with passion by Nishant Modi | Android Developer | 2025
-  </footer>
-</body>
-</html>
+  <!-- SOFT SKILLS -->
+  <section id="soft">
+    <h3 class="section-title">Soft Skills & Mindset</h3>
+    <div class="soft-grid">
+      <div class="item">🤝 <strong>Customer Obsession</strong></div>
+      <div class="item">🚀 <strong>Growth Mindset</strong></div>
+      <div class="item">🗣️ <strong>Influencing Without Authority</strong></div>
+      <div class="item">⚡ <strong>Agile Delivery</strong></div>
+      <di
