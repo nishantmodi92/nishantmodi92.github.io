@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nishant Modi — Android Developer</title>
   <meta name="description" content="Android Developer — Jetpack Compose, Kotlin, Firebase. Fast, scalable, elegant apps." />
+  <meta name="theme-color" content="#111827" />
   <!-- Open Graph / Twitter -->
   <meta property="og:title" content="Nishant Modi — Android Developer" />
   <meta property="og:description" content="Jetpack Compose • Kotlin • Firebase — fast, scalable, elegant apps." />
@@ -12,44 +13,40 @@
   <meta property="og:url" content="https://nishantmodi92.github.io/" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="https://nishantmodi92.github.io/" />
+  <!-- Lightweight data-URI favicon (no extra file needed) -->
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="18" fill="%23111827"/><text x="50" y="58" font-size="58" text-anchor="middle" fill="white" font-family="Segoe UI, Arial">N</text></svg>' />
 
-  <!-- Performance: preconnect, no webfonts (system stack) for 100/100 Lighthouse -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-
-  <!-- Tailwind via CDN (small, fast) -->
+  <!-- Tailwind via CDN -->
   <script src="https://cdn.tailwindcss.com?plugins=typography,line-clamp,aspect-ratio"></script>
   <script>tailwind.config={darkMode:'class'};</script>
 
-  <!-- Minimal critical styles (animations + marquee + slider) -->
+  <!-- Critical styles: animations, marquee, slider, reduced motion -->
   <style>
-    :root{ --accent:#7c3aed; --auto: #7c3aed; }
-    /* Smooth fade + lift */
+    :root{ --accent:#7c3aed; --auto:#7c3aed; }
     .fade-in{opacity:0;transform:translateY(8px);animation:fadeIn .6s ease-out .1s forwards}
     @keyframes fadeIn{to{opacity:1;transform:none}}
-    /* Animated blob bg */
     .blob{position:absolute;inset:-20% -10% auto -10%;height:62vh;filter:blur(34px);background:
       radial-gradient(closest-side,rgba(124,58,237,.22),transparent 60%),
       radial-gradient(closest-side,rgba(59,130,246,.18),transparent 60%),
       radial-gradient(closest-side,rgba(6,182,212,.16),transparent 60%);
       animation:hue 18s linear infinite}
     @keyframes hue{from{filter:blur(34px) hue-rotate(0)}to{filter:blur(34px) hue-rotate(360deg)}}
-    /* Marquee */
     .marquee{display:flex;overflow:hidden;mask-image:linear-gradient(90deg,transparent,black 10%,black 90%,transparent)}
     .marquee ul{display:flex;gap:2rem;min-width:100%;animation:scroll 16s linear infinite;margin:0;padding:0;list-style:none}
     .marquee li{white-space:nowrap;font-weight:600;opacity:.9}
     .marquee li::after{content:'•';opacity:.4;margin-left:1rem}
     @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-100%)}}
-    /* Slider */
     .slide{position:absolute;inset:0;opacity:0;transition:opacity .6s ease}
     .slide.active{opacity:1}
-    /* Typing indicator */
     .caret::after{content:'|';animation:blink 1s steps(1,end) infinite}
     @keyframes blink{50%{opacity:0}}
-    /* Auto text color target */
     .auto-color{color:var(--auto)}
-    /* Focus ring */
     :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    @media (prefers-reduced-motion: reduce){
+      .fade-in{animation:none;opacity:1;transform:none}
+      .marquee ul{animation:none}
+      .blob{animation:none}
+    }
   </style>
   <!-- JSON-LD (SEO) -->
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Nishant Modi","jobTitle":"Android Developer","url":"https://nishantmodi92.github.io","sameAs":["https://github.com/nishantmodi92","https://www.linkedin.com/in/nishantmodi92"],"knowsAbout":["Android","Kotlin","Jetpack Compose","Firebase","Clean Architecture"]}</script>
@@ -57,248 +54,4 @@
 <body class="bg-gradient-to-br from-zinc-50 to-white dark:from-zinc-900 dark:to-black text-zinc-900 dark:text-zinc-100 selection:bg-violet-300/60 dark:selection:bg-violet-500/40">
   <!-- Sticky Nav -->
   <header class="sticky top-0 z-40 backdrop-blur border-b border-zinc-200/70 dark:border-zinc-800/70 bg-white/60 dark:bg-zinc-900/50">
-    <nav class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-      <a href="#home" class="flex items-center gap-2 font-semibold tracking-tight">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.39 7.36H22l-6.2 4.5 2.37 7.36L12 16.72 5.83 21.2l2.36-7.34L2 9.36h7.62L12 2z"/></svg>
-        <span>NM • Portfolio</span>
-      </a>
-      <ul class="hidden md:flex items-center gap-6 text-sm">
-        <li><a class="nav-link hover:opacity-80" href="#projects">Projects</a></li>
-        <li><a class="nav-link hover:opacity-80" href="#skills">Skills</a></li>
-        <li><a class="nav-link hover:opacity-80" href="#about">About</a></li>
-        <li><a class="nav-link hover:opacity-80" href="#contact">Contact</a></li>
-      </ul>
-      <div class="flex items-center gap-2">
-        <button id="themeBtn" class="rounded-xl px-3 py-2 text-sm ring-1 ring-zinc-300 dark:ring-zinc-700" aria-label="Toggle theme">Toggle</button>
-        <a href="#contact" class="rounded-xl px-3 py-2 text-sm bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900">Hire Me</a>
-      </div>
-    </nav>
-  </header>
-
-  <!-- HERO -->
-  <section id="home" class="relative overflow-hidden">
-    <div class="blob pointer-events-none"></div>
-    <div class="mx-auto max-w-6xl px-4 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight auto-color">
-          Unique • Professional • <span aria-hidden>🚀</span>
-        </h1>
-        <p id="typing" class="mt-4 text-lg md:text-xl text-zinc-600 dark:text-zinc-300 caret"></p>
-        <div class="mt-7 flex flex-wrap items-center gap-3">
-          <a href="#projects" class="rounded-2xl bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 px-4 py-2 text-sm">Explore Projects →</a>
-          <a href="mailto:nishantmodi92@gmail.com" class="rounded-2xl ring-1 ring-zinc-300 dark:ring-zinc-700 px-4 py-2 text-sm">Email</a>
-          <a href="https://github.com/nishantmodi92" target="_blank" rel="noreferrer" class="rounded-2xl ring-1 ring-zinc-300 dark:ring-zinc-700 px-4 py-2 text-sm">GitHub</a>
-          <a href="https://www.linkedin.com/in/nishantmodi92" target="_blank" rel="noreferrer" class="rounded-2xl ring-1 ring-zinc-300 dark:ring-zinc-700 px-4 py-2 text-sm">LinkedIn</a>
-        </div>
-        <div class="mt-8 marquee py-2" aria-label="Tech marquee">
-          <ul>
-            <li>Jetpack Compose</li>
-            <li>Kotlin</li>
-            <li>Firebase</li>
-            <li>Clean Architecture</li>
-            <li>MVVM</li>
-            <li>Performance</li>
-            <li>Crash‑free 99%+</li>
-            <li>Material You</li>
-          </ul>
-          <ul aria-hidden="true">
-            <li>Jetpack Compose</li>
-            <li>Kotlin</li>
-            <li>Firebase</li>
-            <li>Clean Architecture</li>
-            <li>MVVM</li>
-            <li>Performance</li>
-            <li>Crash‑free 99%+</li>
-            <li>Material You</li>
-          </ul>
-        </div>
-      </div>
-      <!-- Slider -->
-      <div class="relative ring-1 ring-zinc-200 dark:ring-zinc-800 rounded-3xl overflow-hidden shadow-xl aspect-[4/3]">
-        <div class="absolute inset-0 grid place-items-center text-center p-6 bg-white/70 dark:bg-zinc-900/70 backdrop-blur slide active" data-slide="0">
-          <div>
-            <h3 class="text-2xl font-bold">ChatConnect</h3>
-            <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">Real‑time chat • Compose + Firebase</p>
-            <a href="https://github.com/nishantmodi92/ChatConnect" target="_blank" rel="noreferrer" class="inline-block mt-4 rounded-2xl px-4 py-2 text-sm ring-1 ring-zinc-300 dark:ring-zinc-700">GitHub</a>
-          </div>
-        </div>
-        <div class="absolute inset-0 grid place-items-center text-center p-6 bg-white/70 dark:bg-zinc-900/70 backdrop-blur slide" data-slide="1">
-          <div>
-            <h3 class="text-2xl font-bold">GroceryEase</h3>
-            <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">Grocery + live tracking • Offline cart</p>
-            <a href="https://github.com/nishantmodi92/GroceryEase" target="_blank" rel="noreferrer" class="inline-block mt-4 rounded-2xl px-4 py-2 text-sm ring-1 ring-zinc-300 dark:ring-zinc-700">GitHub</a>
-          </div>
-        </div>
-        <div class="absolute inset-0 grid place-items-center text-center p-6 bg-white/70 dark:bg-zinc-900/70 backdrop-blur slide" data-slide="2">
-          <div>
-            <h3 class="text-2xl font-bold">FoodDeliveryApp</h3>
-            <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">In‑app payments • 98%+ crash‑free</p>
-            <a href="https://github.com/nishantmodi92/food-delivery-android" target="_blank" rel="noreferrer" class="inline-block mt-4 rounded-2xl px-4 py-2 text-sm ring-1 ring-zinc-300 dark:ring-zinc-700">GitHub</a>
-          </div>
-        </div>
-        <div class="absolute bottom-3 inset-x-0 flex items-center justify-center gap-2">
-          <button class="dot h-2.5 w-2.5 rounded-full bg-zinc-900 dark:bg-zinc-50" aria-label="Slide 1"></button>
-          <button class="dot h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700" aria-label="Slide 2"></button>
-          <button class="dot h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700" aria-label="Slide 3"></button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Grid -->
-  <section id="projects" class="mx-auto max-w-6xl px-4 py-16">
-    <div class="flex items-end justify-between mb-6">
-      <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight auto-color">Featured Projects</h2>
-      <a href="https://github.com/nishantmodi92" target="_blank" rel="noreferrer" class="text-sm underline underline-offset-4">See all</a>
-    </div>
-    <div class="grid md:grid-cols-3 gap-6">
-      <!-- Cards -->
-      <article class="p-6 rounded-3xl ring-1 ring-zinc-200 dark:ring-zinc-800 fade-in">
-        <h3 class="font-semibold">ChatConnect</h3>
-        <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-300">End‑to‑end chat with Compose, Firebase.</p>
-        <a class="inline-block mt-3 text-sm" href="https://github.com/nishantmodi92/ChatConnect" target="_blank" rel="noreferrer">GitHub →</a>
-      </article>
-      <article class="p-6 rounded-3xl ring-1 ring-zinc-200 dark:ring-zinc-800 fade-in" style="animation-delay:.08s">
-        <h3 class="font-semibold">GroceryEase</h3>
-        <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-300">Delivery app • Maps • Offline sync.</p>
-        <a class="inline-block mt-3 text-sm" href="https://github.com/nishantmodi92/GroceryEase" target="_blank" rel="noreferrer">GitHub →</a>
-      </article>
-      <article class="p-6 rounded-3xl ring-1 ring-zinc-200 dark:ring-zinc-800 fade-in" style="animation-delay:.16s">
-        <h3 class="font-semibold">FoodDeliveryApp</h3>
-        <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-300">Real‑time tracking • In‑app payments.</p>
-        <a class="inline-block mt-3 text-sm" href="https://github.com/nishantmodi92/food-delivery-android" target="_blank" rel="noreferrer">GitHub →</a>
-      </article>
-    </div>
-  </section>
-
-  <!-- Skills -->
-  <section id="skills" class="mx-auto max-w-6xl px-4 py-16">
-    <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight auto-color">Skills</h2>
-    <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <!-- Simple bars -->
-      <div class="p-4 rounded-2xl ring-1 ring-zinc-200 dark:ring-zinc-800"><div class="flex justify-between text-sm font-medium"><span>Android</span><span>95%</span></div><div class="mt-2 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800 overflow-hidden"><div class="h-full bg-zinc-900 dark:bg-zinc-50" style="width:95%"></div></div></div>
-      <div class="p-4 rounded-2xl ring-1 ring-zinc-200 dark:ring-zinc-800"><div class="flex justify-between text-sm font-medium"><span>Jetpack Compose</span><span>92%</span></div><div class="mt-2 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800 overflow-hidden"><div class="h-full bg-zinc-900 dark:bg-zinc-50" style="width:92%"></div></div></div>
-      <div class="p-4 rounded-2xl ring-1 ring-zinc-200 dark:ring-zinc-800"><div class="flex justify-between text-sm font-medium"><span>Kotlin</span><span>90%</span></div><div class="mt-2 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800 overflow-hidden"><div class="h-full bg-zinc-900 dark:bg-zinc-50" style="width:90%"></div></div></div>
-      <div class="p-4 rounded-2xl ring-1 ring-zinc-200 dark:ring-zinc-800"><div class="flex justify-between text-sm font-medium"><span>Firebase</span><span>88%</span></div><div class="mt-2 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800 overflow-hidden"><div class="h-full bg-zinc-900 dark:bg-zinc-50" style="width:88%"></div></div></div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="mx-auto max-w-6xl px-4 py-16">
-    <div class="grid md:grid-cols-3 gap-8 items-start">
-      <div class="md:col-span-2">
-        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight auto-color">About Me</h2>
-        <p class="mt-4 text-zinc-600 dark:text-zinc-300 leading-relaxed">I build Android apps that are fast, reliable and delightful. Focused on clean, modular architectures and performance wins with a strong eye for modern UI/UX.</p>
-        <ul class="mt-4 list-disc pl-5 space-y-2 text-zinc-700 dark:text-zinc-300">
-          <li>Material You + smooth animations</li>
-          <li>Real‑time features: chat, notifications, tracking</li>
-          <li>Testing, observability, CI/CD</li>
-        </ul>
-      </div>
-      <aside class="p-6 rounded-3xl ring-1 ring-zinc-200 dark:ring-zinc-800">
-        <h3 class="font-semibold">Quick Info</h3>
-        <div class="mt-3 space-y-2 text-sm">
-          <div>Location: Noida, India</div>
-          <div>Open to: Big Tech & high‑impact teams</div>
-          <div>Preferred: Shirts‑only 😄</div>
-        </div>
-      </aside>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="mx-auto max-w-6xl px-4 py-16">
-    <div class="rounded-3xl ring-1 ring-zinc-200 dark:ring-zinc-800 p-6 md:p-10 grid md:grid-cols-2 gap-8 items-center">
-      <div>
-        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight auto-color">Let’s Build Something</h2>
-        <p class="mt-3 text-zinc-600 dark:text-zinc-300">Have a role or project in mind? I’d love to hear about it.</p>
-        <div class="mt-6 flex flex-wrap gap-3 text-sm">
-          <a href="mailto:nishantmodi92@gmail.com" class="inline-block rounded-2xl ring-1 ring-zinc-300 dark:ring-zinc-700 px-4 py-2">nishantmodi92@gmail.com</a>
-          <a href="tel:+917042853533" class="inline-block rounded-2xl ring-1 ring-zinc-300 dark:ring-zinc-700 px-4 py-2">+91 70428 53533</a>
-        </div>
-      </div>
-      <form class="space-y-3" onsubmit="event.preventDefault(); alert('Thanks! Your message has been sent.');" aria-label="Contact form">
-        <label class="block text-sm"> <span>Name</span>
-          <input required name="name" class="mt-1 w-full rounded-xl border border-zinc-300 dark:border-zinc-700 bg-transparent px-3 py-2" />
-        </label>
-        <label class="block text-sm"> <span>Email</span>
-          <input required name="email" type="email" class="mt-1 w-full rounded-xl border border-zinc-300 dark:border-zinc-700 bg-transparent px-3 py-2" />
-        </label>
-        <label class="block text-sm"> <span>Message</span>
-          <textarea required name="message" rows="4" class="mt-1 w-full rounded-xl border border-zinc-300 dark:border-zinc-700 bg-transparent px-3 py-2"></textarea>
-        </label>
-        <button type="submit" class="rounded-2xl w-full px-4 py-2 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900">Send</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-10 border-t border-zinc-200 dark:border-zinc-800">
-    <div class="mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
-      <p>© <span id="year"></span> Nishant Modi. All rights reserved.</p>
-      <div class="flex items-center gap-4">
-        <a href="https://github.com/nishantmodi92" target="_blank" rel="noreferrer" class="hover:opacity-80">GitHub</a>
-        <a href="https://www.linkedin.com/in/nishantmodi92" target="_blank" rel="noreferrer" class="hover:opacity-80">LinkedIn</a>
-        <a href="#home" class="hover:opacity-80">Back to top</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Single, tiny script for: typing, slider, theme auto, auto text color, active nav -->
-  <script defer>
-  (function(){
-    const $ = (s, r=document) => r.querySelector(s);
-    const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
-
-    // Year
-    $('#year').textContent = new Date().getFullYear();
-
-    // Typing indicator (hero)
-    const lines = [
-      'Android Developer — Jetpack Compose • Kotlin • Firebase',
-      'Clean Architecture • Performance • Material You',
-      'I ship fast, scalable, delightful apps'
-    ];
-    const typingEl = $('#typing');
-    let li=0, ci=0, del=false;
-    function type(){
-      const full = lines[li];
-      typingEl.textContent = full.slice(0, ci);
-      if(!del && ci < full.length){ ci++; }
-      else if(!del && ci === full.length){ del = true; setTimeout(type, 1200); return;}
-      else if(del && ci>0){ ci--; }
-      else { del=false; li=(li+1)%lines.length; }
-      setTimeout(type, del?40:24);
-    }
-    type();
-
-    // Slider
-    const slides = $$('.slide');
-    const dots = $$('.dot');
-    let s=0; function go(i){ s=i%slides.length; slides.forEach((el,j)=>el.classList.toggle('active',j===s)); dots.forEach((d,j)=>d.className = 'dot h-2.5 w-2.5 rounded-full ' + (j===s?'bg-zinc-900 dark:bg-zinc-50':'bg-zinc-300 dark:bg-zinc-700')); }
-    setInterval(()=>go(s+1), 3500); dots.forEach((d,i)=>d.addEventListener('click',()=>go(i)));
-
-    // Theme: auto based on system + hour; manual toggle persists
-    const root = document.documentElement; const THEME='nm-theme';
-    const apply = (dark)=> dark?root.classList.add('dark'):root.classList.remove('dark');
-    function autoTheme(){ const hour=new Date().getHours(); const sys=window.matchMedia('(prefers-color-scheme: dark)').matches; return sys || hour<7 || hour>=19; }
-    apply( (localStorage.getItem(THEME) ?? (autoTheme()? 'dark':'light')) === 'dark' );
-    $('#themeBtn').addEventListener('click',()=>{ const isDark=root.classList.toggle('dark'); localStorage.setItem(THEME, isDark?'dark':'light'); });
-
-    // Auto text color every section: rotates palette and writes to CSS var
-    const palette = ['#7c3aed','#f97316','#22c55e','#06b6d4','#ef4444','#eab308','#3b82f6','#a855f7'];
-    let pi=0; setInterval(()=>{ pi=(pi+1)%palette.length; root.style.setProperty('--auto', palette[pi]); }, 1000);
-
-    // Active link highlighting while scrolling
-    const links = $$('.nav-link');
-    const ids = links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
-    const obs = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){ const id='#'+e.target.id; links.forEach(l=>l.classList.toggle('text-[--accent]', l.getAttribute('href')===id)); }
-      });
-    },{rootMargin:'-40% 0% -55% 0%', threshold:[0,1]});
-    ids.forEach(sec=>obs.observe(sec));
-  })();
-  </script>
-</body>
-</html>
+    <nav class="mx-auto max-w-6xl px
