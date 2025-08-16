@@ -1,138 +1,159 @@
-// src/App.tsx
-import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Github } from "lucide-react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nishant Modi – Android Developer</title>
+  <style>
+    /* ---------- Global Styles ---------- */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    body { background: #0a0a0a; color: #f5f5f5; line-height: 1.6; }
 
-const projects = [
-  {
-    title: "ChatConnect – Encrypted Messaging",
-    metrics: "25% DAU growth | 99.9% crash-free",
-    tech: "Kotlin, Jetpack Compose, Firebase, Hilt",
-    github: "https://github.com/nishantmodi92/chatconnect-android",
-    readme: "https://github.com/nishantmodi92/chatconnect-android/blob/main/README.md"
-  },
-  {
-    title: "FinMate – Digital Wallet & Expense Manager",
-    metrics: "60% fraud reduction | Biometric secured",
-    tech: "Kotlin, MVVM, Firebase, Retrofit, GPay API",
-    github: "https://github.com/nishantmodi92/fintech-wallet",
-    readme: "https://github.com/nishantmodi92/fintech-wallet/blob/main/README.md"
-  },
-  {
-    title: "Healthify – Fitness Tracker",
-    metrics: "42% engagement boost | Gamified rewards",
-    tech: "Java, Jetpack Compose, Google Fit API",
-    github: "https://github.com/nishantmodi92/healthify",
-    readme: "https://github.com/nishantmodi92/healthify/blob/main/README.md"
-  },
-  {
-    title: "FoodDeliveryApp – Real-Time Ordering",
-    metrics: "30% faster cold start | 98% crash-free",
-    tech: "Kotlin, Clean Architecture, Maps API, Firebase",
-    github: "https://github.com/nishantmodi92/food-delivery-android",
-    readme: "https://github.com/nishantmodi92/food-delivery-android/blob/main/README.md"
-  },
-  {
-    title: "EduPlay – E-Learning App",
-    metrics: "34% course completion growth",
-    tech: "Kotlin, ExoPlayer, Firebase, Paging3",
-    github: "https://github.com/nishantmodi92/e-learning-android",
-    readme: "https://github.com/nishantmodi92/e-learning-android/blob/main/README.md"
-  },
-  {
-    title: "GroceryEase – Shopping & Delivery",
-    metrics: "35% cart abandonment reduction",
-    tech: "Kotlin, Jetpack Compose, Firebase, Maps API",
-    github: "https://github.com/nishantmodi92/GroceryEase",
-    readme: "https://github.com/nishantmodi92/GroceryEase/blob/main/README.md"
-  },
-];
+    /* ---------- Navbar ---------- */
+    nav { position: fixed; top: 0; width: 100%; background: #111; padding: 15px 30px;
+      display: flex; justify-content: space-between; align-items: center; z-index: 999; }
+    nav h1 { font-size: 22px; color: #0ef; }
+    nav ul { display: flex; gap: 20px; list-style: none; }
+    nav ul li a { text-decoration: none; color: #fff; font-weight: 500; transition: 0.3s; }
+    nav ul li a:hover { color: #0ef; }
 
-export default function App() {
-  return (
-    <div className="bg-gray-950 text-white min-h-screen">
-      {/* Navbar */}
-      <nav className="fixed top-0 w-full bg-gray-900/80 backdrop-blur-md p-4 flex justify-between shadow-lg z-50">
-        <h1 className="text-xl font-bold text-purple-400">Nishant Modi</h1>
-        <div className="space-x-6">
-          <a href="#about" className="hover:text-purple-300">About</a>
-          <a href="#skills" className="hover:text-purple-300">Skills</a>
-          <a href="#projects" className="hover:text-purple-300">Projects</a>
-          <a href="#achievements" className="hover:text-purple-300">Achievements</a>
-          <a href="#contact" className="hover:text-purple-300">Contact</a>
-        </div>
-      </nav>
+    /* ---------- Hero Section ---------- */
+    header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 0 20px; }
+    header h2 { font-size: 34px; margin-bottom: 15px; }
+    header h3 { font-size: 20px; color: #0ef; margin-bottom: 25px; }
+    .marquee { width: 100%; overflow: hidden; white-space: nowrap; box-sizing: border-box; margin-top: 20px; }
+    .marquee span { display: inline-block; padding-left: 100%; animation: marquee 12s linear infinite; color: #0ef; font-weight: bold; }
+    @keyframes marquee { 0% { transform: translate(0,0); } 100% { transform: translate(-100%,0); } }
 
-      {/* Hero Section */}
-      <section className="h-screen flex flex-col justify-center items-center text-center px-6">
-        <motion.h2 
-          initial={{opacity:0, y:20}} 
-          animate={{opacity:1, y:0}}
-          className="text-4xl font-extrabold mb-4"
-        >
-          🚀 Building Scalable Android Apps
-        </motion.h2>
-        <p className="text-gray-300 max-w-2xl">
-          5+ years of expertise in Jetpack Compose, Kotlin, Firebase, and Clean Architecture. 
-          Proven track record of delivering 99.9% crash-free, high-performance mobile solutions.
-        </p>
-      </section>
+    /* ---------- Section ---------- */
+    section { padding: 100px 60px; }
+    section h2 { font-size: 28px; text-align: center; margin-bottom: 40px; color: #0ef; }
 
-      {/* Skills Marquee */}
-      <section id="skills" className="py-16 bg-gray-900">
-        <marquee className="text-purple-300 font-semibold text-lg">
-          Kotlin • Jetpack Compose • Clean Architecture • Firebase • MVVM • Modularization • Google APIs • CI/CD • Material 3 • MotionLayout • Secure Payments
-        </marquee>
-      </section>
+    /* ---------- Skills ---------- */
+    .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; text-align: center; }
+    .skill { background: #111; padding: 20px; border-radius: 12px; box-shadow: 0 0 10px #0ef4; transition: 0.3s; }
+    .skill:hover { transform: translateY(-5px); }
 
-      {/* Projects Slider */}
-      <section id="projects" className="py-20 px-6">
-        <h3 className="text-3xl font-bold text-center mb-10">Highlighted Projects</h3>
-        <div className="grid md:grid-cols-3 gap-8">
-          {projects.map((p, i) => (
-            <motion.div key={i} initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} transition={{delay:i*0.1}}>
-              <Card className="bg-gray-800 border border-gray-700 rounded-2xl shadow-xl hover:shadow-purple-500/40 transition">
-                <CardContent className="p-6">
-                  <h4 className="text-xl font-semibold text-purple-300">{p.title}</h4>
-                  <p className="text-sm text-gray-400 mt-2">{p.tech}</p>
-                  <p className="text-sm text-green-400 mt-2">{p.metrics}</p>
-                  <div className="flex space-x-3 mt-4">
-                    <Button asChild variant="secondary" className="bg-purple-600 hover:bg-purple-700 text-white">
-                      <a href={p.github} target="_blank">GitHub</a>
-                    </Button>
-                    <Button asChild variant="outline" className="border-purple-400 text-purple-300">
-                      <a href={p.readme} target="_blank">README</a>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+    /* ---------- Projects Slider ---------- */
+    .slider { display: flex; overflow-x: auto; gap: 20px; scroll-snap-type: x mandatory; padding: 20px; }
+    .project { flex: 0 0 320px; background: #111; padding: 20px; border-radius: 15px; scroll-snap-align: start;
+      box-shadow: 0 0 15px rgba(0,238,255,0.3); }
+    .project h3 { color: #0ef; margin-bottom: 10px; }
+    .project p { font-size: 14px; margin-bottom: 10px; }
+    .project a { color: #0ef; text-decoration: none; font-size: 14px; margin-right: 10px; }
 
-      {/* Achievements */}
-      <section id="achievements" className="bg-gray-900 py-20 text-center px-6">
-        <h3 className="text-3xl font-bold mb-6">🏆 Achievements</h3>
-        <ul className="space-y-3 text-gray-300">
-          <li>• EXL Employee of the Year 2023 – Recognized for scalable architecture excellence.</li>
-          <li>• Reduced app cold start by 30% using memory profiling & tracing.</li>
-          <li>• Improved retention by 35% via engagement flows.</li>
-          <li>• Achieved 98%+ secure payment success rate.</li>
-        </ul>
-      </section>
+    /* ---------- Contact ---------- */
+    .contact { text-align: center; }
+    .contact a { display: inline-block; margin: 10px; padding: 12px 20px; background: #0ef; color: #000; border-radius: 8px;
+      text-decoration: none; font-weight: bold; transition: 0.3s; }
+    .contact a:hover { background: #08c; color: #fff; }
 
-      {/* Contact */}
-      <section id="contact" className="py-20 text-center">
-        <h3 className="text-3xl font-bold mb-4">📩 Get in Touch</h3>
-        <p className="text-gray-300 mb-6">Let’s connect for building innovative Android experiences.</p>
-        <div className="flex justify-center space-x-6">
-          <a href="mailto:nishantmodimaster@gmail.com" className="hover:text-purple-400">Email</a>
-          <a href="https://github.com/nishantmodi92" target="_blank" className="hover:text-purple-400">GitHub</a>
-          <a href="https://linkedin.com/in/nishantmodi92" target="_blank" className="hover:text-purple-400">LinkedIn</a>
-        </div>
-      </section>
+    /* ---------- Footer ---------- */
+    footer { background: #111; text-align: center; padding: 15px; font-size: 14px; margin-top: 30px; }
+  </style>
+</head>
+<body>
+  <!-- ---------- Navbar ---------- -->
+  <nav>
+    <h1>Nishant Modi</h1>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ---------- Hero ---------- -->
+  <header>
+    <h2>🚀 Android Developer</h2>
+    <h3>Jetpack Compose | Kotlin | Firebase | Scalable Mobile Apps</h3>
+    <div class="marquee"><span>💡 Building user-centric, scalable, and high-performance Android solutions | 99.9% crash-free apps | 30% faster performance | 🚀</span></div>
+  </header>
+
+  <!-- ---------- About ---------- -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p style="max-width:800px; margin:auto; text-align:center;">
+      Innovative Android Developer with 5+ years of expertise in designing and delivering scalable, 
+      high-performance apps using Jetpack Compose, Kotlin, Firebase, and Clean Architecture. 
+      Proven success in reducing crashes by 40%, improving cold start by 30%, and boosting user engagement by 42%.
+    </p>
+  </section>
+
+  <!-- ---------- Skills ---------- -->
+  <section id="skills">
+    <h2>Core Skills</h2>
+    <div class="skills">
+      <div class="skill">Kotlin / Java</div>
+      <div class="skill">Jetpack Compose</div>
+      <div class="skill">Firebase / Firestore</div>
+      <div class="skill">Clean Architecture</div>
+      <div class="skill">CI/CD Pipelines</div>
+      <div class="skill">Google Maps & Fit APIs</div>
+      <div class="skill">Dagger-Hilt / Retrofit</div>
+      <div class="skill">Material 3 / MotionLayout</div>
     </div>
-  );
-}
+  </section>
+
+  <!-- ---------- Projects ---------- -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="slider">
+      <div class="project">
+        <h3>ChatConnect</h3>
+        <p>Encrypted chat app with FCM push notifications. 🚀 Boosted DAU by 25%.</p>
+        <a href="https://github.com/nishantmodi92/chatconnect-android" target="_blank">GitHub</a>
+        <a href="https://github.com/nishantmodi92/chatconnect-android/blob/main/README.md" target="_blank">README</a>
+      </div>
+      <div class="project">
+        <h3>FinMate</h3>
+        <p>Digital wallet with biometric login. 🔒 Reduced fraud attempts by 60%.</p>
+        <a href="https://github.com/nishantmodi92/fintech-wallet" target="_blank">GitHub</a>
+        <a href="https://github.com/nishantmodi92/fintech-wallet/blob/main/README.md" target="_blank">README</a>
+      </div>
+      <div class="project">
+        <h3>Healthify</h3>
+        <p>Fitness tracker integrated with Google Fit. 🏃 Boosted engagement by 42%.</p>
+        <a href="https://github.com/nishantmodi92/healthify" target="_blank">GitHub</a>
+        <a href="https://github.com/nishantmodi92/healthify/blob/main/README.md" target="_blank">README</a>
+      </div>
+      <div class="project">
+        <h3>FoodDeliveryApp</h3>
+        <p>Real-time ordering with GPS tracking. 🍔 98% crash-free sessions.</p>
+        <a href="https://github.com/nishantmodi92/food-delivery-android" target="_blank">GitHub</a>
+        <a href="https://github.com/nishantmodi92/food-delivery-android/blob/main/README.md" target="_blank">README</a>
+      </div>
+      <div class="project">
+        <h3>EduPlay</h3>
+        <p>E-Learning with video streaming. 🎓 Increased course completion by 34%.</p>
+        <a href="https://github.com/nishantmodi92/e-learning-android" target="_blank">GitHub</a>
+        <a href="https://github.com/nishantmodi92/e-learning-android/blob/main/README.md" target="_blank">README</a>
+      </div>
+      <div class="project">
+        <h3>GroceryEase</h3>
+        <p>Grocery app with offline cart sync. 🛒 Reduced abandonment by 35%.</p>
+        <a href="https://github.com/nishantmodi92/GroceryEase" target="_blank">GitHub</a>
+        <a href="https://github.com/nishantmodi92/GroceryEase/blob/main/README.md" target="_blank">README</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- Contact ---------- -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact">
+      <a href="mailto:nishantmodimaster@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/nishantmodi92" target="_blank">LinkedIn</a>
+      <a href="https://github.com/nishantmodi92" target="_blank">GitHub</a>
+      <a href="https://nishantmodi92.github.io" target="_blank">Portfolio</a>
+    </div>
+  </section>
+
+  <!-- ---------- Footer ---------- -->
+  <footer>
+    © 2025 Nishant Modi | Android Developer | Jetpack Compose | Kotlin | Firebase
+  </footer>
+</body>
+</html>
