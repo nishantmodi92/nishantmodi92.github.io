@@ -3,19 +3,12 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Github } from "lucide-react";
-import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
-import { useState } from "react";
-import emailjs from "@emailjs/browser";
-
-const categories = ["All", "FinTech", "Health", "E-commerce", "EdTech", "Messaging"];
 
 const projects = [
   {
     title: "ChatConnect – Encrypted Messaging",
     metrics: "25% DAU growth | 99.9% crash-free",
     tech: "Kotlin, Jetpack Compose, Firebase, Hilt",
-    category: "Messaging",
     github: "https://github.com/nishantmodi92/chatconnect-android",
     readme: "https://github.com/nishantmodi92/chatconnect-android/blob/main/README.md"
   },
@@ -23,7 +16,6 @@ const projects = [
     title: "FinMate – Digital Wallet & Expense Manager",
     metrics: "60% fraud reduction | Biometric secured",
     tech: "Kotlin, MVVM, Firebase, Retrofit, GPay API",
-    category: "FinTech",
     github: "https://github.com/nishantmodi92/fintech-wallet",
     readme: "https://github.com/nishantmodi92/fintech-wallet/blob/main/README.md"
   },
@@ -31,7 +23,6 @@ const projects = [
     title: "Healthify – Fitness Tracker",
     metrics: "42% engagement boost | Gamified rewards",
     tech: "Java, Jetpack Compose, Google Fit API",
-    category: "Health",
     github: "https://github.com/nishantmodi92/healthify",
     readme: "https://github.com/nishantmodi92/healthify/blob/main/README.md"
   },
@@ -39,7 +30,6 @@ const projects = [
     title: "FoodDeliveryApp – Real-Time Ordering",
     metrics: "30% faster cold start | 98% crash-free",
     tech: "Kotlin, Clean Architecture, Maps API, Firebase",
-    category: "E-commerce",
     github: "https://github.com/nishantmodi92/food-delivery-android",
     readme: "https://github.com/nishantmodi92/food-delivery-android/blob/main/README.md"
   },
@@ -47,7 +37,6 @@ const projects = [
     title: "EduPlay – E-Learning App",
     metrics: "34% course completion growth",
     tech: "Kotlin, ExoPlayer, Firebase, Paging3",
-    category: "EdTech",
     github: "https://github.com/nishantmodi92/e-learning-android",
     readme: "https://github.com/nishantmodi92/e-learning-android/blob/main/README.md"
   },
@@ -55,39 +44,14 @@ const projects = [
     title: "GroceryEase – Shopping & Delivery",
     metrics: "35% cart abandonment reduction",
     tech: "Kotlin, Jetpack Compose, Firebase, Maps API",
-    category: "E-commerce",
     github: "https://github.com/nishantmodi92/GroceryEase",
     readme: "https://github.com/nishantmodi92/GroceryEase/blob/main/README.md"
   },
 ];
 
 export default function App() {
-  const [filter, setFilter] = useState("All");
-
-  const filteredProjects =
-    filter === "All" ? projects : projects.filter((p) => p.category === filter);
-
-  const sendEmail = (e: any) => {
-    e.preventDefault();
-    emailjs
-      .sendForm("your_service_id", "your_template_id", e.target, "your_public_key")
-      .then(() => alert("Message Sent ✅"))
-      .catch(() => alert("Error ❌ Please try again"));
-  };
-
   return (
-    <div className="bg-gray-950 text-white min-h-screen relative">
-      {/* Background Particles */}
-      <Particles
-        id="tsparticles"
-        init={loadFull}
-        options={{
-          background: { color: "#0f0f0f" },
-          particles: { number: { value: 60 }, move: { enable: true, speed: 1 }, size: { value: 2 } },
-        }}
-        className="absolute inset-0 -z-10"
-      />
-
+    <div className="bg-gray-950 text-white min-h-screen">
       {/* Navbar */}
       <nav className="fixed top-0 w-full bg-gray-900/80 backdrop-blur-md p-4 flex justify-between shadow-lg z-50">
         <h1 className="text-xl font-bold text-purple-400">Nishant Modi</h1>
@@ -100,15 +64,18 @@ export default function App() {
         </div>
       </nav>
 
-      {/* Hero */}
+      {/* Hero Section */}
       <section className="h-screen flex flex-col justify-center items-center text-center px-6">
-        <motion.h2 initial={{opacity:0, y:20}} animate={{opacity:1, y:0}}
-          className="text-5xl font-extrabold mb-4 text-purple-300">
+        <motion.h2 
+          initial={{opacity:0, y:20}} 
+          animate={{opacity:1, y:0}}
+          className="text-4xl font-extrabold mb-4"
+        >
           🚀 Building Scalable Android Apps
         </motion.h2>
         <p className="text-gray-300 max-w-2xl">
-          5+ years in Jetpack Compose, Kotlin, Firebase & Clean Architecture. 
-          Delivered 99.9% crash-free apps with 30% faster performance.
+          5+ years of expertise in Jetpack Compose, Kotlin, Firebase, and Clean Architecture. 
+          Proven track record of delivering 99.9% crash-free, high-performance mobile solutions.
         </p>
       </section>
 
@@ -119,23 +86,12 @@ export default function App() {
         </marquee>
       </section>
 
-      {/* Project Filters */}
+      {/* Projects Slider */}
       <section id="projects" className="py-20 px-6">
-        <h3 className="text-3xl font-bold text-center mb-6">Highlighted Projects</h3>
-        <div className="flex justify-center space-x-4 mb-10">
-          {categories.map((cat) => (
-            <Button
-              key={cat}
-              onClick={() => setFilter(cat)}
-              className={`px-4 py-2 rounded-lg ${filter === cat ? "bg-purple-600" : "bg-gray-700"} `}
-            >
-              {cat}
-            </Button>
-          ))}
-        </div>
+        <h3 className="text-3xl font-bold text-center mb-10">Highlighted Projects</h3>
         <div className="grid md:grid-cols-3 gap-8">
-          {filteredProjects.map((p, i) => (
-            <motion.div key={i} initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}}>
+          {projects.map((p, i) => (
+            <motion.div key={i} initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} transition={{delay:i*0.1}}>
               <Card className="bg-gray-800 border border-gray-700 rounded-2xl shadow-xl hover:shadow-purple-500/40 transition">
                 <CardContent className="p-6">
                   <h4 className="text-xl font-semibold text-purple-300">{p.title}</h4>
@@ -156,39 +112,26 @@ export default function App() {
         </div>
       </section>
 
-      {/* GitHub Stats */}
-      <section className="bg-gray-900 py-20 text-center">
-        <h3 className="text-3xl font-bold mb-6">📊 GitHub Stats</h3>
-        <img
-          src="https://github-readme-stats.vercel.app/api?username=nishantmodi92&show_icons=true&theme=radical"
-          alt="GitHub stats"
-          className="mx-auto"
-        />
-      </section>
-
       {/* Achievements */}
-      <section id="achievements" className="bg-gray-800 py-20 text-center px-6">
+      <section id="achievements" className="bg-gray-900 py-20 text-center px-6">
         <h3 className="text-3xl font-bold mb-6">🏆 Achievements</h3>
         <ul className="space-y-3 text-gray-300">
-          <li>• EXL Employee of the Year 2023</li>
-          <li>• Reduced cold start by 30% using profiling</li>
-          <li>• Improved retention by 35% via UX flows</li>
-          <li>• 98%+ secure payment success rate</li>
+          <li>• EXL Employee of the Year 2023 – Recognized for scalable architecture excellence.</li>
+          <li>• Reduced app cold start by 30% using memory profiling & tracing.</li>
+          <li>• Improved retention by 35% via engagement flows.</li>
+          <li>• Achieved 98%+ secure payment success rate.</li>
         </ul>
       </section>
 
-      {/* Contact Form */}
-      <section id="contact" className="py-20 text-center px-6">
+      {/* Contact */}
+      <section id="contact" className="py-20 text-center">
         <h3 className="text-3xl font-bold mb-4">📩 Get in Touch</h3>
-        <form onSubmit={sendEmail} className="max-w-md mx-auto flex flex-col space-y-4">
-          <input type="text" name="user_name" placeholder="Your Name" required
-            className="p-3 rounded-lg bg-gray-800 border border-gray-600"/>
-          <input type="email" name="user_email" placeholder="Your Email" required
-            className="p-3 rounded-lg bg-gray-800 border border-gray-600"/>
-          <textarea name="message" rows={4} placeholder="Message..." required
-            className="p-3 rounded-lg bg-gray-800 border border-gray-600"/>
-          <Button type="submit" className="bg-purple-600 hover:bg-purple-700 text-white">Send Message</Button>
-        </form>
+        <p className="text-gray-300 mb-6">Let’s connect for building innovative Android experiences.</p>
+        <div className="flex justify-center space-x-6">
+          <a href="mailto:nishantmodimaster@gmail.com" className="hover:text-purple-400">Email</a>
+          <a href="https://github.com/nishantmodi92" target="_blank" className="hover:text-purple-400">GitHub</a>
+          <a href="https://linkedin.com/in/nishantmodi92" target="_blank" className="hover:text-purple-400">LinkedIn</a>
+        </div>
       </section>
     </div>
   );
