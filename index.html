@@ -1,112 +1,117 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Nishant Modi — Senior Android Developer</title>
-<meta name="description" content="Nishant Modi - Senior Android Developer | Kotlin | Jetpack Compose | Firebase | Clean Architecture. 99.9% crash-free apps, 30% faster cold start." />
-<meta name="keywords" content="Android Developer, Kotlin, Jetpack Compose, Firebase, Clean Architecture, Mobile" />
-<meta name="author" content="Nishant Modi" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nishant Modi — Senior Android Developer</title>
+  <meta name="description" content="Nishant Modi - Senior Android Developer | Kotlin | Jetpack Compose | Firebase | Clean Architecture. 99.9% crash-free apps, 30% faster cold start." />
+  <meta name="author" content="Nishant Modi" />
 
-<!-- Fonts (Inter is popular; if you host, use locally for performance) -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-<style>
-  :root{
-    --accent: #00e6ff;
-    --highlight: #ff7ab6;
-    --muted: #bfc7cf;
-    --glass: rgba(255,255,255,0.04);
-    --bg: linear-gradient(135deg,#071229 0%, #081018 100%);
-    --text: #e8eef2;
-    --card-radius: 14px;
-    --nav-height: 56px;
-    --transition-fast: 220ms;
-    --transition-smooth: 600ms;
-  }
-  /* Base */
-  html,body{height:100%;}
-  body{
-    margin:0; font-family:Inter,Segoe UI,Roboto,system-ui,-apple-system,"Helvetica Neue",Arial;
-    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-    color:var(--text); background:var(--bg); transition:background var(--transition-smooth), color var(--transition-fast);
-    overflow-x:hidden;
-  }
+  <style>
+    :root{
+      --accent: #00e6ff;
+      --accent-2: #ff7ab6;
+      --muted: #bfc7cf;
+      --glass: rgba(255,255,255,0.04);
+      --bg: linear-gradient(135deg,#071229 0%, #081018 100%);
+      --text: #e8eef2;
+      --card-radius: 14px;
+      --nav-height: 56px;
+      --transition-fast: 220ms;
+      --transition-smooth: 600ms;
+      --hero-text-h: 200; /* hue base for text color animation */
+    }
+    /* Base */
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0; font-family:Inter,Segoe UI,Roboto,system-ui,-apple-system,"Helvetica Neue",Arial;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      color:var(--text); background:var(--bg); transition:background var(--transition-smooth), color var(--transition-fast);
+      overflow-x:hidden;
+      padding-top:80px;
+    }
 
-  /* CENTER NAV */
-  nav{
-    position:fixed; left:50%; transform:translateX(-50%); top:14px; z-index:1100;
-    display:flex; gap:18px; align-items:center; padding:8px 18px; border-radius:999px;
-    background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.18)); backdrop-filter: blur(6px);
-    box-shadow:0 8px 30px rgba(0,0,0,0.5);
-  }
-  .brand{font-weight:800; color:var(--accent); letter-spacing:.2px;}
-  nav ul{display:flex; list-style:none; gap:12px; margin:0; padding:0; align-items:center;}
-  nav a{color:var(--text); text-decoration:none; font-weight:600; font-size:13px; padding:8px 10px; border-radius:10px;}
-  nav a:hover{background:var(--glass); transform:translateY(-4px); transition:all 180ms ease;}
+    /* NAV - floating center */
+    nav{
+      position:fixed; left:50%; transform:translateX(-50%); top:14px; z-index:1100;
+      display:flex; gap:18px; align-items:center; padding:8px 18px; border-radius:999px;
+      background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.18)); backdrop-filter: blur(8px);
+      box-shadow:0 12px 40px rgba(0,0,0,0.45);
+    }
+    .brand{font-weight:800; color:var(--accent); letter-spacing:.3px; font-size:15px}
+    nav ul{display:flex; list-style:none; gap:6px; margin:0; padding:0; align-items:center;}
+    nav a{color:var(--text); text-decoration:none; font-weight:600; font-size:13px; padding:8px 10px; border-radius:10px}
+    nav a:hover{background:rgba(255,255,255,0.03); transform:translateY(-3px); transition:all 160ms ease}
 
-  .theme-toggle{
-    padding:6px 9px; border-radius:8px; cursor:pointer; font-weight:700; background:linear-gradient(90deg,#fff1, #fff0);
-    border:1px solid rgba(255,255,255,0.04); color:var(--text);
-  }
+    .controls{display:flex; gap:8px; align-items:center}
+    .theme-toggle{padding:6px 9px; border-radius:8px; cursor:pointer; font-weight:700; background:linear-gradient(90deg,#ffffff11, #ffffff00); border:1px solid rgba(255,255,255,0.04); color:var(--text)}
 
-  /* HERO */
-  header.hero{
-    min-height:82vh; display:flex; align-items:center; justify-content:center; padding:32px 18px; position:relative;
-    text-align:center;
-  }
-  .hero-inner{max-width:1050px; width:100%;}
-  h1{font-size:34px; margin:6px 0; letter-spacing:.2px; font-weight:800; line-height:1.05;}
-  .typed {font-size:18px; margin:8px 0 0 0; color:var(--muted); height:28px; white-space:nowrap; overflow:hidden; display:inline-block;}
-  .cursor{display:inline-block; width:8px; animation: blink 900ms step-end infinite; margin-left:8px; vertical-align:middle; background:var(--accent); height:14px; border-radius:3px;}
-  @keyframes blink{50%{opacity:0}}
+    /* HERO */
+    header.hero{min-height:72vh; display:flex; align-items:center; justify-content:center; padding:32px 18px; position:relative; text-align:center}
+    .hero-inner{max-width:1100px; width:100%}
+    h1{font-size:36px; margin:6px 0; letter-spacing:.2px; font-weight:900; line-height:1.02}
+    .sub{font-size:16px; color:var(--muted); margin-top:10px}
 
-  /* marquee */
-  .ticker{margin-top:18px; overflow:hidden; border-radius:10px; border:1px solid rgba(255,255,255,0.03); padding:8px 12px; background:linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.06));}
-  .ticker .track{display:inline-block; white-space:nowrap; animation: marquee 12s linear infinite;}
-  @keyframes marquee{0%{transform:translateX(0)} 100%{transform:translateX(-50%)}}
+    .typed{font-size:18px;margin:8px 0 0 0;color:var(--muted);height:28px; white-space:nowrap; overflow:hidden; display:inline-block}
+    .cursor{display:inline-block;width:8px; animation: blink 900ms step-end infinite;margin-left:8px;vertical-align:middle;background:var(--accent);height:14px;border-radius:3px}
+    @keyframes blink{50%{opacity:0}}
 
-  /* Sections */
-  section{padding:56px 20px; max-width:1150px; margin:0 auto;}
-  .section-title{font-size:18px; color:var(--accent); margin-bottom:12px; font-weight:700; text-align:center;}
+    /* Dynamic hero text color (changes every second) */
+    .hero-title{display:inline-block;padding:6px 10px;border-radius:8px}
 
-  /* Badges */
-  .badges{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:12px;}
-  .badge{background:var(--glass); padding:8px 10px; border-radius:9px; font-weight:700; color:var(--text); display:inline-flex; gap:8px; align-items:center;}
+    /* marquee */
+    .ticker{margin-top:18px; overflow:hidden; border-radius:10px; border:1px solid rgba(255,255,255,0.03); padding:8px 12px; background:linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.04));}
+    .track{display:inline-block; white-space:nowrap; animation: marquee 14s linear infinite}
+    @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-  /* Projects slider */
-  .slider-wrap{position:relative; margin-top:12px;}
-  .slider{display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:10px; -webkit-overflow-scrolling:touch;}
-  .card{flex:0 0 320px; scroll-snap-align:start; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:var(--card-radius);
-        padding:14px; box-shadow:0 12px 40px rgba(0,0,0,0.5); min-height:280px; display:flex; flex-direction:column; justify-content:space-between; transition:transform .2s;}
-  .card:hover{transform:translateY(-8px)}
-  .card img{width:100%; border-radius:10px; margin-bottom:10px; object-fit:cover; height:160px;}
-  .card h4{margin:0 0 6px 0; color:var(--accent);}
-  .chip{display:inline-block; margin-top:10px; padding:8px 10px; border-radius:9px; text-decoration:none; font-weight:700; background:var(--accent); color:#001;}
+    /* Sections */
+    section{padding:56px 20px; max-width:1150px; margin:0 auto}
+    .section-title{font-size:18px; color:var(--accent); margin-bottom:12px; font-weight:700; text-align:center}
 
-  /* controls */
-  .slider-controls{position:absolute; left:0; right:0; top:44%; transform:translateY(-50%); display:flex; justify-content:space-between; pointer-events:none;}
-  .btn{background:rgba(0,0,0,0.45); border:none; color:var(--text); padding:10px; margin:0 8px; border-radius:10px; cursor:pointer; pointer-events:auto; font-weight:800;}
-  .btn:active{transform:scale(.98)}
+    /* Badges */
+    .badges{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:12px}
+    .badge{background:rgba(255,255,255,0.02); padding:8px 10px; border-radius:9px; font-weight:700; color:var(--text); display:inline-flex; gap:8px; align-items:center}
 
-  /* Grid lists */
-  .list-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:14px;}
-  .item{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:14px; border-radius:12px; color:var(--muted); border-left:3px solid rgba(0,230,255,0.12);}
+    /* Projects slider */
+    .slider-wrap{position:relative;margin-top:12px}
+    .slider{display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:10px; -webkit-overflow-scrolling:touch}
+    .card{flex:0 0 320px; scroll-snap-align:start; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:var(--card-radius); padding:14px; box-shadow:0 12px 40px rgba(0,0,0,0.45); min-height:320px; display:flex; flex-direction:column; justify-content:space-between; transition:transform .2s}
+    .card:hover{transform:translateY(-8px)}
+    .card img{width:100%; border-radius:10px; margin-bottom:10px; object-fit:cover; height:170px}
+    .card h4{margin:0 0 6px 0; color:var(--accent)}
+    .chip{display:inline-block; margin-top:10px; padding:8px 10px; border-radius:9px; text-decoration:none; font-weight:700; background:var(--accent); color:#001}
 
-  /* CTA floating */
-  .cta-float{position:fixed; right:18px; bottom:18px; display:flex; flex-direction:column; gap:10px; z-index:1200;}
-  .cta{background:var(--accent); color:#001; padding:10px 14px; border-radius:12px; font-weight:800; text-decoration:none; display:inline-block;}
+    .slider-controls{position:absolute; left:0; right:0; top:44%; transform:translateY(-50%); display:flex; justify-content:space-between; pointer-events:none}
+    .btn{background:rgba(0,0,0,0.45); border:none; color:var(--text); padding:10px; margin:0 8px; border-radius:10px; cursor:pointer; pointer-events:auto; font-weight:800}
 
-  /* footer */
-  footer{padding:28px 10px; text-align:center; color:var(--muted); font-size:13px;}
+    /* Grid lists */
+    .list-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:14px}
+    .item{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:14px; border-radius:12px; color:var(--muted); border-left:3px solid rgba(0,230,255,0.12)}
 
-  /* responsive */
-  @media (max-width:720px){
-    nav{left:12px; transform:none;}
-    header.hero{padding-top:80px;}
-    .card{flex:0 0 86%;}
-  }
-</style>
+    /* contact / CTA */
+    .contact-bar{display:flex; gap:12px; align-items:center; justify-content:center; flex-wrap:wrap}
+    .contact-bar a{background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#001; padding:10px 14px; border-radius:12px; font-weight:800; text-decoration:none}
+
+    /* footer */
+    footer{padding:28px 10px; text-align:center; color:var(--muted); font-size:13px}
+
+    /* small devices */
+    @media (max-width:720px){
+      nav{left:12px; transform:none;}
+      header.hero{padding-top:90px}
+      .card{flex:0 0 86%}
+    }
+
+    /* reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .track{animation:none}
+      .cursor{display:none}
+      *{transition:none}
+    }
+  </style>
 </head>
 <body>
   <!-- NAV -->
@@ -119,21 +124,23 @@
       <li><a href="#experience">Experience</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <div style="width:10px"></div>
-    <button class="theme-toggle" id="manualToggle" title="Toggle Theme">Toggle</button>
+    <div class="controls">
+      <button class="theme-toggle" id="manualToggle" title="Toggle Theme">Theme</button>
+    </div>
   </nav>
 
   <!-- HERO -->
   <header class="hero">
     <div class="hero-inner">
-      <h1 id="heroTitle">Nishant Modi — Senior Android Engineer</h1>
-      <div style="height:8px"></div>
+      <h1 id="heroTitle"><span class="hero-title" id="heroName">Nishant Modi</span> — <span style="font-weight:700">Senior Android Engineer</span></h1>
+      <div class="sub">Kotlin · Jetpack Compose · Firebase · Clean Architecture</div>
+
+      <div style="height:10px"></div>
       <div>
         <span class="typed" id="typewriter" aria-live="polite"></span><span class="cursor" aria-hidden="true"></span>
       </div>
 
       <div class="ticker" aria-hidden="true" style="margin-top:18px">
-        <!-- duplicate content to create infinite feel -->
         <div class="track" id="tickerTrack">
           💡 99.9% crash-free • 30% faster cold start • DAU +42% • Employee of the Year 2023 — &nbsp;
           💡 99.9% crash-free • 30% faster cold start • DAU +42% • Employee of the Year 2023 — &nbsp;
@@ -141,11 +148,12 @@
       </div>
 
       <div style="margin-top:18px; display:flex; gap:12px; align-items:center; justify-content:center; flex-wrap:wrap;">
-        <a class="cta" href="mailto:nishantmodimaster@gmail.com">Hire Me</a>
-        <!-- update resume link to your hosted resume (pdf) -->
-        <a class="cta" href="/resume.pdf" target="_blank" rel="noopener">Download Resume</a>
-        <a class="cta" href="https://github.com/nishantmodi92" target="_blank" rel="noopener">GitHub</a>
+        <!-- Removed Hire Me and Download Resume as requested -->
+        <a class="contact" href="mailto:nishantmodimaster@gmail.com" style="background:transparent;border:2px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:12px;color:var(--text);font-weight:700;text-decoration:none;">Email</a>
+        <a class="contact" href="https://linkedin.com/in/nishantmodi92" target="_blank" rel="noopener" style="background:transparent;border:2px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:12px;color:var(--text);font-weight:700;text-decoration:none;">LinkedIn</a>
+        <a class="contact" href="https://github.com/nishantmodi92" target="_blank" rel="noopener" style="background:transparent;border:2px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:12px;color:var(--text);font-weight:700;text-decoration:none;">GitHub</a>
       </div>
+
     </div>
   </header>
 
@@ -189,7 +197,7 @@
               <h4>ChatConnect</h4>
               <p style="color:var(--muted); margin:6px 0 12px 0;">Real-time encrypted messaging app with group chat, push notifications and offline sync. 25k+ daily messages.</p>
               <div style="display:flex; justify-content:space-between; align-items:center;">
-                <span style="font-weight:800;color:var(--highlight)">Kotlin · Jetpack Compose</span>
+                <span style="font-weight:800;color:var(--accent-2)">Kotlin · Jetpack Compose</span>
                 <a class="chip" href="https://github.com/nishantmodi92/ChatConnect" target="_blank" rel="noopener">GitHub</a>
               </div>
             </div>
@@ -201,7 +209,7 @@
               <h4>GroceryEase</h4>
               <p style="color:var(--muted); margin:6px 0 12px 0;">Offline cart sync, live tracking and FCM notifications — reduced cart abandonment by 35%.</p>
               <div style="display:flex; justify-content:space-between; align-items:center;">
-                <span style="font-weight:800;color:var(--highlight)">Firebase · Maps · Room</span>
+                <span style="font-weight:800;color:var(--accent-2)">Firebase · Maps · Room</span>
                 <a class="chip" href="https://github.com/nishantmodi92/GroceryEase" target="_blank" rel="noopener">GitHub</a>
               </div>
             </div>
@@ -213,11 +221,12 @@
               <h4>FoodDeliveryApp</h4>
               <p style="color:var(--muted); margin:6px 0 12px 0;">Real-time ordering with live order tracking, in-app payments and 30% faster cold starts.</p>
               <div style="display:flex; justify-content:space-between; align-items:center;">
-                <span style="font-weight:800;color:var(--highlight)">Clean Arch · Compose</span>
+                <span style="font-weight:800;color:var(--accent-2)">Clean Arch · Compose</span>
                 <a class="chip" href="https://github.com/nishantmodi92/FoodDeliveryApp" target="_blank" rel="noopener">GitHub</a>
               </div>
             </div>
           </article>
+
         </div>
 
         <div class="slider-controls" aria-hidden="true">
@@ -243,178 +252,170 @@
     <!-- CONTACT -->
     <section id="contact">
       <h3 class="section-title">Contact</h3>
-      <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-        <a class="cta" href="mailto:nishantmodimaster@gmail.com">Email</a>
-        <a class="cta" href="https://linkedin.com/in/nishantmodi92" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="cta" href="https://github.com/nishantmodi92" target="_blank" rel="noopener">GitHub</a>
+      <div class="contact-bar">
+        <a href="mailto:nishantmodimaster@gmail.com">Email</a>
+        <a href="https://linkedin.com/in/nishantmodi92" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/nishantmodi92" target="_blank" rel="noopener">GitHub</a>
       </div>
+
+      <p style="text-align:center;color:var(--muted);margin-top:14px;">Or copy email: <code style="background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:6px;color:var(--text)">nishantmodimaster@gmail.com</code></p>
     </section>
   </main>
-
-  <div class="cta-float" aria-hidden="true">
-    <a class="cta" href="mailto:nishantmodimaster@gmail.com">Hire Me</a>
-    <a class="cta" href="/resume.pdf" target="_blank" rel="noopener">Resume</a>
-  </div>
 
   <footer>
     <p>© 2025 Nishant Modi — Noida, India • <span style="color:var(--muted)">nishantmodimaster@gmail.com</span></p>
   </footer>
 
-<script>
-/* -------------------------
-  1) Automatic background / color cycling (every second)
-     - Generates a smooth gradient based on HSL and changes text color for contrast
-   ------------------------- */
-(function backgroundCycler(){
-  const root = document.documentElement;
-  // start hue
-  let hue = Math.floor(Math.random()*360);
-  const tick = 1000; // 1 second
-  function setTheme(){
-    // create two hues close to each other for a gradient
-    const h1 = hue % 360;
-    const h2 = (hue + 40) % 360;
-    const l = 10 + (Math.sin(hue/30) + 1) * 20; // vary lightness
-    // create gradient string
-    const grad = `linear-gradient(120deg, hsl(${h1} 70% ${l}%), hsl(${h2} 70% ${Math.max(8,l-6)}%))`;
-    root.style.setProperty('--bg', grad);
-    // compute perceived brightness (approx) from lightness
-    const brightness = l; // since we're controlling L directly
-    // choose text color for contrast
-    if(brightness > 40){
-      root.style.setProperty('--text', '#07121a');
-      root.style.setProperty('--accent', '#007a9a');
-      root.style.setProperty('--highlight', '#ff3d8a');
-    } else {
-      root.style.setProperty('--text', '#e8eef2');
-      root.style.setProperty('--accent', '#00e6ff');
-      root.style.setProperty('--highlight', '#ff7ab6');
+  <script>
+  /* -------------------------
+     1) Background & color cycler (smooth theme changes)
+     -------------------------*/
+  (function backgroundCycler(){
+    const root = document.documentElement;
+    let hue = Math.floor(Math.random()*360);
+    const tick = 1200; // ~1s for a visible but smooth change
+    function setTheme(){
+      const h1 = hue % 360;
+      const h2 = (hue + 30) % 360;
+      const l = 8 + (Math.sin(hue/40) + 1) * 16; // vary lightness
+      const grad = `linear-gradient(120deg, hsl(${h1} 60% ${Math.min(18,l)}%), hsl(${h2} 60% ${Math.max(6,l-8)}%))`;
+      root.style.setProperty('--bg', grad);
+      hue += 4;
     }
-    hue += 6; // increment hue smoothly
-  }
-  setTheme();
-  setInterval(setTheme, tick);
-})();
+    setTheme();
+    setInterval(setTheme, tick);
+  })();
 
-/* -------------------------
-  2) Day / Night automatic mode (based on local time)
-     - Applies a subtle overlay so daytime looks brighter initially
-   ------------------------- */
-(function dayNightAuto(){
-  const hr = new Date().getHours();
-  // consider day if between 6 and 18
-  if(hr >= 6 && hr < 18){
-    // lighter accent for day; slightly increase root --text if needed
-    document.documentElement.style.setProperty('--bg', 'linear-gradient(120deg, #f5fbff 0%, #e8f7ff 100%)');
-    document.documentElement.style.setProperty('--text', '#07121a');
-    document.documentElement.style.setProperty('--accent', '#006f8f');
-  } else {
-    // night - keep the cycler running (it will override)
-  }
-})();
+  /* -------------------------
+     2) Hero text color changes every second (eye-catching) - careful contrast
+     -------------------------*/
+  (function heroTextColor(){
+    const el = document.getElementById('heroName');
+    let h = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--hero-text-h')) || 200;
+    setInterval(()=>{
+      h = (h + 28) % 360;
+      // pick a saturated color but keep readable on dark bg
+      el.style.color = `hsl(${h} 85% 60%)`;
+      // tiny glow to emphasize
+      el.style.textShadow = `0 6px 24px hsla(${h},85%,45%,0.14)`;
+    }, 1000);
+  })();
 
-/* -------------------------
-  3) Typewriter (typing multiple phrases)
-   ------------------------- */
-(function typewriter(){
-  const phrases = [
-    "Jetpack Compose · Kotlin · Firebase · Clean Architecture",
-    "99.9% crash-free stability • 30% faster cold starts",
-    "Offline-first apps • Scalable mobile architecture",
-  ];
-  let i = 0, charIndex = 0, forward = true;
-  const el = document.getElementById('typewriter');
-  const speed = 42; // ms per char
-  function step(){
-    const current = phrases[i];
-    if(forward){
-      charIndex++;
-      el.textContent = current.slice(0, charIndex);
-      if(charIndex === current.length){ forward = false; setTimeout(step, 900); return; }
-    } else {
-      charIndex--;
-      el.textContent = current.slice(0, charIndex);
-      if(charIndex === 0){ forward = true; i = (i+1) % phrases.length; }
+  /* -------------------------
+     3) Day / Night auto (initial gentle shift) - keeps dark mode look
+     -------------------------*/
+  (function dayNightAuto(){
+    const hr = new Date().getHours();
+    if(hr >= 6 && hr < 18){
+      // slightly lighter start for day; still stylish
+      document.documentElement.style.setProperty('--bg', 'linear-gradient(120deg,#06202a,#0b1b2a)');
+      document.documentElement.style.setProperty('--text', '#e8eef2');
     }
-    setTimeout(step, speed);
+  })();
+
+  /* -------------------------
+     4) Typewriter (multiple phrases)
+     -------------------------*/
+  (function typewriter(){
+    const phrases = [
+      "Building offline-first Android apps that scale",
+      "Kotlin · Jetpack Compose · Clean Architecture",
+      "99.9% crash-free stability • Performance-focused"
+    ];
+    let i = 0, charIndex = 0, forward = true;
+    const el = document.getElementById('typewriter');
+    const speed = 38;
+    function step(){
+      const current = phrases[i];
+      if(forward){
+        charIndex++;
+        el.textContent = current.slice(0, charIndex);
+        if(charIndex === current.length){ forward = false; setTimeout(step, 900); return; }
+      } else {
+        charIndex--;
+        el.textContent = current.slice(0, charIndex);
+        if(charIndex === 0){ forward = true; i = (i+1) % phrases.length; }
+      }
+      setTimeout(step, speed);
+    }
+    step();
+  })();
+
+  /* -------------------------
+     5) Slider controls, keyboard, autoplay
+     -------------------------*/
+  (function sliderSetup(){
+    const slider = document.getElementById('projectSlider');
+    const btnNext = document.getElementById('nextBtn');
+    const btnPrev = document.getElementById('prevBtn');
+
+    btnNext.addEventListener('click', ()=>{ slider.scrollBy({left: 340, behavior:'smooth'}); });
+    btnPrev.addEventListener('click', ()=>{ slider.scrollBy({left: -340, behavior:'smooth'}); });
+
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'ArrowRight') slider.scrollBy({left:340, behavior:'smooth'});
+      if(e.key === 'ArrowLeft') slider.scrollBy({left:-340, behavior:'smooth'});
+    });
+
+    // autoplay gentle loop
+    let direction = 1;
+    setInterval(()=>{
+      slider.scrollBy({left: 220 * direction, behavior:'smooth'});
+      // reverse occasionally to keep it from running off-screen
+      if(Math.random() > 0.92) direction *= -1;
+    }, 2600);
+  })();
+
+  /* -------------------------
+     6) Project filter (simple)
+     -------------------------*/
+  function filterProjects(tag){
+    const cards = document.querySelectorAll('#projectSlider .card');
+    cards.forEach(c=>{
+      if(tag === 'all'){ c.style.display = 'flex'; return; }
+      const tags = (c.dataset.tags || '').split(',').map(s=>s.trim());
+      c.style.display = tags.includes(tag) ? 'flex' : 'none';
+    });
   }
-  step();
-})();
 
-/* -------------------------
-  4) Project slider controls and touch inertia
-   ------------------------- */
-(function sliderSetup(){
-  const slider = document.getElementById('projectSlider');
-  const btnNext = document.getElementById('nextBtn');
-  const btnPrev = document.getElementById('prevBtn');
-
-  btnNext.addEventListener('click', ()=>{ slider.scrollBy({left: 340, behavior:'smooth'}); });
-  btnPrev.addEventListener('click', ()=>{ slider.scrollBy({left: -340, behavior:'smooth'}); });
-
-  // Optional: keyboard control
-  document.addEventListener('keydown', (e)=>{
-    if(e.key === 'ArrowRight') slider.scrollBy({left:340, behavior:'smooth'});
-    if(e.key === 'ArrowLeft') slider.scrollBy({left:-340, behavior:'smooth'});
+  /* -------------------------
+     7) Manual theme toggle - preserves cycler but toggles to a light-ish variant
+     -------------------------*/
+  document.getElementById('manualToggle').addEventListener('click', ()=>{
+    const current = getComputedStyle(document.documentElement).getPropertyValue('--text').trim();
+    if(current === '#e8eef2' || current === 'rgb(232,238,242)'){
+      document.documentElement.style.setProperty('--bg', 'linear-gradient(120deg,#f8fbff,#eef7ff)');
+      document.documentElement.style.setProperty('--text', '#07121a');
+      document.documentElement.style.setProperty('--accent', '#006f8f');
+    } else {
+      document.documentElement.style.setProperty('--text', '#e8eef2');
+      document.documentElement.style.setProperty('--accent', '#00e6ff');
+    }
   });
 
-  // swipe inertia for mobile handled by native - ensure smooth snapping behavior
-})();
+  /* -------------------------
+     Accessibility: reduce motion if user prefers
+     -------------------------*/
+  (function reduceMotion(){
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if(mq.matches){
+      document.querySelectorAll('*').forEach(n=> n.style.transition = 'none');
+      document.querySelectorAll('.track').forEach(t=> t.style.animation = 'none');
+    }
+  })();
 
-/* -------------------------
-  5) Project filter (simple)
-   ------------------------- */
-function filterProjects(tag){
-  const cards = document.querySelectorAll('#projectSlider .card');
-  cards.forEach(c=>{
-    if(tag === 'all'){ c.style.display = 'flex'; return; }
-    const tags = (c.dataset.tags || '').split(',').map(s=>s.trim());
-    c.style.display = tags.includes(tag) ? 'flex' : 'none';
+  /* -------------------------
+     Smooth scroll anchors
+     -------------------------*/
+  document.querySelectorAll('nav a').forEach(a=>{
+    a.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    });
   });
-}
 
-/* -------------------------
-  6) Manual theme toggle (gives user control)
-   ------------------------- */
-document.getElementById('manualToggle').addEventListener('click', ()=>{
-  // toggle between dark and a lighter theme
-  const currentBg = getComputedStyle(document.documentElement).getPropertyValue('--text').trim();
-  if(currentBg === '#e8eef2' || currentBg === 'rgb(232,238,242)'){
-    // switch to light theme
-    document.documentElement.style.setProperty('--bg', 'linear-gradient(120deg,#f8fbff,#f0f8ff)');
-    document.documentElement.style.setProperty('--text', '#07121a');
-    document.documentElement.style.setProperty('--accent', '#006f8f');
-  } else {
-    // revert to dark-ish (allow cycler to take over)
-    document.documentElement.style.setProperty('--text', '#e8eef2');
-    document.documentElement.style.setProperty('--accent', '#00e6ff');
-  }
-});
-
-/* -------------------------
-  Accessibility: reduce motion if user prefers
-   ------------------------- */
-(function reduceMotion(){
-  const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if(mq.matches){
-    document.querySelectorAll('*').forEach(n=> n.style.transition = 'none');
-    // stop marquee animation
-    document.querySelectorAll('.track').forEach(t=> t.style.animation = 'none');
-  }
-})();
-
-/* -------------------------
-  Small UX: smooth scroll for nav anchors
-   ------------------------- */
-document.querySelectorAll('nav a').forEach(a=>{
-  a.addEventListener('click', (e)=>{
-    e.preventDefault();
-    const id = a.getAttribute('href').slice(1);
-    const el = document.getElementById(id);
-    if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-  });
-});
-
-</script>
+  </script>
 </body>
 </html>
