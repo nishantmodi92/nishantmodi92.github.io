@@ -1,421 +1,471 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Nishant Modi — Senior Android Developer</title>
-  <meta name="description" content="Nishant Modi - Senior Android Developer | Kotlin | Jetpack Compose | Firebase | Clean Architecture. 99.9% crash-free apps, 30% faster cold start." />
-  <meta name="author" content="Nishant Modi" />
+# Project: Nishant Modi — React + Tailwind Portfolio
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+This project is a ready-to-deploy React + Tailwind portfolio tailored for **nishantmodi92.github.io**. It includes:
+- Dark mode theme by default
+- Hero with typewriter-type indicator
+- Marquee highlights
+- Projects slider (Swiper)
+- Framer Motion animations
+- GitHub readme-stats images (dynamic)
+- EmailJS-powered contact form
+- Responsive layout
 
-  <style>
-    :root{
-      --accent: #00e6ff;
-      --accent-2: #ff7ab6;
-      --muted: #bfc7cf;
-      --glass: rgba(255,255,255,0.04);
-      --bg: linear-gradient(135deg,#071229 0%, #081018 100%);
-      --text: #e8eef2;
-      --card-radius: 14px;
-      --nav-height: 56px;
-      --transition-fast: 220ms;
-      --transition-smooth: 600ms;
-      --hero-text-h: 200; /* hue base for text color animation */
-    }
-    /* Base */
-    *{box-sizing:border-box}
-    html,body{height:100%;}
-    body{
-      margin:0; font-family:Inter,Segoe UI,Roboto,system-ui,-apple-system,"Helvetica Neue",Arial;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-      color:var(--text); background:var(--bg); transition:background var(--transition-smooth), color var(--transition-fast);
-      overflow-x:hidden;
-      padding-top:80px;
-    }
+---
 
-    /* NAV - floating center */
-    nav{
-      position:fixed; left:50%; transform:translateX(-50%); top:14px; z-index:1100;
-      display:flex; gap:18px; align-items:center; padding:8px 18px; border-radius:999px;
-      background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.18)); backdrop-filter: blur(8px);
-      box-shadow:0 12px 40px rgba(0,0,0,0.45);
-    }
-    .brand{font-weight:800; color:var(--accent); letter-spacing:.3px; font-size:15px}
-    nav ul{display:flex; list-style:none; gap:6px; margin:0; padding:0; align-items:center;}
-    nav a{color:var(--text); text-decoration:none; font-weight:600; font-size:13px; padding:8px 10px; border-radius:10px}
-    nav a:hover{background:rgba(255,255,255,0.03); transform:translateY(-3px); transition:all 160ms ease}
+=== package.json ===
+{
+  "name": "nishant-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.12.0",
+    "framer-motion": "^10.12.6",
+    "swiper": "^10.0.0",
+    "react-simple-typewriter": "^1.1.1",
+    "emailjs-com": "^3.2.0",
+    "aos": "^2.3.4"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.5.4",
+    "postcss": "^8.4.24",
+    "autoprefixer": "^10.4.14",
+    "vite": "^5.0.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  }
+}
 
-    .controls{display:flex; gap:8px; align-items:center}
-    .theme-toggle{padding:6px 9px; border-radius:8px; cursor:pointer; font-weight:700; background:linear-gradient(90deg,#ffffff11, #ffffff00); border:1px solid rgba(255,255,255,0.04); color:var(--text)}
-
-    /* HERO */
-    header.hero{min-height:72vh; display:flex; align-items:center; justify-content:center; padding:32px 18px; position:relative; text-align:center}
-    .hero-inner{max-width:1100px; width:100%}
-    h1{font-size:36px; margin:6px 0; letter-spacing:.2px; font-weight:900; line-height:1.02}
-    .sub{font-size:16px; color:var(--muted); margin-top:10px}
-
-    .typed{font-size:18px;margin:8px 0 0 0;color:var(--muted);height:28px; white-space:nowrap; overflow:hidden; display:inline-block}
-    .cursor{display:inline-block;width:8px; animation: blink 900ms step-end infinite;margin-left:8px;vertical-align:middle;background:var(--accent);height:14px;border-radius:3px}
-    @keyframes blink{50%{opacity:0}}
-
-    /* Dynamic hero text color (changes every second) */
-    .hero-title{display:inline-block;padding:6px 10px;border-radius:8px}
-
-    /* marquee */
-    .ticker{margin-top:18px; overflow:hidden; border-radius:10px; border:1px solid rgba(255,255,255,0.03); padding:8px 12px; background:linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.04));}
-    .track{display:inline-block; white-space:nowrap; animation: marquee 14s linear infinite}
-    @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-
-    /* Sections */
-    section{padding:56px 20px; max-width:1150px; margin:0 auto}
-    .section-title{font-size:18px; color:var(--accent); margin-bottom:12px; font-weight:700; text-align:center}
-
-    /* Badges */
-    .badges{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:12px}
-    .badge{background:rgba(255,255,255,0.02); padding:8px 10px; border-radius:9px; font-weight:700; color:var(--text); display:inline-flex; gap:8px; align-items:center}
-
-    /* Projects slider */
-    .slider-wrap{position:relative;margin-top:12px}
-    .slider{display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:10px; -webkit-overflow-scrolling:touch}
-    .card{flex:0 0 320px; scroll-snap-align:start; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:var(--card-radius); padding:14px; box-shadow:0 12px 40px rgba(0,0,0,0.45); min-height:320px; display:flex; flex-direction:column; justify-content:space-between; transition:transform .2s}
-    .card:hover{transform:translateY(-8px)}
-    .card img{width:100%; border-radius:10px; margin-bottom:10px; object-fit:cover; height:170px}
-    .card h4{margin:0 0 6px 0; color:var(--accent)}
-    .chip{display:inline-block; margin-top:10px; padding:8px 10px; border-radius:9px; text-decoration:none; font-weight:700; background:var(--accent); color:#001}
-
-    .slider-controls{position:absolute; left:0; right:0; top:44%; transform:translateY(-50%); display:flex; justify-content:space-between; pointer-events:none}
-    .btn{background:rgba(0,0,0,0.45); border:none; color:var(--text); padding:10px; margin:0 8px; border-radius:10px; cursor:pointer; pointer-events:auto; font-weight:800}
-
-    /* Grid lists */
-    .list-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:14px}
-    .item{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:14px; border-radius:12px; color:var(--muted); border-left:3px solid rgba(0,230,255,0.12)}
-
-    /* contact / CTA */
-    .contact-bar{display:flex; gap:12px; align-items:center; justify-content:center; flex-wrap:wrap}
-    .contact-bar a{background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#001; padding:10px 14px; border-radius:12px; font-weight:800; text-decoration:none}
-
-    /* footer */
-    footer{padding:28px 10px; text-align:center; color:var(--muted); font-size:13px}
-
-    /* small devices */
-    @media (max-width:720px){
-      nav{left:12px; transform:none;}
-      header.hero{padding-top:90px}
-      .card{flex:0 0 86%}
-    }
-
-    /* reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      .track{animation:none}
-      .cursor{display:none}
-      *{transition:none}
-    }
-  </style>
-</head>
-<body>
-  <!-- NAV -->
-  <nav>
-    <div class="brand">Nishant Modi</div>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="controls">
-      <button class="theme-toggle" id="manualToggle" title="Toggle Theme">Theme</button>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-inner">
-      <h1 id="heroTitle"><span class="hero-title" id="heroName">Nishant Modi</span> — <span style="font-weight:700">Senior Android Engineer</span></h1>
-      <div class="sub">Kotlin · Jetpack Compose · Firebase · Clean Architecture</div>
-
-      <div style="height:10px"></div>
-      <div>
-        <span class="typed" id="typewriter" aria-live="polite"></span><span class="cursor" aria-hidden="true"></span>
-      </div>
-
-      <div class="ticker" aria-hidden="true" style="margin-top:18px">
-        <div class="track" id="tickerTrack">
-          💡 99.9% crash-free • 30% faster cold start • DAU +42% • Employee of the Year 2023 — &nbsp;
-          💡 99.9% crash-free • 30% faster cold start • DAU +42% • Employee of the Year 2023 — &nbsp;
-        </div>
-      </div>
-
-      <div style="margin-top:18px; display:flex; gap:12px; align-items:center; justify-content:center; flex-wrap:wrap;">
-        <!-- Removed Hire Me and Download Resume as requested -->
-        <a class="contact" href="mailto:nishantmodimaster@gmail.com" style="background:transparent;border:2px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:12px;color:var(--text);font-weight:700;text-decoration:none;">Email</a>
-        <a class="contact" href="https://linkedin.com/in/nishantmodi92" target="_blank" rel="noopener" style="background:transparent;border:2px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:12px;color:var(--text);font-weight:700;text-decoration:none;">LinkedIn</a>
-        <a class="contact" href="https://github.com/nishantmodi92" target="_blank" rel="noopener" style="background:transparent;border:2px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:12px;color:var(--text);font-weight:700;text-decoration:none;">GitHub</a>
-      </div>
-
-    </div>
-  </header>
-
-  <main>
-    <!-- ABOUT -->
-    <section id="about">
-      <h3 class="section-title">About Me</h3>
-      <p style="max-width:900px;margin:0 auto;text-align:center;color:var(--muted);font-size:15px;">
-        Innovative Android Developer with 6+ years building production-grade apps using Kotlin, Jetpack Compose, Firebase, and Clean Architecture. Delivered measurable impact — 99.9% crash-free stability, 30% faster cold start and up to 42% uplift in user engagement.
-      </p>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills">
-      <h3 class="section-title">Core Skills</h3>
-      <div class="badges" role="list">
-        <div class="badge" role="listitem">Kotlin</div>
-        <div class="badge" role="listitem">Jetpack Compose</div>
-        <div class="badge" role="listitem">Firebase</div>
-        <div class="badge" role="listitem">Clean Architecture</div>
-        <div class="badge" role="listitem">Dagger / Hilt</div>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects">
-      <h3 class="section-title">Projects</h3>
-
-      <div style="display:flex; gap:12px; justify-content:center; margin-bottom:10px;">
-        <button onclick="filterProjects('all')" class="chip">All</button>
-        <button onclick="filterProjects('kotlin')" class="chip">Kotlin</button>
-        <button onclick="filterProjects('compose')" class="chip">Compose</button>
-        <button onclick="filterProjects('firebase')" class="chip">Firebase</button>
-      </div>
-
-      <div class="slider-wrap">
-        <div class="slider" id="projectSlider" aria-live="polite">
-          <article class="card" data-tags="kotlin,compose,firebase">
-            <img src="https://raw.githubusercontent.com/nishantmodi92/ChatConnect/main/demo.gif" alt="ChatConnect demo">
-            <div>
-              <h4>ChatConnect</h4>
-              <p style="color:var(--muted); margin:6px 0 12px 0;">Real-time encrypted messaging app with group chat, push notifications and offline sync. 25k+ daily messages.</p>
-              <div style="display:flex; justify-content:space-between; align-items:center;">
-                <span style="font-weight:800;color:var(--accent-2)">Kotlin · Jetpack Compose</span>
-                <a class="chip" href="https://github.com/nishantmodi92/ChatConnect" target="_blank" rel="noopener">GitHub</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="card" data-tags="kotlin,compose,firebase">
-            <img src="https://raw.githubusercontent.com/nishantmodi92/GroceryEase/main/demo.gif" alt="GroceryEase demo">
-            <div>
-              <h4>GroceryEase</h4>
-              <p style="color:var(--muted); margin:6px 0 12px 0;">Offline cart sync, live tracking and FCM notifications — reduced cart abandonment by 35%.</p>
-              <div style="display:flex; justify-content:space-between; align-items:center;">
-                <span style="font-weight:800;color:var(--accent-2)">Firebase · Maps · Room</span>
-                <a class="chip" href="https://github.com/nishantmodi92/GroceryEase" target="_blank" rel="noopener">GitHub</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="card" data-tags="kotlin,compose">
-            <img src="https://raw.githubusercontent.com/nishantmodi92/FoodDeliveryApp/main/demo.gif" alt="FoodDelivery demo">
-            <div>
-              <h4>FoodDeliveryApp</h4>
-              <p style="color:var(--muted); margin:6px 0 12px 0;">Real-time ordering with live order tracking, in-app payments and 30% faster cold starts.</p>
-              <div style="display:flex; justify-content:space-between; align-items:center;">
-                <span style="font-weight:800;color:var(--accent-2)">Clean Arch · Compose</span>
-                <a class="chip" href="https://github.com/nishantmodi92/FoodDeliveryApp" target="_blank" rel="noopener">GitHub</a>
-              </div>
-            </div>
-          </article>
-
-        </div>
-
-        <div class="slider-controls" aria-hidden="true">
-          <button class="btn" id="prevBtn" title="Previous">←</button>
-          <button class="btn" id="nextBtn" title="Next">→</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section id="experience">
-      <h3 class="section-title">Experience</h3>
-      <div class="list-grid">
-        <div class="item"><strong>Android Developer — EXL Service</strong> (Oct 2023–Present)<br>
-          Built production-grade apps with Jetpack Compose & Firebase; reduced cold-start by 30% and increased stability to 98% crash-free sessions.
-        </div>
-        <div class="item"><strong>Contract Android Engineer — Remote</strong> (May 2022–Oct 2023)<br>
-          Delivered fintech & healthtech apps with high security, GDPR & PCI compliance.
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <h3 class="section-title">Contact</h3>
-      <div class="contact-bar">
-        <a href="mailto:nishantmodimaster@gmail.com">Email</a>
-        <a href="https://linkedin.com/in/nishantmodi92" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://github.com/nishantmodi92" target="_blank" rel="noopener">GitHub</a>
-      </div>
-
-      <p style="text-align:center;color:var(--muted);margin-top:14px;">Or copy email: <code style="background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:6px;color:var(--text)">nishantmodimaster@gmail.com</code></p>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 Nishant Modi — Noida, India • <span style="color:var(--muted)">nishantmodimaster@gmail.com</span></p>
-  </footer>
-
-  <script>
-  /* -------------------------
-     1) Background & color cycler (smooth theme changes)
-     -------------------------*/
-  (function backgroundCycler(){
-    const root = document.documentElement;
-    let hue = Math.floor(Math.random()*360);
-    const tick = 1200; // ~1s for a visible but smooth change
-    function setTheme(){
-      const h1 = hue % 360;
-      const h2 = (hue + 30) % 360;
-      const l = 8 + (Math.sin(hue/40) + 1) * 16; // vary lightness
-      const grad = `linear-gradient(120deg, hsl(${h1} 60% ${Math.min(18,l)}%), hsl(${h2} 60% ${Math.max(6,l-8)}%))`;
-      root.style.setProperty('--bg', grad);
-      hue += 4;
-    }
-    setTheme();
-    setInterval(setTheme, tick);
-  })();
-
-  /* -------------------------
-     2) Hero text color changes every second (eye-catching) - careful contrast
-     -------------------------*/
-  (function heroTextColor(){
-    const el = document.getElementById('heroName');
-    let h = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--hero-text-h')) || 200;
-    setInterval(()=>{
-      h = (h + 28) % 360;
-      // pick a saturated color but keep readable on dark bg
-      el.style.color = `hsl(${h} 85% 60%)`;
-      // tiny glow to emphasize
-      el.style.textShadow = `0 6px 24px hsla(${h},85%,45%,0.14)`;
-    }, 1000);
-  })();
-
-  /* -------------------------
-     3) Day / Night auto (initial gentle shift) - keeps dark mode look
-     -------------------------*/
-  (function dayNightAuto(){
-    const hr = new Date().getHours();
-    if(hr >= 6 && hr < 18){
-      // slightly lighter start for day; still stylish
-      document.documentElement.style.setProperty('--bg', 'linear-gradient(120deg,#06202a,#0b1b2a)');
-      document.documentElement.style.setProperty('--text', '#e8eef2');
-    }
-  })();
-
-  /* -------------------------
-     4) Typewriter (multiple phrases)
-     -------------------------*/
-  (function typewriter(){
-    const phrases = [
-      "Building offline-first Android apps that scale",
-      "Kotlin · Jetpack Compose · Clean Architecture",
-      "99.9% crash-free stability • Performance-focused"
-    ];
-    let i = 0, charIndex = 0, forward = true;
-    const el = document.getElementById('typewriter');
-    const speed = 38;
-    function step(){
-      const current = phrases[i];
-      if(forward){
-        charIndex++;
-        el.textContent = current.slice(0, charIndex);
-        if(charIndex === current.length){ forward = false; setTimeout(step, 900); return; }
-      } else {
-        charIndex--;
-        el.textContent = current.slice(0, charIndex);
-        if(charIndex === 0){ forward = true; i = (i+1) % phrases.length; }
+=== tailwind.config.cjs ===
+module.exports = {
+  content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        accent: '#7c3aed',
+        accent2: '#06b6d4'
+      },
+      backgroundImage: {
+        'neon': 'radial-gradient(ellipse at center, rgba(124,58,237,0.12), transparent 40%), radial-gradient(ellipse at bottom right, rgba(6,182,212,0.06), transparent 35%)'
       }
-      setTimeout(step, speed);
     }
-    step();
-  })();
+  },
+  plugins: []
+}
 
-  /* -------------------------
-     5) Slider controls, keyboard, autoplay
-     -------------------------*/
-  (function sliderSetup(){
-    const slider = document.getElementById('projectSlider');
-    const btnNext = document.getElementById('nextBtn');
-    const btnPrev = document.getElementById('prevBtn');
+=== postcss.config.cjs ===
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {}
+  }
+}
 
-    btnNext.addEventListener('click', ()=>{ slider.scrollBy({left: 340, behavior:'smooth'}); });
-    btnPrev.addEventListener('click', ()=>{ slider.scrollBy({left: -340, behavior:'smooth'}); });
+=== index.html ===
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nishant Modi — Android Developer</title>
+  </head>
+  <body class="bg-black text-slate-200">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
 
-    document.addEventListener('keydown', (e)=>{
-      if(e.key === 'ArrowRight') slider.scrollBy({left:340, behavior:'smooth'});
-      if(e.key === 'ArrowLeft') slider.scrollBy({left:-340, behavior:'smooth'});
-    });
+=== src/main.jsx ===
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App'
+import './index.css'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
-    // autoplay gentle loop
-    let direction = 1;
-    setInterval(()=>{
-      slider.scrollBy({left: 220 * direction, behavior:'smooth'});
-      // reverse occasionally to keep it from running off-screen
-      if(Math.random() > 0.92) direction *= -1;
-    }, 2600);
-  })();
+AOS.init({ once: true, duration: 800 })
 
-  /* -------------------------
-     6) Project filter (simple)
-     -------------------------*/
-  function filterProjects(tag){
-    const cards = document.querySelectorAll('#projectSlider .card');
-    cards.forEach(c=>{
-      if(tag === 'all'){ c.style.display = 'flex'; return; }
-      const tags = (c.dataset.tags || '').split(',').map(s=>s.trim());
-      c.style.display = tags.includes(tag) ? 'flex' : 'none';
-    });
+createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+)
+
+=== src/index.css ===
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --bg-dark: #0b1020;
+}
+
+body{
+  background-image: linear-gradient(180deg, rgba(3,7,18,1) 0%, rgba(6,7,20,1) 100%);
+}
+
+/* small glow */
+.glow {
+  text-shadow: 0 2px 20px rgba(124,58,237,0.18), 0 2px 40px rgba(6,182,212,0.06);
+}
+
+/* type indicator caret */
+.type-indicator::after{
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 18px;
+  margin-left: 8px;
+  background: linear-gradient(90deg, rgba(124,58,237,1), rgba(6,182,212,1));
+  animation: blink 1s steps(2, start) infinite;
+}
+@keyframes blink { 50% { opacity: 0 } }
+
+/* Marquee styling */
+.marquee{overflow:hidden;background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent)}
+.marquee p{white-space:nowrap;display:inline-block;padding-left:100%}
+
+/* responsive fixes for swiper */
+.swiper{padding:2rem 0}
+
+=== src/App.jsx ===
+import React from 'react'
+import Hero from './components/Hero'
+import MarqueeHighlights from './components/MarqueeHighlights'
+import Skills from './components/Skills'
+import ProjectsSlider from './components/ProjectsSlider'
+import Achievements from './components/Achievements'
+import GithubStats from './components/GithubStats'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
+
+export default function App(){
+  return (
+    <div className="min-h-screen font-sans bg-neon text-slate-100">
+      <div className="mx-auto max-w-5xl px-6">
+        <Hero />
+        <MarqueeHighlights />
+        <Skills />
+        <ProjectsSlider />
+        <Achievements />
+        <GithubStats />
+        <Contact />
+        <Footer />
+      </div>
+    </div>
+  )
+}
+
+=== src/components/Hero.jsx ===
+import React from 'react'
+import { Typewriter } from 'react-simple-typewriter'
+import { motion } from 'framer-motion'
+
+export default function Hero(){
+  return (
+    <section className="py-20">
+      <div className="flex flex-col md:flex-row items-center gap-8">
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="flex-1"
+        >
+          <h1 className="text-4xl md:text-5xl font-bold glow">Hi, I’m <span className="text-accent">Nishant Modi</span> 👋</h1>
+          <p className="mt-4 text-xl type-indicator">{''}
+            <Typewriter
+              words={[
+                'Building Scalable Android Apps',
+                'Kotlin • Jetpack Compose • Firebase',
+                'Performance • Security • UX'
+              ]}
+              loop={0}
+              cursor
+              cursorStyle="|"
+              typeSpeed={60}
+              deleteSpeed={40}
+              delaySpeed={1500}
+            />
+          </p>
+
+          <p className="mt-6 text-slate-300">Senior Android Developer with 6+ years building high-performance, production-grade apps. I craft modular, accessible, and maintainable mobile experiences that scale.</p>
+
+          <div className="mt-6 flex gap-4">
+            <a href="/resume.pdf" className="px-4 py-2 rounded-lg bg-accent text-black font-semibold">Resume</a>
+            <a href="https://github.com/nishantmodi92" target="_blank" rel="noreferrer" className="px-4 py-2 rounded-lg border border-slate-600">GitHub</a>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="w-full md:w-96 p-6 rounded-2xl bg-gradient-to-br from-black/40 to-white/2 border border-slate-800"
+        >
+          <div className="mb-4">
+            <h3 className="text-slate-300 font-medium">Quick Stats</h3>
+            <ul className="mt-3 text-sm text-slate-400 space-y-2">
+              <li>6+ Years Experience • Android</li>
+              <li>200+ GitHub Stars</li>
+              <li>Employee of the Year (2023)</li>
+            </ul>
+          </div>
+          <div className="rounded-lg overflow-hidden bg-slate-900 p-3">
+            <img src="https://github-readme-stats.vercel.app/api?username=nishantmodi92&show_icons=true&theme=transparent&text_color=ffffff&icon_color=7c3aed" alt="github-stats" />
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+=== src/components/MarqueeHighlights.jsx ===
+import React from 'react'
+
+export default function MarqueeHighlights(){
+  const text = '⚡ 6+ Years Experience • 🏆 Employee of the Year 2023 • 🎖️ Client Appreciation Award 2025 • 💻 200+ GitHub Stars • 🚀 Google Associate Android Developer (In Progress)'
+  return (
+    <div className="marquee rounded-lg mt-6 py-3">
+      <p className="text-slate-300 text-sm animate-marquee">{text} &nbsp; &nbsp; {text}</p>
+    </div>
+  )
+}
+
+=== src/components/Skills.jsx ===
+import React from 'react'
+import { motion } from 'framer-motion'
+
+const skills = [
+  {name: 'Kotlin', level: 95},
+  {name: 'Jetpack Compose', level: 93},
+  {name: 'Firebase', level: 90},
+  {name: 'Dagger / Hilt', level: 85},
+  {name: 'System Design', level: 82},
+  {name: 'Testing (JUnit/Espresso)', level: 80}
+]
+
+export default function Skills(){
+  return (
+    <section className="mt-12" data-aos="fade-up">
+      <h2 className="text-2xl font-semibold">Skills</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+        {skills.map(s=> (
+          <motion.div key={s.name} whileHover={{ translateY: -6 }} className="bg-slate-900 p-4 rounded-xl border border-slate-800">
+            <div className="flex justify-between items-center">
+              <h4 className="font-medium">{s.name}</h4>
+              <span className="text-sm text-slate-400">{s.level}%</span>
+            </div>
+            <div className="mt-3 h-2 bg-slate-800 rounded-full overflow-hidden">
+              <div style={{ width: `${s.level}%` }} className="h-full bg-gradient-to-r from-accent to-accent2 rounded-full"></div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+=== src/components/ProjectsSlider.jsx ===
+import React from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/pagination'
+import { Pagination, Autoplay } from 'swiper'
+
+const projects = [
+  {
+    title: 'ChatConnect',
+    desc: 'Encrypted messaging app built with Kotlin, Jetpack Compose & Firebase.',
+    link: 'https://github.com/nishantmodi92/chatconnect-android',
+    badges: ['Kotlin','Compose','Firebase']
+  },
+  {
+    title: 'FoodDeliveryApp',
+    desc: 'Real-time ordering with live tracking and payments.',
+    link: 'https://github.com/nishantmodi92/food-delivery-android',
+    badges: ['Kotlin','Maps','Firebase']
+  },
+  {
+    title: 'GroceryEase',
+    desc: 'Offline-first cart sync and smooth checkout.',
+    link: 'https://github.com/nishantmodi92/GroceryEase',
+    badges: ['Compose','Room','Firestore']
+  }
+]
+
+export default function ProjectsSlider(){
+  return (
+    <section className="mt-12" data-aos="fade-up">
+      <h2 className="text-2xl font-semibold">Selected Projects</h2>
+      <div className="mt-6">
+        <Swiper
+          modules={[Pagination, Autoplay]}
+          spaceBetween={20}
+          slidesPerView={1}
+          breakpoints={{ 640: { slidesPerView: 1.1 }, 1024: { slidesPerView: 2 } }}
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 3500 }}
+        >
+          {projects.map(p=> (
+            <SwiperSlide key={p.title}>
+              <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 h-full flex flex-col justify-between">
+                <div>
+                  <h3 className="text-xl font-semibold">{p.title}</h3>
+                  <p className="mt-3 text-slate-400">{p.desc}</p>
+                </div>
+                <div className="mt-6 flex items-center justify-between">
+                  <div className="flex gap-2">
+                    {p.badges.map(b=> <span key={b} className="px-2 py-1 text-xs rounded bg-slate-800 text-slate-300">{b}</span>)}
+                  </div>
+                  <div className="flex gap-3">
+                    <a href={p.link} target="_blank" rel="noreferrer" className="text-sm px-3 py-1 border border-slate-700 rounded">View Code</a>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </section>
+  )
+}
+
+=== src/components/Achievements.jsx ===
+import React from 'react'
+
+const items = [
+  {year: 2025, title: 'Client Appreciation Award', desc: 'Global fintech delivery impact and system scalability.'},
+  {year: 2023, title: 'Employee of the Year', desc: 'Recognized among 200+ engineers for high impact.'},
+]
+
+export default function Achievements(){
+  return (
+    <section className="mt-12" data-aos="fade-up">
+      <h2 className="text-2xl font-semibold">Achievements</h2>
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+        {items.map(i=> (
+          <div key={i.year} className="p-4 rounded-xl bg-slate-900 border border-slate-800">
+            <div className="text-accent font-bold">{i.year}</div>
+            <div className="mt-2 font-medium">{i.title}</div>
+            <div className="mt-1 text-sm text-slate-400">{i.desc}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+=== src/components/GithubStats.jsx ===
+import React from 'react'
+
+export default function GithubStats(){
+  return (
+    <section className="mt-12" data-aos="fade-up">
+      <h2 className="text-2xl font-semibold">Open Source</h2>
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
+          <img src={`https://github-readme-stats.vercel.app/api?username=nishantmodi92&show_icons=true&theme=transparent&text_color=ffffff&icon_color=7c3aed`} alt="stats" />
+        </div>
+        <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
+          <img src={`https://github-readme-streak-stats.herokuapp.com/?user=nishantmodi92&theme=dark&hide_border=true&date_format=%5BY%5D-%5Bm%5D-%5Bd%5D`} alt="streaks" />
+        </div>
+      </div>
+    </section>
+  )
+}
+
+=== src/components/Contact.jsx ===
+import React, { useRef, useState } from 'react'
+import emailjs from 'emailjs-com'
+
+export default function Contact(){
+  const form = useRef()
+  const [done,setDone] = useState(false)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    // Replace with your EmailJS values
+    const SERVICE_ID = 'your_service_id'
+    const TEMPLATE_ID = 'your_template_id'
+    const USER_ID = 'your_user_id'
+
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, USER_ID)
+      .then((result) => {
+        console.log(result.text);
+        setDone(true)
+      }, (error) => {
+        console.log(error.text);
+      });
   }
 
-  /* -------------------------
-     7) Manual theme toggle - preserves cycler but toggles to a light-ish variant
-     -------------------------*/
-  document.getElementById('manualToggle').addEventListener('click', ()=>{
-    const current = getComputedStyle(document.documentElement).getPropertyValue('--text').trim();
-    if(current === '#e8eef2' || current === 'rgb(232,238,242)'){
-      document.documentElement.style.setProperty('--bg', 'linear-gradient(120deg,#f8fbff,#eef7ff)');
-      document.documentElement.style.setProperty('--text', '#07121a');
-      document.documentElement.style.setProperty('--accent', '#006f8f');
-    } else {
-      document.documentElement.style.setProperty('--text', '#e8eef2');
-      document.documentElement.style.setProperty('--accent', '#00e6ff');
-    }
-  });
+  return (
+    <section className="mt-12 pb-12" data-aos="fade-up">
+      <h2 className="text-2xl font-semibold">Contact</h2>
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form ref={form} onSubmit={handleSubmit} className="p-6 bg-slate-900 rounded-xl border border-slate-800">
+          <input name="user_name" required placeholder="Your name" className="w-full p-3 bg-transparent border-b border-slate-700 outline-none" />
+          <input name="user_email" required placeholder="Your email" className="w-full p-3 bg-transparent border-b border-slate-700 outline-none mt-4" />
+          <textarea name="message" required placeholder="Message" className="w-full p-3 bg-transparent border-b border-slate-700 outline-none mt-4 h-28" />
+          <button type="submit" className="mt-4 px-4 py-2 bg-accent rounded-lg text-black font-semibold">Send</button>
+          {done && <div className="mt-3 text-sm text-green-400">Thanks — I will get back to you soon!</div>}
+        </form>
 
-  /* -------------------------
-     Accessibility: reduce motion if user prefers
-     -------------------------*/
-  (function reduceMotion(){
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if(mq.matches){
-      document.querySelectorAll('*').forEach(n=> n.style.transition = 'none');
-      document.querySelectorAll('.track').forEach(t=> t.style.animation = 'none');
-    }
-  })();
+        <div className="p-6 bg-slate-900 rounded-xl border border-slate-800 flex flex-col gap-4">
+          <div><strong>Email:</strong> nishantmodimaster@gmail.com</div>
+          <div><strong>Location:</strong> Noida, India</div>
+          <div className="mt-4">
+            <a href="https://linkedin.com/in/nishantmodi92" target="_blank" rel="noreferrer" className="underline">LinkedIn</a>
+          </div>
+          <div>
+            <a href="https://github.com/nishantmodi92" target="_blank" rel="noreferrer" className="underline">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
 
-  /* -------------------------
-     Smooth scroll anchors
-     -------------------------*/
-  document.querySelectorAll('nav a').forEach(a=>{
-    a.addEventListener('click', (e)=>{
-      e.preventDefault();
-      const id = a.getAttribute('href').slice(1);
-      const el = document.getElementById(id);
-      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-    });
-  });
+=== src/components/Footer.jsx ===
+import React from 'react'
+import { Typewriter } from 'react-simple-typewriter'
 
-  </script>
-</body>
-</html>
+export default function Footer(){
+  return (
+    <footer className="mt-12 py-8 text-center text-slate-400">
+      <div className="mb-3">&copy; {new Date().getFullYear()} Nishant Modi</div>
+      <div className="text-sm">
+        <Typewriter
+          words={["const Nishant = 'Keep Building. Keep Evolving.';"]}
+          loop={0}
+          cursor
+          cursorStyle="|"
+          typeSpeed={40}
+          deleteSpeed={20}
+          delaySpeed={2000}
+        />
+      </div>
+    </footer>
+  )
+}
+
+---
+
+# Deployment & Setup Notes (inside this repo file)
+1. Install: `npm install` (or `yarn`)
+2. Configure Tailwind: already included; Vite is used as bundler.
+3. Add your EmailJS credentials in `Contact.jsx` (SERVICE_ID, TEMPLATE_ID, USER_ID).
+4. For GitHub stats images to work, no additional config is needed (they are public endpoints). If rate-limited, consider caching or generate images server-side.
+5. Build: `npm run build` then deploy `dist/` to GitHub Pages (or use GitHub Pages via Vite instructions).
+
+---
+
+If you'd like, I can now:
+- replace placeholder EmailJS IDs with your actual keys (if you provide them),
+- add more projects and GIFs/screenshots (paste images or links),
+- adapt color palette or tune animations.
+
