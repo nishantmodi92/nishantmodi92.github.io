@@ -1,413 +1,355 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nishant Modi — Senior Android Developer</title>
-  <meta name="description" content="Nishant Modi — Senior Android Developer | Kotlin, Jetpack Compose, Firebase — Portfolio" />
-  <meta name="theme-color" content="#0f172a" />
+import React, { useEffect, useState, useRef } from "react";
 
-  <!-- Favicon (simple SVG data URL) -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%23222b45'/%3E%3Ctext x='50' y='57' font-size='44' text-anchor='middle' fill='%23ffffff' font-family='Arial'%3ENM%3C/text%3E%3C/svg%3E" />
+// Portfolio - Single-file React component (Tailwind CSS required)
+// Usage:
+// 1) Create a React app (Vite or CRA) and install Tailwind.
+// 2) Drop this component into src/components/Portfolio.jsx and import in App.jsx
+// 3) Update the `PROFILE` and `PROJECTS` objects below with your links if needed.
+// 4) EmailJS: replace EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_USER_ID with your keys.
 
-  <style>
-    :root{
-      --bg:#071029; --card:#0f172a; --muted:#93a3be; --accent:#6ee7b7; --glass: rgba(255,255,255,0.04);
-      --glass-2: rgba(255,255,255,0.02);
-      --glass-border: rgba(255,255,255,0.06);
-      --ff-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+const PROFILE = {
+  name: "Nishant Modi",
+  title: "Senior Android Developer | Mobile App Architect | Kotlin & Jetpack Compose Specialist",
+  location: "Noida, India",
+  email: "nishantmodimaster@gmail.com",
+  linkedin: "https://linkedin.com/in/nishantmodi92",
+  github: "https://github.com/nishantmodi92",
+  portfolio: "https://nishantmodi92.github.io",
+};
+
+const PROJECTS = [
+  {
+    id: 1,
+    name: "ChatConnect Pro",
+    desc: "Real-time encrypted messaging with offline-first sync and <300ms delivery.",
+    tech: ["Kotlin", "Compose", "Firebase", "Hilt"],
+    url: "https://github.com/nishantmodi92/chatconnect-android",
+  },
+  {
+    id: 2,
+    name: "SwiftEats",
+    desc: "Food delivery with live GPS tracking, ETA prediction and optimized startup.",
+    tech: ["Kotlin", "Maps API", "Firestore"],
+    url: "https://github.com/nishantmodi92/food-delivery-android",
+  },
+  {
+    id: 3,
+    name: "GroceryEase+",
+    desc: "Smart grocery shopping with multi-layer caching & offline cart sync.",
+    tech: ["Compose", "Room", "Firebase"],
+    url: "https://github.com/nishantmodi92/GroceryEase",
+  },
+  {
+    id: 4,
+    name: "Healthify X",
+    desc: "Fitness & health tracking with insights, goals and Google Fit integration.",
+    tech: ["Kotlin", "Sensors", "Charts"],
+    url: "https://github.com/nishantmodi92/Healthify",
+  },
+  {
+    id: 5,
+    name: "FinVault",
+    desc: "Secure fintech wallet — AES encryption, token rotation, PCI/GDPR aware flows.",
+    tech: ["Kotlin", "gRPC", "GraphQL"],
+    url: "https://github.com/nishantmodi92/FinMate",
+  },
+  {
+    id: 6,
+    name: "Learnfinity",
+    desc: "Modern e-learning with offline lessons, quizzes and progress analytics.",
+    tech: ["Compose", "Video", "Firestore"],
+    url: "https://github.com/nishantmodi92/EduPlay",
+  },
+];
+
+// EmailJS placeholders - add your values if you want the contact form to work
+const EMAILJS_SERVICE_ID = "YOUR_EMAILJS_SERVICE_ID";
+const EMAILJS_TEMPLATE_ID = "YOUR_EMAILJS_TEMPLATE_ID";
+const EMAILJS_USER_ID = "YOUR_EMAILJS_USER_ID";
+
+// Simple typewriter hook
+function useTypewriter(words, speed = 80, pause = 1000) {
+  const [index, setIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(0);
+  const [blink, setBlink] = useState(true);
+  const [reverse, setReverse] = useState(false);
+
+  useEffect(() => {
+    const timeout = setInterval(() => setBlink((v) => !v), 500);
+    return () => clearInterval(timeout);
+  }, []);
+
+  useEffect(() => {
+    if (index >= words.length) return;
+    if (!reverse) {
+      if (subIndex < words[index].length) {
+        setTimeout(() => setSubIndex((s) => s + 1), speed);
+      } else {
+        setTimeout(() => setReverse(true), pause);
+      }
+    } else {
+      if (subIndex > 0) {
+        setTimeout(() => setSubIndex((s) => s - 1), speed / 2);
+      } else {
+        setReverse(false);
+        setIndex((i) => (i + 1) % words.length);
+      }
     }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:var(--ff-sans);background:radial-gradient(ellipse at 10% 10%, rgba(78,86,255,0.08), transparent 10%), linear-gradient(180deg,#021026 0%, var(--bg) 100%);color:#e6eef8}
-    a{color:var(--accent);text-decoration:none}
-    img{max-width:100%;display:block}
+  }, [subIndex, index, reverse, words, speed, pause]);
 
-    /* layout */
-    .container{max-width:1100px;margin:36px auto;padding:24px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{display:flex;align-items:center;gap:14px}
-    .avatar{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#1f2a44,#2b3150);display:flex;align-items:center;justify-content:center;font-weight:700;color:white}
-    .nav{display:flex;gap:12px;align-items:center}
-    .btn{background:linear-gradient(90deg,var(--accent),#34d399);color:#022; padding:8px 12px;border-radius:10px;font-weight:600;border:none;cursor:pointer}
-    .ghost{background:transparent;border:1px solid var(--glass-border);padding:8px 10px;border-radius:10px}
+  return { text: words[index].substring(0, subIndex), cursor: blink };
+}
 
-    /* hero */
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-top:28px}
-    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:28px;border-radius:16px;border:1px solid var(--glass-border);backdrop-filter:blur(6px)}
-    h1{font-size:32px;margin:0 0 8px}
-    .typing{color:var(--accent);font-weight:700}
-    .sub{color:var(--muted);margin:12px 0 18px}
-    .counters{display:flex;gap:12px;flex-wrap:wrap}
-    .chip{background:var(--glass);padding:10px 12px;border-radius:12px;border:1px solid var(--glass-border);min-width:120px}
+export default function Portfolio() {
+  const [dark, setDark] = useState(true);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const slideRef = useRef(null);
+  const words = [
+    "Senior Android Developer",
+    "Mobile App Architect",
+    "Kotlin & Jetpack Compose Specialist",
+  ];
+  const type = useTypewriter(words, 70, 1200);
 
-    /* right column card */
-    .profile-stats{padding:20px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);border:1px solid var(--glass-border)}
-    .stat{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-    .stat strong{font-size:18px}
-    .small{color:var(--muted);font-size:13px}
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+  }, [dark]);
 
-    /* skills */
-    .skills{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
-    .skill-pill{padding:8px 12px;border-radius:999px;background:var(--glass-2);border:1px solid var(--glass-border);color:var(--muted)}
+  // simple auto slider
+  useEffect(() => {
+    const id = setInterval(() => {
+      setActiveSlide((s) => (s + 1) % PROJECTS.length);
+    }, 5000);
+    return () => clearInterval(id);
+  }, []);
 
-    /* projects slider */
-    .projects{margin-top:28px}
-    .slider{position:relative;overflow:hidden;border-radius:14px;border:1px solid var(--glass-border);background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
-    .slides{display:flex;transition:transform 600ms cubic-bezier(.2,.9,.3,1)}
-    .card{min-width:100%;padding:22px;display:flex;gap:18px;align-items:center}
-    .proj-left{flex:1}
-    .proj-right{width:240px;text-align:right}
-    .proj-title{font-size:20px;margin:0}
-    .proj-desc{color:var(--muted);margin:8px 0 12px}
-    .metric-list{display:flex;flex-direction:column;gap:6px}
-    .dot-controls{position:absolute;left:12px;bottom:12px;display:flex;gap:8px}
-    .dot{width:10px;height:10px;border-radius:99px;background:transparent;border:1px solid var(--glass-border);cursor:pointer}
-    .dot.active{background:var(--accent);border-color:transparent}
-
-    /* achievements */
-    .achieve{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:22px}
-    .award{background:var(--glass);padding:16px;border-radius:12px;border:1px solid var(--glass-border)}
-
-    /* contact */
-    .contact{margin-top:28px;display:grid;grid-template-columns:1fr 360px;gap:18px}
-    form{display:flex;flex-direction:column;gap:10px;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid var(--glass-border)}
-    input,textarea{background:transparent;border:1px solid var(--glass-border);padding:10px;border-radius:8px;color:inherit}
-    textarea{min-height:120px}
-
-    footer{margin:34px 0;text-align:center;color:var(--muted)}
-
-    /* responsive */
-    @media(max-width:980px){
-      .hero{grid-template-columns:1fr}
-      .profile-stats{order:2}
-      .contact{grid-template-columns:1fr}
-      .proj-right{text-align:left;width:auto}
+  function goToSlide(i) {
+    setActiveSlide(i % PROJECTS.length);
+    // scroll (if container) - accessible
+    if (slideRef.current) {
+      const child = slideRef.current.children[i];
+      if (child) child.scrollIntoView({ behavior: "smooth", inline: "center" });
     }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="avatar">NM</div>
-        <div>
-          <div style="font-weight:700">Nishant Modi</div>
-          <div style="font-size:13px;color:var(--muted)">Senior Android Developer · Kotlin · Jetpack Compose</div>
+  }
+
+  // Email send (using EmailJS if configured) — fallback to mailto
+  async function sendContact(e) {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value.trim();
+    const message = form.message.value.trim();
+    const subject = form.subject.value.trim();
+
+    if (!name || !message) {
+      alert("Please enter name and message.");
+      return;
+    }
+
+    if (EMAILJS_SERVICE_ID === "YOUR_EMAILJS_SERVICE_ID") {
+      // fallback
+      window.location.href = `mailto:${PROFILE.email}?subject=${encodeURIComponent(
+        subject || "Portfolio Inquiry"
+      )}&body=${encodeURIComponent(name + " - " + message)}`;
+      return;
+    }
+
+    // If you set up EmailJS, uncomment below and install emailjs-com
+    /*
+    import emailjs from 'emailjs-com';
+    emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form, EMAILJS_USER_ID)
+      .then(() => alert('Message sent — thank you!'), err => alert('Send failed: ' + err.text))
+    */
+
+    alert('EmailJS not configured. Fallback opened your email client.');
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-neutral-900 via-slate-900 to-black text-gray-100 transition-colors duration-300 dark:bg-gradient-to-b dark:from-slate-900 dark:via-gray-900 dark:to-black">
+      {/* Floating Navbar */}
+      <nav className="fixed z-50 top-4 left-1/2 transform -translate-x-1/2 w-11/12 max-w-6xl bg-black/40 backdrop-blur-md border border-white/5 rounded-2xl p-3 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-md bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center font-bold">NM</div>
+          <div className="hidden md:block">
+            <div className="text-sm font-semibold">{PROFILE.name}</div>
+            <div className="text-xs text-gray-400">{PROFILE.title}</div>
+          </div>
         </div>
-      </div>
-      <nav class="nav">
-        <a class="ghost" href="#projects">Projects</a>
-        <a class="ghost" href="#achievements">Awards</a>
-        <a class="ghost" href="#contact">Contact</a>
-        <a class="btn" href="https://github.com/nishantmodi92" target="_blank" rel="noopener">View GitHub</a>
+
+        <div className="flex items-center gap-4">
+          <div className="hidden sm:flex gap-4 text-sm">
+            <a href="#projects" className="hover:underline">Projects</a>
+            <a href="#skills" className="hover:underline">Skills</a>
+            <a href="#publications" className="hover:underline">Publications</a>
+            <a href="#contact" className="hover:underline">Contact</a>
+          </div>
+
+          <button
+            onClick={() => setDark((d) => !d)}
+            className="px-3 py-1 rounded-md bg-white/6 hover:bg-white/10 text-sm"
+            aria-pressed={dark}
+          >
+            {dark ? "Dark" : "Light"}
+          </button>
+
+          <a href={PROFILE.github} className="text-sm px-3 py-1 rounded-md bg-white/6 hover:bg-white/10">GitHub</a>
+        </div>
       </nav>
-    </header>
 
-    <main>
-      <section class="hero">
-        <div class="hero-card">
-          <h1>Hi, I’m <span style="color:var(--accent)">Nishant Modi</span> 👋</h1>
-          <div class="sub">Senior Android Developer building scalable, high-performance mobile apps using Kotlin &amp; Jetpack Compose.</div>
-          <div style="font-size:16px;margin-bottom:10px">I build: <span class="typing" id="typing"></span></div>
-
-          <div class="counters">
-            <div class="chip"><div style="font-weight:700">6+ yrs</div><div class="small">Android development</div></div>
-            <div class="chip"><div style="font-weight:700">100K+</div><div class="small">Total app downloads</div></div>
-            <div class="chip"><div style="font-weight:700">99.9%</div><div class="small">Crash-free sessions</div></div>
-          </div>
-
-          <div class="skills" aria-hidden="false">
-            <div class="skill-pill">Kotlin</div>
-            <div class="skill-pill">Jetpack Compose</div>
-            <div class="skill-pill">Firebase</div>
-            <div class="skill-pill">Clean Architecture</div>
-            <div class="skill-pill">MVVM</div>
-            <div class="skill-pill">Dagger-Hilt</div>
-          </div>
-
-        </div>
-
-        <aside class="profile-stats">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-            <div>
-              <div style="font-weight:700">Profile</div>
-              <div class="small">Android • Open-source • Performance</div>
-            </div>
-            <div style="text-align:right">
-              <div style="font-weight:700">nishantmodi92</div>
-              <div class="small">Github</div>
-            </div>
-          </div>
-
-          <div class="stat"><div class="small">Top language</div><strong>Kotlin</strong></div>
-          <div class="stat"><div class="small">Pinned projects</div><strong>6</strong></div>
-          <div class="stat"><div class="small">Contact</div><strong>nishantmodimaster@gmail.com</strong></div>
-
-          <div style="margin-top:16px">
-            <a class="ghost" href="/resume.pdf" target="_blank">Download Resume</a>
-            <a class="btn" style="margin-left:10px" href="https://github.com/nishantmodi92" target="_blank">View GitHub</a>
-          </div>
-        </aside>
-      </section>
-
-      <!-- Projects slider -->
-      <section id="projects" class="projects">
-        <h2 style="margin:8px 0 12px">Selected Projects</h2>
-        <div class="slider" aria-roledescription="carousel">
-          <div class="slides" id="slides">
-
-            <!-- Slide 1: ChatConnect -->
-            <article class="card">
-              <div class="proj-left">
-                <h3 class="proj-title">ChatConnect — Real-time Encrypted Messaging</h3>
-                <p class="proj-desc">End-to-end encrypted chat app with offline-first sync and ultra-low latency messaging built using Compose and Firebase.</p>
-                <div class="metric-list">
-                  <div>• 25K+ DAU</div>
-                  <div>• 98% crash-free sessions</div>
-                  <div>• Message latency &lt; 200 ms</div>
-                  <div>• Offline sync & guaranteed delivery</div>
-                </div>
-                <p style="margin-top:12px"><a href="https://github.com/nishantmodi92/chatconnect-android" target="_blank">View repository</a></p>
-              </div>
-              <div class="proj-right">
-                <div style="font-weight:700">Tech Stack</div>
-                <div class="small">Kotlin, Jetpack Compose, Firebase Firestore, FCM, Hilt, WorkManager, MVVM</div>
-              </div>
-            </article>
-
-            <!-- Slide 2: FoodDeliveryApp -->
-            <article class="card">
-              <div class="proj-left">
-                <h3 class="proj-title">FoodDeliveryApp — Real-time Ordering & Tracking</h3>
-                <p class="proj-desc">Live order tracking, in-app payments, and modular features tuned for fast cold starts and high conversion rates.</p>
-                <div class="metric-list">
-                  <div>• 100K+ downloads</div>
-                  <div>• 30% faster cold start</div>
-                  <div>• 25% higher checkout conversion</div>
-                  <div>• 99.9% uptime</div>
-                </div>
-                <p style="margin-top:12px"><a href="https://github.com/nishantmodi92/food-delivery-android" target="_blank">View repository</a></p>
-              </div>
-              <div class="proj-right">
-                <div style="font-weight:700">Tech Stack</div>
-                <div class="small">Kotlin, Compose, Firebase, Retrofit, Google Maps API, Hilt, Clean Architecture</div>
-              </div>
-            </article>
-
-            <!-- Slide 3: GroceryEase -->
-            <article class="card">
-              <div class="proj-left">
-                <h3 class="proj-title">GroceryEase — Grocery Shopping & Delivery</h3>
-                <p class="proj-desc">Offline cart sync, multi-device reliability, and zero cart drop-offs — a dependable grocery checkout experience.</p>
-                <div class="metric-list">
-                  <div>• 10K+ active users</div>
-                  <div>• 0 cart drop-offs</div>
-                  <div>• 99.8% reliability</div>
-                  <div>• Multi-device sync</div>
-                </div>
-                <p style="margin-top:12px"><a href="https://github.com/nishantmodi92/GroceryEase" target="_blank">View repository</a></p>
-              </div>
-              <div class="proj-right">
-                <div style="font-weight:700">Tech Stack</div>
-                <div class="small">Kotlin, Compose, Firebase Firestore/Auth, Room, Retrofit, Dagger-Hilt</div>
-              </div>
-            </article>
-
-            <!-- Slide 4: FinMate -->
-            <article class="card">
-              <div class="proj-left">
-                <h3 class="proj-title">FinMate — Secure Digital Wallet</h3>
-                <p class="proj-desc">High-security wallet with fraud detection, Play Integrity integration, and PCI-DSS readiness for production use.</p>
-                <div class="metric-list">
-                  <div>• $10M+ annual transaction volume</div>
-                  <div>• 60% fraud reduction</div>
-                  <div>• 99.9% uptime</div>
-                  <div>• PCI-DSS compliant</div>
-                </div>
-                <p style="margin-top:12px"><a href="https://github.com/nishantmodi92/FinMate" target="_blank">View repository</a></p>
-              </div>
-              <div class="proj-right">
-                <div style="font-weight:700">Tech Stack</div>
-                <div class="small">Kotlin, Firebase, GraphQL, Play Integrity API, Clean Architecture</div>
-              </div>
-            </article>
-
-            <!-- Slide 5: EduPlay -->
-            <article class="card">
-              <div class="proj-left">
-                <h3 class="proj-title">EduPlay — E-learning Platform</h3>
-                <p class="proj-desc">Gamified learning with offline modules and progress tracking to boost retention and engagement.</p>
-                <div class="metric-list">
-                  <div>• 20K+ users</div>
-                  <div>• 98% crash-free sessions</div>
-                  <div>• 35% higher retention</div>
-                </div>
-                <p style="margin-top:12px"><a href="https://github.com/nishantmodi92/EduPlay" target="_blank">View repository</a></p>
-              </div>
-              <div class="proj-right">
-                <div style="font-weight:700">Tech Stack</div>
-                <div class="small">Kotlin, Compose, Firebase, Retrofit, MVVM</div>
-              </div>
-            </article>
-
-            <!-- Slide 6: Healthify -->
-            <article class="card">
-              <div class="proj-left">
-                <h3 class="proj-title">Healthify — Fitness & Wellness Tracker</h3>
-                <p class="proj-desc">Steps & workout tracking with ML-based activity detection and cloud backup for multi-device sync.</p>
-                <div class="metric-list">
-                  <div>• 15K+ installs</div>
-                  <div>• 99.8% uptime</div>
-                  <div>• 20% DAU increase</div>
-                </div>
-                <p style="margin-top:12px"><a href="https://github.com/nishantmodi92/Healthify" target="_blank">View repository</a></p>
-              </div>
-              <div class="proj-right">
-                <div style="font-weight:700">Tech Stack</div>
-                <div class="small">Kotlin, Compose, Firebase, Room, ML Kit, Hilt</div>
-              </div>
-            </article>
-
-          </div>
-
-          <div class="dot-controls" id="dots"></div>
-        </div>
-      </section>
-
-      <!-- Achievements -->
-      <section id="achievements">
-        <h2 style="margin:18px 0 12px">Achievements & Awards</h2>
-        <div class="achieve">
-          <div class="award"><strong>Employee of the Year (EXL Service, 2023)</strong><div class="small">Recognized for leadership & delivery impact</div></div>
-          <div class="award"><strong>Client Appreciation Award (2025)</strong><div class="small">FinTech scalability & performance</div></div>
-          <div class="award"><strong>200+ GitHub stars</strong><div class="small">Across open-source projects</div></div>
-          <div class="award"><strong>Optimized app cold start by 30%</strong><div class="small">Baseline Profiles & performance tuning</div></div>
-        </div>
-      </section>
-
-      <!-- Contact -->
-      <section id="contact" class="contact">
-        <div>
-          <h2>Contact</h2>
-          <p class="small">Interested in collaborating or hiring? Drop a quick message — I reply fast.</p>
-
-          <form id="contactForm">
-            <input id="name" name="name" placeholder="Your name" required />
-            <input id="email" type="email" name="email" placeholder="Email" required />
-            <input id="subject" name="subject" placeholder="Subject" />
-            <textarea id="message" name="message" placeholder="Message" required></textarea>
-            <button type="submit" class="btn">Send Message</button>
-            <div id="status" class="small" style="margin-top:6px;color:var(--muted)"></div>
-          </form>
-
-          <div style="margin-top:12px;color:var(--muted)">Email: <a href="mailto:nishantmodimaster@gmail.com">nishantmodimaster@gmail.com</a></div>
-        </div>
-
-        <aside style="padding:18px;border-radius:12px;background:var(--glass);border:1px solid var(--glass-border)">
-          <div style="font-weight:700;margin-bottom:6px">Quick Links</div>
-          <div class="small" style="margin-bottom:10px">GitHub • LinkedIn • Resume</div>
-          <div style="display:flex;flex-direction:column;gap:8px">
-            <a class="ghost" href="https://github.com/nishantmodi92" target="_blank">GitHub</a>
-            <a class="ghost" href="https://linkedin.com/in/nishantmodi92" target="_blank">LinkedIn</a>
-            <a class="ghost" href="/resume.pdf" target="_blank">Download Resume</a>
-          </div>
-
-          <div style="margin-top:16px">
-            <div class="small">Profile Views</div>
-            <img alt="views" src="https://komarev.com/ghpvc/?username=nishantmodi92&color=blue&style=flat" />
-          </div>
-        </aside>
-      </section>
-
-      <!-- Marquee -->
-      <div style="margin-top:28px;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg, rgba(255,255,255,0.01), transparent);border:1px solid var(--glass-border)">
-        <marquee behavior="scroll" scrollamount="6" style="color:var(--muted)">Let’s build something exceptional together — Kotlin • Jetpack Compose • Firebase • Clean Architecture • System Design</marquee>
+      {/* Animated Background */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <svg className="w-full h-full opacity-10" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#0ea5e9" />
+              <stop offset="100%" stopColor="#7c3aed" />
+            </linearGradient>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#g1)" />
+        </svg>
+        <div className="absolute -left-40 -top-40 w-[600px] h-[600px] bg-gradient-to-tr from-indigo-700 to-purple-600 opacity-10 rounded-full blur-3xl animate-blob" />
       </div>
 
-    </main>
+      <main className="relative pt-28 pb-20 px-6 md:px-12 lg:px-24">
+        {/* Hero */}
+        <section className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">{PROFILE.name}</h1>
+            <p className="mt-3 text-xl text-gray-300">{PROFILE.title}</p>
 
-    <footer>
-      <div class="small">© <strong>Nishant Modi</strong> — Senior Android Developer · Built with ❤️ · <span id="year"></span></div>
-    </footer>
-  </div>
+            <div className="mt-6 text-2xl font-medium">
+              <span className="inline-block mr-2 text-teal-300">{type.text}</span>
+              <span className={`inline-block w-3 ${type.cursor ? "bg-gray-200" : "bg-transparent"} align-middle ml-2 h-6`} />
+            </div>
 
-  <script>
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
+            <p className="mt-6 text-gray-400 max-w-xl">I build secure, low-latency mobile systems (real-time messaging, GPS pipelines, offline-first sync) and optimize app lifecycle for performance and reliability — production-ready code, CI/CD automation, and strong architecture patterns.</p>
 
-    // Typing effect
-    (function(){
-      const el = document.getElementById('typing');
-      const phrases = ['Kotlin • Jetpack Compose • Firebase','Scalable Mobile Systems','Clean Architecture • MVVM','High-performance, crash-free apps'];
-      let pi = 0; let idx = 0; let forward = true;
-      function tick(){
-        const full = phrases[pi];
-        if(forward){ idx++; if(idx>=full.length){ forward=false; setTimeout(tick,900); return; }} else { idx--; if(idx<=0){ forward=true; pi=(pi+1)%phrases.length; setTimeout(tick,500); return; }}
-        el.textContent = full.slice(0, idx);
-        setTimeout(tick, 40 + Math.random()*60);
-      }
-      tick();
-    })();
+            <div className="mt-6 flex gap-3">
+              <a href="#projects" className="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 font-semibold">View Projects</a>
+              <a href={PROFILE.linkedin} target="_blank" rel="noreferrer" className="px-4 py-2 rounded-lg border border-white/10">LinkedIn</a>
+              <a href={PROFILE.portfolio} target="_blank" rel="noreferrer" className="px-4 py-2 rounded-lg border border-white/10">Portfolio Site</a>
+            </div>
 
-    // Slider
-    (function(){
-      const slides = document.getElementById('slides');
-      const total = slides.children.length;
-      const dots = document.getElementById('dots');
-      let current = 0; let timer=null;
+            {/* Type indicator + marquee */}
+            <div className="mt-6 flex items-center gap-4 text-sm text-gray-400">
+              <div className="flex items-center gap-2">
+                <span className="h-3 w-3 rounded-full bg-green-400" />
+                <span>Available for new opportunities</span>
+              </div>
 
-      function go(i){
-        current = (i+total)%total;
-        slides.style.transform = `translateX(-${current*100}%)`;
-        Array.from(dots.children).forEach((d,di)=>d.classList.toggle('active', di===current));
-      }
+              <div className="ml-4 overflow-hidden w-64">
+                <div className="whitespace-nowrap animate-marquee text-xs text-gray-300">Realtime · Offline-First · Baseline Profiles · AES Encryption · CI/CD · Multi-Module</div>
+              </div>
+            </div>
+          </div>
 
-      // create dots
-      for(let i=0;i<total;i++){ const d=document.createElement('button'); d.className='dot'; d.onclick=(()=>go(i)); dots.appendChild(d); }
-      go(0);
+          {/* Hero right card */}
+          <div className="p-6 rounded-2xl bg-white/3 backdrop-blur-sm border border-white/5">
+            <div className="text-sm text-gray-300">Contact</div>
+            <div className="mt-3">
+              <div className="text-lg font-semibold">{PROFILE.location}</div>
+              <div className="mt-1 text-sm text-gray-400">{PROFILE.email}</div>
 
-      function auto(){ timer = setInterval(()=>go(current+1), 5000); }
-      auto();
-      // pause on hover
-      document.querySelector('.slider').addEventListener('mouseenter', ()=>clearInterval(timer));
-      document.querySelector('.slider').addEventListener('mouseleave', auto);
-    })();
+              <div className="mt-4">
+                <a href={PROFILE.github} className="text-sm inline-block px-3 py-2 rounded-md bg-white/6">GitHub</a>
+                <a href={PROFILE.linkedin} className="ml-3 text-sm inline-block px-3 py-2 rounded-md bg-white/6">LinkedIn</a>
+              </div>
 
-    // Contact form (EmailJS example)
-    (function(){
-      const form = document.getElementById('contactForm');
-      const status = document.getElementById('status');
-      form.addEventListener('submit', function(e){
-        e.preventDefault();
-        status.textContent = 'Sending...';
+              <div className="mt-6 text-sm text-gray-300">
+                <div>Core: Kotlin · Jetpack Compose · Clean Architecture</div>
+                <div className="mt-2">Performance: Baseline Profiles · Perfetto · Macrobenchmark</div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-        // USER: Replace the placeholders below with your EmailJS values (serviceID, templateID, userID/publicKey)
-        const serviceID = 'YOUR_EMAILJS_SERVICE_ID';
-        const templateID = 'YOUR_EMAILJS_TEMPLATE_ID';
-        const publicKey = 'YOUR_EMAILJS_PUBLIC_KEY';
+        {/* Projects */}
+        <section id="projects" className="max-w-6xl mx-auto mt-16">
+          <h2 className="text-2xl font-bold">Projects</h2>
+          <p className="text-gray-400 mt-2 max-w-2xl">Selected production-grade projects with measurable impact — modular, tested, and CI/CD-ready.</p>
 
-        const payload = {
-          service_id: serviceID,
-          template_id: templateID,
-          user_id: publicKey,
-          template_params: {
-            'from_name': form.name.value,
-            'from_email': form.email.value,
-            'subject': form.subject.value || 'Contact from portfolio',
-            'message': form.message.value
-          }
-        };
+          <div className="mt-6 relative">
+            <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide" ref={slideRef}>
+              {PROJECTS.map((p, i) => (
+                <article key={p.id} className={`min-w-[320px] snap-center p-6 rounded-2xl border border-white/6 bg-white/5 transition-transform transform ${i === activeSlide ? "scale-100" : "scale-95"}`}>
+                  <h3 className="text-lg font-semibold">{p.name}</h3>
+                  <p className="text-sm text-gray-300 mt-2">{p.desc}</p>
 
-        // Basic fetch to EmailJS REST API (if you set up an EmailJS account)
-        fetch('https://api.emailjs.com/api/v1.0/email/send', {
-          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
-        }).then(r=>{
-          if(r.ok){ status.textContent = 'Message sent — I will reply soon!'; form.reset(); }
-          else { status.textContent = 'Failed to send. Please email directly.'; }
-        }).catch(err=>{ status.textContent = 'Network error. Please email directly.'; });
-      });
-    })();
-  </script>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {p.tech.map((t) => (
+                      <span key={t} className="text-xs px-2 py-1 rounded bg-white/6">{t}</span>
+                    ))}
+                  </div>
 
-</body>
-</html>
+                  <div className="mt-4 flex gap-3">
+                    <a href={p.url} target="_blank" rel="noreferrer" className="text-sm px-3 py-2 rounded bg-indigo-600">Code</a>
+                    <button onClick={() => goToSlide(i)} className="text-sm px-3 py-2 rounded border border-white/6">View</button>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            {/* slider indicators */}
+            <div className="mt-4 flex justify-center gap-2">
+              {PROJECTS.map((_, i) => (
+                <button key={i} onClick={() => goToSlide(i)} className={`w-3 h-3 rounded-full ${activeSlide === i ? "bg-indigo-500" : "bg-white/10"}`}></button>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Skills */}
+        <section id="skills" className="max-w-6xl mx-auto mt-14">
+          <h2 className="text-2xl font-bold">Skills</h2>
+          <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+            {["Kotlin", "Jetpack Compose", "Hilt", "Firebase", "gRPC", "GraphQL", "Room", "Retrofit", "Perfetto", "Baseline Profiles"].map((s) => (
+              <div key={s} className="p-3 rounded-md bg-white/3 text-sm text-gray-200">{s}</div>
+            ))}
+          </div>
+        </section>
+
+        {/* Publications */}
+        <section id="publications" className="max-w-6xl mx-auto mt-14">
+          <h2 className="text-2xl font-bold">Publications & Thought Leadership</h2>
+          <ul className="mt-4 list-disc list-inside text-gray-300">
+            <li>Distributed Offline-First Architecture in Android — 2025</li>
+            <li>30% Faster Startup with Baseline Profiles — 2025</li>
+            <li>Secure Mobile Communication with AES + Token Rotation — 2024</li>
+          </ul>
+        </section>
+
+        {/* Contact */}
+        <section id="contact" className="max-w-3xl mx-auto mt-14 p-6 rounded-2xl bg-white/3 border border-white/5">
+          <h2 className="text-2xl font-bold">Contact</h2>
+          <p className="text-gray-300 mt-2">Use the form or email directly at <span className="text-teal-300">{PROFILE.email}</span>.</p>
+
+          <form onSubmit={sendContact} className="mt-4 grid grid-cols-1 gap-3">
+            <input name="name" placeholder="Your name" className="p-3 rounded bg-black/20" />
+            <input name="subject" placeholder="Subject" className="p-3 rounded bg-black/20" />
+            <textarea name="message" rows={4} placeholder="Message" className="p-3 rounded bg-black/20" />
+            <div className="flex items-center gap-3 mt-2">
+              <button type="submit" className="px-4 py-2 rounded bg-indigo-600">Send</button>
+              <a href={`mailto:${PROFILE.email}`} className="text-sm text-gray-300">Open email client</a>
+            </div>
+          </form>
+        </section>
+
+        {/* Footer */}
+        <footer className="max-w-6xl mx-auto mt-20 pb-10 text-center text-gray-500 text-sm">
+          <div className="mb-3">Built with ❤️ · Kotlin & Compose advocate</div>
+          <div>{PROFILE.name} • <a className="text-gray-300" href={PROFILE.linkedin}>LinkedIn</a> • <a className="text-gray-300" href={PROFILE.github}>GitHub</a></div>
+        </footer>
+      </main>
+
+      <style>
+        {`/* Tailwind utilities used; add following custom classes to your global CSS if needed */}
+        .animate-blob{animation:blob 12s infinite}
+        @keyframes blob{0%{transform:translate(0px,0px)}33%{transform:translate(30px,-50px)}66%{transform:translate(-20px,20px)}100%{transform:translate(0px,0px)}}
+        .animate-marquee{animation:marquee 18s linear infinite}
+        @keyframes marquee{0%{transform:translateX(0%)}100%{transform:translateX(-100%)}}
+        .scrollbar-hide::-webkit-scrollbar{display:none}
+        .scrollbar-hide{-ms-overflow-style:none;scrollbar-width:none}
+      `}
+      </style>
+    </div>
+  );
+}
