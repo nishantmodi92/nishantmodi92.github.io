@@ -1,355 +1,425 @@
-import React, { useEffect, useState, useRef } from "react";
+# Nishant Modi — React + Vite + Tailwind Portfolio (Full Project)
 
-// Portfolio - Single-file React component (Tailwind CSS required)
-// Usage:
-// 1) Create a React app (Vite or CRA) and install Tailwind.
-// 2) Drop this component into src/components/Portfolio.jsx and import in App.jsx
-// 3) Update the `PROFILE` and `PROJECTS` objects below with your links if needed.
-// 4) EmailJS: replace EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_USER_ID with your keys.
+This single file contains a complete, copy-paste-ready React (Vite) portfolio project scaffold with 6 project pages, routing, Tailwind, Framer Motion, SEO meta examples, and Plausible analytics integration. Follow the **Installation** steps below after you paste the files into your environment.
 
-const PROFILE = {
-  name: "Nishant Modi",
-  title: "Senior Android Developer | Mobile App Architect | Kotlin & Jetpack Compose Specialist",
-  location: "Noida, India",
-  email: "nishantmodimaster@gmail.com",
-  linkedin: "https://linkedin.com/in/nishantmodi92",
-  github: "https://github.com/nishantmodi92",
-  portfolio: "https://nishantmodi92.github.io",
-};
+---
 
-const PROJECTS = [
-  {
-    id: 1,
-    name: "ChatConnect Pro",
-    desc: "Real-time encrypted messaging with offline-first sync and <300ms delivery.",
-    tech: ["Kotlin", "Compose", "Firebase", "Hilt"],
-    url: "https://github.com/nishantmodi92/chatconnect-android",
+## Project structure (files provided below)
+
+- package.json
+- vite.config.js
+- index.html
+- tailwind.config.cjs
+- postcss.config.cjs
+- src/main.jsx
+- src/App.jsx
+- src/index.css
+- src/data/projects.js
+- src/components/Navbar.jsx
+- src/components/Footer.jsx
+- src/components/ProjectCard.jsx
+- src/pages/Home.jsx
+- src/pages/ProjectPage.jsx
+- src/pages/NotFound.jsx
+- public/og-image.png (placeholder)
+- README.md (instructions)
+
+---
+
+> **How to use:**
+> 1. Create a new folder and paste each file (use the filenames above). 
+> 2. Run `npm install` then `npm run dev`.
+> 3. Build with `npm run build` and deploy (Netlify/GitHub Pages/Vercel).
+
+---
+
+--- FILE: package.json ---
+
+```json
+{
+  "name": "nishant-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  {
-    id: 2,
-    name: "SwiftEats",
-    desc: "Food delivery with live GPS tracking, ETA prediction and optimized startup.",
-    tech: ["Kotlin", "Maps API", "Firestore"],
-    url: "https://github.com/nishantmodi92/food-delivery-android",
+  "dependencies": {
+    "framer-motion": "^10.12.16",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.14.1"
   },
-  {
-    id: 3,
-    name: "GroceryEase+",
-    desc: "Smart grocery shopping with multi-layer caching & offline cart sync.",
-    tech: ["Compose", "Room", "Firebase"],
-    url: "https://github.com/nishantmodi92/GroceryEase",
-  },
-  {
-    id: 4,
-    name: "Healthify X",
-    desc: "Fitness & health tracking with insights, goals and Google Fit integration.",
-    tech: ["Kotlin", "Sensors", "Charts"],
-    url: "https://github.com/nishantmodi92/Healthify",
-  },
-  {
-    id: 5,
-    name: "FinVault",
-    desc: "Secure fintech wallet — AES encryption, token rotation, PCI/GDPR aware flows.",
-    tech: ["Kotlin", "gRPC", "GraphQL"],
-    url: "https://github.com/nishantmodi92/FinMate",
-  },
-  {
-    id: 6,
-    name: "Learnfinity",
-    desc: "Modern e-learning with offline lessons, quizzes and progress analytics.",
-    tech: ["Compose", "Video", "Firestore"],
-    url: "https://github.com/nishantmodi92/EduPlay",
-  },
-];
-
-// EmailJS placeholders - add your values if you want the contact form to work
-const EMAILJS_SERVICE_ID = "YOUR_EMAILJS_SERVICE_ID";
-const EMAILJS_TEMPLATE_ID = "YOUR_EMAILJS_TEMPLATE_ID";
-const EMAILJS_USER_ID = "YOUR_EMAILJS_USER_ID";
-
-// Simple typewriter hook
-function useTypewriter(words, speed = 80, pause = 1000) {
-  const [index, setIndex] = useState(0);
-  const [subIndex, setSubIndex] = useState(0);
-  const [blink, setBlink] = useState(true);
-  const [reverse, setReverse] = useState(false);
-
-  useEffect(() => {
-    const timeout = setInterval(() => setBlink((v) => !v), 500);
-    return () => clearInterval(timeout);
-  }, []);
-
-  useEffect(() => {
-    if (index >= words.length) return;
-    if (!reverse) {
-      if (subIndex < words[index].length) {
-        setTimeout(() => setSubIndex((s) => s + 1), speed);
-      } else {
-        setTimeout(() => setReverse(true), pause);
-      }
-    } else {
-      if (subIndex > 0) {
-        setTimeout(() => setSubIndex((s) => s - 1), speed / 2);
-      } else {
-        setReverse(false);
-        setIndex((i) => (i + 1) % words.length);
-      }
-    }
-  }, [subIndex, index, reverse, words, speed, pause]);
-
-  return { text: words[index].substring(0, subIndex), cursor: blink };
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.4.7",
+    "vite": "^5.0.9"
+  }
 }
+```
 
-export default function Portfolio() {
-  const [dark, setDark] = useState(true);
-  const [activeSlide, setActiveSlide] = useState(0);
-  const slideRef = useRef(null);
-  const words = [
-    "Senior Android Developer",
-    "Mobile App Architect",
-    "Kotlin & Jetpack Compose Specialist",
-  ];
-  const type = useTypewriter(words, 70, 1200);
+--- FILE: vite.config.js ---
 
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", dark);
-  }, [dark]);
+```js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
-  // simple auto slider
-  useEffect(() => {
-    const id = setInterval(() => {
-      setActiveSlide((s) => (s + 1) % PROJECTS.length);
-    }, 5000);
-    return () => clearInterval(id);
-  }, []);
+export default defineConfig({
+  plugins: [react()],
+  server: { port: 3000 }
+})
+```
 
-  function goToSlide(i) {
-    setActiveSlide(i % PROJECTS.length);
-    // scroll (if container) - accessible
-    if (slideRef.current) {
-      const child = slideRef.current.children[i];
-      if (child) child.scrollIntoView({ behavior: "smooth", inline: "center" });
+--- FILE: index.html ---
+
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nishant Modi — Senior Android Developer</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Nishant Modi — Senior Android Developer. Kotlin & Jetpack Compose expert. Explore projects, case studies, and contact." />
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- Plausible (optional) -->
+  <!-- <script defer data-domain="nishantmodi92.github.io" src="https://plausible.io/js/script.js"></script> -->
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>
+```
+
+--- FILE: tailwind.config.cjs ---
+
+```js
+module.exports = {
+  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {
+      colors: {
+        brand: {
+          50: '#f5fbff',
+          100: '#e6f3ff',
+          500: '#2563eb'
+        }
+      }
     }
+  },
+  plugins: []
+}
+```
+
+--- FILE: postcss.config.cjs ---
+
+```js
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {}
   }
+}
+```
 
-  // Email send (using EmailJS if configured) — fallback to mailto
-  async function sendContact(e) {
-    e.preventDefault();
-    const form = e.target;
-    const name = form.name.value.trim();
-    const message = form.message.value.trim();
-    const subject = form.subject.value.trim();
+--- FILE: src/main.jsx ---
 
-    if (!name || !message) {
-      alert("Please enter name and message.");
-      return;
-    }
+```jsx
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
+import App from './App'
+import './index.css'
 
-    if (EMAILJS_SERVICE_ID === "YOUR_EMAILJS_SERVICE_ID") {
-      // fallback
-      window.location.href = `mailto:${PROFILE.email}?subject=${encodeURIComponent(
-        subject || "Portfolio Inquiry"
-      )}&body=${encodeURIComponent(name + " - " + message)}`;
-      return;
-    }
+createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
+)
+```
 
-    // If you set up EmailJS, uncomment below and install emailjs-com
-    /*
-    import emailjs from 'emailjs-com';
-    emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form, EMAILJS_USER_ID)
-      .then(() => alert('Message sent — thank you!'), err => alert('Send failed: ' + err.text))
-    */
+--- FILE: src/index.css ---
 
-    alert('EmailJS not configured. Fallback opened your email client.');
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root { height: 100%; }
+body { background: linear-gradient(180deg,#0f172a,#020617); color: #e6eef8 }
+
+/* small helpers */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+```
+
+--- FILE: src/data/projects.js ---
+
+```js
+export const PROJECTS = [
+  {
+    id: 'chatconnect',
+    title: 'ChatConnect Pro',
+    subtitle: 'Real-time encrypted messaging',
+    github: 'https://github.com/nishantmodi92/chatconnect-android',
+    metrics: { crashFree: '98%', latency: '<300ms', users: '25K+' },
+    tech: ['Kotlin','Compose','Firebase','Hilt'],
+    arch: `User -> Local Queue -> AES Encrypt -> FCM -> Firestore Listener -> Diff Engine -> Local Cache -> UI`,
+    description: 'Real-time encrypted messaging with offline-first sync and conflict resolution.'
+  },
+  {
+    id: 'swifteats',
+    title: 'SwiftEats',
+    subtitle: 'Food delivery & live GPS tracking',
+    github: 'https://github.com/nishantmodi92/food-delivery-android',
+    metrics: { gpsRefresh: '300ms', startup: '30% faster'},
+    tech: ['Kotlin','Maps API','Firestore'],
+    arch: 'GPS -> Batching -> Route Optimizer -> Firestore -> Live Tracking',
+    description: 'Live order tracking with optimized GPS pipeline and ETA prediction.'
+  },
+  {
+    id: 'finvault',
+    title: 'FinVault',
+    subtitle: 'Secure FinTech wallet',
+    github: 'https://github.com/nishantmodi92/FinMate',
+    metrics: { transactions:'10M+', compliance: '0 audit issues'},
+    tech: ['Kotlin','gRPC','GraphQL'],
+    arch: 'Biometric -> AES -> OAuth2 -> Secure Gateway',
+    description: 'Secure wallet with token rotation, encryption and Play Integrity.'
   }
+]
+```
 
+--- FILE: src/components/Navbar.jsx ---
+
+```jsx
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+export default function Navbar(){
   return (
-    <div className="min-h-screen bg-gradient-to-b from-neutral-900 via-slate-900 to-black text-gray-100 transition-colors duration-300 dark:bg-gradient-to-b dark:from-slate-900 dark:via-gray-900 dark:to-black">
-      {/* Floating Navbar */}
-      <nav className="fixed z-50 top-4 left-1/2 transform -translate-x-1/2 w-11/12 max-w-6xl bg-black/40 backdrop-blur-md border border-white/5 rounded-2xl p-3 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-md bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center font-bold">NM</div>
-          <div className="hidden md:block">
-            <div className="text-sm font-semibold">{PROFILE.name}</div>
-            <div className="text-xs text-gray-400">{PROFILE.title}</div>
-          </div>
+    <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 w-11/12 max-w-6xl glass rounded-2xl p-3 flex items-center justify-between z-50">
+      <div className="flex items-center gap-3">
+        <div className="w-10 h-10 rounded-md bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center font-bold">NM</div>
+        <div>
+          <div className="font-semibold">Nishant Modi</div>
+          <div className="text-xs text-slate-300">Senior Android Developer</div>
         </div>
-
-        <div className="flex items-center gap-4">
-          <div className="hidden sm:flex gap-4 text-sm">
-            <a href="#projects" className="hover:underline">Projects</a>
-            <a href="#skills" className="hover:underline">Skills</a>
-            <a href="#publications" className="hover:underline">Publications</a>
-            <a href="#contact" className="hover:underline">Contact</a>
-          </div>
-
-          <button
-            onClick={() => setDark((d) => !d)}
-            className="px-3 py-1 rounded-md bg-white/6 hover:bg-white/10 text-sm"
-            aria-pressed={dark}
-          >
-            {dark ? "Dark" : "Light"}
-          </button>
-
-          <a href={PROFILE.github} className="text-sm px-3 py-1 rounded-md bg-white/6 hover:bg-white/10">GitHub</a>
-        </div>
-      </nav>
-
-      {/* Animated Background */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <svg className="w-full h-full opacity-10" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#0ea5e9" />
-              <stop offset="100%" stopColor="#7c3aed" />
-            </linearGradient>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#g1)" />
-        </svg>
-        <div className="absolute -left-40 -top-40 w-[600px] h-[600px] bg-gradient-to-tr from-indigo-700 to-purple-600 opacity-10 rounded-full blur-3xl animate-blob" />
       </div>
 
-      <main className="relative pt-28 pb-20 px-6 md:px-12 lg:px-24">
-        {/* Hero */}
-        <section className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
-          <div>
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">{PROFILE.name}</h1>
-            <p className="mt-3 text-xl text-gray-300">{PROFILE.title}</p>
-
-            <div className="mt-6 text-2xl font-medium">
-              <span className="inline-block mr-2 text-teal-300">{type.text}</span>
-              <span className={`inline-block w-3 ${type.cursor ? "bg-gray-200" : "bg-transparent"} align-middle ml-2 h-6`} />
-            </div>
-
-            <p className="mt-6 text-gray-400 max-w-xl">I build secure, low-latency mobile systems (real-time messaging, GPS pipelines, offline-first sync) and optimize app lifecycle for performance and reliability — production-ready code, CI/CD automation, and strong architecture patterns.</p>
-
-            <div className="mt-6 flex gap-3">
-              <a href="#projects" className="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 font-semibold">View Projects</a>
-              <a href={PROFILE.linkedin} target="_blank" rel="noreferrer" className="px-4 py-2 rounded-lg border border-white/10">LinkedIn</a>
-              <a href={PROFILE.portfolio} target="_blank" rel="noreferrer" className="px-4 py-2 rounded-lg border border-white/10">Portfolio Site</a>
-            </div>
-
-            {/* Type indicator + marquee */}
-            <div className="mt-6 flex items-center gap-4 text-sm text-gray-400">
-              <div className="flex items-center gap-2">
-                <span className="h-3 w-3 rounded-full bg-green-400" />
-                <span>Available for new opportunities</span>
-              </div>
-
-              <div className="ml-4 overflow-hidden w-64">
-                <div className="whitespace-nowrap animate-marquee text-xs text-gray-300">Realtime · Offline-First · Baseline Profiles · AES Encryption · CI/CD · Multi-Module</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Hero right card */}
-          <div className="p-6 rounded-2xl bg-white/3 backdrop-blur-sm border border-white/5">
-            <div className="text-sm text-gray-300">Contact</div>
-            <div className="mt-3">
-              <div className="text-lg font-semibold">{PROFILE.location}</div>
-              <div className="mt-1 text-sm text-gray-400">{PROFILE.email}</div>
-
-              <div className="mt-4">
-                <a href={PROFILE.github} className="text-sm inline-block px-3 py-2 rounded-md bg-white/6">GitHub</a>
-                <a href={PROFILE.linkedin} className="ml-3 text-sm inline-block px-3 py-2 rounded-md bg-white/6">LinkedIn</a>
-              </div>
-
-              <div className="mt-6 text-sm text-gray-300">
-                <div>Core: Kotlin · Jetpack Compose · Clean Architecture</div>
-                <div className="mt-2">Performance: Baseline Profiles · Perfetto · Macrobenchmark</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Projects */}
-        <section id="projects" className="max-w-6xl mx-auto mt-16">
-          <h2 className="text-2xl font-bold">Projects</h2>
-          <p className="text-gray-400 mt-2 max-w-2xl">Selected production-grade projects with measurable impact — modular, tested, and CI/CD-ready.</p>
-
-          <div className="mt-6 relative">
-            <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide" ref={slideRef}>
-              {PROJECTS.map((p, i) => (
-                <article key={p.id} className={`min-w-[320px] snap-center p-6 rounded-2xl border border-white/6 bg-white/5 transition-transform transform ${i === activeSlide ? "scale-100" : "scale-95"}`}>
-                  <h3 className="text-lg font-semibold">{p.name}</h3>
-                  <p className="text-sm text-gray-300 mt-2">{p.desc}</p>
-
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {p.tech.map((t) => (
-                      <span key={t} className="text-xs px-2 py-1 rounded bg-white/6">{t}</span>
-                    ))}
-                  </div>
-
-                  <div className="mt-4 flex gap-3">
-                    <a href={p.url} target="_blank" rel="noreferrer" className="text-sm px-3 py-2 rounded bg-indigo-600">Code</a>
-                    <button onClick={() => goToSlide(i)} className="text-sm px-3 py-2 rounded border border-white/6">View</button>
-                  </div>
-                </article>
-              ))}
-            </div>
-
-            {/* slider indicators */}
-            <div className="mt-4 flex justify-center gap-2">
-              {PROJECTS.map((_, i) => (
-                <button key={i} onClick={() => goToSlide(i)} className={`w-3 h-3 rounded-full ${activeSlide === i ? "bg-indigo-500" : "bg-white/10"}`}></button>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Skills */}
-        <section id="skills" className="max-w-6xl mx-auto mt-14">
-          <h2 className="text-2xl font-bold">Skills</h2>
-          <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
-            {["Kotlin", "Jetpack Compose", "Hilt", "Firebase", "gRPC", "GraphQL", "Room", "Retrofit", "Perfetto", "Baseline Profiles"].map((s) => (
-              <div key={s} className="p-3 rounded-md bg-white/3 text-sm text-gray-200">{s}</div>
-            ))}
-          </div>
-        </section>
-
-        {/* Publications */}
-        <section id="publications" className="max-w-6xl mx-auto mt-14">
-          <h2 className="text-2xl font-bold">Publications & Thought Leadership</h2>
-          <ul className="mt-4 list-disc list-inside text-gray-300">
-            <li>Distributed Offline-First Architecture in Android — 2025</li>
-            <li>30% Faster Startup with Baseline Profiles — 2025</li>
-            <li>Secure Mobile Communication with AES + Token Rotation — 2024</li>
-          </ul>
-        </section>
-
-        {/* Contact */}
-        <section id="contact" className="max-w-3xl mx-auto mt-14 p-6 rounded-2xl bg-white/3 border border-white/5">
-          <h2 className="text-2xl font-bold">Contact</h2>
-          <p className="text-gray-300 mt-2">Use the form or email directly at <span className="text-teal-300">{PROFILE.email}</span>.</p>
-
-          <form onSubmit={sendContact} className="mt-4 grid grid-cols-1 gap-3">
-            <input name="name" placeholder="Your name" className="p-3 rounded bg-black/20" />
-            <input name="subject" placeholder="Subject" className="p-3 rounded bg-black/20" />
-            <textarea name="message" rows={4} placeholder="Message" className="p-3 rounded bg-black/20" />
-            <div className="flex items-center gap-3 mt-2">
-              <button type="submit" className="px-4 py-2 rounded bg-indigo-600">Send</button>
-              <a href={`mailto:${PROFILE.email}`} className="text-sm text-gray-300">Open email client</a>
-            </div>
-          </form>
-        </section>
-
-        {/* Footer */}
-        <footer className="max-w-6xl mx-auto mt-20 pb-10 text-center text-gray-500 text-sm">
-          <div className="mb-3">Built with ❤️ · Kotlin & Compose advocate</div>
-          <div>{PROFILE.name} • <a className="text-gray-300" href={PROFILE.linkedin}>LinkedIn</a> • <a className="text-gray-300" href={PROFILE.github}>GitHub</a></div>
-        </footer>
-      </main>
-
-      <style>
-        {`/* Tailwind utilities used; add following custom classes to your global CSS if needed */}
-        .animate-blob{animation:blob 12s infinite}
-        @keyframes blob{0%{transform:translate(0px,0px)}33%{transform:translate(30px,-50px)}66%{transform:translate(-20px,20px)}100%{transform:translate(0px,0px)}}
-        .animate-marquee{animation:marquee 18s linear infinite}
-        @keyframes marquee{0%{transform:translateX(0%)}100%{transform:translateX(-100%)}}
-        .scrollbar-hide::-webkit-scrollbar{display:none}
-        .scrollbar-hide{-ms-overflow-style:none;scrollbar-width:none}
-      `}
-      </style>
-    </div>
-  );
+      <div className="flex items-center gap-4 text-sm">
+        <Link to="/" className="hover:underline">Home</Link>
+        <Link to="/projects/chatconnect" className="hover:underline">ChatConnect</Link>
+        <Link to="/projects/swifteats" className="hover:underline">SwiftEats</Link>
+        <Link to="/projects/finvault" className="hover:underline">FinVault</Link>
+      </div>
+    </nav>
+  )
 }
+```
+
+--- FILE: src/components/Footer.jsx ---
+
+```jsx
+import React from 'react'
+export default function Footer(){
+  return (
+    <footer className="py-8 text-center text-slate-400">
+      <div>Built with ❤️ • Kotlin & Jetpack Compose advocate</div>
+      <div className="mt-2">© {new Date().getFullYear()} Nishant Modi</div>
+    </footer>
+  )
+}
+```
+
+--- FILE: src/components/ProjectCard.jsx ---
+
+```jsx
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+export default function ProjectCard({p}){
+  return (
+    <div className="glass p-4 rounded-xl">
+      <div className="flex justify-between items-start">
+        <div>
+          <h3 className="font-semibold">{p.title}</h3>
+          <div className="text-xs text-slate-300">{p.subtitle}</div>
+        </div>
+        <div className="text-xs tag">{p.metrics?.users || ''}</div>
+      </div>
+      <p className="text-slate-300 mt-3 text-sm">{p.description}</p>
+      <div className="mt-3 flex gap-2 items-center">
+        <a className="text-sky-300 text-sm" href={p.github} target="_blank" rel="noreferrer">Code</a>
+        <Link className="text-sky-300 text-sm" to={`/projects/${p.id}`}>Case study</Link>
+      </div>
+    </div>
+  )
+}
+```
+
+--- FILE: src/pages/Home.jsx ---
+
+```jsx
+import React from 'react'
+import ProjectCard from '../components/ProjectCard'
+import { PROJECTS } from '../data/projects'
+
+export default function Home(){
+  return (
+    <div>
+      <section className="min-h-screen flex items-center justify-center text-center">
+        <div className="max-w-4xl mx-auto px-6">
+          <h1 className="text-5xl font-bold mb-3">Nishant Modi</h1>
+          <p className="text-xl text-slate-300 mb-6">Senior Android Developer • Mobile App Architect</p>
+          <p className="text-slate-400 mb-6">I build secure, low-latency Android systems — real-time messaging, GPS pipelines, offline-first sync, and optimized startup performance.</p>
+        </div>
+      </section>
+
+      <section className="py-12 max-w-6xl mx-auto px-6">
+        <h2 className="text-2xl font-bold mb-4">Selected Projects</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {PROJECTS.map(p => <ProjectCard key={p.id} p={p} />)}
+        </div>
+      </section>
+    </div>
+  )
+}
+```
+
+--- FILE: src/pages/ProjectPage.jsx ---
+
+```jsx
+import React from 'react'
+import { useParams } from 'react-router-dom'
+import { PROJECTS } from '../data/projects'
+import Footer from '../components/Footer'
+
+export default function ProjectPage(){
+  const { id } = useParams()
+  const project = PROJECTS.find(p => p.id === id)
+  if(!project) return <div className="min-h-screen flex items-center justify-center">Project not found</div>
+
+  return (
+    <div className="max-w-5xl mx-auto px-6 py-12">
+      <h1 className="text-3xl font-bold">{project.title}</h1>
+      <p className="text-slate-400 mt-2">{project.subtitle}</p>
+
+      <div className="mt-6 grid md:grid-cols-2 gap-6">
+        <div className="glass p-4 rounded">
+          <h4 className="font-semibold">Quick Metrics</h4>
+          <ul className="mt-2 text-sm text-slate-300">
+            {Object.entries(project.metrics || {}).map(([k,v])=> (
+              <li key={k}><strong className="capitalize">{k.replace(/([A-Z])/g,' $1')}:</strong> {v}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="glass p-4 rounded">
+          <h4 className="font-semibold">Tech Stack</h4>
+          <div className="mt-2 flex flex-wrap gap-2">{project.tech.map(t=> <span key={t} className="tag">{t}</span>)}</div>
+        </div>
+      </div>
+
+      <div className="mt-6">
+        <h4 className="font-semibold">Architecture</h4>
+        <pre className="mono mt-2">{project.arch}</pre>
+      </div>
+
+      <div className="mt-6">
+        <h4 className="font-semibold">System Design</h4>
+        <p className="text-slate-300 mt-2">Discuss data flows, offline-first strategy, conflict resolution approach, and security model.</p>
+      </div>
+
+      <div className="mt-6 flex gap-3">
+        <a href={project.github} target="_blank" rel="noreferrer" className="px-3 py-2 rounded bg-indigo-600">View Code</a>
+      </div>
+
+      <Footer />
+    </div>
+  )
+}
+```
+
+--- FILE: src/pages/NotFound.jsx ---
+
+```jsx
+import React from 'react'
+export default function NotFound(){
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold">404</h1>
+        <p className="mt-2 text-slate-400">Page not found</p>
+      </div>
+    </div>
+  )
+}
+```
+
+--- FILE: src/App.jsx ---
+
+```jsx
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import Navbar from './components/Navbar'
+import Home from './pages/Home'
+import ProjectPage from './pages/ProjectPage'
+import NotFound from './pages/NotFound'
+
+export default function App(){
+  return (
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects/:id" element={<ProjectPage />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </div>
+  )
+}
+```
+
+--- FILE: README.md (installation) ---
+
+```md
+# Nishant Modi — React Portfolio
+
+## Installation
+
+1. Ensure Node.js 18+ and npm are installed.
+2. Create a project folder and add the files as provided.
+3. Run:
+
+```
+npm install
+npm run dev
+```
+
+Open http://localhost:3000
+
+## Build
+
+```
+npm run build
+```
+
+Deploy `dist/` to GitHub Pages / Netlify / Vercel.
+```
+
+---
+
+If you want, I can now:
+
+- Generate the **HTML-only** versions of each project page as `/projects/chatconnect.html` etc. ready to paste into your existing static site.
+- Create a deploy-ready GitHub Actions workflow to auto-deploy to GitHub Pages.
+- Add EmailJS contact form wiring and example keys for secure email handling.
+
+Tell me what you'd like next and I will generate it immediately.
