@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ChatConnect Pro — Case Study</title>
+  <meta name="description" content="ChatConnect Pro — Real-time encrypted messaging with offline-first sync and <300ms delivery." />
+  <link rel="stylesheet" href="/css/style.css">
+  <meta property="og:image" content="/assets/og-portfolio.png" />
+</head>
+<body class="bg-dark text-light">
+  <nav class="nav small"><div class="container nav-inner"><a href="/">← Back to Portfolio</a></div></nav>
+
+  <main class="section project-page">
+    <div class="container">
+      <h1>ChatConnect Pro</h1>
+      <p class="muted">Real-time encrypted messaging — offline-first, low-latency, secure.</p>
+
+      <div class="grid-2">
+        <div class="glass-block">
+          <h4>Quick Summary</h4>
+          <p>Role: Lead Android Engineer — Architected and delivered messaging pipeline, offline sync, and security.</p>
+          <ul class="muted">
+            <li>Users: 25K+</li>
+            <li>Latency: &lt;300ms (message delivery)</li>
+            <li>Crash-free: 98%</li>
+          </ul>
+          <div class="tags"><span>Kotlin</span><span>Jetpack Compose</span><span>Firestore</span></div>
+          <div class="mt-4"><a class="btn primary" href="https://github.com/nishantmodi92/chatconnect-android" target="_blank">View Code</a></div>
+        </div>
+
+        <div class="glass-block">
+          <h4>Architecture</h4>
+          <pre class="mono">User → Local Queue → AES Encrypt → FCM → Firestore Listener → Diff Engine → Local Cache → Compose UI</pre>
+          <h4 class="mt-4">System Design</h4>
+          <p class="muted">Delta syncing, conflict resolution, server timestamps, offline reconciliation, performance tuning with Baseline Profiles & Macrobenchmarks.</p>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <h4>Core Features</h4>
+        <ul class="muted">
+          <li>End-to-end encryption</li>
+          <li>Offline-first sync & conflict resolution</li>
+          <li>Push notifications & delivery receipts</li>
+          <li>Media sharing & caching</li>
+        </ul>
+      </div>
+
+      <div class="mt-6">
+        <h4>Performance & Security</h4>
+        <p class="muted">Baseline Profiles reduced cold-start by 30%. AES encryption & token rotation implemented. Play Integrity used for app integrity checks.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer"><div class="container">© <span id="year2"></span> Nishant Modi</div></footer>
+  <script>document.getElementById('year2').innerText = new Date().getFullYear();</script>
+</body>
+</html>
