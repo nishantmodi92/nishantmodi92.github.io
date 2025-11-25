@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SwiftEats — Case Study</title>
+  <meta name="description" content="SwiftEats — Live GPS tracking & optimized routing for food delivery." />
+  <link rel="stylesheet" href="/css/style.css">
+  <meta property="og:image" content="/assets/og-portfolio.png" />
+</head>
+<body class="bg-dark text-light">
+  <nav class="nav small"><div class="container nav-inner"><a href="/">← Back to Portfolio</a></div></nav>
+
+  <main class="section project-page">
+    <div class="container">
+      <h1>SwiftEats</h1>
+      <p class="muted">Delivery & live GPS tracking — optimized for low latency and reduced network usage.</p>
+
+      <div class="grid-2">
+        <div class="glass-block">
+          <h4>Quick Summary</h4>
+          <p>Role: Lead Engineer — Designed GPS batching & route optimization for real-time rider tracking.</p>
+          <ul class="muted">
+            <li>GPS refresh: 300ms</li>
+            <li>Startup improvement: 30%</li>
+          </ul>
+          <div class="tags"><span>Maps API</span><span>Firestore</span><span>Kotlin</span></div>
+          <div class="mt-4"><a class="btn primary" href="https://github.com/nishantmodi92/food-delivery-android" target="_blank">View Code</a></div>
+        </div>
+
+        <div class="glass-block">
+          <h4>Architecture</h4>
+          <pre class="mono">GPS Provider → Location Batching → Route Optimizer → Firestore → Live Rider Tracking → UI</pre>
+          <h4 class="mt-4">System Design</h4>
+          <p class="muted">Client-side batching, network-efficient location updates, server-assisted ETA prediction, offline delivery caching.</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer"><div class="container">© <span id="year3"></span> Nishant Modi</div></footer>
+  <script>document.getElementById('year3').innerText = new Date().getFullYear();</script>
+</body>
+</html>
