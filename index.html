@@ -1,177 +1,117 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Nishant Modi — Senior Android Developer & Mobile Architect</title>
-
-  <!-- SEO & OG -->
-  <meta name="description" content="Nishant Modi — Senior Android Developer. Expert in Kotlin, Jetpack Compose, Offline-first systems, real-time pipelines, and secure mobile architectures." />
-  <link rel="canonical" href="https://nishantmodi92.github.io/" />
-  <meta property="og:title" content="Nishant Modi — Senior Android Developer" />
-  <meta property="og:description" content="Kotlin • Jetpack Compose • Real-Time Apps • Offline-First • Secure Mobile Engineering" />
-  <meta property="og:image" content="/assets/og-portfolio.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <!-- Tailwind-like utilities are replaced with a compact CSS (no external dependency) -->
-  <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nishant Modi | Android Developer</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-dark text-light">
-
-  <!-- NAV -->
-  <nav class="nav">
-    <div class="container nav-inner">
-      <div class="brand">NM</div>
-      <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/projects/chatconnect.html">ChatConnect Pro</a>
-        <a href="/projects/swifteats.html">SwiftEats</a>
-        <a href="/projects/finvault.html">FinVault</a>
-        <a href="/projects/groceryease.html">GroceryEase+</a>
-        <a href="/projects/healthify.html">Healthify X</a>
-        <a href="/projects/learnfinity.html">Learnfinity</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
+<body>
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="logo">Nishant Modi</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#stats">Stats</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><button id="dark-toggle">🌙</button></li>
+    </ul>
   </nav>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="container hero-inner">
-      <h1>Nishant Modi</h1>
-      <p class="subtitle">Senior Android Developer • Mobile App Architect • Kotlin & Jetpack Compose Specialist</p>
+  <!-- HERO SECTION -->
+  <section id="hero">
+    <h1>Hello, I'm Nishant Modi</h1>
+    <p>Senior Android Developer | Jetpack Compose | Firebase | Clean Architecture</p>
+  </section>
 
-      <div class="typewrap"><span id="typewriter"></span><span class="caret">▎</span></div>
-
-      <p class="lead">I build secure, low-latency Android systems — real-time messaging, GPS pipelines, offline-first sync, and optimized startup performance. Production-ready architectures, CI/CD pipelines, and strong delivery track record.</p>
-
-      <div class="metrics-row">
-        <div class="metric"><div class="metric-large">98%</div><div class="metric-label">Crash-free sessions</div></div>
-        <div class="metric"><div class="metric-large">30%</div><div class="metric-label">Startup improvement</div></div>
-        <div class="metric"><div class="metric-large">45%</div><div class="metric-label">ANR reduction</div></div>
-      </div>
-
-      <div class="hero-cta">
-        <a class="btn primary" href="/projects/chatconnect.html">View Case Studies</a>
-        <a class="btn ghost" href="#contact">Contact</a>
-      </div>
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Senior Android Developer with 5+ years of experience building real-time, offline-first apps with Jetpack Compose, Firebase, and Clean Architecture. Optimized app performance, enhanced user experience, and delivered scalable mobile solutions for multiple domains.</p>
+    <div class="skills">
+      <div class="skill"><span>Kotlin</span><div class="bar" style="width: 95%"></div></div>
+      <div class="skill"><span>Jetpack Compose</span><div class="bar" style="width: 90%"></div></div>
+      <div class="skill"><span>Firebase</span><div class="bar" style="width: 92%"></div></div>
+      <div class="skill"><span>Clean Architecture</span><div class="bar" style="width: 88%"></div></div>
     </div>
-  </header>
+  </section>
 
-  <!-- PROJECT HIGHLIGHTS -->
-  <section id="projects" class="section">
-    <div class="container">
-      <h2>Selected Projects</h2>
-      <p class="muted">Production-grade Android projects with clear impact and case studies.</p>
-
-      <div class="grid-3">
-        <!-- ChatConnect -->
-        <article class="card" onclick="location.href='/projects/chatconnect.html'">
-          <h3>ChatConnect Pro</h3>
-          <p class="muted">Real-time encrypted messaging — <300ms delivery, offline-first sync.</p>
-          <div class="tags"><span>Kotlin</span><span>Compose</span><span>Firebase</span></div>
-          <div class="card-foot">
-            <a href="/projects/chatconnect.html">Case study →</a>
-            <a href="https://github.com/nishantmodi92/chatconnect-android" target="_blank">Code</a>
-          </div>
-        </article>
-
-        <!-- SwiftEats -->
-        <article class="card" onclick="location.href='/projects/swifteats.html'">
-          <h3>SwiftEats</h3>
-          <p class="muted">Delivery + live GPS tracking with 300ms map refresh and route optimization.</p>
-          <div class="tags"><span>Maps API</span><span>Firestore</span><span>Kotlin</span></div>
-          <div class="card-foot">
-            <a href="/projects/swifteats.html">Case study →</a>
-            <a href="https://github.com/nishantmodi92/food-delivery-android" target="_blank">Code</a>
-          </div>
-        </article>
-
-        <!-- FinVault -->
-        <article class="card" onclick="location.href='/projects/finvault.html'">
-          <h3>FinVault</h3>
-          <p class="muted">Secure FinTech wallet — AES encryption, OAuth2 token rotation, integrity checks.</p>
-          <div class="tags"><span>gRPC</span><span>GraphQL</span><span>Secure</span></div>
-          <div class="card-foot">
-            <a href="/projects/finvault.html">Case study →</a>
-            <a href="https://github.com/nishantmodi92/FinMate" target="_blank">Code</a>
-          </div>
-        </article>
+  <!-- PROJECTS SECTION -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="filters">
+      <button data-filter="all">All</button>
+      <button data-filter="android">Android</button>
+      <button data-filter="fullstack">Full-Stack</button>
+      <button data-filter="firebase">Firebase</button>
+    </div>
+    <div class="project-grid">
+      <!-- Example Project Card -->
+      <div class="project-card" data-category="android">
+        <h3>ChatConnect</h3>
+        <p>Real-time chat app with WebSockets and Firebase.</p>
+        <div class="tech-badges">
+          <span>Kotlin</span><span>Jetpack Compose</span><span>Firebase</span>
+        </div>
+        <a href="https://github.com/nishantmodi92/ChatConnect" target="_blank">GitHub</a>
+      </div>
+      <div class="project-card" data-category="android">
+        <h3>GroceryEase</h3>
+        <p>Grocery shopping app with offline-first cart and Firebase integration.</p>
+        <div class="tech-badges">
+          <span>Kotlin</span><span>Jetpack Compose</span><span>Room</span><span>Firebase</span>
+        </div>
+        <a href="https://github.com/nishantmodi92/GroceryEase" target="_blank">GitHub</a>
+      </div>
+      <div class="project-card" data-category="fullstack">
+        <h3>FoodDeliveryApp</h3>
+        <p>Full-stack food delivery app with live order tracking and Google Maps API.</p>
+        <div class="tech-badges">
+          <span>Kotlin</span><span>Firebase</span><span>Retrofit</span><span>MVVM</span>
+        </div>
+        <a href="https://github.com/nishantmodi92/FoodDeliveryApp" target="_blank">GitHub</a>
       </div>
     </div>
   </section>
 
-  <!-- ARCHITECTURE LIBRARY -->
-  <section class="section dark-section">
-    <div class="container">
-      <h2>Architecture Library</h2>
-      <p class="muted">Copy-ready text diagrams you can use in interviews and design docs.</p>
+  <!-- GITHUB STATS SECTION -->
+  <section id="stats">
+    <h2>GitHub Stats</h2>
+    <div class="stats-cards">
+      <div class="card">Commits: 1200+</div>
+      <div class="card">Top Languages: Kotlin, Java</div>
+      <div class="card">Streak: 180 days</div>
+    </div>
+  </section>
 
-      <div class="grid-2">
-        <div class="glass-block">
-          <h4>Real-Time Messaging</h4>
-          <pre class="mono">User → Local Queue → AES Encrypt → FCM → Firestore Listener → Diff Engine → Local Cache → Compose UI</pre>
-        </div>
-        <div class="glass-block">
-          <h4>Offline-First Sync</h4>
-          <pre class="mono">UI → Room Cache → Delta Engine → Conflict Resolver → Background Sync → Cloud API</pre>
-        </div>
+  <!-- AWARDS & PUBLICATIONS SECTION -->
+  <section id="awards">
+    <h2>Awards & Publications</h2>
+    <div class="timeline">
+      <div class="entry">
+        <h3>Microsoft Hackathon Winner</h3>
+        <p>Recognized for innovative Android productivity app.</p>
+      </div>
+      <div class="entry">
+        <h3>Publication: Android Offline-first Apps</h3>
+        <p>Technical article published on Medium.</p>
       </div>
     </div>
   </section>
 
-  <!-- ACHIEVEMENTS & PUBLICATIONS -->
-  <section class="section">
-    <div class="container">
-      <h2>Achievements & Publications</h2>
-      <div class="grid-2">
-        <div>
-          <ul class="muted">
-            <li>Employee of the Year — 2023</li>
-            <li>Client Appreciation — 2025</li>
-            <li>200+ GitHub stars across projects</li>
-          </ul>
-        </div>
-        <div>
-          <ul class="muted">
-            <li>Distributed Offline-First Architecture in Android (2025)</li>
-            <li>30% Faster Startup with Baseline Profiles (2025)</li>
-            <li>Secure Mobile Communication with AES + Token Rotation (2024)</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+  <!-- CONTACT SECTION -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form id="contact-form">
+      <input type="text" placeholder="Name" required>
+      <input type="email" placeholder="Email" required>
+      <textarea placeholder="Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="section dark-section">
-    <div class="container contact-grid">
-      <div>
-        <h2>Contact</h2>
-        <p class="muted">Email: <a href="mailto:nishantmodimaster@gmail.com">nishantmodimaster@gmail.com</a></p>
-        <p class="muted">Portfolio: <a href="https://nishantmodi92.github.io" target="_blank">nishantmodi92.github.io</a></p>
-      </div>
-      <div>
-        <form id="contactForm">
-          <input name="name" placeholder="Your name" required>
-          <input name="subject" placeholder="Subject">
-          <textarea name="message" rows="4" placeholder="Message" required></textarea>
-          <div class="form-actions">
-            <button type="submit" class="btn primary">Send Message</button>
-            <button type="button" id="openChat" class="btn ghost">Ask (Chat)</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div>Built with ❤️ • Kotlin & Jetpack Compose advocate</div>
-      <div>© <span id="year"></span> Nishant Modi</div>
-    </div>
-  </footer>
-
-  <script src="/js/main.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
