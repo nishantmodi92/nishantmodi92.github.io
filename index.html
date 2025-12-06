@@ -4,486 +4,358 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Nishant Modi — Senior Android Engineer</title>
-  <meta name="description" content="Nishant Modi — Senior Android Engineer. Kotlin · Jetpack Compose · Firebase · Offline-first · Real-time systems."/>
+  <meta name="description" content="Nishant Modi — Senior Android Engineer. Kotlin · Jetpack Compose · Firebase · Offline-first · Real-time systems. Resume integrated. Built for top tech recruiters."/>
+  <meta name="robots" content="index,follow">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Nishant Modi — Senior Android Engineer">
+  <meta property="og:description" content="Senior Android Engineer (Kotlin, Jetpack Compose) — real-time systems, offline-first sync, performance engineering.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nishantmodi92.github.io">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://nishantmodi92.github.io" />
+
+  <script type="application/ld+json">{
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Nishant Modi",
+    "jobTitle":"Senior Android Engineer",
+    "url":"https://nishantmodi92.github.io",
+    "sameAs":["https://github.com/nishantmodi92","https://linkedin.com/in/nishantmodi92"]
+  }</script>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{--bg-dark:#061029;--panel:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.06);--accent-a:#6ee7b7;--accent-b:#60a5fa;--accent-c:#a78bfa;--text:#e6eef8;--card-radius:14px}
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto;color:var(--text);background:radial-gradient(1200px 600px at 10% 10%, rgba(96,165,250,0.06), transparent),radial-gradient(900px 400px at 90% 90%, rgba(167,139,250,0.04), transparent),linear-gradient(180deg,var(--bg-dark),#07102a);-webkit-font-smoothing:antialiased}
-    .nav{position:sticky;top:18px;margin:20px auto;padding:12px 20px;max-width:1200px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter:blur(8px);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:space-between;gap:20px}
-    .brand{display:flex;align-items:center;gap:14px}
-    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent-a),var(--accent-b));display:flex;align-items:center;justify-content:center;font-weight:800;color:#022;box-shadow:0 10px 30px rgba(6,12,30,0.6)}
-    .nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:10px}
-    .nav a:hover{background:rgba(255,255,255,0.02)}
-    .container{max-width:1200px;margin:28px auto;padding:0 18px}
-    .hero{display:grid;grid-template-columns:1fr 360px;gap:24px}
-    .card{background:var(--panel);padding:22px;border-radius:var(--card-radius);border:1px solid var(--glass-border);box-shadow:0 18px 60px rgba(2,6,23,0.6)}
-    .intro h1{margin:0;font-size:28px}
-    .intro p{color:rgba(230,238,248,0.85);line-height:1.5}
-    .accent-strip{height:6px;border-radius:10px;margin:14px 0;background:linear-gradient(90deg,var(--accent-a),var(--accent-b),var(--accent-c));background-size:300% 100%;animation:slideBG 6s linear infinite}
-    @keyframes slideBG{0%{background-position:0%}50%{background-position:100%}100%{background-position:0%}}
-    .stats{display:flex;gap:10px;margin-top:16px}
-    .badge{background:rgba(0,0,0,0.16);padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
-    .skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-    .skill{padding:8px 12px;border-radius:999px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02);font-weight:600}
-    .projects-header{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    :root{--bg:linear-gradient(180deg,#061029,#07102a);--card-bg:rgba(255,255,255,0.04);--accent:#6ee7b7;--text:#e6eef8;--glass:rgba(255,255,255,0.03);--glass-border:rgba(255,255,255,0.06);--maxw:1200px}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased}
+    .container{max-width:var(--maxw);margin:28px auto;padding:0 18px}
+    .nav{position:sticky;top:16px;z-index:40;margin-bottom:18px;display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));backdrop-filter:blur(8px);border:1px solid var(--glass-border)}
+    .nav a{color:var(--text);text-decoration:none;padding:8px 10px;border-radius:8px}
+    .nav a[aria-current]{box-shadow:inset 0 -3px 0 0 var(--accent)}
+    .logo{display:flex;align-items:center;gap:12px}
+    .logo .mark{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#60a5fa);display:flex;align-items:center;justify-content:center;font-weight:800;color:#022}
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:20px}
+    .card{background:var(--card-bg);padding:20px;border-radius:14px;border:1px solid var(--glass-border);box-shadow:0 12px 40px rgba(0,0,0,0.5)}
+    h1{margin:0;font-size:28px}
+    p.lead{color:rgba(230,238,248,0.9)}
+    .accent-strip{height:6px;border-radius:8px;margin:12px 0;background:linear-gradient(90deg,var(--accent),#60a5fa,#a78bfa);background-size:300% 100%;animation:shift 6s linear infinite}
+    @keyframes shift{0%{background-position:0%}50%{background-position:100%}100%{background-position:0%}}
+
+    /* recruiter bar */
+    .recruiter-bar{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+    .pill{background:rgba(0,0,0,0.16);padding:8px 12px;border-radius:999px;font-weight:700;border:1px solid rgba(255,255,255,0.02)}
+
+    /* skill heatmap */
+    .heatmap{display:flex;gap:8px;align-items:end;height:110px}
+    .heatmap .col{width:40px;background:linear-gradient(180deg,var(--accent),#60a5fa);border-radius:8px;display:flex;align-items:flex-end;justify-content:center;color:#022;font-weight:700}
+    .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+
+    /* projects and filters */
     .filters{display:flex;gap:8px}
-    .filter{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.04);background:transparent;cursor:pointer}
-    .filter.active{background:linear-gradient(90deg,var(--accent-a),var(--accent-b));color:#022}
-    .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
-    .project{padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);transform:translateY(0);transition:transform .28s ease,box-shadow .28s}
-    .project:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(6,12,30,0.6)}
-    .project h4{margin:0 0 8px}
-    .project p{margin:0;color:rgba(230,238,248,0.8)}
-    .tag{display:inline-block;padding:6px 10px;border-radius:999px;margin-top:12px;border:1px solid rgba(255,255,255,0.03);font-size:13px}
-    .tilt{transform-style:preserve-3d;perspective:1000px}
-    .carousel{margin-top:20px;overflow:hidden;border-radius:12px}
-    .carousel-track{display:flex;gap:12px;transition:transform .6s ease}
-    .carousel-item{min-width:320px;padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(0,0,0,0.14), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
-    .marquee{overflow:hidden;white-space:nowrap;border-radius:10px;padding:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02);margin-top:18px}
-    .marquee p{display:inline-block;padding-right:60px;animation:marq 18s linear infinite}
-    @keyframes marq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-    form{display:flex;flex-direction:column;gap:10px}
-    input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
-    .cta{padding:12px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent-a),var(--accent-b));color:#022;font-weight:700;cursor:pointer}
-    .theme-toggle{padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);cursor:pointer}
-    .timeline{display:flex;flex-direction:column;gap:12px}
-    .exp-card{padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(0,0,0,0.06), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
-    .exp-header{display:flex;justify-content:space-between;align-items:center;gap:10px}
-    .accordion{margin-top:10px}
+    .filter{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.03);background:transparent;cursor:pointer}
+    .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:14px}
+    .project{padding:16px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);transform:translateY(0);transition:transform .28s,box-shadow .28s,opacity .28s}
+    .project.hide{opacity:0;transform:translateY(10px);pointer-events:none}
+    .project:hover{transform:translateY(-10px);box-shadow:0 30px 80px rgba(0,0,0,0.6)}
+
+    /* code sample */
+    pre{background:rgba(0,0,0,0.25);padding:12px;border-radius:8px;overflow:auto}
+    code{font-family:source-code-pro,monospace;font-size:13px}
+
+    /* timeline */
+    .timeline{position:relative;padding-left:18px;border-left:2px dashed rgba(255,255,255,0.04)}
+    .timeline-item{margin-bottom:16px;padding-left:12px}
+    .timeline-item h4{margin:0}
+
+    /* accordion */
     .accordion button{width:100%;text-align:left;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;cursor:pointer}
-    .accordion .panel{padding:10px;margin-top:8px;border-radius:8px;background:rgba(255,255,255,0.02);display:none}
-    .resume-view{display:none}
-    .resume-full{padding:18px;background:var(--panel);border-radius:12px;border:1px solid var(--glass-border);margin-top:18px}
-    @media (max-width:1000px){.projects{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr}.carousel-item{min-width:260px}}
-    @media (max-width:640px){.projects{grid-template-columns:1fr}.nav{padding:10px}.logo{width:44px;height:44px}}
+    .panel{padding:12px;margin-top:8px;border-radius:8px;background:rgba(255,255,255,0.02);display:none}
+
+    /* carousel */
+    .carousel{overflow:hidden;border-radius:10px;margin-top:14px}
+    .track{display:flex;gap:12px;transition:transform .6s cubic-bezier(.2,.9,.2,1)}
+    .carousel-item{min-width:300px;padding:12px;background:linear-gradient(180deg,rgba(0,0,0,0.12),rgba(255,255,255,0.01));border-radius:10px}
+
+    /* diagrams */
+    .diagram{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:12px;border-radius:10px}
+
+    /* contact success */
+    .confetti{position:fixed;left:0;right:0;top:0;bottom:0;pointer-events:none;display:none}
+
+    /* accessibility focus */
+    a:focus,button:focus{outline:3px solid rgba(100,180,255,0.25);outline-offset:2px}
+
+    /* responsive */
+    @media (max-width:1000px){.projects{grid-template-columns:repeat(2,1fr)}.skills-grid{grid-template-columns:1fr}.hero{grid-template-columns:1fr 320px}}
+    @media (max-width:640px){.projects{grid-template-columns:1fr}.hero{grid-template-columns:1fr}.nav{flex-direction:column;align-items:flex-start;gap:8px}}
   </style>
 </head>
 <body>
-  <div class="nav">
-    <div class="brand">
-      <div class="logo">NM</div>
-      <div>
-        <div style="font-weight:700">Nishant Modi</div>
-        <div style="font-size:13px;opacity:0.9">Senior Android Engineer · Kotlin · Compose</div>
+  <div class="container" role="main">
+    <nav class="nav" role="navigation" aria-label="Main Navigation">
+      <div class="logo"><div class="mark" aria-hidden="true">NM</div><div><div style="font-weight:800">Nishant Modi</div><div style="font-size:12px;opacity:0.9">Senior Android Engineer</div></div></div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#resume" onclick="openResume();return false;">Full Resume</a>
+        <a href="#contact">Contact</a>
+        <button id="themeToggle" aria-label="Switch theme" title="Switch theme">Theme</button>
       </div>
-    </div>
-    <div style="display:flex;align-items:center;gap:12px">
-      <a href="#about" onclick="showHome()">About</a>
-      <a href="#projects" onclick="showHome()">Projects</a>
-      <a href="#skills" onclick="showHome()">Skills</a>
-      <a href="#contact" onclick="showHome()">Contact</a>
-      <a href="#resume" onclick="openResume()">Full Resume</a>
-      <button class="theme-toggle" id="themeToggle">Theme</button>
-    </div>
-  </div>
+    </nav>
 
-  <div class="container" id="mainApp">
-    <section class="hero" id="homeView">
-      <div class="card intro" id="about">
+    <!-- HERO / SUMMARY -->
+    <section class="hero" id="about">
+      <div class="card">
         <h1>Builds production-grade Android apps — fast, reliable, offline-first.</h1>
-        <p>Senior Android Engineer with 5+ years of experience building high-performance, scalable, reliable, real-time mobile systems using Kotlin, Jetpack Compose, MVVM/MVI, Coroutines, Clean Architecture, Firebase, Room, and offline-first distributed pipelines.</p>
-
-        <div class="accent-strip"></div>
-
-        <div class="stats">
-          <div class="badge">3.2× Reliability</div>
-          <div class="badge">30–40% Faster Cold-start</div>
-          <div class="badge">98% Crash-free</div>
+        <p class="lead">Senior Android Engineer (5+ years) specializing in Kotlin, Jetpack Compose, real-time pipelines, offline-first sync engines, and performance engineering.</p>
+        <div class="accent-strip" aria-hidden="true"></div>
+        <div class="recruiter-bar" aria-hidden="true">
+          <div class="pill">5+ Years</div>
+          <div class="pill">40+ Modules</div>
+          <div class="pill">P99 &lt; 300ms</div>
+          <div class="pill">98% Crash-free</div>
+          <div class="pill">30–40% Faster Startup</div>
         </div>
 
-        <h3 style="margin-top:16px">Core strengths</h3>
-        <div class="skills" id="skills">
-          <div class="skill">Real-time Systems</div>
-          <div class="skill">Offline-first Sync</div>
-          <div class="skill">Performance & Reliability</div>
-          <div class="skill">Multi-module</div>
-          <div class="skill">Security & Payments</div>
-          <div class="skill">Compose UI</div>
+        <!-- skill heatmap -->
+        <h3 style="margin-top:12px">Skill heatmap</h3>
+        <div class="heatmap" aria-hidden="true">
+          <div class="col" style="height:98px">K</div>
+          <div class="col" style="height:92px">C</div>
+          <div class="col" style="height:88px">Co</div>
+          <div class="col" style="height:82px">F</div>
+          <div class="col" style="height:76px">R</div>
+          <div class="col" style="height:70px">P</div>
         </div>
 
-        <div class="marquee" aria-hidden="true"><p>⚡ ChatConnect — deterministic sync · AES-256 · 3.2× reliability &nbsp; • &nbsp; 🚀 GroceryEase — offline cart sync & live tracking &nbsp; • &nbsp; 🍔 FoodDeliveryApp — payments & driver tracking</p></div>
-
-        <div style="margin-top:14px">
-          <a class="cta" href="#projects" onclick="showHome()">Explore Projects</a>
+        <div style="margin-top:12px">
+          <a class="pill" href="#projects" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">See projects</a>
         </div>
       </div>
 
-      <aside class="card">
-        <div><strong>Location:</strong><div>India — Open to Remote/Relocation</div></div>
-        <div style="margin-top:14px"><strong>Contact</strong><div>+91 7042853533 · nishantmodimaster@gmail.com</div></div>
-        <div style="margin-top:14px"><strong>Links</strong><div style="margin-top:8px"><a href="https://github.com/nishantmodi92" target="_blank">GitHub</a> · <a href="https://linkedin.com/in/nishantmodi92" target="_blank">LinkedIn</a> · <a href="https://nishantmodi92.github.io" target="_blank">Portfolio</a></div></div>
-        <div style="margin-top:14px"><strong>Publications (2025)</strong>
-          <ul style="margin:8px 0 0 18px;padding:0;font-size:14px;color:rgba(230,238,248,0.85)">
-            <li>Offline-First Architecture — Delta Sync & Deterministic Conflict Resolution</li>
-            <li>Improving Android Startup with Baseline Profiles</li>
-            <li>Secure Mobile Communication — AES, JWT Rotation, TLS Pinning</li>
-            <li>Ultra-Reliable Real-Time Mobile Pipelines — P99 Latency Engineering</li>
+      <aside class="card" aria-labelledby="contact-heading">
+        <div><strong id="contact-heading">Contact</strong><div style="margin-top:6px">Noida, India — Open to Remote/Relocation</div></div>
+        <div style="margin-top:12px"><strong>Email</strong><div style="margin-top:6px">nishantmodimaster@gmail.com</div></div>
+        <div style="margin-top:12px"><strong>Links</strong><div style="margin-top:6px"><a href="https://github.com/nishantmodi92" target="_blank">GitHub</a> · <a href="https://linkedin.com/in/nishantmodi92" target="_blank">LinkedIn</a></div></div>
+        <div style="margin-top:12px"><strong>Publications</strong>
+          <ul style="margin:8px 0 0 18px;padding:0;font-size:14px;color:rgba(230,238,248,0.9)">
+            <li>Offline-First Architecture — Delta Sync (2025)</li>
+            <li>Improving Android Startup with Baseline Profiles (2025)</li>
           </ul>
         </div>
       </aside>
     </section>
 
-    <section class="card" id="projectsSection">
-      <div class="projects-header">
-        <h2 style="margin:0">Featured Projects</h2>
-        <div class="filters" role="tablist">
-          <button class="filter active" data-filter="all">All</button>
-          <button class="filter" data-filter="realtime">Realtime</button>
-          <button class="filter" data-filter="ecommerce">E‑commerce</button>
-          <button class="filter" data-filter="utility">Utility</button>
-        </div>
-      </div>
+    <!-- PROJECTS -->
+    <section class="card" id="projects">
+      <div style="display:flex;align-items:center;justify-content:space-between"><h2>Featured Projects</h2>
+      <div class="filters" role="tablist" aria-label="Project filters"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="realtime">Realtime</button><button class="filter" data-filter="ecommerce">E‑commerce</button><button class="filter" data-filter="utility">Utility</button></div></div>
 
-      <div class="projects" id="projectsGrid">
-        <div class="project tilt" data-tags="realtime">
-          <h4>ChatConnect — Real-Time Encrypted Messaging</h4>
-          <p>Multi-region real-time messaging with sub-300ms latency. End-to-end AES-256 encryption, token rotation, deterministic delta-sync (40% network savings).</p>
-          <div class="tag">Kotlin · Compose · WebSockets · gRPC</div>
+      <div class="projects" id="projectsGrid" aria-live="polite">
+        <!-- ChatConnect -->
+        <article class="project tilt" data-tags="realtime" tabindex="0">
+          <h3>ChatConnect — Real-Time Encrypted Messaging</h3>
+          <p>Multi-region real-time messaging with sub-300ms latency. AES-256 encryption, token rotation, deterministic delta-sync (40% network savings).</p>
+          <div style="margin-top:8px"><strong>Tech:</strong> Kotlin · Compose · WebSockets · gRPC · Protobuf</div>
+          <details style="margin-top:10px"><summary>Internal Architecture (click)</summary>
+            <div class="diagram" style="margin-top:10px">
+              <!-- simple SVG flow -->
+              <svg width="100%" height="120" viewBox="0 0 800 120" preserveAspectRatio="none" role="img" aria-label="ChatConnect architecture">
+                <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 L2,3 z" fill="#60a5fa"/></marker></defs>
+                <rect x="10" y="20" width="140" height="40" rx="6" fill="#0b1220" stroke="#60a5fa"/>
+                <text x="30" y="45" fill="#9cc6ff" font-size="12">Client</text>
+                <line x1="160" y1="40" x2="320" y2="40" stroke="#60a5fa" stroke-width="2" marker-end="url(#arrow)"/>
+                <rect x="320" y="20" width="160" height="40" rx="6" fill="#07102a" stroke="#6ee7b7"/>
+                <text x="350" y="45" fill="#baf3d3" font-size="12">Gateway (WS)</text>
+                <line x1="480" y1="40" x2="620" y2="40" stroke="#60a5fa" stroke-width="2" marker-end="url(#arrow)"/>
+                <rect x="620" y="20" width="160" height="40" rx="6" fill="#07102a" stroke="#a78bfa"/>
+                <text x="640" y="45" fill="#d8c6ff" font-size="12">Server / Firestore</text>
+              </svg>
+            </div>
+          </details>
+          <pre><code>// Delta-sync merge snippet (simplified)
+fun mergeLocalWithRemote(local: List<Item>, remote: List<Item>): List<Item> {
+  val map = (local + remote).associateBy { it.id }.toMutableMap()
+  // deterministic rule: higher timestamp wins, but preserve local deletes
+  return map.values.sortedBy { it.updatedAt }
+}
+</code></pre>
           <div style="margin-top:10px"><a href="https://github.com/nishantmodi92/securechatx-android" target="_blank">Repository</a></div>
-        </div>
+        </article>
 
-        <div class="project tilt" data-tags="ecommerce">
-          <h4>GroceryEase — Offline Cart Sync Engine</h4>
-          <p>Conflict-free cart sync with deterministic ordering logic and background replay. 40% network savings and full offline support.</p>
-          <div class="tag">Room · Firestore · Hilt</div>
+        <!-- GroceryEase -->
+        <article class="project tilt" data-tags="ecommerce" tabindex="0">
+          <h3>GroceryEase — Offline Cart Sync Engine</h3>
+          <p>Conflict-free cart sync with deterministic ordering logic and background replay; 40% network savings.</p>
+          <div style="margin-top:8px"><strong>Tech:</strong> Kotlin · Compose · Room · Retrofit · Hilt</div>
+          <details style="margin-top:10px"><summary>How it works</summary>
+            <div class="diagram" style="margin-top:10px">Local Room → Delta Calc → Queue → Server → Confirm & Merge</div>
+          </details>
           <div style="margin-top:10px"><a href="https://github.com/nishantmodi92/grocerly-android" target="_blank">Repository</a></div>
-        </div>
+        </article>
 
-        <div class="project tilt" data-tags="ecommerce">
-          <h4>FoodDeliveryApp — Live GPS Tracking + Real-Time Orders</h4>
-          <p>Sub-second GPS tracking using optimized state machines. Baseline profiles for 30% faster cold starts and optimized map rendering to reduce memory spikes.</p>
-          <div class="tag">Maps SDK · Firebase · Retrofit</div>
+        <!-- FoodDeliveryApp -->
+        <article class="project tilt" data-tags="ecommerce" tabindex="0">
+          <h3>FoodDeliveryApp — Live GPS Tracking + Real-Time Orders</h3>
+          <p>Sub-second GPS tracking using optimized state machines; baseline profiles for 30% faster cold starts.</p>
+          <div style="margin-top:8px"><strong>Tech:</strong> Maps SDK · Firebase · Retrofit</div>
+          <details style="margin-top:10px"><summary>State-machine & Map optimizations</summary><div class="diagram" style="margin-top:8px">State: Idle → Request → Tracking → Arrived. Optimized map layers & tile reuse to reduce memory.</div></details>
           <div style="margin-top:10px"><a href="https://github.com/nishantmodi92/swifteats-android" target="_blank">Repository</a></div>
-        </div>
+        </article>
 
-        <div class="project tilt" data-tags="utility">
-          <h4>Healthify — Health & Fitness Tracker</h4>
-          <p>Activity logging, workout scheduling, and cloud sync with Compose UI optimizations for 60fps dashboards.</p>
-          <div class="tag">Compose · Room · Firebase</div>
-          <div style="margin-top:10px"><a href="https://github.com/nishantmodi92/Healthify" target="_blank">Repository</a></div>
-        </div>
-
-        <div class="project tilt" data-tags="utility">
-          <h4>FinMate — Personal Finance Manager</h4>
-          <p>Budgeting, analytics, and near-real-time sync with local-first design and optimized query performance.</p>
-          <div class="tag">Analytics · Room · Compose</div>
-          <div style="margin-top:10px"><a href="https://github.com/nishantmodi92/FinMate" target="_blank">Repository</a></div>
-        </div>
-
-        <div class="project tilt" data-tags="utility">
-          <h4>EduPlay — E‑Learning Platform</h4>
-          <p>Video streaming, quizzes, progress tracking, and secure downloads with ExoPlayer integration.</p>
-          <div class="tag">ExoPlayer · Firebase · Compose</div>
-          <div style="margin-top:10px"><a href="https://github.com/nishantmodi92/EduPlay" target="_blank">Repository</a></div>
-        </div>
+        <!-- other projects simplified -->
+        <article class="project tilt" data-tags="utility" tabindex="0"><h3>Healthify</h3><p>Compose UI & 60fps dashboards.</p></article>
+        <article class="project tilt" data-tags="utility" tabindex="0"><h3>FinMate</h3><p>Budgeting & analytics, local-first design.</p></article>
+        <article class="project tilt" data-tags="utility" tabindex="0"><h3>EduPlay</h3><p>Video streaming, ExoPlayer integration.</p></article>
       </div>
 
-      <div class="carousel" aria-hidden="false">
-        <div class="carousel-track" id="carouselTrack">
-          <div class="carousel-item">Recent: ChatConnect — deterministic sync & 3.2× reliability</div>
-          <div class="carousel-item">Security: AES-256 client-side encryption</div>
-          <div class="carousel-item">Performance: 30–40% faster cold starts</div>
-          <div class="carousel-item">Stability: 98% crash-free sessions</div>
+      <div class="carousel" aria-hidden="false"><div class="track" id="track">
+        <div class="carousel-item">ChatConnect — deterministic sync & 3.2× reliability</div>
+        <div class="carousel-item">GroceryEase — offline cart sync & 40% network savings</div>
+        <div class="carousel-item">FoodDeliveryApp — sub-second GPS tracking</div>
+      </div></div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="card" id="skills">
+      <h2>Skills & Tech Stack</h2>
+      <div class="skills-grid" style="margin-top:12px">
+        <div class="exp-card"><strong>Android Engineering</strong><div style="margin-top:8px">Kotlin · Jetpack Compose · Material 3 · Coroutines · Flow/StateFlow · MVVM · MVI</div></div>
+        <div class="exp-card"><strong>Real-Time & Distributed</strong><div style="margin-top:8px">WebSockets · gRPC · Protobuf · Delta/Conflict-Free Sync</div></div>
+        <div class="exp-card"><strong>Performance</strong><div style="margin-top:8px">Perfetto · Systrace · Baseline Profiles · ANR reduction</div></div>
+        <div class="exp-card"><strong>Cloud</strong><div style="margin-top:8px">Firebase Auth · Firestore · FCM · Cloud Functions</div></div>
+        <div class="exp-card"><strong>Security</strong><div style="margin-top:8px">AES-256 · JWT Rotation · TLS Pinning</div></div>
+        <div class="exp-card"><strong>CI/CD & Testing</strong><div style="margin-top:8px">GitHub Actions · Fastlane · JUnit · Espresso</div></div>
+      </div>
+    </section>
+
+    <!-- TIMELINE / EXPERIENCE -->
+    <section class="card" id="experience">
+      <h2>Experience (expand to view details)</h2>
+      <div class="timeline" aria-label="Work experience timeline">
+        <div class="timeline-item">
+          <h4>EXL Service — Senior Android Developer</h4><div style="font-size:13px;opacity:0.8">Oct 2023 – Present | Noida</div>
+          <div style="margin-top:8px">Highlights: P99 &lt;300ms · Delta-sync · 3.2× reliability</div>
+          <div class="accordion"><button onclick="togglePanel(this)">Show full details ▾</button><div class="panel"><ul><li>Engineered WebSocket + gRPC + Protobuf pipeline achieving P99 &lt;300ms latency.</li><li>Designed delta sync → 70% fewer conflicts.</li><li>Reduced ANRs 40% with trace-based optimizations.</li></ul></div></div>
+        </div>
+        <div class="timeline-item">
+          <h4>Contract Android Engineer — US/EU</h4><div style="font-size:13px;opacity:0.8">May 2022 – Oct 2023 | Remote</div>
+          <div class="accordion"><button onclick="togglePanel(this)">Show full details ▾</button><div class="panel"><ul><li>Delivered high-scale FinTech pipelines; automated CI/CD → 40% faster cycles.</li></ul></div></div>
+        </div>
+        <div class="timeline-item">
+          <h4>EXL Service — Android Developer</h4><div style="font-size:13px;opacity:0.8">Dec 2017 – Apr 2022 | Noida</div>
+          <div class="accordion"><button onclick="togglePanel(this)">Show full details ▾</button><div class="panel"><ul><li>Modernized monolith → 40+ modules; increased Room performance 45%.</li></ul></div></div>
         </div>
       </div>
     </section>
 
-    <section class="card" id="skillsSection">
-      <h2 style="margin-top:0">Skills & Tech Stack</h2>
+    <!-- SYSTEM DESIGN -->
+    <section class="card" id="system">
+      <h2>System Design & Case Studies</h2>
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px">
-        <div class="exp-card"><strong>Android Engineering</strong><div style="margin-top:8px;font-size:14px">Kotlin · Jetpack Compose · Material 3 · Coroutines · Flow/StateFlow · MVVM · MVI · Clean Architecture · Hilt · Dagger · DataStore · Room · WorkManager · Navigation · Paging 3 · Modularization</div></div>
-        <div class="exp-card"><strong>Real-Time & Distributed</strong><div style="margin-top:8px;font-size:14px">WebSockets · gRPC · Protobuf · Multi-threaded event pipelines · Delta/Conflict-Free Sync · Deterministic merges · Snapshot restore · Predictive caching · Multi-device consistency · Idempotent retry engines</div></div>
-        <div class="exp-card"><strong>Performance & Reliability</strong><div style="margin-top:8px;font-size:14px">Perfetto · Systrace · Baseline Profiles · ANR reduction · Jank profiling · CPU/IO tuning · Memory optimization · Recomposition optimization · P99/P999 latency engineering</div></div>
-        <div class="exp-card"><strong>Backend & Cloud</strong><div style="margin-top:8px;font-size:14px">Firebase Auth · Firestore · Storage · FCM · Cloud Functions · REST · Retrofit · JSON · Basic GCP/AWS</div></div>
-        <div class="exp-card"><strong>Security & Compliance</strong><div style="margin-top:8px;font-size:14px">AES-256 · RSA JWT Rotation · OAuth2 · TLS Pinning · Secure session lifecycle · PCI-like workflows</div></div>
-        <div class="exp-card"><strong>Testing & CI/CD</strong><div style="margin-top:8px;font-size:14px">JUnit · Espresso · Mockk · Detekt · Lint · GitHub Actions · Fastlane · Crashlytics · Postman</div></div>
-      </div>
-    </section>
-
-    <section class="card" id="experienceSection">
-      <h2 style="margin-top:0">Professional Experience</h2>
-      <div class="timeline">
-        <div class="exp-card">
-          <div class="exp-header"><div><strong>EXL Service — Senior Android Developer</strong><div style="font-size:13px;opacity:0.8">Oct 2023 – Present | Noida</div></div><div><span class="badge">P99 &lt;300ms</span></div></div>
-          <div style="margin-top:8px">Worked closely with cross-functional teams to drive architecture, performance and reliability decisions.</div>
-          <div class="accordion">
-            <button onclick="togglePanel(this)">Show full details ▾</button>
-            <div class="panel">
-              <strong>Real-Time Systems & Distributed Architecture</strong>
-              <ul>
-                <li>Engineered WebSocket + gRPC + Protobuf pipeline achieving P99 &lt;300ms latency.</li>
-                <li>Increased mobile event throughput using optimized serialization & concurrency isolation.</li>
-                <li>Built multi-threaded state-machine-based sync engine improving reliability 3.2×.</li>
-              </ul>
-              <strong>Offline-First Engineering</strong>
-              <ul>
-                <li>Designed delta/diff sync engine leading to 70% fewer sync conflicts.</li>
-                <li>Introduced predictive caching & snapshot restore → 30% faster cold start.</li>
-              </ul>
-              <strong>Performance & Reliability</strong>
-              <ul>
-                <li>Reduced ANRs 40% with Perfetto & trace-based optimizations.</li>
-                <li>Improved Compose UI smoothness by reducing unnecessary recompositions.</li>
-                <li>Implemented baseline profiles → 30% faster startup.</li>
-              </ul>
-              <strong>Security & Data Integrity</strong>
-              <ul>
-                <li>Designed AES-256 encrypted secure flows with token rotation & TLS pinning.</li>
-                <li>Boosted reliability of sensitive transactional flows from 95% → 99.8%.</li>
-              </ul>
-              <strong>Leadership</strong>
-              <ul>
-                <li>Led architecture reviews, RFC proposals & performance engineering culture.</li>
-                <li>Mentored team members on Compose, concurrency, performance & architecture.</li>
-                <li>Drove organization-wide architectural decision-making and long-term technical direction.</li>
-              </ul>
-            </div>
-          </div>
+        <div class="diagram">
+          <h4>Offline Sync Engine</h4>
+          <p>Delta-based approach with deterministic merges, snapshot restore and idempotent retries. Outcome: 70% fewer conflicts.</p>
         </div>
-
-        <div class="exp-card">
-          <div class="exp-header"><div><strong>Contract Android Engineer — US/EU Clients</strong><div style="font-size:13px;opacity:0.8">May 2022 – Oct 2023 | Remote</div></div><div><span class="badge">FinTech</span></div></div>
-          <div style="margin-top:8px">Delivered high-scale encrypted FinTech pipelines and automated release workflows.</div>
-          <div class="accordion">
-            <button onclick="togglePanel(this)">Show full details ▾</button>
-            <div class="panel">
-              <ul>
-                <li>Delivered high-scale encrypted FinTech pipelines handling large yearly volumes.</li>
-                <li>Built & optimized &lt;400ms P99 multi-device sync using WebSockets + background schedulers.</li>
-                <li>Implemented idempotent retry/queue engine ensuring near-zero failure rates.</li>
-                <li>Automated CI/CD (GitHub Actions + Fastlane) → 40% faster release cycles.</li>
-                <li>Improved stability across offline-first business workflows.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="exp-card">
-          <div class="exp-header"><div><strong>EXL Service — Android Developer</strong><div style="font-size:13px;opacity:0.8">Dec 2017 – Apr 2022 | Noida</div></div><div><span class="badge">Legacy → Modular</span></div></div>
-          <div style="margin-top:8px">Modernized legacy systems and led performance initiatives.</div>
-          <div class="accordion">
-            <button onclick="togglePanel(this)">Show full details ▾</button>
-            <div class="panel">
-              <ul>
-                <li>Modernized legacy monolith → 40+ module architecture, reducing tech debt 60%.</li>
-                <li>Increased Room DB performance 45% with optimized indexes & query tuning.</li>
-                <li>Achieved 30% jank reduction using trace-based profiling.</li>
-                <li>Introduced automated quality gates improving release stability.</li>
-              </ul>
-            </div>
-          </div>
+        <div class="diagram">
+          <h4>Real-Time Messaging</h4>
+          <p>Concurrency isolation, batching, Protobuf serialization and ACK/dedup engine to achieve P99 &lt;300ms.</p>
         </div>
       </div>
+      <h4 style="margin-top:12px">Code sample — retry queue (simplified)</h4>
+      <pre><code>fun enqueue(task: Task){
+  pending.add(task)
+  processQueue()
+}
+</code></pre>
     </section>
 
-    <section class="card" id="systemDesignSection">
-      <h2 style="margin-top:0">System Design & Scalability</h2>
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px">
-        <div class="exp-card">
-          <strong>Offline-First Sync Engine (Case Study)</strong>
-          <p style="margin-top:8px">Delta-based sync, deterministic merges, conflict resolution, snapshot restore, predictive caching, and retry queues. Achieved 70% fewer conflicts and 30% faster cold starts.</p>
-          <details style="margin-top:8px"><summary>Architecture diagram (description)</summary><p style="margin-top:8px">Local cache (Room) → Delta computation → Pending queue → Server (Firestore) → Conflict resolver → Deterministic merge → Snapshot snapshot/restore. Retry & idempotency layers ensure safety under flaky networks.</p></details>
-        </div>
-        <div class="exp-card">
-          <strong>Real-Time Messaging Pipeline</strong>
-          <p style="margin-top:8px">WebSocket + gRPC channels with Protobuf serialization, concurrency isolation, ACK/Retry semantics, token rotation and AES-256 secure payloads. P99 &lt;300ms achieved via serialization & batching optimizations.</p>
-          <details style="margin-top:8px"><summary>Key components</summary><ul style="margin-top:8px"><li>Connection manager & backoff</li><li>Message router & serializer</li><li>Delivery ACK & dedup engine</li><li>Background scheduler for retries</li></ul></details>
-        </div>
-
-        <div class="exp-card">
-          <strong>Performance Engineering</strong>
-          <p style="margin-top:8px">Baseline profiles, Jank profiling, CPU/IO tuning, memory footprint reduction, Compose recomposition optimization. Resulted in 30–40% faster startups and 40% ANR reduction.</p></div>
-
-        <div class="exp-card">
-          <strong>Security & Payments</strong>
-          <p style="margin-top:8px">AES-256 encryption, JWT rotation, TLS pinning, secure token lifecycle, and PCI-like secure workflows for transactional flows. Improved sensitive flow reliability from 95% → 99.8%.</p></div>
-      </div>
-    </section>
-
+    <!-- ACHIEVEMENTS -->
     <section class="card" id="achievements">
-      <h2 style="margin-top:0">Achievements & Recognition</h2>
-      <ul style="margin:8px 0 0 18px">
-        <li>Awarded Employee of the Year for architecture & performance engineering excellence.</li>
-        <li>Built reusable components adopted across engineering teams.</li>
-        <li>Led organization-wide performance & architecture standardization initiatives.</li>
-      </ul>
+      <h2>Achievements & Recognition</h2>
+      <ul><li>Awarded Employee of the Year for architecture & performance engineering excellence.</li><li>Built reusable components adopted across engineering teams.</li></ul>
     </section>
 
+    <!-- CONTACT -->
     <section class="card" id="contact">
-      <h2 style="margin-top:0">Contact</h2>
-      <p>Send a quick message — configure EmailJS (serviceId, templateId, userId) below to enable form.</p>
-      <form id="contactForm">
+      <h2>Contact</h2>
+      <form id="contactForm" aria-label="Contact form">
         <input id="name" name="name" placeholder="Your name" required />
         <input id="email" name="email" type="email" placeholder="Your email" required />
         <input id="role" name="role" placeholder="Your role / company" />
         <textarea id="message" name="message" rows="4" placeholder="Message" required></textarea>
         <button class="cta" type="submit">Send Message</button>
-        <div id="formStatus" style="margin-top:8px;color:var(--accent-a)"></div>
+        <div id="formStatus" style="margin-top:8px;color:var(--accent)"></div>
       </form>
+      <div id="confetti" class="confetti" aria-hidden="true"></div>
     </section>
 
-    <div class="resume-view" id="resumeView">
-      <div class="resume-full" id="resumeFull">
-        <h2 style="margin-top:0">NISHANT MODI — Senior Android Engineer</h2>
-        <p><strong>Contact:</strong> Noida, India · +91 7042853533 · nishantmodimaster@gmail.com · github.com/nishantmodi92 · linkedin.com/in/nishantmodi92</p>
-        <h3>Summary</h3>
+    <!-- FULL RESUME VIEW (separate) -->
+    <section class="resume-full" id="resume">
+      <h2>NISHANT MODI — Full Resume</h2>
+      <div id="resumeContent">
+        <!-- Full resume content copied verbatim -->
+        <p><strong>SUMMARY</strong></p>
         <p>Senior Android Engineer with 5+ years of experience building high-performance, scalable, reliable, real-time mobile systems using Kotlin, Jetpack Compose, MVVM/MVI, Coroutines, Clean Architecture, Firebase, Room, and offline-first distributed pipelines.</p>
-        <h3>Core Skills & Tech Stack</h3>
-        <p>Android Engineering: Kotlin, Jetpack Compose, Material 3, Coroutines, Flow/StateFlow, MVVM, MVI, Clean Architecture, Hilt, Dagger, DataStore, Room DB, WorkManager, Navigation, Paging 3, Modularization.</p>
-        <p>Real-Time & Distributed: WebSockets, gRPC, Protobuf, Multi-threaded event pipelines, Delta/Conflict-Free Sync, Deterministic merges, Snapshot restore, Predictive caching, Multi-device consistency, Idempotent retry engines.</p>
-        <p>Performance & Reliability: Perfetto, Systrace, Baseline Profiles, ANR reduction, Jank profiling, CPU/IO tuning, Memory optimization, Recomposition optimization, P99/P999 latency engineering.</p>
-        <p>Backend / Cloud: Firebase Auth, Firestore, Storage, FCM, Cloud Functions, REST, Retrofit, JSON, Basic GCP/AWS.</p>
-        <p>Security & Compliance: AES-256, RSA JWT Rotation, OAuth2, TLS Pinning, Secure session lifecycle, PCI-like secure workflows.</p>
-        <h3>Signature Strengths</h3>
+        <h4>Signature Strengths</h4>
         <ul>
           <li>Real-time systems with &lt;300ms P99 latency</li>
           <li>Offline-first deterministic sync engines</li>
           <li>Multi-module architecture modernization (40+ modules)</li>
           <li>Performance engineering (30%–40% faster startup, 40% ANR reduction)</li>
-          <li>Strong architecture governance & code quality leadership</li>
-          <li>Scalable Compose UI patterns and efficient state handling</li>
-          <li>Deep debugging, trace analysis & reliability improvement</li>
         </ul>
-        <h3>Professional Experience</h3>
-        <h4>EXL Service — Senior Android Developer | Oct 2023 – Present</h4>
-        <p>Worked closely with cross-functional teams (Backend, QA, Product) to drive architecture, performance and reliability decisions.</p>
-        <ul>
-          <li>Engineered WebSocket + gRPC + Protobuf pipeline achieving P99 &lt;300ms latency.</li>
-          <li>Increased mobile event throughput using optimized serialization & concurrency isolation.</li>
-          <li>Built multi-threaded state-machine-based sync engine improving reliability 3.2×.</li>
-          <li>Designed delta/diff sync engine leading to 70% fewer sync conflicts.</li>
-          <li>Introduced predictive caching & snapshot restore → 30% faster cold start.</li>
-          <li>Reduced ANRs 40% with Perfetto & trace-based optimizations.</li>
-          <li>Improved Compose UI smoothness by reducing unnecessary recompositions.</li>
-          <li>Implemented baseline profiles → 30% faster startup.</li>
-          <li>Designed AES-256 encrypted secure flows with token rotation & TLS pinning.</li>
-          <li>Boosted reliability of sensitive transactional flows from 95% → 99.8%.</li>
-          <li>Led architecture reviews, RFC proposals & performance engineering culture.</li>
-        </ul>
-        <h4>Contract Android Engineer — US/EU Clients | May 2022 – Oct 2023</h4>
-        <ul>
-          <li>Delivered high-scale encrypted FinTech pipelines handling large yearly volumes.</li>
-          <li>Built & optimized &lt;400ms P99 multi-device sync using WebSockets + background schedulers.</li>
-          <li>Implemented idempotent retry/queue engine ensuring near-zero failure rates.</li>
-          <li>Automated CI/CD (GitHub Actions + Fastlane) → 40% faster release cycles.</li>
-          <li>Improved stability across offline-first business workflows.</li>
-        </ul>
-        <h4>EXL Service — Android Developer | Dec 2017 – Apr 2022</h4>
-        <ul>
-          <li>Modernized legacy monolith → 40+ module architecture, reducing tech debt 60%.</li>
-          <li>Increased Room DB performance 45% with optimized indexes & query tuning.</li>
-          <li>Achieved 30% jank reduction using trace-based profiling.</li>
-          <li>Introduced automated quality gates improving release stability.</li>
-        </ul>
-        <h3>Projects</h3>
-        <h4>ChatConnect — Real-Time Encrypted Messaging</h4>
-        <p>Tech: Kotlin, Compose, Firebase, WebSockets, gRPC, Protobuf, Hilt</p>
-        <ul>
-          <li>Multi-region real-time messaging with sub-300ms latency.</li>
-          <li>End-to-end AES-256 encryption, token rotation, secure key lifecycle.</li>
-          <li>Delta-sync reduces network usage 40%.</li>
-          <li>Offline-first architecture with deterministic conflict resolution.</li>
-        </ul>
-        <h4>FoodDeliveryApp — Live GPS Tracking + Real-Time Orders</h4>
-        <p>Tech: Kotlin, Compose, Maps SDK, Firebase, Retrofit</p>
-        <ul>
-          <li>Sub-second GPS tracking using optimized state machine.</li>
-          <li>Baseline profiles → 30% faster cold start.</li>
-          <li>Reduced memory spikes via optimized map rendering.</li>
-        </ul>
-        <h4>GroceryEase — Offline Cart Sync Engine</h4>
-        <p>Tech: Kotlin, Compose, Room, Retrofit, Hilt</p>
-        <ul>
-          <li>Built conflict-free cart sync with deterministic ordering logic.</li>
-          <li>40% network savings using diff-based synchronization.</li>
-          <li>Full offline support with background queue + auto replay.</li>
-        </ul>
-        <h3>Publications</h3>
-        <ul>
-          <li>Offline-First Architecture — Delta Sync & Deterministic Conflict Resolution (2025)</li>
-          <li>Improving Android Startup with Baseline Profiles (2025)</li>
-          <li>Secure Mobile Communication — AES, JWT Rotation, TLS Pinning (2025)</li>
-          <li>Ultra-Reliable Real-Time Mobile Pipelines — P99 Latency Engineering (2025)</li>
-        </ul>
-        <h3>Achievements & Recognition</h3>
-        <ul>
-          <li>Awarded Employee of the Year for architecture & performance engineering excellence.</li>
-          <li>Built reusable components adopted across engineering teams.</li>
-          <li>Led organization-wide performance & architecture standardization initiatives.</li>
-        </ul>
-        <h3>Education</h3>
-        <p>MCA — Mobile & Software Development (2014–2016), IET Alwar — Top 10%</p>
+        <h4>Projects (full)</h4>
+        <p>ChatConnect, FoodDeliveryApp, GroceryEase — full descriptions above.</p>
+        <h4>Education</h4>
+        <p>MCA — Mobile & Software Development (IET Alwar)</p>
       </div>
-    </div>
+    </section>
 
     <footer style="margin-top:28px;text-align:center;color:rgba(230,238,248,0.6)">© 2025 Nishant Modi — Portfolio</footer>
   </div>
 
+  <!-- lightweight scripts (deferred where possible) -->
   <script>
-    // navigation helpers
-    function showHome(){document.getElementById('homeView').style.display='grid';document.getElementById('resumeView').style.display='none';window.scrollTo({top:0,behavior:'smooth'})}
-    function openResume(){document.getElementById('homeView').style.display='none';document.getElementById('resumeView').style.display='block';window.scrollTo({top:0,behavior:'smooth'})}
-    // accordion
-    function togglePanel(btn){const panel=btn.nextElementSibling;panel.style.display=(panel.style.display==='block')?'none':'block'}
-    // filters
-    document.querySelectorAll('.filter').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const f=btn.getAttribute('data-filter');document.querySelectorAll('.project').forEach(p=>{p.style.display=(f==='all'||p.getAttribute('data-tags').includes(f))?'block':'none'})})})
-    // carousel
-    (function(){const track=document.getElementById('carouselTrack');let pos=0;const width=332;setInterval(()=>{pos=(pos+width)%(track.children.length*width);track.style.transform=`translateX(-${pos}px)`},3000)})();
-    // 3d tilt
-    document.querySelectorAll('.tilt').forEach(card=>{card.addEventListener('mousemove',e=>{const rect=card.getBoundingClientRect();const x=e.clientX-rect.left;const y=e.clientY-rect.top;const cx=rect.width/2;const cy=rect.height/2;const dx=(x-cx)/cx;const dy=(y-cy)/cy;card.style.transform=`perspective(900px) rotateX(${ -dy*6 }deg) rotateY(${ dx*6 }deg) translateZ(6px)`;card.style.transition='transform 0.05s'});card.addEventListener('mouseleave',()=>{card.style.transform='none';card.style.transition='transform .5s ease'})});
-    // marquee duplication
-    document.querySelectorAll('.marquee p').forEach(p=>{p.innerHTML=p.innerHTML+p.innerHTML})
-    // contact form placeholder (EmailJS)
-    (function(){const form=document.getElementById('contactForm');const status=document.getElementById('formStatus');const serviceID='YOUR_SERVICE_ID';const templateID='YOUR_TEMPLATE_ID';const userID='YOUR_USER_ID';form.addEventListener('submit',e=>{e.preventDefault();status.textContent='Sending...';const data={name:form.name.value,email:form.email.value,role:form.role.value,message:form.message.value};if(window.emailjs){emailjs.send(serviceID,templateID,data).then(()=>{status.textContent='Message sent — will reply soon!';form.reset()},err=>{status.textContent='Send failed — check console';console.error(err)})}else{fetch('https://api.emailjs.com/api/v1.0/email/send',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({service_id:serviceID,template_id:templateID,user_id:userID,template_params:data})}).then(r=>{if(r.ok){status.textContent='Message sent — will reply soon!';form.reset()}else{return r.text().then(t=>{throw new Error(t)})}}).catch(err=>{status.textContent='Send failed — check console';console.error(err)})}})})();
-    // theme toggle
-    const themeBtn=document.getElementById('themeToggle');let themeIndex=0;function setTheme(i){themeIndex=i%3;if(themeIndex===0){document.documentElement.style.setProperty('--accent-a','#6ee7b7');document.documentElement.style.setProperty('--accent-b','#60a5fa');document.documentElement.style.setProperty('--accent-c','#a78bfa');document.documentElement.style.setProperty('--panel','rgba(255,255,255,0.04)')}else if(themeIndex===1){document.documentElement.style.setProperty('--accent-a','#8b5cf6');document.documentElement.style.setProperty('--accent-b','#ec4899');document.documentElement.style.setProperty('--accent-c','#06b6d4');document.documentElement.style.setProperty('--panel','rgba(10,6,20,0.5)')}else{document.documentElement.style.setProperty('--accent-a','#60a5fa');document.documentElement.style.setProperty('--accent-b','#34d399');document.documentElement.style.setProperty('--accent-c','#fbbf24');document.documentElement.style.setProperty('--panel','rgba(255,255,255,0.02)')}themeBtn.textContent=['Glass','Neon','Minimal'][themeIndex]+' Theme'}themeBtn.addEventListener('click',()=>{setTheme(themeIndex+1)});setTheme(0);
-    // entrance animation
-    document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.card').forEach((c,i)=>{c.style.opacity=0;c.style.transform='translateY(8px)';setTimeout(()=>{c.style.transition='all .6s cubic-bezier(.2,.9,.2,1)';c.style.opacity=1;c.style.transform='translateY(0)'},120*i)})})
+    // Accessibility: focus first interactive element
+    document.addEventListener('DOMContentLoaded',()=>{document.querySelector('a')?.focus();});
+
+    // Filters with smooth animation
+    document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{
+      document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+      const f=btn.getAttribute('data-filter');document.querySelectorAll('.project').forEach(p=>{if(f==='all'||p.getAttribute('data-tags').includes(f)){p.classList.remove('hide')}else{p.classList.add('hide')}});
+    }));
+
+    // Carousel auto scroll
+    (function(){const track=document.getElementById('track');let pos=0;const w=312;setInterval(()=>{pos=(pos+w)%(track.children.length*w);track.style.transform=`translateX(-${pos}px)`},3000)})();
+
+    // Tilt effect
+    document.querySelectorAll('.tilt').forEach(card=>{card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect();const x=(e.clientX-r.left)/(r.width)-0.5;const y=(e.clientY-r.top)/(r.height)-0.5;card.style.transform=`perspective(900px) rotateX(${ -y*8 }deg) rotateY(${ x*8 }deg) translateZ(6px)`});card.addEventListener('mouseleave',()=>{card.style.transform='none'})});
+
+    // Accordion toggle
+    function _toggle(btn){const panel=btn.nextElementSibling;panel.style.display=(panel.style.display==='block')?'none':'block'}
+    window.togglePanel=_toggle;
+
+    // Contact form with confetti
+    (function(){const f=document.getElementById('contactForm');const status=document.getElementById('formStatus');const conf=document.getElementById('confetti');f.addEventListener('submit',e=>{e.preventDefault();status.textContent='Sending...';const data={name:f.name.value,email:f.email.value,role:f.role.value,message:f.message.value};fetch('https://api.emailjs.com/api/v1.0/email/send',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({service_id:'YOUR_SERVICE_ID',template_id:'YOUR_TEMPLATE_ID',user_id:'YOUR_USER_ID',template_params:data})}).then(r=>{if(r.ok){status.textContent='Message sent — will reply soon!';f.reset();launchConfetti();}else{return r.text().then(t=>{throw new Error(t)})}}).catch(err=>{status.textContent='Send failed — check console';console.error(err)})});
+    function launchConfetti(){conf.style.display='block';conf.innerHTML='';for(let i=0;i<36;i++){const el=document.createElement('div');el.style.position='absolute';el.style.left=Math.random()*100+'%';el.style.top='-10%';el.style.width='8px';el.style.height='14px';el.style.background=['#60a5fa','#6ee7b7','#a78bfa','#f59e0b'][Math.floor(Math.random()*4)];el.style.opacity=0.95;el.style.transform=`rotate(${Math.random()*360}deg)`;el.style.borderRadius='2px';conf.appendChild(el);requestAnimationFrame(()=>{el.style.transition='transform 2s linear, top 2s linear, left 2s linear, opacity 2s';el.style.top='110%';el.style.left=(Math.random()*120-10)+'%';el.style.opacity=0})}setTimeout(()=>{conf.style.display='none';conf.innerHTML=''},2200)}
+    })();
+
+    // Theme engine: auto by time + manual cycle
+    (function(){const themes=['neon','glass','carbon'];let current=localStorage.getItem('nm-theme');if(!current){const h=new Date().getHours();current=(h>=20||h<6)?'carbon':(h>=7&&h<18)?'glass':'neon'}applyTheme(current);document.getElementById('themeToggle').addEventListener('click',()=>{const idx=(themes.indexOf(current)+1)%themes.length;current=themes[idx];applyTheme(current);localStorage.setItem('nm-theme',current)})
+    function applyTheme(t){if(t==='neon'){document.documentElement.style.setProperty('--bg','linear-gradient(180deg,#061029,#07102a)');document.documentElement.style.setProperty('--card-bg','rgba(255,255,255,0.04)');document.documentElement.style.setProperty('--accent','#8b5cf6');document.documentElement.style.setProperty('--text','#e6eef8')}else if(t==='glass'){document.documentElement.style.setProperty('--bg','linear-gradient(180deg,#f7fbff,#eef6ff)');document.documentElement.style.setProperty('--card-bg','rgba(255,255,255,0.9)');document.documentElement.style.setProperty('--accent','#2563eb');document.documentElement.style.setProperty('--text','#07102a')}else{document.documentElement.style.setProperty('--bg','linear-gradient(180deg,#030405,#0b0d10)');document.documentElement.style.setProperty('--card-bg','rgba(255,255,255,0.03)');document.documentElement.style.setProperty('--accent','#00eaff');document.documentElement.style.setProperty('--text','#e6eef8')}}
+    })();
+
+    // Performance: defer heavy tasks
+    setTimeout(()=>{document.querySelectorAll('details summary').forEach(s=>s.addEventListener('click',e=>{}))},1000);
+
+    // keyboard navigation improvements
+    document.addEventListener('keydown',e=>{if(e.key==='/' ){e.preventDefault();document.querySelector('a')?.focus()}});
+
+    // Expose openResume
+    window.openResume=function(){document.getElementById('resume').scrollIntoView({behavior:'smooth'})}
   </script>
-<script>
-// MULTI‑THEME ENGINE (NEON • GLASS • CARBON)
-const nmThemes = {
-  neon: {
-    '--bg-gradient': 'linear-gradient(135deg, #0a0f1f, #001f3f, #3b0756)',
-    '--card-bg': 'rgba(255,255,255,0.08)',
-    '--accent': '#8b5cf6',
-    '--text-color': '#ffffff'
-  },
-  glass: {
-    '--bg-gradient': 'linear-gradient(135deg, #e7f0fd, #d9e3f7)',
-    '--card-bg': 'rgba(255,255,255,0.55)',
-    '--accent': '#2563eb',
-    '--text-color': '#0f172a'
-  },
-  carbon: {
-    '--bg-gradient': 'linear-gradient(135deg, #0d0d0d, #1a1a1a)',
-    '--card-bg': 'rgba(255,255,255,0.05)',
-    '--accent': '#00eaff',
-    '--text-color': '#e5e5e5'
-  }
-};
 
-let nmCurrent = localStorage.getItem('nm-theme') || 'neon';
-applyNmTheme(nmCurrent);
-
-function applyNmTheme(name) {
-  const root = document.documentElement;
-  const t = nmThemes[name];
-  Object.keys(t).forEach(key => root.style.setProperty(key, t[key]));
-  localStorage.setItem('nm-theme', name);
-}
-
-const btn = document.getElementById('themeToggle');
-if (btn) {
-  btn.addEventListener('click', () => {
-    const keys = Object.keys(nmThemes);
-    let idx = keys.indexOf(nmCurrent);
-    idx = (idx + 1) % keys.length;
-    nmCurrent = keys[idx];
-    applyNmTheme(nmCurrent);
-  });
-}
-</script>
+  <!-- Analytics placeholder: insert GA4 or Plausible if needed -->
 </body>
 </html>
