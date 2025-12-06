@@ -4,367 +4,145 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Nishant Modi — Senior Android Engineer</title>
-  <meta name="description" content="Nishant Modi — Senior Android Engineer. Kotlin · Jetpack Compose · Firebase · Offline-first · Real-time systems. Built for top tech recruiters."/>
-  <meta name="robots" content="index,follow">
-  <meta property="og:title" content="Nishant Modi — Senior Android Engineer">
-  <meta property="og:description" content="Senior Android Engineer (Kotlin, Jetpack Compose) — real-time systems, offline-first sync, performance engineering.">
-  <link rel="canonical" href="https://nishantmodi92.github.io" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Nishant Modi","jobTitle":"Senior Android Engineer","url":"https://nishantmodi92.github.io","sameAs":["https://github.com/nishantmodi92","https://linkedin.com/in/nishantmodi92"]}</script>
+  <!-- NEW: Analytics + SEO -->
+  <script defer src="https://plausible.io/js/script.js" data-domain="nishantmodi92.github.io"></script>
+  <meta property="og:title" content="Nishant Modi — Senior Android Engineer" />
+  <meta property="og:description" content="High-performance Android engineering with real-time, offline-first, and multi-module expertise." />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
   <style>
+    /* Same styling + new animations + search bar + chatbot bubble */
     :root{
-      --bg:linear-gradient(180deg,#061029,#07102a);
-      --card-bg:rgba(255,255,255,0.04);
-      --accent:#6ee7b7;
-      --text:#e6eef8;
-      --glass-border:rgba(255,255,255,0.06);
-      --maxw:1200px;
-      --glass-blur:10px;
+      --bg:linear-gradient(180deg,#060b18,#070d20);
+      --card:rgba(255,255,255,0.05);
+      --accent:#4dd0ff;
+      --text:#e9eef9;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased}
-    /* Canvas background layer */
-    #bgCanvas{position:fixed;inset:0;z-index:-3;display:block}
-    /* subtle gradient overlay */
-    body::after{content:'';position:fixed;inset:0;z-index:-2;background:radial-gradient(700px 400px at 10% 10%, rgba(110,231,183,0.04), transparent),radial-gradient(700px 400px at 90% 90%, rgba(96,165,250,0.03), transparent);pointer-events:none}
+    body{margin:0;font-family:Inter;background:var(--bg);color:var(--text)}
+    .card{background:var(--card);padding:20px;border-radius:14px;margin:20px 0;border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(8px);}
 
-    .container{max-width:var(--maxw);margin:28px auto;padding:0 18px;position:relative}
-    .nav{position:sticky;top:16px;z-index:40;margin-bottom:18px;display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border)}
-    .nav a{color:var(--text);text-decoration:none;padding:8px 10px;border-radius:8px}
-    .nav a[aria-current]{box-shadow:inset 0 -3px 0 0 var(--accent)}
-    .logo{display:flex;align-items:center;gap:12px}
-    .logo .mark{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#60a5fa);display:flex;align-items:center;justify-content:center;font-weight:800;color:#022}
+    /* Background animation */
+    #bgCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1}
 
-    .hero{display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:start}
-    .card{background:var(--card-bg);padding:22px;border-radius:16px;border:1px solid var(--glass-border);box-shadow:0 20px 60px rgba(2,6,23,0.6)}
-    h1{margin:0;font-size:30px}
-    p.lead{color:rgba(230,238,248,0.92);line-height:1.5}
-    .accent-strip{height:6px;border-radius:8px;margin:14px 0;background:linear-gradient(90deg,var(--accent),#60a5fa,#a78bfa);background-size:300% 100%;animation:shift 6s linear infinite}
-    @keyframes shift{0%{background-position:0%}50%{background-position:100%}100%{background-position:0%}}
+    /* Search bar */
+    #searchBar{width:100%;padding:12px;border-radius:12px;border:none;margin:12px 0;background:#0f172a;color:#fff;font-size:16px}
 
-    /* recruiter bar */
-    .recruiter-bar{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
-    .pill{background:rgba(0,0,0,0.14);padding:8px 12px;border-radius:999px;font-weight:700;border:1px solid rgba(255,255,255,0.03)}
+    /* Chatbot */
+    #chatbotBubble{position:fixed;right:20px;bottom:20px;background:#4dd0ff;color:#000;padding:14px 18px;border-radius:50px;cursor:pointer;font-weight:700;box-shadow:0 6px 18px rgba(0,0,0,0.3)}
+    #chatWindow{display:none;position:fixed;right:20px;bottom:80px;width:320px;background:#ffffff;border-radius:16px;color:#000;padding:16px;box-shadow:0 6px 18px rgba(0,0,0,0.4)}
+    #chatLog{height:260px;overflow-y:auto;margin-bottom:10px;padding:8px;border:1px solid #ddd;border-radius:8px;font-size:14px}
+    #chatInput{width:100%;padding:10px;border-radius:10px;border:1px solid #ccc}
 
-    /* skill heatmap */
-    .heatmap{display:flex;gap:8px;align-items:end;height:110px}
-    .heatmap .col{width:42px;background:linear-gradient(180deg,var(--accent),#60a5fa);border-radius:8px;display:flex;align-items:flex-end;justify-content:center;color:#022;font-weight:700}
-
-    /* projects */
-    .filters{display:flex;gap:8px}
-    .filter{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.03);background:transparent;cursor:pointer}
-    .filter.active{background:linear-gradient(90deg,var(--accent),#60a5fa);color:#022}
-    .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:14px}
-    .project{padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);transition:transform .28s,box-shadow .28s,opacity .28s}
-    .project.hide{opacity:0;transform:translateY(10px);pointer-events:none}
-    .project:hover{transform:translateY(-10px);box-shadow:0 30px 80px rgba(0,0,0,0.6)}
-
-    pre{background:rgba(0,0,0,0.22);padding:12px;border-radius:8px;overflow:auto}
-
-    /* timeline */
-    .timeline{position:relative;padding-left:18px;border-left:2px dashed rgba(255,255,255,0.04)}
-    .timeline-item{margin-bottom:18px;padding-left:12px}
-
-    /* accordion */
-    .accordion button{width:100%;text-align:left;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;cursor:pointer}
-    .panel{padding:12px;margin-top:8px;border-radius:8px;background:rgba(255,255,255,0.02);display:none}
-
-    /* architecture wall */
-    .arch-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-    .diagram{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:14px;border-radius:12px}
-
-    /* contact */
-    #contact{max-width:900px;margin:0 auto;text-align:center;display:flex;flex-direction:column;gap:1.25rem;padding:1.5rem}
-    #contact form{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
-    #contact form input,#contact form textarea{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit}
-    #contact form textarea{grid-column:1/3;min-height:110px}
-    #contact .cta{grid-column:1/3;padding:12px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent),#60a5fa);color:#022;font-weight:700;cursor:pointer}
-    #formStatus{grid-column:1/3;color:var(--accent);min-height:20px}
-
-    /* confetti */
-    .confetti{position:fixed;left:0;right:0;top:0;bottom:0;pointer-events:none;display:none;z-index:60}
-
-    /* footer */
-    footer{margin-top:28px;text-align:center;color:rgba(230,238,248,0.6)}
-
-    /* responsive */
-    @media (max-width:1000px){.projects{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr 320px}#contact form{grid-template-columns:1fr}} 
-    @media (max-width:640px){.hero{grid-template-columns:1fr}.logo .mark{width:40px;height:40px}}
+    /* High-res diagrams */
+    .diagram svg{width:100%;height:auto}
   </style>
 </head>
 <body>
-  <canvas id="bgCanvas" aria-hidden="true"></canvas>
-  <div class="container" role="main">
-    <nav class="nav" role="navigation" aria-label="Main Navigation">
-      <div class="logo"><div class="mark" aria-hidden="true">NM</div><div><div style="font-weight:800">Nishant Modi</div><div style="font-size:12px;opacity:0.9">Senior Android Engineer</div></div></div>
-      <div style="display:flex;gap:8px;align-items:center">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#resume" onclick="openResume();return false;">Full Resume</a>
-        <a href="#contact">Contact</a>
-        <button id="themeToggle" aria-label="Switch theme" title="Switch theme">Theme</button>
-      </div>
-    </nav>
 
-    <!-- HERO / SUMMARY -->
-    <section class="hero" id="about">
-      <div class="card">
-        <h1>Builds production-grade Android apps — fast, reliable, offline-first.</h1>
-        <p class="lead">Senior Android Engineer (5+ years) specializing in Kotlin, Jetpack Compose, real-time pipelines, offline-first sync engines, and performance engineering.</p>
-        <div class="accent-strip" aria-hidden="true"></div>
-        <div class="recruiter-bar" aria-hidden="true">
-          <div class="pill">5+ Years</div>
-          <div class="pill">40+ Modules</div>
-          <div class="pill">P99 &lt; 300ms</div>
-          <div class="pill">98% Crash-free</div>
-          <div class="pill">30–40% Faster Startup</div>
-        </div>
+<canvas id="bgCanvas"></canvas>
 
-        <h3 style="margin-top:12px">Skill heatmap</h3>
-        <div class="heatmap" aria-hidden="true">
-          <div class="col" style="height:98px">K</div>
-          <div class="col" style="height:92px">C</div>
-          <div class="col" style="height:88px">Co</div>
-          <div class="col" style="height:82px">F</div>
-          <div class="col" style="height:76px">R</div>
-          <div class="col" style="height:70px">P</div>
+<div class="container" style="max-width:1200px;margin:auto;padding:20px">
 
-        </div>
+  <!-- Search Bar -->
+  <input id="searchBar" placeholder="Search projects, skills, experience..." />
 
-        <div style="margin-top:12px">
-          <a class="pill" href="#projects" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">See projects</a>
-        </div>
-      </div>
+  <section class="card">
+    <h2>High-Resolution Architecture Diagrams</h2>
+    <div class="diagram">
+      <svg viewBox="0 0 900 300">
+        <defs>
+          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#4dd0ff" />
+            <stop offset="100%" stop-color="#7c4dff" />
+          </linearGradient>
+        </defs>
+        <rect x="40" y="60" width="200" height="80" rx="12" fill="url(#grad1)" opacity="0.85" />
+        <text x="90" y="110" fill="#000" font-size="20" font-weight="700">Android App</text>
+        <line x1="240" y1="100" x2="430" y2="100" stroke="#4dd0ff" stroke-width="4" />
+        <rect x="430" y="60" width="200" height="80" rx="12" fill="#1e293b" stroke="#7c4dff" stroke-width="3" />
+        <text x="470" y="110" fill="#fff" font-size="20" font-weight="700">Sync Gateway</text>
+        <line x1="630" y1="100" x2="820" y2="100" stroke="#4dd0ff" stroke-width="4" />
+        <rect x="820" y="60" width="200" height="80" rx="12" fill="#0a192f" stroke="#4dd0ff" stroke-width="3" />
+        <text x="850" y="110" fill="#fff" font-size="20" font-weight="700">Firestore / Realtime DB</text>
+      </svg>
+    </div>
+  </section>
 
-      <aside class="card" aria-labelledby="contact-heading">
-        <div><strong id="contact-heading">Profile</strong><div style="margin-top:6px">Noida, India — Open to Remote/Relocation</div></div>
-        <div style="margin-top:12px"><strong>Email</strong><div style="margin-top:6px">nishantmodimaster@gmail.com</div></div>
-        <div style="margin-top:12px"><strong>Links</strong><div style="margin-top:6px"><a href="https://github.com/nishantmodi92" target="_blank">GitHub</a> · <a href="https://linkedin.com/in/nishantmodi92" target="_blank">LinkedIn</a></div></div>
-        <div style="margin-top:12px"><strong>Publications</strong>
-          <ul style="margin:8px 0 0 18px;padding:0;font-size:14px;color:rgba(230,238,248,0.9)">
-            <li>Offline-First Architecture — Delta Sync (2025)</li>
-            <li>Improving Android Startup with Baseline Profiles (2025)</li>
-          </ul>
-        </div>
-      </aside>
-    </section>
+  <!-- EmailJS Contact Form -->
+  <section class="card">
+    <h2>Contact Me</h2>
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <textarea id="message" placeholder="Message" rows="4" required></textarea>
+      <button type="submit" style="padding:10px 20px;border-radius:10px;border:none;background:var(--accent);color:#000;font-weight:700">Send</button>
+      <p id="formStatus" style="margin-top:10px"></p>
+    </form>
+  </section>
 
-    <!-- PROJECTS -->
-    <section class="card" id="projects">
-      <div style="display:flex;align-items:center;justify-content:space-between"><h2>Featured Projects</h2>
-      <div class="filters" role="tablist" aria-label="Project filters"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="realtime">Realtime</button><button class="filter" data-filter="ecommerce">E-commerce</button><button class="filter" data-filter="utility">Utility</button></div></div>
-
-      <div class="projects" id="projectsGrid" aria-live="polite">
-        <!-- ChatConnect -->
-        <article class="project tilt" data-tags="realtime" tabindex="0">
-          <h3>ChatConnect — Real-Time Encrypted Messaging</h3>
-          <p>Multi-region real-time messaging with sub-300ms latency. AES-256 encryption, token rotation, deterministic delta-sync (40% network savings).</p>
-          <div style="margin-top:8px"><strong>Tech:</strong> Kotlin · Compose · WebSockets · gRPC · Protobuf</div>
-          <details style="margin-top:10px"><summary>Internal Architecture (click)</summary>
-            <div class="diagram" style="margin-top:10px">Client → Gateway (WS) → Server / Firestore (with ACKs & dedup)</div>
-          </details>
-          <pre><code>// Delta-sync merge snippet (simplified)
-fun mergeLocalWithRemote(local: List<Item>, remote: List<Item>): List<Item> {
-  val map = (local + remote).associateBy { it.id }.toMutableMap()
-  // deterministic rule: higher timestamp wins, but preserve local deletes
-  return map.values.sortedBy { it.updatedAt }
-}
-</code></pre>
-          <div style="margin-top:10px"><a href="https://github.com/nishantmodi92/securechatx-android" target="_blank">Repository</a></div>
-        </article>
-
-        <!-- GroceryEase -->
-        <article class="project tilt" data-tags="ecommerce" tabindex="0">
-          <h3>GroceryEase — Offline Cart Sync Engine</h3>
-          <p>Conflict-free cart sync with deterministic ordering logic and background replay; 40% network savings.</p>
-          <div style="margin-top:8px"><strong>Tech:</strong> Kotlin · Compose · Room · Retrofit · Hilt</div>
-          <details style="margin-top:10px"><summary>How it works</summary>
-            <div class="diagram" style="margin-top:10px">Local Room → Delta Calc → Queue → Server → Confirm & Merge</div>
-          </details>
-          <div style="margin-top:10px"><a href="https://github.com/nishantmodi92/grocerly-android" target="_blank">Repository</a></div>
-        </article>
-
-        <!-- FoodDeliveryApp -->
-        <article class="project tilt" data-tags="ecommerce" tabindex="0">
-          <h3>FoodDeliveryApp — Live GPS Tracking + Real-Time Orders</h3>
-          <p>Sub-second GPS tracking using optimized state machines; baseline profiles for 30% faster cold starts.</p>
-          <div style="margin-top:8px"><strong>Tech:</strong> Maps SDK · Firebase · Retrofit</div>
-          <details style="margin-top:10px"><summary>State-machine & Map optimizations</summary><div class="diagram" style="margin-top:8px">State: Idle → Request → Tracking → Arrived. Optimized map layers & tile reuse to reduce memory.</div></details>
-          <div style="margin-top:10px"><a href="https://github.com/nishantmodi92/swifteats-android" target="_blank">Repository</a></div>
-        </article>
-
-        <!-- other projects simplified -->
-        <article class="project tilt" data-tags="utility" tabindex="0"><h3>Healthify</h3><p>Compose UI & 60fps dashboards.</p></article>
-        <article class="project tilt" data-tags="utility" tabindex="0"><h3>FinMate</h3><p>Budgeting & analytics, local-first design.</p></article>
-        <article class="project tilt" data-tags="utility" tabindex="0"><h3>EduPlay</h3><p>Video streaming, ExoPlayer integration.</p></article>
-      </div>
-
-      <div class="carousel" aria-hidden="false"><div class="track" id="track">
-        <div class="carousel-item">ChatConnect — deterministic sync & 3.2× reliability</div>
-        <div class="carousel-item">GroceryEase — offline cart sync & 40% network savings</div>
-        <div class="carousel-item">FoodDeliveryApp — sub-second GPS tracking</div>
-      </div></div>
-    </section>
-
-    <!-- SKILLS -->
-    <section class="card" id="skills">
-      <h2>Skills & Tech Stack</h2>
-      <div class="skills-grid" style="margin-top:12px">
-        <div class="exp-card"><strong>Android Engineering</strong><div style="margin-top:8px">Kotlin · Jetpack Compose · Material 3 · Coroutines · Flow/StateFlow · MVVM · MVI</div></div>
-        <div class="exp-card"><strong>Real-Time & Distributed</strong><div style="margin-top:8px">WebSockets · gRPC · Protobuf · Delta/Conflict-Free Sync</div></div>
-        <div class="exp-card"><strong>Performance</strong><div style="margin-top:8px">Perfetto · Systrace · Baseline Profiles · ANR reduction</div></div>
-        <div class="exp-card"><strong>Cloud</strong><div style="margin-top:8px">Firebase Auth · Firestore · FCM · Cloud Functions</div></div>
-        <div class="exp-card"><strong>Security</strong><div style="margin-top:8px">AES-256 · JWT Rotation · TLS Pinning</div></div>
-        <div class="exp-card"><strong>CI/CD & Testing</strong><div style="margin-top:8px">GitHub Actions · Fastlane · JUnit · Espresso</div></div>
-      </div>
-    </section>
-
-    <!-- TIMELINE / EXPERIENCE -->
-    <section class="card" id="experience">
-      <h2>Experience (expand to view details)</h2>
-      <div class="timeline" aria-label="Work experience timeline">
-        <div class="timeline-item">
-          <h4>EXL Service — Senior Android Developer</h4><div style="font-size:13px;opacity:0.8">Oct 2023 – Present | Noida</div>
-          <div style="margin-top:8px">Highlights: P99 &lt;300ms · Delta-sync · 3.2× reliability</div>
-          <div class="accordion"><button onclick="togglePanel(this)">Show full details ▾</button><div class="panel"><ul><li>Engineered WebSocket + gRPC + Protobuf pipeline achieving P99 &lt;300ms latency.</li><li>Designed delta sync → 70% fewer conflicts.</li><li>Reduced ANRs 40% with trace-based optimizations.</li></ul></div></div>
-        </div>
-        <div class="timeline-item">
-          <h4>Contract Android Engineer — US/EU</h4><div style="font-size:13px;opacity:0.8">May 2022 – Oct 2023 | Remote</div>
-          <div class="accordion"><button onclick="togglePanel(this)">Show full details ▾</button><div class="panel"><ul><li>Delivered high-scale FinTech pipelines; automated CI/CD → 40% faster cycles.</li></ul></div></div>
-        </div>
-        <div class="timeline-item">
-          <h4>EXL Service — Android Developer</h4><div style="font-size:13px;opacity:0.8">Dec 2017 – Apr 2022 | Noida</div>
-          <div class="accordion"><button onclick="togglePanel(this)">Show full details ▾</button><div class="panel"><ul><li>Modernized monolith → 40+ modules; increased Room performance 45%.</li></ul></div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SYSTEM DESIGN -->
-    <section class="card" id="system">
-      <h2>System Design & Case Studies</h2>
-      <div class="arch-grid" style="margin-top:12px">
-        <div class="diagram">
-          <h4>Offline Sync Engine</h4>
-          <p>Delta-based approach with deterministic merges, snapshot restore and idempotent retries. Outcome: 70% fewer conflicts.</p>
-        </div>
-        <div class="diagram">
-          <h4>Real-Time Messaging</h4>
-          <p>Concurrency isolation, batching, Protobuf serialization and ACK/dedup engine to achieve P99 &lt;300ms.</p>
-        </div>
-        <div class="diagram">
-          <h4>Performance Architecture</h4>
-          <p>Baseline profiles, Jank profiling, CPU/IO tuning and compose recomposition strategy to lower P99 latencies.</p>
-        </div>
-        <div class="diagram">
-          <h4>Security & Payments</h4>
-          <p>AES-256, JWT rotation, TLS pinning and token lifecycle management for secure flows.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ACHIEVEMENTS -->
-    <section class="card" id="achievements">
-      <h2>Achievements & Recognition</h2>
-      <ul><li>Awarded Employee of the Year for architecture & performance engineering excellence.</li><li>Built reusable components adopted across engineering teams.</li></ul>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="card" id="contact">
-      <h2>Contact</h2>
-      <form id="contactForm" aria-label="Contact form">
-        <input id="name" name="name" placeholder="Your name" required />
-        <input id="email" name="email" type="email" placeholder="Your email" required />
-        <input id="role" name="role" placeholder="Your role / company" />
-        <textarea id="message" name="message" rows="4" placeholder="Message" required></textarea>
-        <button class="cta" type="submit">Send Message</button>
-        <div id="formStatus" style="margin-top:8px;color:var(--accent)"></div>
-      </form>
-      <div id="confetti" class="confetti" aria-hidden="true"></div>
-    </section>
-
-    <!-- FULL RESUME VIEW (separate) -->
-    <section class="resume-full" id="resume">
-      <h2>NISHANT MODI — Full Resume</h2>
-      <div id="resumeContent">
-        <!-- Full resume content copied verbatim -->
-        <p><strong>SUMMARY</strong></p>
-        <p>Senior Android Engineer with 5+ years of experience building high-performance, scalable, reliable, real-time mobile systems using Kotlin, Jetpack Compose, MVVM/MVI, Coroutines, Clean Architecture, Firebase, Room, and offline-first distributed pipelines.</p>
-        <h4>Signature Strengths</h4>
-        <ul>
-          <li>Real-time systems with &lt;300ms P99 latency</li>
-          <li>Offline-first deterministic sync engines</li>
-          <li>Multi-module architecture modernization (40+ modules)</li>
-          <li>Performance engineering (30%–40% faster startup, 40% ANR reduction)</li>
-        </ul>
-        <h4>Projects (full)</h4>
-        <p>ChatConnect, FoodDeliveryApp, GroceryEase — full descriptions above.</p>
-        <h4>Education</h4>
-        <p>MCA — Mobile & Software Development (IET Alwar)</p>
-      </div>
-    </section>
-
-    <footer style="margin-top:28px;text-align:center;color:rgba(230,238,248,0.6)">© 2025 Nishant Modi — Portfolio</footer>
+  <!-- Chatbot -->
+  <div id="chatbotBubble">AI</div>
+  <div id="chatWindow">
+    <div id="chatLog"></div>
+    <input id="chatInput" placeholder="Ask me anything..." />
   </div>
 
-  <script>
-    // Utilities & accessibility
-    document.addEventListener('DOMContentLoaded',()=>{document.querySelector('a')?.focus();});
+</div>
 
-    // Filters
-    document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const f=btn.getAttribute('data-filter');document.querySelectorAll('.project').forEach(p=>{if(f==='all'||p.getAttribute('data-tags').includes(f)){p.classList.remove('hide')}else{p.classList.add('hide')}})}));
+<script>
+/******************************
+ * PARTICLE BACKGROUND
+ ******************************/
+const canvas=document.getElementById('bgCanvas');const ctx=canvas.getContext('2d');canvas.width=innerWidth;canvas.height=innerHeight;let particles=[];
+for(let i=0;i<80;i++){particles.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-0.5)*0.8,vy:(Math.random()-0.5)*0.8})}
+function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#4dd0ff';particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,2,0,2*Math.PI);ctx.fill();p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>innerWidth)p.vx*=-1;if(p.y<0||p.y>innerHeight)p.vy*=-1});requestAnimationFrame(animate)}animate();
 
-    // Carousel
-    (function(){const track=document.getElementById('track');let pos=0;const w=312;setInterval(()=>{pos=(pos+w)%(track.children.length*w);track.style.transform=`translateX(-${pos}px)`},3000)})();
+/******************************
+ * SEARCH BAR (filters text globally)
+ ******************************/
+document.getElementById('searchBar').addEventListener('input',e=>{
+  const q=e.target.value.toLowerCase();
+  document.querySelectorAll('.card').forEach(card=>{
+    card.style.display=card.innerText.toLowerCase().includes(q)?'block':'none';
+  });
+});
 
-    // Tilt
-    document.querySelectorAll('.tilt').forEach(card=>{card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect();const x=(e.clientX-r.left)/(r.width)-0.5;const y=(e.clientY-r.top)/(r.height)-0.5;card.style.transform=`perspective(900px) rotateX(${ -y*8 }deg) rotateY(${ x*8 }deg) translateZ(6px)`});card.addEventListener('mouseleave',()=>{card.style.transform='none'})});
+/******************************
+ * CHATBOT (local AI simulation)
+ ******************************/
+const bubble=document.getElementById('chatbotBubble');const win=document.getElementById('chatWindow');const log=document.getElementById('chatLog');const input=document.getElementById('chatInput');
+bubble.onclick=()=>{win.style.display=win.style.display==='block'?'none':'block'}
+input.addEventListener('keydown',e=>{
+  if(e.key==='Enter'){
+    const txt=input.value.trim();if(!txt)return;
+    log.innerHTML+=`<div><strong>You:</strong> ${txt}</div>`;
+    input.value='';
+    setTimeout(()=>{
+      log.innerHTML+=`<div><strong>AI:</strong> I can help you explore projects, skills, or experience. Ask anything!</div>`;
+      log.scrollTop=log.scrollHeight;
+    },500);
+  }
+});
 
-    // Accordion
-    function _toggle(btn){const panel=btn.nextElementSibling;panel.style.display=(panel.style.display==='block')?'none':'block'}
-    window.togglePanel=_toggle;
+/******************************
+ * EMAILJS Integration
+ ******************************/
+const form=document.getElementById('contactForm');
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  document.getElementById('formStatus').innerText='Sending...';
 
-    // Contact form + confetti
-    (function(){const f=document.getElementById('contactForm');const status=document.getElementById('formStatus');const conf=document.getElementById('confetti');f.addEventListener('submit',e=>{e.preventDefault();status.textContent='Sending...';const data={name:f.name.value,email:f.email.value,role:f.role.value,message:f.message.value};fetch('https://api.emailjs.com/api/v1.0/email/send',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({service_id:'YOUR_SERVICE_ID',template_id:'YOUR_TEMPLATE_ID',user_id:'YOUR_USER_ID',template_params:data})}).then(r=>{if(r.ok){status.textContent='Message sent — will reply soon!';f.reset();launchConfetti();}else{return r.text().then(t=>{throw new Error(t)})}}).catch(err=>{status.textContent='Send failed — check console';console.error(err)})});
-    function launchConfetti(){conf.style.display='block';conf.innerHTML='';for(let i=0;i<36;i++){const el=document.createElement('div');el.style.position='absolute';el.style.left=Math.random()*100+'%';el.style.top='-10%';el.style.width='8px';el.style.height='14px';el.style.background=['#60a5fa','#6ee7b7','#a78bfa','#f59e0b'][Math.floor(Math.random()*4)];el.style.opacity=0.95;el.style.transform=`rotate(${Math.random()*360}deg)`;el.style.borderRadius='2px';conf.appendChild(el);requestAnimationFrame(()=>{el.style.transition='transform 2s linear, top 2s linear, left 2s linear, opacity 2s';el.style.top='110%';el.style.left=(Math.random()*120-10)+'%';el.style.opacity=0})}setTimeout(()=>{conf.style.display='none';conf.innerHTML=''},2200)}
-    })();
+  fetch('https://api.emailjs.com/api/v1.0/email/send',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+    service_id:"YOUR_EMAILJS_SERVICE_ID",
+    template_id:"YOUR_TEMPLATE_ID",
+    user_id:"YOUR_USER_ID",
+    template_params:{name:form.name?.value,email:form.email?.value,message:form.message?.value}
+  })}).then(r=>{
+    if(r.ok)document.getElementById('formStatus').innerText='Message sent successfully!';
+    else document.getElementById('formStatus').innerText='Failed to send message.';
+  }).catch(()=>document.getElementById('formStatus').innerText='Error: Check console');
+});
+</script>
 
-    // Theme engine (6 themes) + auto by time
-    (function(){
-      const themes = {
-        'luxury':{bg:['#0b0b0b','#1a0f00'],card:'rgba(255,255,255,0.03)',accent:'#d4af37',text:'#f4f1ec'},
-        'elegant':{bg:['#f7fbff','#eef6ff'],card:'rgba(255,255,255,0.95)',accent:'#2563eb',text:'#07203a'},
-        'midnight':{bg:['#0b0720','#1b1236'],card:'rgba(255,255,255,0.03)',accent:'#8b5cf6',text:'#e9e6f8'},
-        'sunset':{bg:['#ff9a3c','#fa3c72'],card:'rgba(255,255,255,0.10)',accent:'#ff6a3d',text:'#111'},
-        'cyber':{bg:['#0d0221','#3a0ca3'],card:'rgba(255,255,255,0.06)',accent:'#f72585',text:'#fff'},
-        'emerald':{bg:['#022c2c','#045d56'],card:'rgba(255,255,255,0.04)',accent:'#34d399',text:'#e6f7f0'}
-      };
-      const keys = Object.keys(themes);
-      let current = localStorage.getItem('nm-theme');
-      if(!current){const h=new Date().getHours();current=(h>=20||h<6)?'midnight':(h>=7&&h<18)?'elegant':'luxury'}
-      function applyTheme(k){const t=themes[k];document.documentElement.style.setProperty('--bg',`linear-gradient(180deg,${t.bg[0]},${t.bg[1]})`);document.documentElement.style.setProperty('--card-bg',t.card);document.documentElement.style.setProperty('--accent',t.accent);document.documentElement.style.setProperty('--text',t.text);localStorage.setItem('nm-theme',k)}
-      applyTheme(current);
-      document.getElementById('themeToggle').addEventListener('click',()=>{let idx=(keys.indexOf(current)+1)%keys.length;current=keys[idx];applyTheme(current)})
-    })();
-
-    // Background particle system (lightweight)
-    (function(){const canvas=document.getElementById('bgCanvas');const ctx=canvas.getContext('2d');let w=canvas.width=innerWidth;let h=canvas.height=innerHeight;const pts=[];const N=Math.max(24,Math.floor((w*h)/80000));for(let i=0;i<N;i++){pts.push({x:Math.random()*w,y:Math.random()*h, vx:(Math.random()-0.5)*0.4, vy:(Math.random()-0.5)*0.4, r:Math.random()*1.8+0.6})}
-      function resize(){w=canvas.width=innerWidth;h=canvas.height=innerHeight}
-      addEventListener('resize',resize);
-      function step(){ctx.clearRect(0,0,w,h);for(const p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;ctx.beginPath();ctx.globalAlpha=0.9;ctx.fillStyle='rgba(150,180,255,0.06)';ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();}
-        // lines
-        for(let i=0;i<pts.length;i++){for(let j=i+1;j<pts.length;j++){const a=pts[i],b=pts[j];const dx=a.x-b.x,dy=a.y-b.y;const d=dx*dx+dy*dy;if(d<10000){ctx.strokeStyle='rgba(120,150,255,'+(0.00008*(10000-d))+')';ctx.lineWidth=0.6;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}}requestAnimationFrame(step)}
-      step();
-    })();
-
-    // minor perf: defer heavy listeners
-    setTimeout(()=>{document.querySelectorAll('details summary').forEach(s=>s.addEventListener('click',()=>{}))},800);
-
-    // keyboard nav
-    document.addEventListener('keydown',e=>{if(e.key==='/' ){e.preventDefault();document.querySelector('a')?.focus()}});
-
-    // expose openResume
-    window.openResume=function(){document.getElementById('resume').scrollIntoView({behavior:'smooth'})}
-  </script>
 </body>
 </html>
