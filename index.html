@@ -441,5 +441,45 @@
     // entrance animation
     document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.card').forEach((c,i)=>{c.style.opacity=0;c.style.transform='translateY(8px)';setTimeout(()=>{c.style.transition='all .6s cubic-bezier(.2,.9,.2,1)';c.style.opacity=1;c.style.transform='translateY(0)'},120*i)})})
   </script>
-</body>
+<script>
+// MULTI-THEME ENGINE (NEON • GLASS • CARBON)
+const nmThemes = {
+  neon: {
+    '--bg-gradient': 'linear-gradient(135deg, #0a0f1f, #001f3f, #3b0756)',
+    '--card-bg': 'rgba(255,255,255,0.08)',
+    '--accent': '#8b5cf6',
+    '--text-color': '#ffffff'
+  },
+  glass: {
+    '--bg-gradient': 'linear-gradient(135deg, #e7f0fd, #d9e3f7)',
+    '--card-bg': 'rgba(255,255,255,0.55)',
+    '--accent': '#2563eb',
+    '--text-color': '#0f172a'
+  },
+  carbon: {
+    '--bg-gradient': 'linear-gradient(135deg, #0d0d0d, #1a1a1a)',
+    '--card-bg': 'rgba(255,255,255,0.05)',
+    '--accent': '#00eaff',
+    '--text-color': '#e5e5e5'
+  }
+};
+
+let nmCurrent = localStorage.getItem('nm-theme') || 'neon';
+applyNmTheme(nmCurrent);
+
+function applyNmTheme(name) {
+  const root = document.documentElement;
+  const t = nmThemes[name];
+  Object.keys(t).forEach(key => root.style.setProperty(key, t[key]));
+  localStorage.setItem('nm-theme', name);
+}
+
+const btn = document.getElementById('themeToggle');
+if (btn) {
+  btn.addEventListener('click', () => {
+    const keys = Object.keys(nmThemes);
+    let idx = keys.indexOf(nmCurrent);
+    idx = (idx + 1) % keys.length;
+    nmCurrent = keys[idx];
+    ap
 </html>
