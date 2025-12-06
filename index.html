@@ -442,7 +442,7 @@
     document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.card').forEach((c,i)=>{c.style.opacity=0;c.style.transform='translateY(8px)';setTimeout(()=>{c.style.transition='all .6s cubic-bezier(.2,.9,.2,1)';c.style.opacity=1;c.style.transform='translateY(0)'},120*i)})})
   </script>
 <script>
-// MULTI-THEME ENGINE (NEON • GLASS • CARBON)
+// MULTI‑THEME ENGINE (NEON • GLASS • CARBON)
 const nmThemes = {
   neon: {
     '--bg-gradient': 'linear-gradient(135deg, #0a0f1f, #001f3f, #3b0756)',
@@ -481,5 +481,9 @@ if (btn) {
     let idx = keys.indexOf(nmCurrent);
     idx = (idx + 1) % keys.length;
     nmCurrent = keys[idx];
-    ap
+    applyNmTheme(nmCurrent);
+  });
+}
+</script>
+</body>
 </html>
