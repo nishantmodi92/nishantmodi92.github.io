@@ -47,7 +47,7 @@
   <input id="searchBar" placeholder="Search projects, skills, experience..." />
 
   <section class="card">
-    <h2>High-Resolution Architecture Diagrams</h2>
+    <h2>High‑Resolution Architecture Diagrams</h2>
     <div class="diagram">
       <svg viewBox="0 0 900 300">
         <defs>
@@ -144,5 +144,41 @@ form.addEventListener('submit',e=>{
 });
 </script>
 
-</body>
+  <!-- AI Chatbot (OpenAI API Ready) -->
+  <script>
+    // Floating chatbot
+    const botBtn = document.createElement('div');
+    botBtn.id = 'chatbotButton';
+    botBtn.textContent = '🤖';
+    Object.assign(botBtn.style, {position:'fixed',right:'22px',bottom:'22px',background:'var(--accent)',color:'#000',padding:'14px',borderRadius:'50%',cursor:'pointer',fontSize:'22px',boxShadow:'0 4px 14px rgba(0,0,0,0.4)',zIndex:'999'});
+    document.body.appendChild(botBtn);
+
+    const chatBox = document.createElement('div');
+    chatBox.id = 'chatWindow';
+    Object.assign(chatBox.style,{position:'fixed',right:'22px',bottom:'90px',width:'320px',height:'420px',background:'var(--card-bg)',border:'1px solid rgba(255,255,255,0.1)',borderRadius:'12px',backdropFilter:'blur(8px)',display:'none',flexDirection:'column',zIndex:'999'});
+
+    chatBox.innerHTML = `
+      <div style="padding:12px;border-bottom:1px solid rgba(255,255,255,0.08);font-weight:700">Chat Assistant</div>
+      <div id="chatMessages" style="flex:1;overflow:auto;padding:12px;font-size:14px"></div>
+      <div style="padding:8px;display:flex;gap:6px">
+        <input id="chatInput" placeholder="Ask me..." style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.1)" />
+        <button id="chatSend" style="padding:8px 12px;border-radius:8px;background:var(--accent);color:#000;font-weight:700">Send</button>
+      </div>`;
+    document.body.appendChild(chatBox);
+
+    botBtn.onclick=()=>{chatBox.style.display = chatBox.style.display==='none'?'flex':'none'};
+
+    document.getElementById('chatSend').onclick=()=>{
+      const input=document.getElementById('chatInput');
+      const text=input.value.trim();
+      if(!text)return;
+      const msgBox=document.getElementById('chatMessages');
+      msgBox.innerHTML+=`<div style='margin-bottom:8px'><strong>You:</strong> ${text}</div>`;
+      input.value='';
+      msgBox.scrollTop=msgBox.scrollHeight;
+
+      setTimeout(()=>{
+        msgBox.innerHTML+=`<div style='margin-bottom:8px;color:var(--accent)'><strong>AI:</strong> I will answer your query soon. (API Ready)</div>`;
+        msgBox.scrollTop=msgBox.scrollHeight;
+      },600);
 </html>
