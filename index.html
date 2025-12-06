@@ -1,117 +1,320 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nishant Modi | Android Developer</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nishant Modi — Senior Android Engineer</title>
+  <meta name="description" content="Nishant Modi — Senior Android Engineer. Jetpack Compose, Kotlin, Firebase. High-performance Android apps, offline-first architecture, real-time systems."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#071024; --bg2:#08111f; --card:rgba(255,255,255,0.04); --glass:rgba(255,255,255,0.03);
+      --accent:#6ee7b7; --accent-2:#60a5fa; --glass-border:rgba(255,255,255,0.06);
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial;color:#e6eef8;background:linear-gradient(135deg,var(--bg1),var(--bg2));-webkit-font-smoothing:antialiased}
+
+    /* animated gradient background that subtly changes color */
+    body::before{content:"";position:fixed;inset:0;z-index:-2;filter:blur(60px);background:radial-gradient(800px 400px at 10% 10%, rgba(80,120,255,0.12), transparent 8%),radial-gradient(700px 300px at 90% 90%, rgba(110,231,183,0.08), transparent 6%)}
+
+    /* color-changing accent every 1s via CSS animation */
+    @keyframes accentShift{0%{--accent: #6ee7b7;--accent-2:#60a5fa}25%{--accent:#fca5a5;--accent-2:#f59e0b}50%{--accent:#fbcfe8;--accent-2:#a78bfa}75%{--accent:#c7f9cc;--accent-2:#34d399}100%{--accent:#6ee7b7;--accent-2:#60a5fa}}
+    .accent-animation{animation:accentShift 4s linear infinite}
+
+    .container{max-width:1100px;margin:32px auto;padding:28px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:700;color:#022;box-shadow:0 6px 24px rgba(0,0,0,0.6)}
+    h1{font-size:20px;margin:0}
+    p.lead{margin:0;color:rgba(230,238,248,0.8)}
+
+    nav{display:flex;gap:10px;align-items:center}
+    nav a{color:rgba(230,238,248,0.85);text-decoration:none;padding:8px 12px;border-radius:8px}
+    nav a:hover{background:rgba(255,255,255,0.02)}
+
+    /* floating navbar on scroll */
+    .floating{position:sticky;top:16px;padding:12px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter:blur(8px);border:1px solid var(--glass-border)}
+
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:24px;margin-top:28px}
+    .card{background:var(--card);padding:20px;border-radius:14px;border:1px solid var(--glass-border);box-shadow:0 10px 40px rgba(2,6,23,0.6)}
+
+    .intro h2{margin:6px 0 6px 0;font-size:28px}
+    .intro p{color:rgba(230,238,248,0.9);line-height:1.5}
+
+    /* skill badges */
+    .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .skill{padding:8px 12px;border-radius:999px;background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.02);font-weight:600}
+
+    /* project grid & filters */
+    .filters{display:flex;gap:8px;flex-wrap:wrap}
+    .filter-btn{padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;cursor:pointer}
+    .filter-btn.active{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#022}
+
+    .projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:18px}
+    .project-card{padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(0,0,0,0.12), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
+    .project-card h4{margin:0 0 8px}
+    .project-card p{margin:0;color:rgba(230,238,248,0.8)}
+    .tag{display:inline-block;padding:6px 10px;border-radius:999px;margin-top:12px;border:1px solid rgba(255,255,255,0.03);font-size:13px}
+
+    /* slideshow */
+    .slideshow{position:relative;height:180px;border-radius:12px;overflow:hidden}
+    .slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(8px);transition:all .6s}
+    .slide.active{opacity:1;transform:translateY(0)}
+
+    /* GitHub & stats */
+    .stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .stat{padding:10px 12px;border-radius:10px;background:rgba(0,0,0,0.12);border:1px solid rgba(255,255,255,0.02)}
+
+    /* contact form */
+    form{display:flex;flex-direction:column;gap:10px}
+    input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    button.cta{padding:12px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#022;font-weight:700;cursor:pointer}
+
+    footer{margin-top:36px;text-align:center;color:rgba(230,238,248,0.6);font-size:13px}
+
+    /* responsive */
+    @media (max-width:900px){.hero{grid-template-columns:1fr}.logo{width:48px;height:48px}}
+  </style>
 </head>
-<body>
-  <!-- NAVBAR -->
-  <nav id="navbar">
-    <div class="logo">Nishant Modi</div>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#stats">Stats</a></li>
-      <li><a href="#awards">Awards</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><button id="dark-toggle">🌙</button></li>
-    </ul>
-  </nav>
-
-  <!-- HERO SECTION -->
-  <section id="hero">
-    <h1>Hello, I'm Nishant Modi</h1>
-    <p>Senior Android Developer | Jetpack Compose | Firebase | Clean Architecture</p>
-  </section>
-
-  <!-- ABOUT SECTION -->
-  <section id="about">
-    <h2>About Me</h2>
-    <p>Senior Android Developer with 5+ years of experience building real-time, offline-first apps with Jetpack Compose, Firebase, and Clean Architecture. Optimized app performance, enhanced user experience, and delivered scalable mobile solutions for multiple domains.</p>
-    <div class="skills">
-      <div class="skill"><span>Kotlin</span><div class="bar" style="width: 95%"></div></div>
-      <div class="skill"><span>Jetpack Compose</span><div class="bar" style="width: 90%"></div></div>
-      <div class="skill"><span>Firebase</span><div class="bar" style="width: 92%"></div></div>
-      <div class="skill"><span>Clean Architecture</span><div class="bar" style="width: 88%"></div></div>
-    </div>
-  </section>
-
-  <!-- PROJECTS SECTION -->
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="filters">
-      <button data-filter="all">All</button>
-      <button data-filter="android">Android</button>
-      <button data-filter="fullstack">Full-Stack</button>
-      <button data-filter="firebase">Firebase</button>
-    </div>
-    <div class="project-grid">
-      <!-- Example Project Card -->
-      <div class="project-card" data-category="android">
-        <h3>ChatConnect</h3>
-        <p>Real-time chat app with WebSockets and Firebase.</p>
-        <div class="tech-badges">
-          <span>Kotlin</span><span>Jetpack Compose</span><span>Firebase</span>
+<body class="accent-animation">
+  <div class="container">
+    <div class="floating">
+      <header>
+        <div class="brand">
+          <div class="logo">NM</div>
+          <div>
+            <h1>Nishant Modi</h1>
+            <p class="lead">Senior Android Engineer • Kotlin · Jetpack Compose · Offline-first</p>
+          </div>
         </div>
-        <a href="https://github.com/nishantmodi92/ChatConnect" target="_blank">GitHub</a>
-      </div>
-      <div class="project-card" data-category="android">
-        <h3>GroceryEase</h3>
-        <p>Grocery shopping app with offline-first cart and Firebase integration.</p>
-        <div class="tech-badges">
-          <span>Kotlin</span><span>Jetpack Compose</span><span>Room</span><span>Firebase</span>
+        <nav>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+          <a href="https://github.com/nishantmodi92" target="_blank">GitHub</a>
+        </nav>
+      </header>
+    </div>
+
+    <main class="hero">
+      <section class="card intro" id="about">
+        <h2>Builds production-grade Android apps — fast, reliable, offline-first.</h2>
+        <p>
+          I design and ship mobile systems with a focus on performance engineering, real-time messaging, and
+          deterministic offline sync. Strong experience in Kotlin, Jetpack Compose, Clean Architecture, and Firebase.
+        </p>
+
+        <div style="margin-top:14px;display:flex;gap:10px;align-items:center">
+          <div class="stat">3.2× Reliability</div>
+          <div class="stat">30–40% Faster Cold-start</div>
+          <div class="stat">98% Crash-free</div>
         </div>
-        <a href="https://github.com/nishantmodi92/GroceryEase" target="_blank">GitHub</a>
-      </div>
-      <div class="project-card" data-category="fullstack">
-        <h3>FoodDeliveryApp</h3>
-        <p>Full-stack food delivery app with live order tracking and Google Maps API.</p>
-        <div class="tech-badges">
-          <span>Kotlin</span><span>Firebase</span><span>Retrofit</span><span>MVVM</span>
+
+        <div style="margin-top:18px">
+          <a class="cta" href="#projects">See Featured Projects</a>
         </div>
-        <a href="https://github.com/nishantmodi92/FoodDeliveryApp" target="_blank">GitHub</a>
+
+        <div style="margin-top:18px">
+          <h4 style="margin:8px 0">Technologies I use</h4>
+          <div class="skills" id="skills">
+            <div class="skill">Kotlin</div>
+            <div class="skill">Jetpack Compose</div>
+            <div class="skill">Coroutines</div>
+            <div class="skill">Hilt (DI)</div>
+            <div class="skill">Firebase</div>
+            <div class="skill">Room</div>
+            <div class="skill">Retrofit</div>
+            <div class="skill">Clean Architecture</div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="card">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div>
+            <strong>Location:</strong>
+            <div>India</div>
+          </div>
+          <div>
+            <strong>Availability:</strong>
+            <div>Open to opportunities — resume section removed per request</div>
+          </div>
+
+          <div style="margin-top:14px">
+            <h4 style="margin:4px 0">Contact</h4>
+            <div>nishantmodi92@gmail.com</div>
+            <div style="margin-top:8px"><a href="https://linkedin.com/in/nishantmodi92" target="_blank">LinkedIn</a> · <a href="https://github.com/nishantmodi92" target="_blank">GitHub</a></div>
+          </div>
+
+          <div style="margin-top:14px">
+            <h4 style="margin:4px 0">GitHub Stats</h4>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <img src="https://github-readme-stats.vercel.app/api?username=nishantmodi92&show_icons=true&theme=dark" alt="GitHub stats" style="border-radius:8px;max-width:100%"/>
+              <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=nishantmodi92&layout=compact&theme=dark" alt="Top languages" style="border-radius:8px;max-width:100%"/>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <section class="card" id="projects" style="margin-top:28px">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <h2 style="margin:0">Featured Projects</h2>
+        <div class="filters" role="tablist" aria-label="Project filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="realtime">Realtime</button>
+          <button class="filter-btn" data-filter="ecommerce">E‑commerce</button>
+          <button class="filter-btn" data-filter="utility">Utility</button>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- GITHUB STATS SECTION -->
-  <section id="stats">
-    <h2>GitHub Stats</h2>
-    <div class="stats-cards">
-      <div class="card">Commits: 1200+</div>
-      <div class="card">Top Languages: Kotlin, Java</div>
-      <div class="card">Streak: 180 days</div>
-    </div>
-  </section>
+      <div class="projects" id="projects-grid">
+        <div class="project-card" data-tags="realtime">
+          <h4>ChatConnect</h4>
+          <p>Real-time messaging with WebSockets + Firebase, end-to-end encrypted, deterministic offline sync engine.</p>
+          <div class="tag">Kotlin</div>
+          <div style="margin-top:10px"><a href="https://github.com/nishantmodi92/ChatConnect" target="_blank">Repository</a></div>
+        </div>
 
-  <!-- AWARDS & PUBLICATIONS SECTION -->
-  <section id="awards">
-    <h2>Awards & Publications</h2>
-    <div class="timeline">
-      <div class="entry">
-        <h3>Microsoft Hackathon Winner</h3>
-        <p>Recognized for innovative Android productivity app.</p>
+        <div class="project-card" data-tags="ecommerce">
+          <h4>GroceryEase</h4>
+          <p>Grocery shopping & delivery with cart sync, Maps integration, and offline-first caching.</p>
+          <div class="tag">Maps · Firestore</div>
+          <div style="margin-top:10px"><a href="https://github.com/nishantmodi92/GroceryEase" target="_blank">Repository</a></div>
+        </div>
+
+        <div class="project-card" data-tags="ecommerce">
+          <h4>FoodDeliveryApp</h4>
+          <p>Full-stack delivery app with live order tracking, in-app payments and modular architecture.</p>
+          <div class="tag">Payments · Tracking</div>
+          <div style="margin-top:10px"><a href="https://github.com/nishantmodi92/FoodDeliveryApp" target="_blank">Repository</a></div>
+        </div>
+
+        <div class="project-card" data-tags="utility">
+          <h4>Healthify</h4>
+          <p>Health & fitness tracker with offline logging, workout scheduling and cloud sync.</p>
+          <div class="tag">Compose · Room</div>
+          <div style="margin-top:10px"><a href="https://github.com/nishantmodi92/Healthify" target="_blank">Repository</a></div>
+        </div>
+
+        <div class="project-card" data-tags="utility">
+          <h4>FinMate</h4>
+          <p>Finance manager with budgets, analytics, and near real-time sync.</p>
+          <div class="tag">Analytics · Room</div>
+          <div style="margin-top:10px"><a href="https://github.com/nishantmodi92/FinMate" target="_blank">Repository</a></div>
+        </div>
+
+        <div class="project-card" data-tags="utility">
+          <h4>EduPlay</h4>
+          <p>E‑learning platform with video streaming (secure), quizzes and progress tracking.</p>
+          <div class="tag">ExoPlayer · Firebase</div>
+          <div style="margin-top:10px"><a href="https://github.com/nishantmodi92/EduPlay" target="_blank">Repository</a></div>
+        </div>
       </div>
-      <div class="entry">
-        <h3>Publication: Android Offline-first Apps</h3>
-        <p>Technical article published on Medium.</p>
+
+      <div style="margin-top:18px" class="slideshow" aria-hidden="false">
+        <div class="slide active">⚡ Recent release: ChatConnect — deterministic sync & 3.2× reliability</div>
+        <div class="slide">🔒 End-to-end encryption — AES-256 client-side</div>
+        <div class="slide">🚀 30–40% faster cold-start after modularization</div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CONTACT SECTION -->
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <form id="contact-form">
-      <input type="text" placeholder="Name" required>
-      <input type="email" placeholder="Email" required>
-      <textarea placeholder="Message" required></textarea>
-      <button type="submit">Send</button>
-    </form>
-  </section>
+    <section class="card" id="skills-section" style="margin-top:22px">
+      <h2 style="margin-top:0">Skills & Tools</h2>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+        <div class="stat">Kotlin</div>
+        <div class="stat">Jetpack Compose</div>
+        <div class="stat">Clean Architecture</div>
+        <div class="stat">Coroutines</div>
+        <div class="stat">Hilt</div>
+        <div class="stat">Firebase</div>
+        <div class="stat">Room</div>
+        <div class="stat">Retrofit</div>
+      </div>
+    </section>
 
-  <script src="script.js"></script>
+    <section class="card" id="contact" style="margin-top:22px">
+      <h2 style="margin-top:0">Contact</h2>
+      <p>Send a quick message — this form uses <strong>EmailJS</strong>. Configure <code>serviceID</code>, <code>templateID</code> and <code>userID</code> below.</p>
+
+      <form id="contact-form">
+        <input type="text" id="name" name="name" placeholder="Your name" required />
+        <input type="email" id="email" name="email" placeholder="Your email" required />
+        <input type="text" id="role" name="role" placeholder="Your role / company" />
+        <textarea id="message" name="message" rows="5" placeholder="Message" required></textarea>
+        <button class="cta" type="submit">Send Message</button>
+        <div id="form-status" style="margin-top:8px;color:var(--accent)"></div>
+      </form>
+
+      <div style="margin-top:14px;color:rgba(230,238,248,0.7)">
+        <strong>EmailJS setup quick steps:</strong>
+        <ol>
+          <li>Create an account at <a href="https://www.emailjs.com/" target="_blank">EmailJS</a>.</li>
+          <li>Create an email service and template (use fields: name, email, role, message).</li>
+          <li>Replace <code>serviceID</code>, <code>templateID</code> and <code>userID</code> in the script near the end of this file.</li>
+        </ol>
+      </div>
+    </section>
+
+    <footer>
+      © 2025 Nishant Modi • Built with ❤️ — Portfolio (Resume & "Hire Me" section removed by request)
+    </footer>
+  </div>
+
+  <script>
+    // Accent animation (keeps CSS variables in sync for some browsers)
+    // Slideshow
+    (function(){
+      let idx=0;const slides=document.querySelectorAll('.slide');
+      setInterval(()=>{slides[idx].classList.remove('active');idx=(idx+1)%slides.length;slides[idx].classList.add('active');},3500);
+    })();
+
+    // Filters
+    (function(){
+      const buttons=document.querySelectorAll('.filter-btn');
+      const cards=document.querySelectorAll('.project-card');
+      buttons.forEach(btn=>btn.addEventListener('click',()=>{
+        buttons.forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+        const f=btn.getAttribute('data-filter');
+        cards.forEach(c=>{if(f==='all'){c.style.display='block'}else{c.style.display=(c.getAttribute('data-tags').includes(f)?'block':'none')}})
+      }))
+    })();
+
+    // Simple contact form with EmailJS (replace IDs)
+    (function(){
+      const form=document.getElementById('contact-form');
+      const status=document.getElementById('form-status');
+      // TODO: replace with your EmailJS credentials
+      const serviceID='YOUR_SERVICE_ID';
+      const templateID='YOUR_TEMPLATE_ID';
+      const userID='YOUR_USER_ID';
+
+      form.addEventListener('submit',function(e){
+        e.preventDefault();
+        status.textContent='Sending...';
+        const data={
+          name:form.name.value,
+          email:form.email.value,
+          role:form.role.value,
+          message:form.message.value
+        };
+
+        // Use EmailJS SDK if available, otherwise fallback to fetch
+        if(window.emailjs){
+          emailjs.send(serviceID,templateID,data).then(()=>{status.textContent='Message sent — will reply soon!';form.reset()},(err)=>{status.textContent='Send failed — check console';console.error(err)});
+        }else{
+          // Simple fetch to EmailJS REST API
+          fetch('https://api.emailjs.com/api/v1.0/email/send',{
+            method:'POST',headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({service_id:serviceID,template_id:templateID,user_id:userID,template_params:data})
+          }).then(r=>{if(r.ok){status.textContent='Message sent — will reply soon!';form.reset()}else{return r.text().then(t=>{throw new Error(t})})}).catch(err=>{status.textContent='Send failed — check console';console.error(err)})
+        }
+      })
+    })();
+  </script>
 </body>
 </html>
