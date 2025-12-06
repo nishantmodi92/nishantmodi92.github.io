@@ -4,211 +4,191 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Nishant Modi — Senior Android Engineer</title>
-  <meta name="description" content="Nishant Modi — Senior Android Engineer. Jetpack Compose, Kotlin, Firebase. High-performance Android apps, offline-first architecture, real-time systems."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="description" content="Nishant Modi — Senior Android Engineer. Kotlin · Jetpack Compose · Firebase · Offline-first · Real-time systems."/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg1:#071024; --bg2:#08111f; --card:rgba(255,255,255,0.04); --glass:rgba(255,255,255,0.03);
-      --accent:#6ee7b7; --accent-2:#60a5fa; --glass-border:rgba(255,255,255,0.06);
-      color-scheme: dark;
+      --bg-dark:#061029;--panel:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.06);
+      --accent-a:#6ee7b7;--accent-b:#60a5fa;--accent-c:#a78bfa;--text:#e6eef8;
+      --glass-blur:10px;--card-radius:14px;
     }
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial;color:#e6eef8;background:linear-gradient(135deg,var(--bg1),var(--bg2));-webkit-font-smoothing:antialiased}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto;color:var(--text);background:radial-gradient(1200px 600px at 10% 10%, rgba(96,165,250,0.06), transparent), radial-gradient(900px 400px at 90% 90%, rgba(167,139,250,0.04), transparent), linear-gradient(180deg,var(--bg-dark),#07102a);-webkit-font-smoothing:antialiased}
 
-    /* animated gradient background that subtly changes color */
-    body::before{content:"";position:fixed;inset:0;z-index:-2;filter:blur(60px);background:radial-gradient(800px 400px at 10% 10%, rgba(80,120,255,0.12), transparent 8%),radial-gradient(700px 300px at 90% 90%, rgba(110,231,183,0.08), transparent 6%)}
-
-    /* color-changing accent every 1s via CSS animation */
-    @keyframes accentShift{0%{--accent: #6ee7b7;--accent-2:#60a5fa}25%{--accent:#fca5a5;--accent-2:#f59e0b}50%{--accent:#fbcfe8;--accent-2:#a78bfa}75%{--accent:#c7f9cc;--accent-2:#34d399}100%{--accent:#6ee7b7;--accent-2:#60a5fa}}
-    .accent-animation{animation:accentShift 4s linear infinite}
-
-    .container{max-width:1100px;margin:32px auto;padding:28px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    /* Top floating navbar */
+    .nav{position:sticky;top:18px;margin:20px auto;padding:12px 20px;max-width:1200px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter:blur(8px);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:space-between;gap:20px}
     .brand{display:flex;align-items:center;gap:14px}
-    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:700;color:#022;box-shadow:0 6px 24px rgba(0,0,0,0.6)}
-    h1{font-size:20px;margin:0}
-    p.lead{margin:0;color:rgba(230,238,248,0.8)}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent-a),var(--accent-b));display:flex;align-items:center;justify-content:center;font-weight:800;color:#022;box-shadow:0 10px 30px rgba(6,12,30,0.6)}
+    .nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:10px}
+    .nav a:hover{background:rgba(255,255,255,0.02)}
 
-    nav{display:flex;gap:10px;align-items:center}
-    nav a{color:rgba(230,238,248,0.85);text-decoration:none;padding:8px 12px;border-radius:8px}
-    nav a:hover{background:rgba(255,255,255,0.02)}
+    .container{max-width:1200px;margin:28px auto;padding:0 18px}
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:24px}
+    .card{background:var(--panel);padding:22px;border-radius:var(--card-radius);border:1px solid var(--glass-border);box-shadow:0 18px 60px rgba(2,6,23,0.6)}
+    .intro h1{margin:0;font-size:32px}
+    .intro p{color:rgba(230,238,248,0.85);line-height:1.5}
 
-    /* floating navbar on scroll */
-    .floating{position:sticky;top:16px;padding:12px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter:blur(8px);border:1px solid var(--glass-border)}
+    /* Animated accent strip */
+    .accent-strip{height:6px;border-radius:10px;margin:14px 0;background:linear-gradient(90deg,var(--accent-a),var(--accent-b),var(--accent-c));background-size:300% 100%;animation:slideBG 6s linear infinite}
+    @keyframes slideBG{0%{background-position:0%}50%{background-position:100%}100%{background-position:0%}}
 
-    .hero{display:grid;grid-template-columns:1fr 360px;gap:24px;margin-top:28px}
-    .card{background:var(--card);padding:20px;border-radius:14px;border:1px solid var(--glass-border);box-shadow:0 10px 40px rgba(2,6,23,0.6)}
+    .stats{display:flex;gap:10px;margin-top:16px}
+    .badge{background:rgba(0,0,0,0.16);padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
 
-    .intro h2{margin:6px 0 6px 0;font-size:28px}
-    .intro p{color:rgba(230,238,248,0.9);line-height:1.5}
+    /* skills */
+    .skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .skill{padding:8px 12px;border-radius:999px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02);font-weight:600}
 
-    /* skill badges */
-    .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-    .skill{padding:8px 12px;border-radius:999px;background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.02);font-weight:600}
+    /* projects */
+    .projects-header{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .filters{display:flex;gap:8px}
+    .filter{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.04);background:transparent;cursor:pointer}
+    .filter.active{background:linear-gradient(90deg,var(--accent-a),var(--accent-b));color:#022}
 
-    /* project grid & filters */
-    .filters{display:flex;gap:8px;flex-wrap:wrap}
-    .filter-btn{padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;cursor:pointer}
-    .filter-btn.active{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#022}
+    .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+    .project{padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);transform:translateY(0);transition:transform .28s ease,box-shadow .28s}
+    .project:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(6,12,30,0.6)}
+    .project h4{margin:0 0 8px}
+    .project p{margin:0;color:rgba(230,238,248,0.8)}
+    .project .tag{display:inline-block;padding:6px 10px;border-radius:999px;margin-top:12px;border:1px solid rgba(255,255,255,0.03);font-size:13px}
 
-    .projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:18px}
-    .project-card{padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(0,0,0,0.12), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
-    .project-card h4{margin:0 0 8px}
-    .project-card p{margin:0;color:rgba(230,238,248,0.8)}
-    .tag{display:inline-block;padding:6px 10px;border-radius:999px;margin-top:12px;border:1px solid rgba(255,255,255,0.03);font-size:13px}
+    /* 3D tilt */
+    .tilt{transform-style:preserve-3d;perspective:1000px}
 
-    /* slideshow */
-    .slideshow{position:relative;height:180px;border-radius:12px;overflow:hidden}
-    .slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(8px);transition:all .6s}
-    .slide.active{opacity:1;transform:translateY(0)}
+    /* slideshow / carousel (auto-scrolling) */
+    .carousel{margin-top:20px;overflow:hidden;border-radius:12px}
+    .carousel-track{display:flex;gap:12px;transition:transform .6s ease}
+    .carousel-item{min-width:320px;padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(0,0,0,0.14), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
 
-    /* GitHub & stats */
-    .stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .stat{padding:10px 12px;border-radius:10px;background:rgba(0,0,0,0.12);border:1px solid rgba(255,255,255,0.02)}
+    /* marquee */
+    .marquee{overflow:hidden;white-space:nowrap;border-radius:10px;padding:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02);margin-top:18px}
+    .marquee p{display:inline-block;padding-right:60px;animation:marq 18s linear infinite}
+    @keyframes marq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-    /* contact form */
+    /* contact */
     form{display:flex;flex-direction:column;gap:10px}
     input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
-    button.cta{padding:12px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#022;font-weight:700;cursor:pointer}
+    .cta{padding:12px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent-a),var(--accent-b));color:#022;font-weight:700;cursor:pointer}
 
-    footer{margin-top:36px;text-align:center;color:rgba(230,238,248,0.6);font-size:13px}
+    /* theme toggle small */
+    .theme-toggle{padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);cursor:pointer}
 
     /* responsive */
-    @media (max-width:900px){.hero{grid-template-columns:1fr}.logo{width:48px;height:48px}}
+    @media (max-width:1000px){.projects{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr} .carousel-item{min-width:260px}}
+    @media (max-width:640px){.projects{grid-template-columns:1fr}.nav{padding:10px}.logo{width:44px;height:44px}}
   </style>
 </head>
-<body class="accent-animation">
-  <div class="container">
-    <div class="floating">
-      <header>
-        <div class="brand">
-          <div class="logo">NM</div>
-          <div>
-            <h1>Nishant Modi</h1>
-            <p class="lead">Senior Android Engineer • Kotlin · Jetpack Compose · Offline-first</p>
-          </div>
-        </div>
-        <nav>
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#skills">Skills</a>
-          <a href="#contact">Contact</a>
-          <a href="https://github.com/nishantmodi92" target="_blank">GitHub</a>
-        </nav>
-      </header>
+<body>
+  <div class="nav">
+    <div class="brand">
+      <div class="logo">NM</div>
+      <div>
+        <div style="font-weight:700">Nishant Modi</div>
+        <div style="font-size:13px;opacity:0.9">Senior Android Engineer · Kotlin · Compose</div>
+      </div>
     </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-toggle" id="themeToggle">A/B/C</button>
+    </div>
+  </div>
 
-    <main class="hero">
-      <section class="card intro" id="about">
-        <h2>Builds production-grade Android apps — fast, reliable, offline-first.</h2>
-        <p>
-          I design and ship mobile systems with a focus on performance engineering, real-time messaging, and
-          deterministic offline sync. Strong experience in Kotlin, Jetpack Compose, Clean Architecture, and Firebase.
-        </p>
+  <div class="container">
+    <section class="hero">
+      <div class="card intro" id="about">
+        <h1>Builds production-grade Android apps — fast, reliable, offline-first.</h1>
+        <p>I design and ship mobile systems with a focus on performance engineering, real-time messaging, and deterministic offline sync. Strong experience in Kotlin, Jetpack Compose, Clean Architecture, and Firebase.</p>
 
-        <div style="margin-top:14px;display:flex;gap:10px;align-items:center">
-          <div class="stat">3.2× Reliability</div>
-          <div class="stat">30–40% Faster Cold-start</div>
-          <div class="stat">98% Crash-free</div>
+        <div class="accent-strip"></div>
+
+        <div class="stats">
+          <div class="badge">3.2× Reliability</div>
+          <div class="badge">30–40% Faster Cold-start</div>
+          <div class="badge">98% Crash-free</div>
         </div>
 
-        <div style="margin-top:18px">
-          <a class="cta" href="#projects">See Featured Projects</a>
+        <div class="skills" id="skills">
+          <div class="skill">Kotlin</div>
+          <div class="skill">Jetpack Compose</div>
+          <div class="skill">Coroutines</div>
+          <div class="skill">Hilt</div>
+          <div class="skill">Firebase</div>
+          <div class="skill">Room</div>
+          <div class="skill">Retrofit</div>
+          <div class="skill">Clean Architecture</div>
         </div>
 
-        <div style="margin-top:18px">
-          <h4 style="margin:8px 0">Technologies I use</h4>
-          <div class="skills" id="skills">
-            <div class="skill">Kotlin</div>
-            <div class="skill">Jetpack Compose</div>
-            <div class="skill">Coroutines</div>
-            <div class="skill">Hilt (DI)</div>
-            <div class="skill">Firebase</div>
-            <div class="skill">Room</div>
-            <div class="skill">Retrofit</div>
-            <div class="skill">Clean Architecture</div>
-          </div>
-        </div>
-      </section>
+        <div class="marquee" aria-hidden="true"><p>⚡ ChatConnect — deterministic sync · AES-256 · 3.2× reliability &nbsp; • &nbsp; 🚀 GroceryEase — offline cart sync & live tracking &nbsp; • &nbsp; 🍔 FoodDeliveryApp — payments & driver tracking</p></div>
 
-      <aside class="card">
-        <div style="display:flex;flex-direction:column;gap:12px">
-          <div>
-            <strong>Location:</strong>
-            <div>India</div>
-          </div>
-          <div>
-            <strong>Availability:</strong>
-            <div>Open to opportunities — resume section removed per request</div>
-          </div>
-
-          <div style="margin-top:14px">
-            <h4 style="margin:4px 0">Contact</h4>
-            <div>nishantmodi92@gmail.com</div>
-            <div style="margin-top:8px"><a href="https://linkedin.com/in/nishantmodi92" target="_blank">LinkedIn</a> · <a href="https://github.com/nishantmodi92" target="_blank">GitHub</a></div>
-          </div>
-
-          <div style="margin-top:14px">
-            <h4 style="margin:4px 0">GitHub Stats</h4>
-            <div style="display:flex;flex-direction:column;gap:8px">
-              <img src="https://github-readme-stats.vercel.app/api?username=nishantmodi92&show_icons=true&theme=dark" alt="GitHub stats" style="border-radius:8px;max-width:100%"/>
-              <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=nishantmodi92&layout=compact&theme=dark" alt="Top languages" style="border-radius:8px;max-width:100%"/>
-            </div>
-          </div>
-        </div>
-      </aside>
-    </main>
-
-    <section class="card" id="projects" style="margin-top:28px">
-      <div style="display:flex;align-items:center;justify-content:space-between">
-        <h2 style="margin:0">Featured Projects</h2>
-        <div class="filters" role="tablist" aria-label="Project filters">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="realtime">Realtime</button>
-          <button class="filter-btn" data-filter="ecommerce">E‑commerce</button>
-          <button class="filter-btn" data-filter="utility">Utility</button>
+        <div style="margin-top:14px">
+          <a class="cta" href="#projects">Explore Projects</a>
         </div>
       </div>
 
-      <div class="projects" id="projects-grid">
-        <div class="project-card" data-tags="realtime">
+      <aside class="card">
+        <div><strong>Location:</strong><div>India</div></div>
+        <div style="margin-top:14px"><strong>Contact</strong><div>nishantmodi92@gmail.com</div></div>
+        <div style="margin-top:14px"><strong>GitHub Stats</strong>
+          <div style="margin-top:10px"><img src="https://github-readme-stats.vercel.app/api?username=nishantmodi92&show_icons=true&theme=dark" style="border-radius:8px;max-width:100%"/></div>
+        </div>
+
+        <div style="margin-top:14px"><strong>Theme Preview</strong>
+          <div style="margin-top:8px;font-size:13px;opacity:0.9">Toggle to switch between three premium themes (Glass / Neon / Minimal)</div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="card" id="projects">
+      <div class="projects-header">
+        <h2 style="margin:0">Featured Projects</h2>
+        <div class="filters" role="tablist">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="realtime">Realtime</button>
+          <button class="filter" data-filter="ecommerce">E‑commerce</button>
+          <button class="filter" data-filter="utility">Utility</button>
+        </div>
+      </div>
+
+      <div class="projects" id="projectsGrid">
+        <div class="project tilt" data-tags="realtime">
           <h4>ChatConnect</h4>
           <p>Real-time messaging with WebSockets + Firebase, end-to-end encrypted, deterministic offline sync engine.</p>
           <div class="tag">Kotlin</div>
           <div style="margin-top:10px"><a href="https://github.com/nishantmodi92/ChatConnect" target="_blank">Repository</a></div>
         </div>
 
-        <div class="project-card" data-tags="ecommerce">
+        <div class="project tilt" data-tags="ecommerce">
           <h4>GroceryEase</h4>
           <p>Grocery shopping & delivery with cart sync, Maps integration, and offline-first caching.</p>
           <div class="tag">Maps · Firestore</div>
           <div style="margin-top:10px"><a href="https://github.com/nishantmodi92/GroceryEase" target="_blank">Repository</a></div>
         </div>
 
-        <div class="project-card" data-tags="ecommerce">
+        <div class="project tilt" data-tags="ecommerce">
           <h4>FoodDeliveryApp</h4>
           <p>Full-stack delivery app with live order tracking, in-app payments and modular architecture.</p>
           <div class="tag">Payments · Tracking</div>
           <div style="margin-top:10px"><a href="https://github.com/nishantmodi92/FoodDeliveryApp" target="_blank">Repository</a></div>
         </div>
 
-        <div class="project-card" data-tags="utility">
+        <div class="project tilt" data-tags="utility">
           <h4>Healthify</h4>
           <p>Health & fitness tracker with offline logging, workout scheduling and cloud sync.</p>
           <div class="tag">Compose · Room</div>
           <div style="margin-top:10px"><a href="https://github.com/nishantmodi92/Healthify" target="_blank">Repository</a></div>
         </div>
 
-        <div class="project-card" data-tags="utility">
+        <div class="project tilt" data-tags="utility">
           <h4>FinMate</h4>
           <p>Finance manager with budgets, analytics, and near real-time sync.</p>
           <div class="tag">Analytics · Room</div>
           <div style="margin-top:10px"><a href="https://github.com/nishantmodi92/FinMate" target="_blank">Repository</a></div>
         </div>
 
-        <div class="project-card" data-tags="utility">
+        <div class="project tilt" data-tags="utility">
           <h4>EduPlay</h4>
           <p>E‑learning platform with video streaming (secure), quizzes and progress tracking.</p>
           <div class="tag">ExoPlayer · Firebase</div>
@@ -216,105 +196,116 @@
         </div>
       </div>
 
-      <div style="margin-top:18px" class="slideshow" aria-hidden="false">
-        <div class="slide active">⚡ Recent release: ChatConnect — deterministic sync & 3.2× reliability</div>
-        <div class="slide">🔒 End-to-end encryption — AES-256 client-side</div>
-        <div class="slide">🚀 30–40% faster cold-start after modularization</div>
+      <div class="carousel" aria-hidden="false">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-item">Recent: ChatConnect — deterministic sync & 3.2× reliability</div>
+          <div class="carousel-item">Security: AES-256 client-side encryption</div>
+          <div class="carousel-item">Performance: 30–40% faster cold starts</div>
+          <div class="carousel-item">Stability: 98% crash-free sessions</div>
+        </div>
       </div>
     </section>
 
-    <section class="card" id="skills-section" style="margin-top:22px">
+    <section class="card" id="skills-section">
       <h2 style="margin-top:0">Skills & Tools</h2>
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
-        <div class="stat">Kotlin</div>
-        <div class="stat">Jetpack Compose</div>
-        <div class="stat">Clean Architecture</div>
-        <div class="stat">Coroutines</div>
-        <div class="stat">Hilt</div>
-        <div class="stat">Firebase</div>
-        <div class="stat">Room</div>
-        <div class="stat">Retrofit</div>
+        <div class="badge">Kotlin</div>
+        <div class="badge">Jetpack Compose</div>
+        <div class="badge">Clean Architecture</div>
+        <div class="badge">Coroutines</div>
+        <div class="badge">Hilt</div>
+        <div class="badge">Firebase</div>
+        <div class="badge">Room</div>
+        <div class="badge">Retrofit</div>
       </div>
     </section>
 
-    <section class="card" id="contact" style="margin-top:22px">
+    <section class="card" id="contact">
       <h2 style="margin-top:0">Contact</h2>
-      <p>Send a quick message — this form uses <strong>EmailJS</strong>. Configure <code>serviceID</code>, <code>templateID</code> and <code>userID</code> below.</p>
-
-      <form id="contact-form">
-        <input type="text" id="name" name="name" placeholder="Your name" required />
-        <input type="email" id="email" name="email" placeholder="Your email" required />
-        <input type="text" id="role" name="role" placeholder="Your role / company" />
-        <textarea id="message" name="message" rows="5" placeholder="Message" required></textarea>
+      <p>Send a quick message — configure EmailJS (serviceId, templateId, userId) below to enable form.</p>
+      <form id="contactForm">
+        <input id="name" name="name" placeholder="Your name" required />
+        <input id="email" name="email" type="email" placeholder="Your email" required />
+        <input id="role" name="role" placeholder="Your role / company" />
+        <textarea id="message" name="message" rows="4" placeholder="Message" required></textarea>
         <button class="cta" type="submit">Send Message</button>
-        <div id="form-status" style="margin-top:8px;color:var(--accent)"></div>
+        <div id="formStatus" style="margin-top:8px;color:var(--accent-a)"></div>
       </form>
-
-      <div style="margin-top:14px;color:rgba(230,238,248,0.7)">
-        <strong>EmailJS setup quick steps:</strong>
-        <ol>
-          <li>Create an account at <a href="https://www.emailjs.com/" target="_blank">EmailJS</a>.</li>
-          <li>Create an email service and template (use fields: name, email, role, message).</li>
-          <li>Replace <code>serviceID</code>, <code>templateID</code> and <code>userID</code> in the script near the end of this file.</li>
-        </ol>
+      <div style="margin-top:12px;font-size:13px;opacity:0.9">
+        Replace the three variables in the script: <code>serviceID</code>, <code>templateID</code>, <code>userID</code> (EmailJS).
       </div>
     </section>
 
-    <footer>
-      © 2025 Nishant Modi • Built with ❤️ — Portfolio (Resume & "Hire Me" section removed by request)
-    </footer>
+    <footer style="margin-top:28px;text-align:center;color:rgba(230,238,248,0.6)">© 2025 Nishant Modi — Portfolio (Resume & "Hire Me" removed)</footer>
   </div>
 
   <script>
-    // Accent animation (keeps CSS variables in sync for some browsers)
-    // Slideshow
-    (function(){
-      let idx=0;const slides=document.querySelectorAll('.slide');
-      setInterval(()=>{slides[idx].classList.remove('active');idx=(idx+1)%slides.length;slides[idx].classList.add('active');},3500);
-    })();
+    // --- Theme switcher (A: Glass, B: Neon, C: Minimal) ---
+    const themeBtn = document.getElementById('themeToggle');
+    let themeIndex=0;
+    function setTheme(i){
+      themeIndex=i%3;
+      if(themeIndex===0){ // Glass
+        document.documentElement.style.setProperty('--accent-a','#6ee7b7');
+        document.documentElement.style.setProperty('--accent-b','#60a5fa');
+        document.documentElement.style.setProperty('--accent-c','#a78bfa');
+        document.documentElement.style.setProperty('--panel','rgba(255,255,255,0.04)');
+      } else if(themeIndex===1){ // Neon
+        document.documentElement.style.setProperty('--accent-a','#8b5cf6');
+        document.documentElement.style.setProperty('--accent-b','#ec4899');
+        document.documentElement.style.setProperty('--accent-c','#06b6d4');
+        document.documentElement.style.setProperty('--panel','rgba(10,6,20,0.5)');
+      } else { // Minimal
+        document.documentElement.style.setProperty('--accent-a','#60a5fa');
+        document.documentElement.style.setProperty('--accent-b','#34d399');
+        document.documentElement.style.setProperty('--accent-c','#fbbf24');
+        document.documentElement.style.setProperty('--panel','rgba(255,255,255,0.02)');
+      }
+      themeBtn.textContent = ['Glass','Neon','Minimal'][themeIndex] + ' Theme';
+    }
+    themeBtn.addEventListener('click',()=>{setTheme(themeIndex+1)});
+    setTheme(0);
 
-    // Filters
-    (function(){
-      const buttons=document.querySelectorAll('.filter-btn');
-      const cards=document.querySelectorAll('.project-card');
-      buttons.forEach(btn=>btn.addEventListener('click',()=>{
-        buttons.forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+    // --- Filters ---
+    document.querySelectorAll('.filter').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
         const f=btn.getAttribute('data-filter');
-        cards.forEach(c=>{if(f==='all'){c.style.display='block'}else{c.style.display=(c.getAttribute('data-tags').includes(f)?'block':'none')}})
-      }))
-    })();
+        document.querySelectorAll('.project').forEach(p=>{p.style.display=(f==='all'||p.getAttribute('data-tags').includes(f))?'block':'none'});
+      });
+    });
 
-    // Simple contact form with EmailJS (replace IDs)
+    // --- Carousel auto-scroll ---
     (function(){
-      const form=document.getElementById('contact-form');
-      const status=document.getElementById('form-status');
-      // TODO: replace with your EmailJS credentials
-      const serviceID='YOUR_SERVICE_ID';
-      const templateID='YOUR_TEMPLATE_ID';
-      const userID='YOUR_USER_ID';
-
-      form.addEventListener('submit',function(e){
-        e.preventDefault();
-        status.textContent='Sending...';
-        const data={
-          name:form.name.value,
-          email:form.email.value,
-          role:form.role.value,
-          message:form.message.value
-        };
-
-        // Use EmailJS SDK if available, otherwise fallback to fetch
-        if(window.emailjs){
-          emailjs.send(serviceID,templateID,data).then(()=>{status.textContent='Message sent — will reply soon!';form.reset()},(err)=>{status.textContent='Send failed — check console';console.error(err)});
-        }else{
-          // Simple fetch to EmailJS REST API
-          fetch('https://api.emailjs.com/api/v1.0/email/send',{
-            method:'POST',headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({service_id:serviceID,template_id:templateID,user_id:userID,template_params:data})
-          }).then(r=>{if(r.ok){status.textContent='Message sent — will reply soon!';form.reset()}else{return r.text().then(t=>{throw new Error(t})})}).catch(err=>{status.textContent='Send failed — check console';console.error(err)})
-        }
-      })
+      const track=document.getElementById('carouselTrack');
+      let pos=0;const width=332; // approx
+      setInterval(()=>{pos = (pos + width) % (track.children.length * width); track.style.transform = `translateX(-${pos}px)`},3000);
     })();
+
+    // --- 3D tilt on project cards ---
+    document.querySelectorAll('.tilt').forEach(card=>{
+      card.addEventListener('mousemove',e=>{
+        const rect=card.getBoundingClientRect(); const x=e.clientX-rect.left; const y=e.clientY-rect.top; const cx=rect.width/2; const cy=rect.height/2; const dx=(x-cx)/cx; const dy=(y-cy)/cy; card.style.transform = `perspective(900px) rotateX(${ -dy*6 }deg) rotateY(${ dx*6 }deg) translateZ(6px)`; card.style.transition='transform 0.05s';
+      });
+      card.addEventListener('mouseleave',()=>{card.style.transform='none';card.style.transition='transform .5s ease';});
+    });
+
+    // --- Marquee duplicate for continuous effect ---
+    document.querySelectorAll('.marquee p').forEach(p=>{p.innerHTML = p.innerHTML + p.innerHTML});
+
+    // --- Contact form EmailJS (placeholders) ---
+    (function(){
+      const form=document.getElementById('contactForm'); const status=document.getElementById('formStatus');
+      const serviceID='YOUR_SERVICE_ID'; const templateID='YOUR_TEMPLATE_ID'; const userID='YOUR_USER_ID';
+      form.addEventListener('submit',e=>{e.preventDefault(); status.textContent='Sending...'; const data={name:form.name.value,email:form.email.value,role:form.role.value,message:form.message.value};
+        if(window.emailjs){ emailjs.send(serviceID,templateID,data).then(()=>{status.textContent='Message sent — will reply soon!';form.reset()},err=>{status.textContent='Send failed — check console';console.error(err)}) } else {
+          fetch('https://api.emailjs.com/api/v1.0/email/send',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({service_id:serviceID,template_id:templateID,user_id:userID,template_params:data})}).then(r=>{if(r.ok){status.textContent='Message sent — will reply soon!';form.reset()}else{return r.text().then(t=>{throw new Error(t)})}}).catch(err=>{status.textContent='Send failed — check console';console.error(err)}) }
+      });
+    })();
+
+    // --- Small entrance animations ---
+    document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.card').forEach((c,i)=>{c.style.opacity=0;c.style.transform='translateY(8px)';setTimeout(()=>{c.style.transition='all .6s cubic-bezier(.2,.9,.2,1)';c.style.opacity=1;c.style.transform='translateY(0)';},120*i)})});
   </script>
 </body>
 </html>
