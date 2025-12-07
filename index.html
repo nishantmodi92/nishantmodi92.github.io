@@ -181,4 +181,125 @@ form.addEventListener('submit',e=>{
         msgBox.innerHTML+=`<div style='margin-bottom:8px;color:var(--accent)'><strong>AI:</strong> I will answer your query soon. (API Ready)</div>`;
         msgBox.scrollTop=msgBox.scrollHeight;
       },600);
+    };
+  </script>
+
+
+  <!-- NEXT-UPGRADE SCRIPTS: Themes, OpenAI backend placeholder, Lottie, Voice Chat, Slideshow, Interactive Resume Tabs, GSAP scroll animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js"></script>
+  <script>
+    /*******************************
+     * 1) ADD 4 NEW THEMES
+     *******************************/
+    (function(){
+      const extraThemes = {
+        'gold':{bg:['#0b0b0b','#1a0f00'],card:'rgba(255,255,255,0.03)',accent:'#d4af37',text:'#f4f1ec'},
+        'sunset2':{bg:['#ff6a88','#ffb86b'],card:'rgba(255,255,255,0.08)',accent:'#ff6a3d',text:'#111'},
+        'cyberpunk2':{bg:['#060018','#2b005b'],card:'rgba(255,255,255,0.06)',accent:'#ff2d95',text:'#fff'},
+        'emerald2':{bg:['#012b26','#034d45'],card:'rgba(255,255,255,0.04)',accent:'#10b981',text:'#e6f7f0'}
+      };
+      // merge with existing theme engine if present
+      try{
+        window._nm_theme_pool = Object.assign(window._nm_theme_pool || {}, extraThemes);
+      }catch(e){window._nm_theme_pool=extraThemes}
+      // expose quick apply
+      window.addNewTheme = function(name){if(window._nm_theme_pool && window._nm_theme_pool[name]){const t=window._nm_theme_pool[name];document.documentElement.style.setProperty('--bg',`linear-gradient(180deg,${t.bg[0]},${t.bg[1]})`);document.documentElement.style.setProperty('--card-bg',t.card);document.documentElement.style.setProperty('--accent',t.accent);document.documentElement.style.setProperty('--text',t.text);localStorage.setItem('nm-theme',name)}}
+    })();
+
+    /*******************************
+     * 2) FULL OPENAI GPT-POWERED BACKEND (PLACEHOLDER + INSTRUCTIONS)
+     *******************************/
+    // NOTE: For production you must host a small server that holds your OpenAI API key securely.
+    // Below is a client-side placeholder showing how to call a server endpoint: /api/openai
+    async function callOpenAIAssistant(prompt){
+      // Replace with your backend endpoint that forwards request to OpenAI securely
+      const endpoint = '/api/openai';
+      try{
+        const res = await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt})});
+        if(!res.ok)throw new Error('OpenAI proxy error');
+        const j=await res.json();
+        return j.reply || JSON.stringify(j);
+      }catch(err){console.error(err);return 'AI backend not configured. Follow docs to add server-side OpenAI proxy.'}
+    }
+
+    // Wire chatbot send to OpenAI backend when available
+    (function(){
+      const sendBtn = document.getElementById('chatSend');
+      if(sendBtn){
+        sendBtn.addEventListener('click', async ()=>{
+          const inputEl = document.getElementById('chatInput');
+          const text = inputEl.value.trim(); if(!text) return;
+          const msgs = document.getElementById('chatMessages'); msgs.innerHTML+=`<div style='margin-bottom:8px'><strong>You:</strong> ${text}</div>`; msgs.scrollTop=msgs.scrollHeight; inputEl.value='';
+          msgs.innerHTML+=`<div style='margin-bottom:8px;color:var(--accent)'><strong>AI:</strong> Thinking…</div>`; msgs.scrollTop=msgs.scrollHeight;
+          const reply = await callOpenAIAssistant(text);
+          msgs.innerHTML = msgs.innerHTML.replace(/Thinking…<\/div>$/,'');
+          msgs.innerHTML+=`<div style='margin-bottom:8px;color:var(--accent)'><strong>AI:</strong> ${reply}</div>`; msgs.scrollTop=msgs.scrollHeight;
+        });
+      }
+    })();
+
+    /*******************************
+     * 3) LOTTIE ANIMATION ON HERO
+     *******************************/
+    (function(){
+      const hero = document.querySelector('.hero');
+      if(!hero) return;
+      const container = document.createElement('div');
+      container.style.width='240px'; container.style.height='240px'; container.style.position='absolute'; container.style.right='32px'; container.style.top='24px'; container.style.zIndex='2';
+      hero.appendChild(container);
+      // lightweight sample animation, replace 'path' with your Lottie JSON URL for production
+      lottie.loadAnimation({container,renderer:'svg',loop:true,autoplay:true,animationData: {
+        "v":"5.5.7","fr":30,"ip":0,"op":60,"w":200,"h":200,"nm":"dot-pulse","ddd":0,"assets":[],"layers":[{"ty":4,"shapes":[{"ty":"rc","s":{"k":[200,200]},"p":{"k":[100,100]},"r":{"k":40},"nm":"rect"},{"ty":"el","p":{"k":[100,100]},"s":{"k":[120,120]},"nm":"circle"}],"nm":"shape"}],"markers":[]}
+      }});
+    })();
+
+    /*******************************
+     * 4) VOICE-BASED CHATBOT (Web Speech API)
+     *******************************/
+    (function(){
+      const micBtn = document.createElement('button'); micBtn.textContent='🎙️';
+      Object.assign(micBtn.style,{position:'fixed',right:'90px',bottom:'22px',padding:'10px',borderRadius:'12px',zIndex:999,border:'none',background:'rgba(255,255,255,0.12)'});
+      document.body.appendChild(micBtn);
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if(!SpeechRecognition) { micBtn.title='Voice not supported'; return; }
+      const recog = new SpeechRecognition(); recog.lang='en-US'; recog.interimResults=false; recog.maxAlternatives=1;
+      micBtn.onclick=()=>{try{recog.start(); micBtn.textContent='🔴';}catch(e){console.error(e)}}
+      recog.onresult = (ev)=>{const text = ev.results[0][0].transcript;const input=document.getElementById('chatInput'); input.value=text; document.getElementById('chatSend').click(); micBtn.textContent='🎙️'}
+      recog.onend=()=>{micBtn.textContent='🎙️'}
+    })();
+
+    /*******************************
+     * 5) AUTO PROJECT SLIDESHOW
+     *******************************/
+    (function(){
+      const grid = document.getElementById('projectsGrid'); if(!grid) return; const items=[...grid.querySelectorAll('.project')]; let idx=0; function show(i){items.forEach((it,j)=>{it.style.display=(j>=i && j<i+3)?'block':'none'})}
+      show(0); setInterval(()=>{idx=(idx+1)%Math.max(1,items.length); show(idx)},4000);
+    })();
+
+    /*******************************
+     * 6) INTERACTIVE RESUME TABS
+     *******************************/
+    (function(){
+      const resume = document.getElementById('resumeContent'); if(!resume) return;
+      const tabs = document.createElement('div'); tabs.style.display='flex'; tabs.style.gap='8px'; tabs.style.marginBottom='12px';
+      ['Summary','Projects','Experience','Education'].forEach((t,i)=>{const b=document.createElement('button');b.textContent=t; b.style.padding='8px 12px'; b.style.borderRadius='8px'; b.style.border='1px solid rgba(255,255,255,0.06)'; b.onclick=()=>{Array.from(resume.children).forEach((c,ci)=>c.style.display=(ci===i||i===0)?'block':'none')}; tabs.appendChild(b)});
+      resume.prepend(tabs);
+    })();
+
+    /*******************************
+     * 7) GSAP SCROLL-TRIGGER ANIMATIONS
+     *******************************/
+    (function(){
+      if(window.gsap && window.ScrollTrigger){
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray('.card').forEach(card=>{
+          gsap.from(card,{y:30,opacity:0,duration:0.8,scrollTrigger:{trigger:card,start:'top 85%'}})
+        })
+        gsap.from('.hero h1',{y:20,opacity:0,duration:0.8,delay:0.2});
+      }
+    })();
+  </script>
+</body>
 </html>
