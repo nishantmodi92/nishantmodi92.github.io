@@ -46,26 +46,179 @@
   <!-- Search Bar -->
   <input id="searchBar" placeholder="Search projects, skills, experience..." />
 
-  <section class="card">
-    <h2>High‑Resolution Architecture Diagrams</h2>
-    <div class="diagram">
-      <svg viewBox="0 0 900 300">
+  <section class="card" id="architecture">
+    <h2>Ultra-Premium System Architecture — 8-Stage Pipeline</h2>
+    <p style="opacity:0.9;margin-top:6px">Complete pipeline mapped to resume: Android App → WebSocket Layer → Sync Gateway → Offline Cache Engine → Conflict Resolver → Firestore/Realtime DB → Cloud Functions → Analytics & Monitoring. Hover nodes for details; lines animate on scroll.</p>
+
+    <div class="diagram" style="margin-top:18px;position:relative">
+      <svg id="archSVG" viewBox="0 0 1600 420" preserveAspectRatio="xMidYMid meet" width="100%" height="420" aria-labelledby="archTitle" role="img">
+        <title id="archTitle">System architecture pipeline</title>
         <defs>
-          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#4dd0ff" />
-            <stop offset="100%" stop-color="#7c4dff" />
+          <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#60a5fa"/>
+            <stop offset="100%" stop-color="#a78bfa"/>
           </linearGradient>
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
         </defs>
-        <rect x="40" y="60" width="200" height="80" rx="12" fill="url(#grad1)" opacity="0.85" />
-        <text x="90" y="110" fill="#000" font-size="20" font-weight="700">Android App</text>
-        <line x1="240" y1="100" x2="430" y2="100" stroke="#4dd0ff" stroke-width="4" />
-        <rect x="430" y="60" width="200" height="80" rx="12" fill="#1e293b" stroke="#7c4dff" stroke-width="3" />
-        <text x="470" y="110" fill="#fff" font-size="20" font-weight="700">Sync Gateway</text>
-        <line x1="630" y1="100" x2="820" y2="100" stroke="#4dd0ff" stroke-width="4" />
-        <rect x="820" y="60" width="200" height="80" rx="12" fill="#0a192f" stroke="#4dd0ff" stroke-width="3" />
-        <text x="850" y="110" fill="#fff" font-size="20" font-weight="700">Firestore / Realtime DB</text>
+
+        <!-- Row 1 nodes -->
+        <g class="node" data-key="android" transform="translate(60,60)">
+          <rect width="220" height="64" rx="14" class="node-box" fill="url(#g1)" opacity="0.95"/>
+          <text x="110" y="40" text-anchor="middle" class="node-text" fill="#031022" font-weight="700">Android App</text>
+        </g>
+
+        <g class="node" data-key="ws" transform="translate(310,60)">
+          <rect width="220" height="64" rx="14" class="node-box" fill="#0f1724" stroke="#7c4dff" stroke-width="2"/>
+          <text x="110" y="40" text-anchor="middle" class="node-text">WebSocket Layer</text>
+        </g>
+
+        <g class="node" data-key="gateway" transform="translate(560,60)">
+          <rect width="220" height="64" rx="14" class="node-box" fill="#081125" stroke="#60a5fa" stroke-width="2"/>
+          <text x="110" y="40" text-anchor="middle" class="node-text">Sync Gateway</text>
+        </g>
+
+        <g class="node" data-key="cache" transform="translate(810,60)">
+          <rect width="260" height="64" rx="14" class="node-box" fill="#07101b" stroke="#a78bfa" stroke-width="2"/>
+          <text x="130" y="40" text-anchor="middle" class="node-text">Offline Cache Engine</text>
+        </g>
+
+        <g class="node" data-key="resolver" transform="translate(1090,60)">
+          <rect width="260" height="64" rx="14" class="node-box" fill="#07101b" stroke="#f59e0b" stroke-width="2"/>
+          <text x="130" y="40" text-anchor="middle" class="node-text">Conflict Resolver</text>
+        </g>
+
+        <!-- Row 2 nodes -->
+        <g class="node" data-key="firestore" transform="translate(110,220)">
+          <rect width="260" height="64" rx="14" class="node-box" fill="#0b1220" stroke="#60a5fa" stroke-width="2"/>
+          <text x="130" y="40" text-anchor="middle" class="node-text">Firestore / Realtime DB</text>
+        </g>
+
+        <g class="node" data-key="cloud" transform="translate(420,220)">
+          <rect width="220" height="64" rx="14" class="node-box" fill="#071024" stroke="#7c4dff" stroke-width="2"/>
+          <text x="110" y="40" text-anchor="middle" class="node-text">Cloud Functions</text>
+        </g>
+
+        <g class="node" data-key="analytics" transform="translate(720,220)">
+          <rect width="260" height="64" rx="14" class="node-box" fill="#071024" stroke="#34d399" stroke-width="2"/>
+          <text x="130" y="40" text-anchor="middle" class="node-text">Analytics & Monitoring</text>
+        </g>
+
+        <!-- Animated curved flow lines (left-to-right) -->
+        <g class="flows" fill="none" stroke-linecap="round" stroke-width="6">
+          <path id="p1" d="M280 92 C300 92 320 92 330 92" stroke="url(#g1)" stroke-opacity="0.95"/>
+          <path id="p2" d="M530 92 C550 92 570 92 580 92" stroke="url(#g1)" stroke-opacity="0.95"/>
+          <path id="p3" d="M780 92 C800 92 820 92 835 92" stroke="url(#g1)" stroke-opacity="0.95"/>
+          <path id="p4" d="M1060 92 C1080 92 1100 92 1110 92" stroke="url(#g1)" stroke-opacity="0.95"/>
+
+          <path id="p5" d="M200 252 C240 252 300 252 360 252" stroke="url(#g1)" stroke-opacity="0.9"/>
+          <path id="p6" d="M340 300 C420 300 520 300 600 300" stroke="url(#g1)" stroke-opacity="0.9"/>
+          <path id="p7" d="M580 300 C640 300 700 300 760 300" stroke="url(#g1)" stroke-opacity="0.9"/>
+        </g>
+
+        <!-- moving packets group -->
+        <g id="packets">
+          <circle r="6" fill="#fff" fill-opacity="0.95" id="packet1"/>
+          <circle r="6" fill="#fff" fill-opacity="0.95" id="packet2"/>
+          <circle r="6" fill="#fff" fill-opacity="0.95" id="packet3"/>
+        </g>
+
       </svg>
+
+      <div id="nodeDetails" style="position:absolute;right:18px;top:18px;width:320px;background:rgba(2,6,23,0.6);backdrop-filter:blur(6px);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);color:var(--text);display:none">
+        <div id="ndTitle" style="font-weight:700;margin-bottom:6px"></div>
+        <div id="ndBody" style="font-size:13px;opacity:0.95"></div>
+      </div>
+
     </div>
+
+    <style>
+      /* diagram-specific styles */
+      .node-box{filter:drop-shadow(0 8px 24px rgba(10,12,20,0.6));}
+      .node-text{font-family:Inter,system-ui;font-size:14px;fill:#e6eef8}
+      .node { cursor: pointer; }
+    </style>
+
+    <script>
+      // GSAP animation for drawing lines & moving packets
+      (function(){
+        if(window.gsap && window.ScrollTrigger){
+          const paths = ['#p1','#p2','#p3','#p4','#p5','#p6','#p7'];
+          paths.forEach((p, i)=>{
+            const el = document.querySelector(p);
+            const len = el.getTotalLength();
+            el.style.strokeDasharray = len;
+            el.style.strokeDashoffset = len;
+            gsap.to(el, {strokeDashoffset:0, duration:0.9, delay: i*0.15, ease:'power2.out', scrollTrigger:{trigger:'#architecture',start:'top 80%'}});
+          });
+
+          // moving packets along a path
+          function animatePacket(packetId, pathId, delay){
+            const path = document.querySelector(pathId);
+            const packet = document.querySelector(packetId);
+            const len = path.getTotalLength();
+            gsap.set(packet,{visibility:'visible'});
+            gsap.to({}, {duration:3, repeat:-1, repeatDelay:0.4, delay:delay, ease:'none', onUpdate:function(){
+              const t = (this.time() % 3)/3; // normalized
+              const pt = path.getPointAtLength(t*len);
+              packet.setAttribute('cx', pt.x);
+              packet.setAttribute('cy', pt.y);
+            }});
+          }
+          animatePacket('#packet1','#p1',0);
+          animatePacket('#packet2','#p3',0.8);
+          animatePacket('#packet3','#p6',1.4);
+
+          // node hover details
+          document.querySelectorAll('#archSVG .node').forEach(node=>{
+            node.addEventListener('mouseenter', (e)=>{
+              const key = node.getAttribute('data-key');
+              const title = {android:'Android App','ws':'WebSocket Layer','gateway':'Sync Gateway','cache':'Offline Cache Engine','resolver':'Conflict Resolver','firestore':'Firestore / Realtime DB','cloud':'Cloud Functions','analytics':'Analytics & Monitoring'}[key];
+              const body = {
+                android:'Kotlin, Jetpack Compose, Predictive caching, Baseline profiles, optimized recomposition.',
+                ws:'WebSocket connection pooling, lightweight ACKs, concurrency isolation.',
+                gateway:'Event batching, Protobuf serialization, idempotent handlers.',
+                cache:'Delta-sync, snapshot restore, background queue.',
+                resolver:'Deterministic merge rules, tombstones, conflict-free ordering.',
+                firestore:'Offline persistence, real-time listeners, security rules.',
+                cloud:'Serverless event handlers, transactional workflows, token rotation.',
+                analytics:'P99 dashboards, distributed tracing, Perfetto traces.'
+              }[key];
+              document.getElementById('ndTitle').innerText = title || '';
+              document.getElementById('ndBody').innerText = body || '';
+              const details = document.getElementById('nodeDetails'); details.style.display='block';
+            });
+            node.addEventListener('mouseleave',()=>{document.getElementById('nodeDetails').style.display='none'})
+          });
+        }
+      })();
+
+      // click to expand and show full resume-aligned details modal (simple inline)
+      (function(){
+        document.querySelectorAll('#archSVG .node').forEach(n=>n.addEventListener('click',()=>{
+          const key=n.getAttribute('data-key');
+          const modal = document.createElement('div');
+          Object.assign(modal.style,{position:'fixed',left:'50%',top:'50%',transform:'translate(-50%,-50%)',width:'720px',maxWidth:'96%',background:'var(--card)',padding:'18px',borderRadius:'12px',zIndex:1200,boxShadow:'0 30px 80px rgba(0,0,0,0.7)'});
+          let html = '<h3 style="margin-top:0">'+(key||'Details')+'</h3>';
+          // resume-driven content
+          if(key==='android') html += `<p><strong>Android App — Resume highlights:</strong><ul><li>5+ years Android, Jetpack Compose, MVVM/MVI</li><li>Performance engineering: 30–40% faster startup, 40% ANR reduction</li><li>Secure mobile flows (AES-256, JWT rotation, TLS pinning)</li></ul></p>`;
+          if(key==='ws') html += `<p><strong>WebSocket Layer — Resume highlights:</strong><ul><li>P99 &lt;300ms real-time pipelines, optimized serialization (Protobuf)</li><li>Concurrency isolation and idempotent message handling</li></ul></p>`;
+          if(key==='gateway') html += `<p><strong>Sync Gateway — Resume highlights:</strong><ul><li>Delta-sync orchestration, predictive caching, multi-region considerations</li></ul></p>`;
+          if(key==='cache') html += `<p><strong>Offline Cache Engine — Resume highlights:</strong><ul><li>Snapshot restore, background replay, deterministic merges</li></ul></p>`;
+          if(key==='resolver') html += `<p><strong>Conflict Resolver — Resume highlights:</strong><ul><li>Deterministic conflict resolution, tombstone handling, merge policy</li></ul></p>`;
+          if(key==='firestore') html += `<p><strong>Firestore — Resume highlights:</strong><ul><li>Offline persistence, secure rules, FCM integration for notifications</li></ul></p>`;
+          if(key==='cloud') html += `<p><strong>Cloud Functions — Resume highlights:</strong><ul><li>Serverless pipelines, transactional handlers, token lifecycle management</li></ul></p>`;
+          if(key==='analytics') html += `<p><strong>Analytics — Resume highlights:</strong><ul><li>Distributed tracing (Perfetto), P99 dashboards, monitoring and alerting</li></ul></p>`;
+          html += '<div style="text-align:right;margin-top:12px"><button id="closeModal" style="padding:8px 12px;border-radius:8px;background:var(--accent);border:none;font-weight:700">Close</button></div>';
+          modal.innerHTML = html;
+          document.body.appendChild(modal);
+          document.getElementById('closeModal').onclick = ()=>modal.remove();
+        }))
+      })();
+    </script>
+
   </section>
 
   <!-- EmailJS Contact Form -->
