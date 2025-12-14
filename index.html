@@ -23,13 +23,17 @@
       --radius: 16px;
     }
 
+    /* Theme Variants */
+    body.theme-blue { --accent:#5b8cff; --accent2:#21e6c1; }
+    body.theme-purple { --accent:#a855f7; --accent2:#ec4899; }
+    body.theme-orange { --accent:#fb923c; --accent2:#facc15; }
+    body.theme-green { --accent:#22c55e; --accent2:#14b8a6; }
+
     body.light {
       --bg: #f7f9fc;
       --card: #ffffff;
       --text: #0b0f1a;
       --muted: #4b5563;
-      --accent: #2563eb;
-      --accent2: #059669;
     }
 
     * { box-sizing: border-box; }
@@ -37,140 +41,41 @@
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: radial-gradient(circle at top, #141a3a, var(--bg));
+      background: radial-gradient(circle at top, var(--accent), var(--bg));
       color: var(--text);
-      transition: all 0.3s ease;
+      transition: all 0.6s ease;
     }
 
-    header {
-      padding: 90px 20px 60px;
-      text-align: center;
-    }
+    header { padding: 100px 20px 60px; text-align:center; }
+    header h1 { font-size:3.2rem; font-weight:800; margin-bottom:10px; }
+    header p { max-width:900px; margin:auto; font-size:1.15rem; color:var(--muted); }
 
-    header h1 {
-      font-size: 3rem;
-      font-weight: 800;
-      margin-bottom: 10px;
-    }
+    .btn { display:inline-block; padding:14px 26px; margin:8px; border-radius:999px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#fff; font-weight:600; text-decoration:none; }
 
-    header p {
-      max-width: 900px;
-      margin: auto;
-      font-size: 1.15rem;
-      color: var(--muted);
-    }
-
-    .btns {
-      margin-top: 30px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 14px 26px;
-      margin: 8px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #fff;
-      font-weight: 600;
-      text-decoration: none;
-    }
-
-    .toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      cursor: pointer;
-      background: var(--card);
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-size: 14px;
-    }
+    .toggle { position:fixed; top:20px; right:20px; cursor:pointer; background:var(--card);
+      padding:10px 14px; border-radius:999px; font-size:14px; }
 
     /* Marquee */
-    .marquee {
-      overflow: hidden;
-      white-space: nowrap;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #fff;
-      padding: 12px 0;
-      font-weight: 600;
-    }
+    .marquee { overflow:hidden; white-space:nowrap; background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#fff; padding:14px 0; font-weight:600; }
+    .marquee span { display:inline-block; padding-left:100%; animation:marquee 18s linear infinite; }
+    @keyframes marquee { 0%{transform:translateX(0);}100%{transform:translateX(-100%);} }
 
-    .marquee span {
-      display: inline-block;
-      padding-left: 100%;
-      animation: marquee 20s linear infinite;
-    }
+    section { padding:80px 20px; max-width:1200px; margin:auto; }
+    h2 { font-size:2.2rem; margin-bottom:30px; text-align:center; }
 
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:25px; }
 
-    section {
-      padding: 80px 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    h2 {
-      font-size: 2.2rem;
-      margin-bottom: 30px;
-      text-align: center;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-    }
-
-    .card {
-      background: var(--card);
-      padding: 30px;
-      border-radius: var(--radius);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover { transform: translateY(-8px); }
-
-    .card h3 {
-      margin-top: 0;
-      font-size: 1.4rem;
-    }
-
-    .card p {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    .tech {
-      font-size: 0.85rem;
-      margin-top: 10px;
-      color: var(--accent2);
-    }
+    .card { background:var(--card); padding:30px; border-radius:var(--radius);
+      box-shadow:0 20px 40px rgba(0,0,0,0.25); transition:transform .4s ease, box-shadow .4s ease; }
+    .card:hover { transform:translateY(-10px) scale(1.02); box-shadow:0 30px 60px rgba(0,0,0,.35); }
 
     /* Slider */
-    .slider {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      gap: 20px;
-      padding-bottom: 10px;
-    }
+    .slider { display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:20px; }
+    .slide { min-width:320px; scroll-snap-align:start; }
 
-    .slide {
-      min-width: 300px;
-      scroll-snap-align: start;
-    }
-
-    footer {
-      text-align: center;
-      padding: 50px 20px;
-      color: var(--muted);
-    }
+    footer { text-align:center; padding:50px 20px; color:var(--muted); }
   </style>
 </head>
 <body>
@@ -238,11 +143,59 @@
   </div>
 </section>
 
+<section>
+  <h2>Why Hire Me</h2>
+  <div class="grid">
+    <div class="card">Senior Android Engineer with 5+ years of production experience building scalable, high-impact mobile systems.</div>
+    <div class="card">Deep expertise in offline-first, real-time, and AI-powered Android architectures.</div>
+    <div class="card">Proven ability to deliver performance gains (30–45%), reliability (99.8% crash-free), and cost savings.</div>
+    <div class="card">Strong system design mindset aligned with Google, Meta, and Microsoft engineering standards.</div>
+  </div>
+</section>
+
+<section>
+  <h2>Architecture & Engineering Focus</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Offline-First Architecture</h3>
+      <p>Deterministic state machines, delta sync, and conflict-free merge strategies ensuring zero data loss under unreliable networks.</p>
+    </div>
+    <div class="card">
+      <h3>Real-Time Systems</h3>
+      <p>Low-latency pipelines using WebSockets, gRPC, and efficient serialization for scalable real-time communication.</p>
+    </div>
+    <div class="card">
+      <h3>AI on Mobile</h3>
+      <p>On-device and SDK-based AI for recommendations, prediction, summarization, and behavioral intelligence without privacy risk.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>GitHub Stats & Activity</h2>
+  <div class="grid">
+    <div class="card">
+      <p>Consistent contributions across high-impact Android repositories.</p>
+      <p>Clean architecture, detailed READMEs, and production-oriented codebases.</p>
+      <p><a class="btn" href="https://github.com/nishantmodi92" target="_blank">View GitHub Profile</a></p>
+    </div>
+  </div>
+</section>
+
 <footer>
   <p>© 2025 Nishant Modi • Built with HTML & CSS • Top 1% Senior Android Portfolio</p>
 </footer>
 
 <script>
+  /* Theme rotation */
+  const themes = ['theme-blue','theme-purple','theme-orange','theme-green'];
+  let themeIndex = 0;
+  setInterval(() => {
+    document.body.className = themes[themeIndex % themes.length];
+    themeIndex++;
+  }, 6000);
+
+  /* Manual light/dark toggle */
   function toggleTheme() {
     document.body.classList.toggle('light');
   }
