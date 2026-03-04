@@ -1,290 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Nishant Modi | Senior Android Platform Engineer</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nishant Modi | Staff Android Platform Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-  <!-- SEO -->
-  <meta name="description"
-        content="Senior Android Platform Engineer with 8+ years of experience owning scalable Android systems used by 250K+ users. Expertise in Kotlin, Jetpack Compose, performance, reliability, and offline-first architectures." />
-  <meta name="keywords"
-        content="Senior Android Engineer, Android Platform Engineer, Kotlin, Jetpack Compose, Mobile System Design, Offline First Android, Performance Optimization, Scalability" />
-  <meta name="author" content="Nishant Modi" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Nishant Modi | Senior Android Platform Engineer" />
-  <meta property="og:description" content="Building scalable Android systems used by 250K+ users." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nishantmodi92.github.io/" />
-
-  <!-- Preconnect -->
-  <link rel="preconnect" href="https://www.googletagmanager.com">
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Nishant Modi",
-    "jobTitle": "Senior Android Platform Engineer",
-    "url": "https://nishantmodi92.github.io/",
-    "sameAs": [
-      "https://github.com/nishantmodi92",
-      "https://linkedin.com/in/nishantmodi92"
-    ]
-  }
-  </script>
-
-  <!-- Google Analytics (replace ID) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
-
-  <style>
-    :root {
-      --bg: #0b0b0f;
-      --card: #141420;
-      --text: #eaeaf0;
-      --muted: #cfcfd8;
-      --accent: #7aa2ff;
-    }
-
-    [data-theme="light"] {
-      --bg: #ffffff;
-      --card: #f3f4f6;
-      --text: #111111;
-      --muted: #444444;
-      --accent: #2563eb;
-    }
-
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    section {
-      max-width: 980px;
-      margin: auto;
-      padding: 56px 20px;
-    }
-
-    h1 { font-size: 36px; margin-bottom: 8px; }
-    h2 { font-size: 26px; margin-bottom: 12px; }
-    h3 { margin-bottom: 6px; }
-
-    #typewriter { min-height: 48px; }
-
-    p { color: var(--muted); }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    a:focus {
-      outline: 2px dashed var(--accent);
-      outline-offset: 4px;
-    }
-
-    .top-bar {
-      display: flex;
-      justify-content: flex-end;
-      padding: 16px 20px;
-      max-width: 980px;
-      margin: auto;
-    }
-
-    .toggle {
-      cursor: pointer;
-      border: 1px solid var(--accent);
-      padding: 6px 12px;
-      border-radius: 8px;
-      font-size: 14px;
-    }
-
-    .metrics {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 16px;
-      margin-top: 28px;
-    }
-
-    .card {
-      background: var(--card);
-      padding: 18px;
-      border-radius: 14px;
-    }
-
-    .slider { overflow: hidden; }
-    .slides {
-      display: flex;
-      transition: transform 0.8s ease;
-    }
-    .slide { min-width: 100%; }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 28px; }
-      h2 { font-size: 22px; }
-      section { padding: 40px 16px; }
-    }
-  </style>
+<style>
+:root{
+--bg:#0b1120;
+--card:rgba(255,255,255,0.06);
+--text:#e6edf3;
+--accent:#3b82f6;
+}
+[data-theme="light"]{
+--bg:#f8fafc;
+--card:rgba(255,255,255,0.8);
+--text:#0f172a;
+--accent:#2563eb;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;transition:.4s}
+#particles-js{position:fixed;width:100%;height:100%;z-index:-1}
+section{max-width:1200px;margin:auto;padding:100px 20px}
+h1{font-size:3.5rem;font-weight:900}
+h2{font-size:2rem;margin-bottom:30px}
+p{line-height:1.7;opacity:.9}
+.glass{background:var(--card);backdrop-filter:blur(20px);border-radius:24px;padding:50px;margin-bottom:60px;box-shadow:0 8px 40px rgba(0,0,0,.3)}
+.btn{background:var(--accent);color:#fff;border:none;padding:14px 28px;border-radius:40px;font-weight:600;cursor:pointer;margin:10px 10px 0 0}
+.grid{display:grid;gap:30px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.counter{font-size:2.5rem;font-weight:800;color:var(--accent)}
+.skill-bar{height:10px;background:rgba(255,255,255,.1);border-radius:20px;overflow:hidden;margin-top:8px}
+.skill-progress{height:100%;width:0;background:var(--accent);transition:2s}
+.typing{font-size:1.6rem;color:var(--accent);height:40px;margin-top:10px}
+.theme-toggle{position:fixed;top:20px;right:20px}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);justify-content:center;align-items:center;padding:20px}
+.modal-content{background:var(--bg);padding:40px;border-radius:20px;max-width:700px}
+footer{text-align:center;padding:50px;opacity:.6}
+</style>
 </head>
-
 <body>
+<div id="particles-js"></div>
+<button class="btn theme-toggle" onclick="toggleTheme()">Theme</button>
 
-<!-- THEME TOGGLE -->
-<div class="top-bar">
-  <div class="toggle" onclick="toggleTheme()">Toggle Theme</div>
+<section style="text-align:center">
+<h1>Nishant Modi</h1>
+<div class="typing" id="typing"></div>
+<p style="margin-top:20px;max-width:800px;margin-inline:auto">Staff-Level Android Platform Engineer specializing in scalable multi-module architectures, offline-first distributed systems, and performance-critical mobile platforms serving 250K+ MAU with 99.8% reliability.</p>
+<button class="btn" onclick="downloadResume()">Download Resume</button>
+<button class="btn" onclick="window.location.href='mailto:nishantmodimaster@gmail.com'">Contact Me</button>
+</section>
+
+<section data-aos="fade-up">
+<div class="glass">
+<h2>Executive Impact</h2>
+<div class="grid">
+<div><div class="counter" data-target="250">0</div><p>Monthly Active Users (K+)</p></div>
+<div><div class="counter" data-target="99">0</div><p>Crash Free %</p></div>
+<div><div class="counter" data-target="40">0</div><p>ANR Reduction %</p></div>
+<div><div class="counter" data-target="35">0</div><p>Build Time Reduced %</p></div>
 </div>
-
-<!-- HERO -->
-<section>
-  <h1 id="typewriter"></h1>
-
-  <p>
-    Building scalable, reliable <strong>Kotlin & Jetpack Compose</strong> Android systems
-    used by <strong>250K+ users</strong>.
-  </p>
-
-  <p>
-    8+ years owning production-grade Android platforms with strong focus on
-    <strong>system design, performance, reliability, and offline-first architectures</strong>
-    under real-world constraints.
-  </p>
-
-  <p>
-    <a href="https://github.com/nishantmodi92">GitHub</a> ·
-    <a href="https://linkedin.com/in/nishantmodi92">LinkedIn</a> ·
-    <a href="mailto:nishantmodimaster@gmail.com">Email</a>
-  </p>
-
-  <div class="metrics">
-    <div class="card"><h3>250K+</h3><p>Monthly Active Users</p></div>
-    <div class="card"><h3>40%+</h3><p>ANR Reduction</p></div>
-    <div class="card"><h3>30–45%</h3><p>Startup Improvement</p></div>
-    <div class="card"><h3>99%+</h3><p>Crash-Free Sessions</p></div>
-  </div>
+</div>
 </section>
 
-<!-- PLATFORM OWNERSHIP -->
-<section>
-  <h2>Android Platform & System Ownership</h2>
-  <ul>
-    <li>Owned and evolved multi-module Android architecture (40+ modules)</li>
-    <li>Defined concurrency & background execution models (Coroutines, WorkManager)</li>
-    <li>Designed offline-first sync systems with conflict resolution</li>
-    <li>Led system-level performance optimization reducing ANRs by 40%+</li>
-    <li>Designed Android-side architecture for AI-powered features
-        (latency, privacy, cost control, fallbacks)</li>
-    <li>Influenced multi-quarter technical roadmaps and architectural decisions</li>
-  </ul>
+<section data-aos="fade-up">
+<div class="glass">
+<h2>Technical Depth</h2>
+<div>
+<p>Kotlin / Android</p><div class="skill-bar"><div class="skill-progress" data-width="95%"></div></div>
+<p>Architecture & Modularization</p><div class="skill-bar"><div class="skill-progress" data-width="92%"></div></div>
+<p>Concurrency & Reactive Systems</p><div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
+<p>Performance Engineering</p><div class="skill-bar"><div class="skill-progress" data-width="93%"></div></div>
+<p>Distributed Systems Integration</p><div class="skill-bar"><div class="skill-progress" data-width="85%"></div></div>
+</div>
+</div>
 </section>
 
-<!-- PROJECTS -->
-<section>
-  <h2>Flagship Projects</h2>
-
-  <div class="slider">
-    <div class="slides" id="slides">
-
-      <div class="slide">
-        <div class="card">
-          <h3>Real-Time Messaging App (Android)</h3>
-          <ul>
-            <li>High-concurrency real-time messaging with offline support</li>
-            <li>Conflict-safe sync & background processing</li>
-            <li>99.8% crash-free sessions</li>
-            <li>AI-powered smart replies & message summarization</li>
-          </ul>
-          <a href="https://github.com/nishantmodi92/securechatx-android">View on GitHub</a>
-        </div>
-      </div>
-
-      <div class="slide">
-        <div class="card">
-          <h3>Offline-First Commerce Platform</h3>
-          <ul>
-            <li>Resilient offline shopping experience</li>
-            <li>Background sync & conflict resolution</li>
-            <li>45% reduction in failed transactions</li>
-          </ul>
-          <a href="https://github.com/nishantmodi92/grocerly-android">View on GitHub</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
+<section data-aos="fade-up">
+<div class="glass">
+<h2>Flagship Architecture Projects</h2>
+<div class="grid">
+<button class="btn" onclick="openModal('arch')">Scalable Multi-Module Platform</button>
+<button class="btn" onclick="openModal('sync')">Offline-First Sync Engine</button>
+<button class="btn" onclick="openModal('perf')">Performance Optimization Framework</button>
+<button class="btn" onclick="openModal('resilience')">Distributed API Resilience Layer</button>
+</div>
+</div>
 </section>
 
-<!-- SYSTEM DESIGN -->
-<section>
-  <h2>System Design & Trade-Offs</h2>
-  <ul>
-    <li>Offline-first vs real-time synchronization strategies</li>
-    <li>Background execution under Android OS constraints</li>
-    <li>Modularization trade-offs: build time vs scalability</li>
-    <li>AI integration trade-offs: latency, privacy, cost</li>
-    <li>Reliability strategies for low-bandwidth environments</li>
-  </ul>
+<section data-aos="fade-up">
+<div class="glass">
+<h2>Architecture Philosophy</h2>
+<p>Domain-driven modular layering → Deterministic data boundaries → Reactive state orchestration → Observability-first production systems → Backward-compatible API governance.</p>
+</div>
 </section>
 
-<!-- TECH STACK -->
-<section>
-  <h2>Technology Stack</h2>
-  <p>
-    Kotlin · Jetpack Compose · Android SDK · Clean Architecture · MVVM · MVI ·
-    Coroutines · Flow · Room · WorkManager · Retrofit · Firebase ·
-    CI/CD · GitHub Actions · Fastlane · Offline-First Systems ·
-    Mobile System Design · Performance Optimization · Scalability
-  </p>
+<section data-aos="fade-up">
+<div class="glass">
+<h2>Engineering Blog</h2>
+<p>• Scaling Android to 40+ modules without dependency chaos<br>• Structured concurrency patterns in production<br>• Offline-first deterministic conflict resolution<br>• Measuring cold-start performance scientifically</p>
+</div>
 </section>
 
-<!-- CTA -->
-<section>
-  <h2>Let’s Build Reliable Android Systems at Scale</h2>
-  <p><a href="mailto:nishantmodimaster@gmail.com">nishantmodimaster@gmail.com</a></p>
-</section>
+<div class="modal" id="modal"><div class="modal-content" id="modal-content"></div></div>
 
-<!-- SCRIPTS -->
+<footer>© 2026 Nishant Modi • Staff Android Platform Engineer • Open to Global Leadership Roles</footer>
+
 <script>
-  // Typewriter (title only)
-  const titleText = "Senior Android Platform Engineer";
-  let t = 0;
-  const titleEl = document.getElementById("typewriter");
-  function type() {
-    if (t < titleText.length) {
-      titleEl.textContent += titleText.charAt(t++);
-      setTimeout(type, 70);
-    }
-  }
-  type();
+AOS.init();
 
-  // Slider (slow)
-  const slides = document.getElementById("slides");
-  let idx = 0;
-  setInterval(() => {
-    idx = (idx + 1) % 2;
-    slides.style.transform = `translateX(-${idx * 100}%)`;
-  }, 6000);
+// Typing
+const roles=["Staff Android Platform Engineer","Offline-First Systems Architect","Distributed Mobile Systems Leader","Performance & Reliability Specialist"];
+let r=0,i=0;
+(function type(){if(r===roles.length)r=0;let txt=roles[r];document.getElementById('typing').textContent=txt.slice(0,++i);if(i===txt.length){r++;i=0;setTimeout(type,1500);}else setTimeout(type,70);})();
 
-  // Theme
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  document.documentElement.dataset.theme = prefersDark ? "dark" : "light";
+// Skill animation
+window.addEventListener('scroll',()=>{document.querySelectorAll('.skill-progress').forEach(el=>{el.style.width=el.dataset.width})});
 
-  function toggleTheme() {
-    document.documentElement.dataset.theme =
-      document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-  }
+// Counter animation
+const counters=document.querySelectorAll('.counter');
+counters.forEach(counter=>{const update=()=>{const target=+counter.dataset.target;const c=+counter.innerText;const inc=target/100;if(c<target){counter.innerText=Math.ceil(c+inc);setTimeout(update,25)}else counter.innerText=target};update()});
+
+// Modal
+function openModal(id){
+const data={
+arch:"40+ module Clean Architecture platform reducing build time 35% and enabling parallel squad development.",
+sync:"Offline-first engine with deterministic conflict resolution and reactive Flow-based streaming.",
+perf:"Cold start profiling, ANR isolation, memory footprint reduction 22%, O(N²→N log N) algorithm optimization.",
+resilience:"Exponential backoff retry, circuit-breaker patterns, API version governance for distributed systems."};
+document.getElementById('modal-content').innerHTML=data[id];
+document.getElementById('modal').style.display='flex'}
+document.getElementById('modal').onclick=()=>document.getElementById('modal').style.display='none';
+
+// Resume download analytics
+function downloadResume(){console.log('Resume Downloaded');window.location.href='/Nishant_Modi_Senior_Android_Platform_Engineer.pdf'}
+
+// Theme toggle
+toggleTheme();
+function toggleTheme(){const c=document.documentElement.getAttribute('data-theme');document.documentElement.setAttribute('data-theme',c==='light'?'dark':'light')}
+setInterval(toggleTheme,15000);
+
+// Particles
+particlesJS("particles-js",{particles:{number:{value:70},size:{value:3},color:{value:"#3b82f6"},line_linked:{enable:true}},interactivity:{events:{onhover:{enable:true,mode:"repulse"}}}});
 </script>
 
 </body>
