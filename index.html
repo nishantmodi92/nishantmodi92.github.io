@@ -1,111 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nishant Modi Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nishant Modi | Senior Android Platform Engineer</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Senior Android Platform Engineer specializing in Distributed Systems, Scalable Infrastructure, and Low-Latency Mobile Systems. 250K+ MAU impact." />
+  <meta name="keywords" content="Android, Kotlin, Distributed Systems, Scalable Architecture, System Design, Low Latency, CI/CD" />
+  <meta name="author" content="Nishant Modi" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Nishant Modi Portfolio" />
+  <meta property="og:description" content="FAANG-level Android Platform Engineer portfolio" />
+  <meta property="og:type" content="website" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nishant Modi",
+    "jobTitle": "Senior Android Platform Engineer",
+    "email": "nishantmodimaster@gmail.com",
+    "url": "https://nishantmodi92.github.io"
+  }
+  </script>
+
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      transition: background 0.5s, color 0.5s;
+    body { margin:0; font-family:Arial; transition:0.5s; }
+    .dark { background:#000; color:#fff }
+    .light { background:#fff; color:#000 }
+
+    header { display:flex; justify-content:space-between; padding:20px; font-weight:bold }
+
+    .hero { height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center }
+
+    .gradient {
+      font-size:50px; font-weight:bold;
+      background: linear-gradient(90deg, purple, cyan, lime);
+      background-size:300%;
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:grad 5s infinite linear;
     }
 
-    .dark { background: #000; color: #fff; }
-    .light { background: #fff; color: #000; }
+    @keyframes grad { 0%{background-position:0} 100%{background-position:100%} }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      padding: 20px;
-      font-weight: bold;
-    }
+    .typing { font-size:24px; border-right:2px solid; padding-right:5px }
 
-    .hero {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
+    .marquee { overflow:hidden; white-space:nowrap; border:1px solid gray }
+    .marquee span { display:inline-block; padding-left:100%; animation:scroll 12s linear infinite }
+    @keyframes scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-100%)} }
 
-    .gradient-text {
-      font-size: 50px;
-      font-weight: bold;
-      background: linear-gradient(90deg, purple, pink, cyan, lime);
-      background-size: 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradientMove 5s infinite linear;
-    }
+    .section { padding:50px; max-width:1000px; margin:auto }
 
-    @keyframes gradientMove {
-      0% { background-position: 0%; }
-      100% { background-position: 100%; }
-    }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px }
 
-    .role {
-      font-size: 24px;
-      margin-top: 10px;
-    }
+    .card { border:1px solid gray; padding:20px; border-radius:10px; transition:.3s }
+    .card:hover { transform:scale(1.05) }
 
-    .marquee {
-      overflow: hidden;
-      white-space: nowrap;
-      border-top: 1px solid gray;
-      border-bottom: 1px solid gray;
-      padding: 10px 0;
-    }
-
-    .marquee span {
-      display: inline-block;
-      padding-left: 100%;
-      animation: scroll 10s linear infinite;
-    }
-
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
-
-    .section {
-      padding: 50px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      border: 1px solid gray;
-      padding: 20px;
-      border-radius: 10px;
-      transition: transform 0.3s;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 20px;
-      text-align: center;
-    }
-
-    .stat {
-      border: 1px solid gray;
-      padding: 20px;
-      border-radius: 10px;
-    }
+    img { max-width:100%; height:auto; }
   </style>
 </head>
+
 <body class="dark" id="body">
 
 <header>
@@ -114,8 +72,8 @@
 </header>
 
 <div class="hero">
-  <div class="gradient-text">Nishant Modi</div>
-  <div class="role" id="role"></div>
+  <div class="gradient">Nishant Modi</div>
+  <div class="typing" id="typing"></div>
 </div>
 
 <div class="marquee">
@@ -124,61 +82,78 @@
 
 <div class="section">
   <h2>About</h2>
-  <p>Senior Android Platform Engineer with 8+ years of experience building scalable distributed systems and low-latency architectures.</p>
+  <p>Senior Android Platform Engineer with 8+ years building scalable distributed systems. Proven impact on performance, reliability, and system design.</p>
 </div>
 
 <div class="section">
   <h2>Projects</h2>
-  <div class="projects">
+  <div class="grid">
     <div class="card">
       <h3>Offline Sync Engine</h3>
-      <p>Offline-first distributed sync system</p>
+      <p>Offline-first distributed sync system with conflict resolution.</p>
     </div>
     <div class="card">
       <h3>Streaming Platform</h3>
-      <p>10K+ concurrent users streaming system</p>
+      <p>Low-latency streaming system (10K+ concurrent users).</p>
     </div>
     <div class="card">
       <h3>System Design Playground</h3>
-      <p>Scalable architecture implementations</p>
+      <p>Rate limiter, caching, load balancer implementations.</p>
     </div>
   </div>
 </div>
 
 <div class="section">
+  <h2>System Design</h2>
+  <img src="docs/architecture.png" loading="lazy" alt="System Design Diagram" />
+</div>
+
+<div class="section">
+  <h2>GitHub Stats</h2>
+  <img src="https://github-readme-stats.vercel.app/api?username=nishantmodi92&show_icons=true" loading="lazy" />
+</div>
+
+<div class="section">
   <h2>Impact</h2>
-  <div class="stats">
-    <div class="stat">250K+ Users</div>
-    <div class="stat">35% Latency ↓</div>
-    <div class="stat">40% ANR ↓</div>
-    <div class="stat">45% Reliability ↑</div>
+  <div class="grid">
+    <div class="card">250K+ Users</div>
+    <div class="card">35% Latency ↓</div>
+    <div class="card">40% ANR ↓</div>
+    <div class="card">45% Reliability ↑</div>
   </div>
 </div>
 
 <div class="section">
   <h2>Contact</h2>
-  <p>nishantmodimaster@gmail.com</p>
+  <p>Email: nishantmodimaster@gmail.com</p>
 </div>
 
 <script>
-  const roles = [
-    "Distributed Systems Engineer",
-    "Android Platform Engineer",
-    "Scalable Infrastructure Builder",
-    "Low Latency Systems Expert"
-  ];
+const roles = [
+  "Distributed Systems Engineer",
+  "Android Platform Engineer",
+  "Scalable Infrastructure Builder",
+  "Low Latency Systems Expert"
+];
 
-  let i = 0;
-  setInterval(() => {
-    document.getElementById("role").innerText = roles[i];
-    i = (i + 1) % roles.length;
-  }, 2000);
+let i=0, j=0, current="", isDeleting=false;
 
-  setInterval(() => {
-    const body = document.getElementById("body");
-    body.classList.toggle("dark");
-    body.classList.toggle("light");
-  }, 5000);
+function type(){
+  current = roles[i];
+  document.getElementById("typing").innerText = current.substring(0,j);
+
+  if(!isDeleting && j++ === current.length){ isDeleting=true; setTimeout(type,1000); return; }
+  if(isDeleting && j-- === 0){ isDeleting=false; i=(i+1)%roles.length; }
+
+  setTimeout(type, isDeleting?50:100);
+}
+
+type();
+
+setInterval(()=>{
+  document.getElementById("body").classList.toggle("dark");
+  document.getElementById("body").classList.toggle("light");
+},5000);
 </script>
 
 </body>
