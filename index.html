@@ -1,188 +1,185 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nishant Modi Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      transition: background 0.5s, color 0.5s;
+    }
 
-const roles = [
-  "Distributed Systems Engineer",
-  "Android Platform Expert",
-  "Scalable Infrastructure Builder",
-  "Low Latency Systems Specialist",
-];
+    .dark { background: #000; color: #fff; }
+    .light { background: #fff; color: #000; }
 
-const skills = [
-  "Kotlin", "Distributed Systems", "System Design", "Scalability",
-  "Coroutines", "Flow", "Jetpack Compose", "CI/CD", "Microservices"
-];
+    header {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      font-weight: bold;
+    }
 
-export default function Portfolio() {
-  const [theme, setTheme] = useState("dark");
-  const [colorIndex, setColorIndex] = useState(0);
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
 
-  const colors = [
-    "from-purple-500 to-pink-500",
-    "from-blue-500 to-cyan-500",
-    "from-green-400 to-emerald-600",
+    .gradient-text {
+      font-size: 50px;
+      font-weight: bold;
+      background: linear-gradient(90deg, purple, pink, cyan, lime);
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientMove 5s infinite linear;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0%; }
+      100% { background-position: 100%; }
+    }
+
+    .role {
+      font-size: 24px;
+      margin-top: 10px;
+    }
+
+    .marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      border-top: 1px solid gray;
+      border-bottom: 1px solid gray;
+      padding: 10px 0;
+    }
+
+    .marquee span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll 10s linear infinite;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .section {
+      padding: 50px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      border: 1px solid gray;
+      padding: 20px;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      text-align: center;
+    }
+
+    .stat {
+      border: 1px solid gray;
+      padding: 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body class="dark" id="body">
+
+<header>
+  <div>Nishant Modi</div>
+  <div>🚀 Open to Opportunities</div>
+</header>
+
+<div class="hero">
+  <div class="gradient-text">Nishant Modi</div>
+  <div class="role" id="role"></div>
+</div>
+
+<div class="marquee">
+  <span>Kotlin • Distributed Systems • System Design • Scalability • Coroutines • CI/CD • Microservices • Low Latency • Fault Tolerance</span>
+</div>
+
+<div class="section">
+  <h2>About</h2>
+  <p>Senior Android Platform Engineer with 8+ years of experience building scalable distributed systems and low-latency architectures.</p>
+</div>
+
+<div class="section">
+  <h2>Projects</h2>
+  <div class="projects">
+    <div class="card">
+      <h3>Offline Sync Engine</h3>
+      <p>Offline-first distributed sync system</p>
+    </div>
+    <div class="card">
+      <h3>Streaming Platform</h3>
+      <p>10K+ concurrent users streaming system</p>
+    </div>
+    <div class="card">
+      <h3>System Design Playground</h3>
+      <p>Scalable architecture implementations</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Impact</h2>
+  <div class="stats">
+    <div class="stat">250K+ Users</div>
+    <div class="stat">35% Latency ↓</div>
+    <div class="stat">40% ANR ↓</div>
+    <div class="stat">45% Reliability ↑</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Contact</h2>
+  <p>nishantmodimaster@gmail.com</p>
+</div>
+
+<script>
+  const roles = [
+    "Distributed Systems Engineer",
+    "Android Platform Engineer",
+    "Scalable Infrastructure Builder",
+    "Low Latency Systems Expert"
   ];
 
-  useEffect(() => {
-    const themeInterval = setInterval(() => {
-      setTheme((prev) => (prev === "dark" ? "light" : "dark"));
-    }, 6000);
+  let i = 0;
+  setInterval(() => {
+    document.getElementById("role").innerText = roles[i];
+    i = (i + 1) % roles.length;
+  }, 2000);
 
-    const colorInterval = setInterval(() => {
-      setColorIndex((prev) => (prev + 1) % colors.length);
-    }, 3000);
+  setInterval(() => {
+    const body = document.getElementById("body");
+    body.classList.toggle("dark");
+    body.classList.toggle("light");
+  }, 5000);
+</script>
 
-    return () => {
-      clearInterval(themeInterval);
-      clearInterval(colorInterval);
-    };
-  }, []);
-
-  return (
-    <div className={`${theme === "dark" ? "bg-black text-white" : "bg-white text-black"} transition-all duration-500`}>
-      <Header />
-      <Hero color={colors[colorIndex]} />
-      <Marquee />
-      <About />
-      <Projects />
-      <Stats />
-      <Contact />
-    </div>
-  );
-}
-
-function Header() {
-  return (
-    <div className="p-6 flex justify-between items-center">
-      <div className="text-xl font-bold">Nishant Modi</div>
-      <motion.div
-        animate={{ opacity: [0.5, 1, 0.5] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        🚀 Open to Opportunities
-      </motion.div>
-    </div>
-  );
-}
-
-function Hero({ color }) {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % roles.length);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="h-screen flex flex-col justify-center items-center text-center">
-      <motion.h1
-        className={`text-5xl font-bold bg-gradient-to-r ${color} bg-clip-text text-transparent`}
-        animate={{ scale: [1, 1.1, 1] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        Nishant Modi
-      </motion.h1>
-
-      <motion.p
-        key={index}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="mt-4 text-2xl"
-      >
-        {roles[index]}
-      </motion.p>
-    </div>
-  );
-}
-
-function Marquee() {
-  return (
-    <div className="overflow-hidden whitespace-nowrap py-4 border-y">
-      <motion.div
-        animate={{ x: ["100%", "-100%"] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-        className="inline-block"
-      >
-        {skills.map((skill, i) => (
-          <span key={i} className="mx-6 text-lg font-semibold">
-            {skill}
-          </span>
-        ))}
-      </motion.div>
-    </div>
-  );
-}
-
-function About() {
-  return (
-    <div className="p-10 max-w-4xl mx-auto">
-      <h2 className="text-3xl font-bold mb-4">About</h2>
-      <p>
-        Senior Android Platform Engineer with 8+ years of experience building scalable distributed systems, improving performance, and designing low-latency architectures.
-      </p>
-    </div>
-  );
-}
-
-function Projects() {
-  const projects = [
-    { title: "Offline Sync Engine", desc: "Distributed offline-first sync system" },
-    { title: "Streaming Platform", desc: "10K+ concurrent users system" },
-    { title: "System Design Playground", desc: "Scalable system patterns" },
-  ];
-
-  return (
-    <div className="p-10">
-      <h2 className="text-3xl font-bold mb-6">Projects</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {projects.map((p, i) => (
-          <motion.div
-            key={i}
-            whileHover={{ scale: 1.1 }}
-            className="p-6 border rounded-2xl shadow-lg"
-          >
-            <h3 className="text-xl font-bold">{p.title}</h3>
-            <p className="mt-2">{p.desc}</p>
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function Stats() {
-  return (
-    <div className="p-10 text-center">
-      <h2 className="text-3xl font-bold">Impact</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6">
-        <Stat number="250K+" label="Users" />
-        <Stat number="35%" label="Latency Reduced" />
-        <Stat number="40%" label="ANR Reduced" />
-        <Stat number="45%" label="Reliability Increased" />
-      </div>
-    </div>
-  );
-}
-
-function Stat({ number, label }) {
-  return (
-    <motion.div
-      whileHover={{ scale: 1.1 }}
-      className="p-4 border rounded-xl"
-    >
-      <div className="text-2xl font-bold">{number}</div>
-      <div>{label}</div>
-    </motion.div>
-  );
-}
-
-function Contact() {
-  return (
-    <div className="p-10 text-center">
-      <h2 className="text-3xl font-bold">Connect</h2>
-      <p className="mt-4">nishantmodimaster@gmail.com</p>
-    </div>
-  );
-}
+</body>
+</html>
