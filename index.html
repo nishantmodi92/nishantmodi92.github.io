@@ -1,150 +1,188 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Nishant Modi | Staff Android Platform Engineer</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
-<style>
-:root{
---bg:#0b1120;
---card:rgba(255,255,255,0.06);
---text:#e6edf3;
---accent:#3b82f6;
+const roles = [
+  "Distributed Systems Engineer",
+  "Android Platform Expert",
+  "Scalable Infrastructure Builder",
+  "Low Latency Systems Specialist",
+];
+
+const skills = [
+  "Kotlin", "Distributed Systems", "System Design", "Scalability",
+  "Coroutines", "Flow", "Jetpack Compose", "CI/CD", "Microservices"
+];
+
+export default function Portfolio() {
+  const [theme, setTheme] = useState("dark");
+  const [colorIndex, setColorIndex] = useState(0);
+
+  const colors = [
+    "from-purple-500 to-pink-500",
+    "from-blue-500 to-cyan-500",
+    "from-green-400 to-emerald-600",
+  ];
+
+  useEffect(() => {
+    const themeInterval = setInterval(() => {
+      setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+    }, 6000);
+
+    const colorInterval = setInterval(() => {
+      setColorIndex((prev) => (prev + 1) % colors.length);
+    }, 3000);
+
+    return () => {
+      clearInterval(themeInterval);
+      clearInterval(colorInterval);
+    };
+  }, []);
+
+  return (
+    <div className={`${theme === "dark" ? "bg-black text-white" : "bg-white text-black"} transition-all duration-500`}>
+      <Header />
+      <Hero color={colors[colorIndex]} />
+      <Marquee />
+      <About />
+      <Projects />
+      <Stats />
+      <Contact />
+    </div>
+  );
 }
-[data-theme="light"]{
---bg:#f8fafc;
---card:rgba(255,255,255,0.8);
---text:#0f172a;
---accent:#2563eb;
+
+function Header() {
+  return (
+    <div className="p-6 flex justify-between items-center">
+      <div className="text-xl font-bold">Nishant Modi</div>
+      <motion.div
+        animate={{ opacity: [0.5, 1, 0.5] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      >
+        🚀 Open to Opportunities
+      </motion.div>
+    </div>
+  );
 }
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;transition:.4s}
-#particles-js{position:fixed;width:100%;height:100%;z-index:-1}
-section{max-width:1200px;margin:auto;padding:100px 20px}
-h1{font-size:3.5rem;font-weight:900}
-h2{font-size:2rem;margin-bottom:30px}
-p{line-height:1.7;opacity:.9}
-.glass{background:var(--card);backdrop-filter:blur(20px);border-radius:24px;padding:50px;margin-bottom:60px;box-shadow:0 8px 40px rgba(0,0,0,.3)}
-.btn{background:var(--accent);color:#fff;border:none;padding:14px 28px;border-radius:40px;font-weight:600;cursor:pointer;margin:10px 10px 0 0}
-.grid{display:grid;gap:30px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-.counter{font-size:2.5rem;font-weight:800;color:var(--accent)}
-.skill-bar{height:10px;background:rgba(255,255,255,.1);border-radius:20px;overflow:hidden;margin-top:8px}
-.skill-progress{height:100%;width:0;background:var(--accent);transition:2s}
-.typing{font-size:1.6rem;color:var(--accent);height:40px;margin-top:10px}
-.theme-toggle{position:fixed;top:20px;right:20px}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);justify-content:center;align-items:center;padding:20px}
-.modal-content{background:var(--bg);padding:40px;border-radius:20px;max-width:700px}
-footer{text-align:center;padding:50px;opacity:.6}
-</style>
-</head>
-<body>
-<div id="particles-js"></div>
-<button class="btn theme-toggle" onclick="toggleTheme()">Theme</button>
 
-<section style="text-align:center">
-<h1>Nishant Modi</h1>
-<div class="typing" id="typing"></div>
-<p style="margin-top:20px;max-width:800px;margin-inline:auto">Staff-Level Android Platform Engineer specializing in scalable multi-module architectures, offline-first distributed systems, and performance-critical mobile platforms serving 250K+ MAU with 99.8% reliability.</p>
+function Hero({ color }) {
+  const [index, setIndex] = useState(0);
 
-<button class="btn" onclick="window.location.href='mailto:nishantmodimaster@gmail.com'">Contact Me</button>
-</section>
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % roles.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
 
-<section data-aos="fade-up">
-<div class="glass">
-<h2>Executive Impact</h2>
-<div class="grid">
-<div><div class="counter" data-target="250">0</div><p>Monthly Active Users (K+)</p></div>
-<div><div class="counter" data-target="99">0</div><p>Crash Free %</p></div>
-<div><div class="counter" data-target="40">0</div><p>ANR Reduction %</p></div>
-<div><div class="counter" data-target="35">0</div><p>Build Time Reduced %</p></div>
-</div>
-</div>
-</section>
+  return (
+    <div className="h-screen flex flex-col justify-center items-center text-center">
+      <motion.h1
+        className={`text-5xl font-bold bg-gradient-to-r ${color} bg-clip-text text-transparent`}
+        animate={{ scale: [1, 1.1, 1] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      >
+        Nishant Modi
+      </motion.h1>
 
-<section data-aos="fade-up">
-<div class="glass">
-<h2>Technical Depth</h2>
-<div>
-<p>Kotlin / Android</p><div class="skill-bar"><div class="skill-progress" data-width="95%"></div></div>
-<p>Architecture & Modularization</p><div class="skill-bar"><div class="skill-progress" data-width="92%"></div></div>
-<p>Concurrency & Reactive Systems</p><div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
-<p>Performance Engineering</p><div class="skill-bar"><div class="skill-progress" data-width="93%"></div></div>
-<p>Distributed Systems Integration</p><div class="skill-bar"><div class="skill-progress" data-width="85%"></div></div>
-</div>
-</div>
-</section>
+      <motion.p
+        key={index}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="mt-4 text-2xl"
+      >
+        {roles[index]}
+      </motion.p>
+    </div>
+  );
+}
 
-<section data-aos="fade-up">
-<div class="glass">
-<h2>Flagship Architecture Projects</h2>
-<div class="grid">
-<button class="btn" onclick="openModal('arch')">Scalable Multi-Module Platform</button>
-<button class="btn" onclick="openModal('sync')">Offline-First Sync Engine</button>
-<button class="btn" onclick="openModal('perf')">Performance Optimization Framework</button>
-<button class="btn" onclick="openModal('resilience')">Distributed API Resilience Layer</button>
-</div>
-</div>
-</section>
+function Marquee() {
+  return (
+    <div className="overflow-hidden whitespace-nowrap py-4 border-y">
+      <motion.div
+        animate={{ x: ["100%", "-100%"] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+        className="inline-block"
+      >
+        {skills.map((skill, i) => (
+          <span key={i} className="mx-6 text-lg font-semibold">
+            {skill}
+          </span>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
 
-<section data-aos="fade-up">
-<div class="glass">
-<h2>Architecture Philosophy</h2>
-<p>Domain-driven modular layering → Deterministic data boundaries → Reactive state orchestration → Observability-first production systems → Backward-compatible API governance.</p>
-</div>
-</section>
+function About() {
+  return (
+    <div className="p-10 max-w-4xl mx-auto">
+      <h2 className="text-3xl font-bold mb-4">About</h2>
+      <p>
+        Senior Android Platform Engineer with 8+ years of experience building scalable distributed systems, improving performance, and designing low-latency architectures.
+      </p>
+    </div>
+  );
+}
 
-<section data-aos="fade-up">
-<div class="glass">
-<h2>Engineering Blog</h2>
-<p>• Scaling Android to 40+ modules without dependency chaos<br>• Structured concurrency patterns in production<br>• Offline-first deterministic conflict resolution<br>• Measuring cold-start performance scientifically</p>
-</div>
-</section>
+function Projects() {
+  const projects = [
+    { title: "Offline Sync Engine", desc: "Distributed offline-first sync system" },
+    { title: "Streaming Platform", desc: "10K+ concurrent users system" },
+    { title: "System Design Playground", desc: "Scalable system patterns" },
+  ];
 
-<div class="modal" id="modal"><div class="modal-content" id="modal-content"></div></div>
+  return (
+    <div className="p-10">
+      <h2 className="text-3xl font-bold mb-6">Projects</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {projects.map((p, i) => (
+          <motion.div
+            key={i}
+            whileHover={{ scale: 1.1 }}
+            className="p-6 border rounded-2xl shadow-lg"
+          >
+            <h3 className="text-xl font-bold">{p.title}</h3>
+            <p className="mt-2">{p.desc}</p>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
-<footer>© 2026 Nishant Modi • Staff Android Platform Engineer • Open to Global Leadership Roles</footer>
+function Stats() {
+  return (
+    <div className="p-10 text-center">
+      <h2 className="text-3xl font-bold">Impact</h2>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6">
+        <Stat number="250K+" label="Users" />
+        <Stat number="35%" label="Latency Reduced" />
+        <Stat number="40%" label="ANR Reduced" />
+        <Stat number="45%" label="Reliability Increased" />
+      </div>
+    </div>
+  );
+}
 
-<script>
-AOS.init();
+function Stat({ number, label }) {
+  return (
+    <motion.div
+      whileHover={{ scale: 1.1 }}
+      className="p-4 border rounded-xl"
+    >
+      <div className="text-2xl font-bold">{number}</div>
+      <div>{label}</div>
+    </motion.div>
+  );
+}
 
-// Typing
-const roles=["Staff Android Platform Engineer","Offline-First Systems Architect","Distributed Mobile Systems Leader","Performance & Reliability Specialist"];
-let r=0,i=0;
-(function type(){if(r===roles.length)r=0;let txt=roles[r];document.getElementById('typing').textContent=txt.slice(0,++i);if(i===txt.length){r++;i=0;setTimeout(type,1500);}else setTimeout(type,70);})();
-
-// Skill animation
-window.addEventListener('scroll',()=>{document.querySelectorAll('.skill-progress').forEach(el=>{el.style.width=el.dataset.width})});
-
-// Counter animation
-const counters=document.querySelectorAll('.counter');
-counters.forEach(counter=>{const update=()=>{const target=+counter.dataset.target;const c=+counter.innerText;const inc=target/100;if(c<target){counter.innerText=Math.ceil(c+inc);setTimeout(update,25)}else counter.innerText=target};update()});
-
-// Modal
-function openModal(id){
-const data={
-arch:"40+ module Clean Architecture platform reducing build time 35% and enabling parallel squad development.",
-sync:"Offline-first engine with deterministic conflict resolution and reactive Flow-based streaming.",
-perf:"Cold start profiling, ANR isolation, memory footprint reduction 22%, O(N²→N log N) algorithm optimization.",
-resilience:"Exponential backoff retry, circuit-breaker patterns, API version governance for distributed systems."};
-document.getElementById('modal-content').innerHTML=data[id];
-document.getElementById('modal').style.display='flex'}
-document.getElementById('modal').onclick=()=>document.getElementById('modal').style.display='none';
-
-
-
-// Theme toggle
-toggleTheme();
-function toggleTheme(){const c=document.documentElement.getAttribute('data-theme');document.documentElement.setAttribute('data-theme',c==='light'?'dark':'light')}
-setInterval(toggleTheme,15000);
-
-// Particles
-particlesJS("particles-js",{particles:{number:{value:70},size:{value:3},color:{value:"#3b82f6"},line_linked:{enable:true}},interactivity:{events:{onhover:{enable:true,mode:"repulse"}}}});
-</script>
-
-</body>
-</html>
+function Contact() {
+  return (
+    <div className="p-10 text-center">
+      <h2 className="text-3xl font-bold">Connect</h2>
+      <p className="mt-4">nishantmodimaster@gmail.com</p>
+    </div>
+  );
+}
