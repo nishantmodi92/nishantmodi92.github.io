@@ -1,176 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nishant Modi | Senior Android Platform Engineer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nishant Modi Portfolio</title>
 
-  <!-- SEO -->
-  <meta name="description" content="Senior Android Platform Engineer specializing in Distributed Systems, Scalable Infrastructure, and Low-Latency Mobile Systems. 250K+ MAU impact." />
-  <meta name="keywords" content="Android, Kotlin, Distributed Systems, Scalable Architecture, System Design, Low Latency, CI/CD" />
-  <meta name="author" content="Nishant Modi" />
+<style>
+body{margin:0;font-family:Arial;transition:.5s}
+.dark{background:#000;color:#fff}
+.light{background:#fff;color:#000}
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Nishant Modi Portfolio" />
-  <meta property="og:description" content="FAANG-level Android Platform Engineer portfolio" />
-  <meta property="og:type" content="website" />
+header{display:flex;justify-content:space-between;padding:20px;font-weight:bold}
 
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Nishant Modi",
-    "jobTitle": "Senior Android Platform Engineer",
-    "email": "nishantmodimaster@gmail.com",
-    "url": "https://nishantmodi92.github.io"
-  }
-  </script>
+.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center}
 
-  <style>
-    body { margin:0; font-family:Arial; transition:0.5s; }
-    .dark { background:#000; color:#fff }
-    .light { background:#fff; color:#000 }
+.gradient{
+font-size:50px;font-weight:bold;
+background:linear-gradient(90deg,purple,cyan,lime,orange);
+background-size:300%;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:grad 6s infinite linear;
+}
 
-    header { display:flex; justify-content:space-between; padding:20px; font-weight:bold }
+@keyframes grad{0%{background-position:0}100%{background-position:100%}}
 
-    .hero { height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center }
+.typing{font-size:24px;border-right:2px solid;padding-right:5px}
 
-    .gradient {
-      font-size:50px; font-weight:bold;
-      background: linear-gradient(90deg, purple, cyan, lime);
-      background-size:300%;
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      animation:grad 5s infinite linear;
-    }
+.marquee{overflow:hidden;white-space:nowrap;border:1px solid gray}
+.marquee span{display:inline-block;padding-left:100%;animation:scroll 12s linear infinite}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
 
-    @keyframes grad { 0%{background-position:0} 100%{background-position:100%} }
+.section{padding:50px;max-width:1000px;margin:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
 
-    .typing { font-size:24px; border-right:2px solid; padding-right:5px }
+.card{border:1px solid gray;padding:20px;border-radius:10px;transition:.3s}
+.card:hover{transform:scale(1.05)}
 
-    .marquee { overflow:hidden; white-space:nowrap; border:1px solid gray }
-    .marquee span { display:inline-block; padding-left:100%; animation:scroll 12s linear infinite }
-    @keyframes scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-100%)} }
+.slider{display:flex;overflow:hidden}
+.slide{min-width:100%;text-align:center;padding:40px;font-size:20px}
 
-    .section { padding:50px; max-width:1000px; margin:auto }
-
-    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px }
-
-    .card { border:1px solid gray; padding:20px; border-radius:10px; transition:.3s }
-    .card:hover { transform:scale(1.05) }
-
-    img { max-width:100%; height:auto; }
-  </style>
+button{padding:10px 20px;margin:10px;border:none;border-radius:5px;cursor:pointer}
+</style>
 </head>
 
 <body class="dark" id="body">
 
 <header>
-  <div>Nishant Modi</div>
-  <div>🚀 Open to Opportunities</div>
+<div>Nishant Modi</div>
+<div>🚀 Open to Opportunities</div>
 </header>
 
 <div class="hero">
-  <div class="gradient">Nishant Modi</div>
-  <div class="typing" id="typing"></div>
+<div class="gradient">Nishant Modi</div>
+<div class="typing" id="typing"></div>
 </div>
 
 <div class="marquee">
-  <span>Kotlin • Distributed Systems • System Design • Scalability • Coroutines • CI/CD • Microservices • Low Latency • Fault Tolerance</span>
+<span>Kotlin • Distributed Systems • System Design • Scalability • Coroutines • CI/CD • Microservices • Low Latency • Fault Tolerance</span>
 </div>
 
 <div class="section">
-  <h2>About</h2>
-  <p>Senior Android Platform Engineer with 8+ years building scalable distributed systems. Proven impact on performance, reliability, and system design.</p>
+<h2>About</h2>
+<p>Senior Android Platform Engineer with 8+ years building scalable distributed systems and low-latency architectures.</p>
 </div>
 
 <div class="section">
-  <h2>Projects</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Offline Sync Engine</h3>
-      <p>Offline-first distributed sync system with conflict resolution.</p>
-    </div>
-    <div class="card">
-      <h3>Streaming Platform</h3>
-      <p>Low-latency streaming system (10K+ concurrent users).</p>
-    </div>
-    <div class="card">
-      <h3>System Design Playground</h3>
-      <p>Rate limiter, caching, load balancer implementations.</p>
-    </div>
-  </div>
+<h2>Projects</h2>
+<div class="grid">
+<div class="card">
+<h3>Offline Sync Engine</h3>
+<p>Offline-first distributed sync system with conflict resolution.</p>
+</div>
+<div class="card">
+<h3>Streaming Platform</h3>
+<p>Low-latency streaming system (10K+ users).</p>
+</div>
+</div>
 </div>
 
 <div class="section">
-  <h2>System Design Expertise</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Scalable Architecture</h3>
-      <p>Designed systems handling high-throughput workloads with focus on scalability and performance.</p>
-    </div>
-    <div class="card">
-      <h3>Offline-First Systems</h3>
-      <p>Built resilient data sync systems with caching, retries, and eventual consistency.</p>
-    </div>
-    <div class="card">
-      <h3>Low Latency Systems</h3>
-      <p>Optimized APIs and client performance to reduce latency and improve user experience.</p>
-    </div>
-    <div class="card">
-      <h3>Fault Tolerance</h3>
-      <p>Implemented retry strategies, fallback mechanisms, and monitoring for reliability.</p>
-    </div>
-  </div>
+<h2>Highlights Slider</h2>
+<div class="slider" id="slider">
+<div class="slide">🚀 250K+ Users</div>
+<div class="slide">⚡ 35% Latency Reduced</div>
+<div class="slide">📉 40% ANR Reduced</div>
+<div class="slide">🛡 99.8% Crash Free</div>
+</div>
 </div>
 
 <div class="section">
-  <h2>GitHub Stats</h2>
-  <img src="https://github-readme-stats.vercel.app/api?username=nishantmodi92&show_icons=true" loading="lazy" />
+<h2>System Design Expertise</h2>
+<div class="grid">
+<div class="card">Scalable Architecture</div>
+<div class="card">Offline-First Systems</div>
+<div class="card">Low Latency Systems</div>
+<div class="card">Fault Tolerance</div>
+</div>
 </div>
 
 <div class="section">
-  <h2>Impact</h2>
-  <div class="grid">
-    <div class="card">250K+ Users</div>
-    <div class="card">35% Latency ↓</div>
-    <div class="card">40% ANR ↓</div>
-    <div class="card">45% Reliability ↑</div>
-  </div>
-</div>
-
-<div class="section">
-  <h2>Contact</h2>
-  <p>Email: nishantmodimaster@gmail.com</p>
+<h2>Contact</h2>
+<p>Email: nishantmodimaster@gmail.com</p>
+<p>LinkedIn: <a href="https://www.linkedin.com/in/nishantmodi92" target="_blank">Profile</a></p>
+<p>GitHub: <a href="https://github.com/nishantmodi92" target="_blank">Repositories</a></p>
 </div>
 
 <script>
-const roles = [
-  "Distributed Systems Engineer",
-  "Android Platform Engineer",
-  "Scalable Infrastructure Builder",
-  "Low Latency Systems Expert"
-];
-
-let i=0, j=0, current="", isDeleting=false;
+const roles=["Distributed Systems Engineer","Android Platform Engineer","Scalable Infrastructure Builder","Low Latency Systems Expert"];
+let i=0,j=0,current="",isDeleting=false;
 
 function type(){
-  current = roles[i];
-  document.getElementById("typing").innerText = current.substring(0,j);
+current=roles[i];
+document.getElementById("typing").innerText=current.substring(0,j);
 
-  if(!isDeleting && j++ === current.length){ isDeleting=true; setTimeout(type,1000); return; }
-  if(isDeleting && j-- === 0){ isDeleting=false; i=(i+1)%roles.length; }
+if(!isDeleting&&j++===current.length){isDeleting=true;setTimeout(type,1000);return}
+if(isDeleting&&j--===0){isDeleting=false;i=(i+1)%roles.length}
 
-  setTimeout(type, isDeleting?50:100);
+setTimeout(type,isDeleting?50:100);
 }
 
 type();
 
 setInterval(()=>{
-  document.getElementById("body").classList.toggle("dark");
-  document.getElementById("body").classList.toggle("light");
+const body=document.getElementById("body");
+body.classList.toggle("dark");
+body.classList.toggle("light");
 },5000);
+
+let index=0;
+setInterval(()=>{
+const slider=document.getElementById("slider");
+index=(index+1)%4;
+slider.style.transform=`translateX(-${index*100}%)`;
+slider.style.transition="0.5s";
+},3000);
 </script>
 
 </body>
