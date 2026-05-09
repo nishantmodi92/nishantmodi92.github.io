@@ -1,328 +1,1054 @@
-/* ========================= */
-/* UNIQUE PREMIUM HERO CSS */
-/* ========================= */
+<!DOCTYPE html>
+<html lang="en">
 
-.hero{
-  position:relative;
-  min-height:100vh;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:120px 8%;
-  background:#0b0f19;
-}
+<head>
 
-/* Background Image */
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-.bg-image{
-  position:absolute;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  top:0;
-  left:0;
-  opacity:0.06;
-  z-index:1;
-  filter:grayscale(100%);
-}
+  <title>Nishant Modi | Android Platform Engineer</title>
 
-/* Grid Overlay */
+  <!-- FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-.grid-overlay{
-  position:absolute;
-  width:100%;
-  height:100%;
-  top:0;
-  left:0;
-  z-index:2;
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  background-image:
-  linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-  linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  <!-- ICONS -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
-  background-size:40px 40px;
-}
+  <style>
 
-/* Blur Effects */
+    /* ========================= */
+    /* GLOBAL */
+    /* ========================= */
 
-.hero-blur{
-  position:absolute;
-  width:500px;
-  height:500px;
-  border-radius:50%;
-  filter:blur(120px);
-  opacity:0.35;
-  z-index:2;
-}
+    :root{
+      --bg:#0b0f19;
+      --card:#111827;
+      --primary:#6366f1;
+      --secondary:#8b5cf6;
+      --text:#ffffff;
+      --muted:#94a3b8;
+    }
 
-.blur-one{
-  background:#6366f1;
-  top:-150px;
-  left:-100px;
-  animation:floatOne 8s infinite alternate ease-in-out;
-}
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
 
-.blur-two{
-  background:#8b5cf6;
-  bottom:-150px;
-  right:-100px;
-  animation:floatTwo 10s infinite alternate ease-in-out;
-}
+    body{
+      font-family:'Inter',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+    }
 
-@keyframes floatOne{
-  from{
-    transform:translateY(0px);
-  }
+    body::-webkit-scrollbar{
+      width:10px;
+    }
 
-  to{
-    transform:translateY(60px);
-  }
-}
+    body::-webkit-scrollbar-thumb{
+      background:linear-gradient(var(--primary),var(--secondary));
+      border-radius:20px;
+    }
 
-@keyframes floatTwo{
-  from{
-    transform:translateX(0px);
-  }
+    a{
+      text-decoration:none;
+    }
 
-  to{
-    transform:translateX(-50px);
-  }
-}
+    section{
+      padding:120px 8%;
+      position:relative;
+      z-index:5;
+    }
 
-/* Floating Icons */
+    /* ========================= */
+    /* BACKGROUND */
+    /* ========================= */
 
-.floating-icons{
-  position:absolute;
-  width:100%;
-  height:100%;
-  z-index:3;
-  pointer-events:none;
-}
+    .bg-grid{
+      position:fixed;
+      width:100%;
+      height:100%;
+      z-index:0;
 
-.floating-icons i{
-  position:absolute;
-  color:rgba(255,255,255,0.07);
-  font-size:42px;
-  animation:floating 6s infinite alternate ease-in-out;
-}
+      background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
 
-.floating-icons i:nth-child(1){
-  top:18%;
-  left:12%;
-}
+      background-size:40px 40px;
+    }
 
-.floating-icons i:nth-child(2){
-  top:22%;
-  right:15%;
-}
+    .blur{
+      position:fixed;
+      width:500px;
+      height:500px;
+      border-radius:50%;
+      filter:blur(120px);
+      opacity:0.25;
+      z-index:0;
+    }
 
-.floating-icons i:nth-child(3){
-  bottom:25%;
-  left:18%;
-}
+    .blur1{
+      background:#6366f1;
+      top:-150px;
+      left:-150px;
+      animation:float1 10s infinite alternate ease-in-out;
+    }
 
-.floating-icons i:nth-child(4){
-  bottom:18%;
-  right:12%;
-}
+    .blur2{
+      background:#8b5cf6;
+      bottom:-150px;
+      right:-150px;
+      animation:float2 12s infinite alternate ease-in-out;
+    }
 
-.floating-icons i:nth-child(5){
-  top:50%;
-  left:8%;
-}
+    @keyframes float1{
+      from{
+        transform:translateY(0px);
+      }
 
-@keyframes floating{
+      to{
+        transform:translateY(80px);
+      }
+    }
 
-  from{
-    transform:translateY(0px);
-  }
+    @keyframes float2{
+      from{
+        transform:translateX(0px);
+      }
 
-  to{
-    transform:translateY(25px);
-  }
+      to{
+        transform:translateX(-80px);
+      }
+    }
 
-}
+    /* ========================= */
+    /* NAVBAR */
+    /* ========================= */
 
-/* Content */
+    header{
+      width:100%;
+      position:fixed;
+      top:0;
+      z-index:999;
+      backdrop-filter:blur(20px);
+      background:rgba(11,15,25,0.5);
+      border-bottom:1px solid rgba(255,255,255,0.05);
+    }
 
-.hero-content{
-  position:relative;
-  z-index:5;
-  max-width:1000px;
-  animation:fadeUp 1.2s ease;
-}
+    nav{
+      max-width:1200px;
+      margin:auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px;
+    }
 
-@keyframes fadeUp{
+    .logo{
+      font-size:28px;
+      font-weight:800;
+      background:linear-gradient(
+      90deg,
+      var(--primary),
+      var(--secondary)
+      );
 
-  from{
-    opacity:0;
-    transform:translateY(50px);
-  }
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
 
-  to{
-    opacity:1;
-    transform:translateY(0px);
-  }
+    .nav-links{
+      display:flex;
+      gap:30px;
+    }
 
-}
+    .nav-links a{
+      color:white;
+      transition:0.3s;
+      font-size:15px;
+    }
 
-/* Badge */
+    .nav-links a:hover{
+      color:var(--primary);
+    }
 
-.hero-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  padding:12px 20px;
-  border-radius:50px;
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.08);
-  backdrop-filter:blur(12px);
-  margin-bottom:30px;
-}
+    /* ========================= */
+    /* HERO */
+    /* ========================= */
 
-.hero-badge span{
-  color:#cbd5e1;
-  font-size:14px;
-}
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      flex-direction:column;
+      overflow:hidden;
+    }
 
-/* Heading */
+    .hero-badge{
+      padding:12px 24px;
+      border-radius:50px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      margin-bottom:35px;
+      backdrop-filter:blur(20px);
+    }
 
-.hero h1{
-  font-size:90px;
-  font-weight:800;
-  line-height:1;
-  margin-bottom:18px;
-}
+    .hero-badge span{
+      color:#cbd5e1;
+      font-size:14px;
+    }
 
-.gradient-text{
-  background:linear-gradient(
-    90deg,
-    #6366f1,
-    #8b5cf6,
-    #06b6d4
-  );
+    .hero h1{
+      font-size:90px;
+      line-height:1;
+      margin-bottom:20px;
+      font-weight:800;
+    }
 
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
+    .hero h1 span{
+      background:linear-gradient(
+      90deg,
+      var(--primary),
+      var(--secondary)
+      );
 
-.hero h2{
-  font-size:34px;
-  color:#e2e8f0;
-  margin-bottom:25px;
-}
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
 
-.hero p{
-  color:#94a3b8;
-  font-size:20px;
-  line-height:1.9;
-  max-width:850px;
-  margin:auto auto 45px;
-}
+    .hero h2{
+      font-size:34px;
+      color:#e2e8f0;
+      margin-bottom:25px;
+    }
 
-/* Stats */
+    .hero p{
+      max-width:850px;
+      color:var(--muted);
+      font-size:20px;
+      line-height:1.9;
+      margin-bottom:50px;
+    }
 
-.hero-stats{
-  display:flex;
-  justify-content:center;
-  gap:25px;
-  flex-wrap:wrap;
-  margin-bottom:45px;
-}
+    /* Buttons */
 
-.stat-box{
-  min-width:160px;
-  padding:28px;
-  border-radius:24px;
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.08);
-  backdrop-filter:blur(20px);
-  transition:0.4s;
-}
+    .hero-buttons{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
 
-.stat-box:hover{
-  transform:translateY(-10px);
-  border-color:#6366f1;
-  box-shadow:0 0 30px rgba(99,102,241,0.25);
-}
+    .primary-btn,
+    .secondary-btn{
+      padding:16px 32px;
+      border-radius:16px;
+      font-weight:600;
+      transition:0.4s;
+    }
 
-.stat-box h3{
-  font-size:38px;
-  color:#8b5cf6;
-  margin-bottom:10px;
-}
+    .primary-btn{
+      background:linear-gradient(
+      90deg,
+      var(--primary),
+      var(--secondary)
+      );
 
-.stat-box span{
-  color:#cbd5e1;
-}
+      color:white;
+      box-shadow:0 0 35px rgba(99,102,241,0.4);
+    }
 
-/* Buttons */
+    .secondary-btn{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      color:white;
+      backdrop-filter:blur(20px);
+    }
 
-.hero-buttons{
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  flex-wrap:wrap;
-}
+    .primary-btn:hover,
+    .secondary-btn:hover{
+      transform:translateY(-6px);
+    }
 
-.primary-btn,
-.secondary-btn{
-  text-decoration:none;
-  padding:16px 32px;
-  border-radius:16px;
-  font-weight:600;
-  transition:0.4s;
-}
+    /* Floating Icons */
 
-.primary-btn{
-  background:linear-gradient(
-    90deg,
-    #6366f1,
-    #8b5cf6
-  );
+    .floating-icons i{
+      position:absolute;
+      color:rgba(255,255,255,0.07);
+      font-size:40px;
+      animation:floating 5s infinite alternate ease-in-out;
+    }
 
-  color:white;
-  box-shadow:0 0 30px rgba(99,102,241,0.45);
-}
+    .floating-icons i:nth-child(1){
+      top:20%;
+      left:10%;
+    }
 
-.secondary-btn{
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.08);
-  color:white;
-  backdrop-filter:blur(12px);
-}
+    .floating-icons i:nth-child(2){
+      top:25%;
+      right:12%;
+    }
 
-.primary-btn:hover,
-.secondary-btn:hover{
-  transform:translateY(-6px);
-}
+    .floating-icons i:nth-child(3){
+      bottom:22%;
+      left:15%;
+    }
 
-.secondary-btn:hover{
-  border-color:#6366f1;
-  box-shadow:0 0 20px rgba(99,102,241,0.2);
-}
+    .floating-icons i:nth-child(4){
+      bottom:18%;
+      right:10%;
+    }
 
-/* Responsive */
+    @keyframes floating{
+      from{
+        transform:translateY(0px);
+      }
 
-@media(max-width:768px){
+      to{
+        transform:translateY(25px);
+      }
+    }
 
-  .hero h1{
-    font-size:56px;
-  }
+    /* ========================= */
+    /* MARQUEE */
+    /* ========================= */
 
-  .hero h2{
-    font-size:24px;
-  }
+    .marquee{
+      overflow:hidden;
+      border-top:1px solid rgba(255,255,255,0.08);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      background:rgba(255,255,255,0.03);
+      padding:20px 0;
+    }
 
-  .hero p{
-    font-size:17px;
-  }
+    .marquee-track{
+      white-space:nowrap;
+      display:inline-block;
+      animation:marquee 25s linear infinite;
+      color:#cbd5e1;
+      font-size:18px;
+    }
 
-  .stat-box{
-    min-width:130px;
-    padding:22px;
-  }
+    @keyframes marquee{
+      from{
+        transform:translateX(0);
+      }
 
-}
+      to{
+        transform:translateX(-50%);
+      }
+    }
+
+    /* ========================= */
+    /* TITLES */
+    /* ========================= */
+
+    .section-title{
+      text-align:center;
+      margin-bottom:70px;
+    }
+
+    .section-title span{
+      color:var(--primary);
+      font-weight:600;
+    }
+
+    .section-title h2{
+      font-size:54px;
+      margin-top:15px;
+    }
+
+    .section-title p{
+      color:var(--muted);
+      margin-top:15px;
+    }
+
+    /* ========================= */
+    /* ABOUT */
+    /* ========================= */
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:35px;
+    }
+
+    .glass-card{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      backdrop-filter:blur(20px);
+      border-radius:28px;
+      padding:40px;
+      transition:0.4s;
+    }
+
+    .glass-card:hover{
+      transform:translateY(-10px);
+      border-color:var(--primary);
+      box-shadow:0 0 30px rgba(99,102,241,0.2);
+    }
+
+    .glass-card h3{
+      font-size:30px;
+      margin-bottom:20px;
+    }
+
+    .glass-card p{
+      color:var(--muted);
+      line-height:1.9;
+    }
+
+    /* ========================= */
+    /* STATS */
+    /* ========================= */
+
+    .stats{
+      margin-top:60px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:25px;
+    }
+
+    .stat-card{
+      text-align:center;
+      padding:35px;
+      border-radius:24px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      transition:0.4s;
+    }
+
+    .stat-card:hover{
+      transform:translateY(-10px);
+      border-color:var(--primary);
+    }
+
+    .stat-card h3{
+      font-size:46px;
+      color:var(--secondary);
+      margin-bottom:10px;
+    }
+
+    /* ========================= */
+    /* SKILLS */
+    /* ========================= */
+
+    .skills-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+    }
+
+    .skill-card{
+      padding:35px;
+      border-radius:24px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      transition:0.4s;
+    }
+
+    .skill-card:hover{
+      transform:translateY(-10px);
+      border-color:var(--primary);
+    }
+
+    .skill-card i{
+      font-size:42px;
+      color:var(--secondary);
+      margin-bottom:20px;
+    }
+
+    .skill-card h4{
+      font-size:24px;
+      margin-bottom:15px;
+    }
+
+    .skill-card p{
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    /* ========================= */
+    /* PROJECTS */
+    /* ========================= */
+
+    .projects-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:35px;
+    }
+
+    .project-card{
+      overflow:hidden;
+      border-radius:28px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      transition:0.4s;
+    }
+
+    .project-card:hover{
+      transform:translateY(-12px);
+      border-color:var(--primary);
+    }
+
+    .project-top{
+      height:220px;
+      background:linear-gradient(
+      135deg,
+      var(--primary),
+      var(--secondary)
+      );
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-size:70px;
+    }
+
+    .project-content{
+      padding:35px;
+    }
+
+    .project-content h3{
+      font-size:28px;
+      margin-bottom:15px;
+    }
+
+    .project-content p{
+      color:var(--muted);
+      line-height:1.9;
+      margin-bottom:25px;
+    }
+
+    .project-tags{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .project-tags span{
+      padding:8px 16px;
+      border-radius:50px;
+      background:rgba(99,102,241,0.15);
+      color:#c4b5fd;
+      font-size:13px;
+    }
+
+    /* ========================= */
+    /* CONTACT */
+    /* ========================= */
+
+    .contact-box{
+      max-width:900px;
+      margin:auto;
+      text-align:center;
+    }
+
+    .contact-box h2{
+      font-size:60px;
+      margin-bottom:20px;
+    }
+
+    .contact-box p{
+      color:var(--muted);
+      line-height:1.9;
+      margin-bottom:45px;
+      font-size:18px;
+    }
+
+    /* ========================= */
+    /* FOOTER */
+    /* ========================= */
+
+    footer{
+      padding:40px;
+      text-align:center;
+      border-top:1px solid rgba(255,255,255,0.06);
+      color:var(--muted);
+    }
+
+    /* ========================= */
+    /* RESPONSIVE */
+    /* ========================= */
+
+    @media(max-width:768px){
+
+      .hero h1{
+        font-size:58px;
+      }
+
+      .hero h2{
+        font-size:24px;
+      }
+
+      .hero p{
+        font-size:17px;
+      }
+
+      .section-title h2{
+        font-size:40px;
+      }
+
+      .contact-box h2{
+        font-size:42px;
+      }
+
+      .nav-links{
+        display:none;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- BACKGROUND -->
+
+  <div class="bg-grid"></div>
+
+  <div class="blur blur1"></div>
+  <div class="blur blur2"></div>
+
+  <!-- HEADER -->
+
+  <header>
+
+    <nav>
+
+      <div class="logo">
+        Nishant.dev
+      </div>
+
+      <div class="nav-links">
+
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="floating-icons">
+
+      <i class="fa-brands fa-android"></i>
+      <i class="fa-brands fa-github"></i>
+      <i class="fa-solid fa-server"></i>
+      <i class="fa-solid fa-code"></i>
+
+    </div>
+
+    <div class="hero-badge">
+      <span>● Open For Opportunities</span>
+    </div>
+
+    <h1>
+      Nishant
+      <span>Modi</span>
+    </h1>
+
+    <h2>
+      Senior Android Platform Engineer
+    </h2>
+
+    <p>
+      Building scalable Android platforms, distributed systems,
+      offline-first architecture, synchronization workflows,
+      and high-performance mobile applications using Kotlin,
+      Jetpack Compose, and modern engineering practices.
+    </p>
+
+    <div class="hero-buttons">
+
+      <a href="#projects" class="primary-btn">
+        View Projects
+      </a>
+
+      <a href="#contact" class="secondary-btn">
+        Contact Me
+      </a>
+
+      <a href="https://github.com/nishantmodi92"
+      class="secondary-btn">
+
+        GitHub
+
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- MARQUEE -->
+
+  <div class="marquee">
+
+    <div class="marquee-track">
+
+      Kotlin • Android • Jetpack Compose • Distributed Systems • Offline First • Coroutines • APIs • GraphQL • Scalability • CI/CD • Performance Engineering • Platform Engineering • Kotlin • Android • Jetpack Compose • Distributed Systems • Offline First • Coroutines • APIs • GraphQL •
+
+    </div>
+
+  </div>
+
+  <!-- ABOUT -->
+
+  <section id="about">
+
+    <div class="section-title">
+
+      <span>About</span>
+
+      <h2>
+        Engineering Scalable Systems
+      </h2>
+
+      <p>
+        Building reliable production-grade mobile architecture
+      </p>
+
+    </div>
+
+    <div class="about-grid">
+
+      <div class="glass-card">
+
+        <h3>
+          Senior Android Engineer
+        </h3>
+
+        <p>
+          Experienced Android Platform Engineer with expertise
+          in scalable architecture, synchronization workflows,
+          offline-first systems, modular engineering,
+          and distributed mobile systems.
+        </p>
+
+      </div>
+
+      <div class="glass-card">
+
+        <h3>
+          System Design & Scalability
+        </h3>
+
+        <p>
+          Specialized in fault tolerance, concurrency optimization,
+          retry workflows, performance engineering,
+          and scalable Android platform architecture.
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- STATS -->
+
+    <div class="stats">
+
+      <div class="stat-card">
+        <h3>8+</h3>
+        <p>Years Experience</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>250K+</h3>
+        <p>Users Served</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>99.8%</h3>
+        <p>Crash Free</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>40%</h3>
+        <p>ANR Reduction</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SKILLS -->
+
+  <section id="skills">
+
+    <div class="section-title">
+
+      <span>Tech Stack</span>
+
+      <h2>
+        Modern Engineering Expertise
+      </h2>
+
+    </div>
+
+    <div class="skills-grid">
+
+      <div class="skill-card">
+
+        <i class="fa-brands fa-android"></i>
+
+        <h4>
+          Android
+        </h4>
+
+        <p>
+          Kotlin, Jetpack Compose, MVVM,
+          Clean Architecture, Modularization.
+        </p>
+
+      </div>
+
+      <div class="skill-card">
+
+        <i class="fa-solid fa-server"></i>
+
+        <h4>
+          Distributed Systems
+        </h4>
+
+        <p>
+          Offline-first architecture,
+          synchronization systems,
+          retry workflows.
+        </p>
+
+      </div>
+
+      <div class="skill-card">
+
+        <i class="fa-solid fa-gauge-high"></i>
+
+        <h4>
+          Performance
+        </h4>
+
+        <p>
+          Coroutines, concurrency optimization,
+          ANR reduction, memory tuning.
+        </p>
+
+      </div>
+
+      <div class="skill-card">
+
+        <i class="fa-solid fa-cloud"></i>
+
+        <h4>
+          DevOps
+        </h4>
+
+        <p>
+          GitHub Actions, Jenkins,
+          CI/CD automation pipelines.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PROJECTS -->
+
+  <section id="projects">
+
+    <div class="section-title">
+
+      <span>Projects</span>
+
+      <h2>
+        Featured Engineering Projects
+      </h2>
+
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- PROJECT -->
+
+      <div class="project-card">
+
+        <div class="project-top">
+
+          <i class="fa-solid fa-arrows-rotate"></i>
+
+        </div>
+
+        <div class="project-content">
+
+          <h3>
+            SyncX Distributed Engine
+          </h3>
+
+          <p>
+            Production-grade offline-first synchronization
+            engine with scalable retry workflows
+            and distributed architecture.
+          </p>
+
+          <div class="project-tags">
+
+            <span>Kotlin</span>
+            <span>Room</span>
+            <span>Coroutines</span>
+            <span>WorkManager</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PROJECT -->
+
+      <div class="project-card">
+
+        <div class="project-top">
+
+          <i class="fa-solid fa-video"></i>
+
+        </div>
+
+        <div class="project-content">
+
+          <h3>
+            Streaming Platform
+          </h3>
+
+          <p>
+            High-performance streaming platform optimized
+            for low buffering and scalable playback.
+          </p>
+
+          <div class="project-tags">
+
+            <span>ExoPlayer</span>
+            <span>Caching</span>
+            <span>Networking</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PROJECT -->
+
+      <div class="project-card">
+
+        <div class="project-top">
+
+          <i class="fa-solid fa-robot"></i>
+
+        </div>
+
+        <div class="project-content">
+
+          <h3>
+            AI Smart Assistant
+          </h3>
+
+          <p>
+            AI-powered Android assistant supporting
+            contextual interactions using modern AI APIs.
+          </p>
+
+          <div class="project-tags">
+
+            <span>AI APIs</span>
+            <span>Compose</span>
+            <span>Voice APIs</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+
+  <section id="contact">
+
+    <div class="contact-box">
+
+      <div class="section-title">
+
+        <span>Contact</span>
+
+        <h2>
+          Let's Build Something Amazing
+        </h2>
+
+      </div>
+
+      <p>
+        Open to Senior Android Engineering,
+        Platform Engineering,
+        and Product Engineering opportunities.
+      </p>
+
+      <div class="hero-buttons">
+
+        <a href="mailto:nishantmodimaster@gmail.com"
+        class="primary-btn">
+
+          Email Me
+
+        </a>
+
+        <a href="https://github.com/nishantmodi92"
+        class="secondary-btn">
+
+          GitHub
+
+        </a>
+
+        <a href="https://linkedin.com/in/nishantmodi92"
+        class="secondary-btn">
+
+          LinkedIn
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    © 2026 Nishant Modi • Senior Android Platform Engineer
+
+  </footer>
+
+</body>
+
+</html>
