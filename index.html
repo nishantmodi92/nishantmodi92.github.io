@@ -1,105 +1,328 @@
-<!-- ========================= -->
-<!-- PREMIUM UNIQUE HERO -->
-<!-- ========================= -->
+/* ========================= */
+/* UNIQUE PREMIUM HERO CSS */
+/* ========================= */
 
-<section class="hero">
+.hero{
+  position:relative;
+  min-height:100vh;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:120px 8%;
+  background:#0b0f19;
+}
 
-  <!-- Transparent Background Image -->
-  <img
-    src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=2070&auto=format&fit=crop"
-    class="bg-image"
-  >
+/* Background Image */
 
-  <!-- Animated Grid -->
-  <div class="grid-overlay"></div>
+.bg-image{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  top:0;
+  left:0;
+  opacity:0.06;
+  z-index:1;
+  filter:grayscale(100%);
+}
 
-  <!-- Floating Blur -->
-  <div class="hero-blur blur-one"></div>
-  <div class="hero-blur blur-two"></div>
+/* Grid Overlay */
 
-  <!-- Floating Tech Icons -->
-  <div class="floating-icons">
-    <i class="fa-brands fa-android"></i>
-    <i class="fa-brands fa-google"></i>
-    <i class="fa-brands fa-github"></i>
-    <i class="fa-solid fa-server"></i>
-    <i class="fa-solid fa-code"></i>
-  </div>
+.grid-overlay{
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  z-index:2;
 
-  <!-- Hero Content -->
-  <div class="hero-content">
+  background-image:
+  linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
 
-    <div class="hero-badge">
-      <span>● Available For Opportunities</span>
-    </div>
+  background-size:40px 40px;
+}
 
-    <h1>
-      Nishant
-      <span class="gradient-text">Modi</span>
-    </h1>
+/* Blur Effects */
 
-    <h2>
-      Senior Android Platform Engineer
-    </h2>
+.hero-blur{
+  position:absolute;
+  width:500px;
+  height:500px;
+  border-radius:50%;
+  filter:blur(120px);
+  opacity:0.35;
+  z-index:2;
+}
 
-    <p>
-      Building scalable Android platforms, distributed systems,
-      offline-first architecture, synchronization workflows,
-      and high-performance mobile applications serving 250K+ users.
-    </p>
+.blur-one{
+  background:#6366f1;
+  top:-150px;
+  left:-100px;
+  animation:floatOne 8s infinite alternate ease-in-out;
+}
 
-    <!-- Premium Stats -->
-    <div class="hero-stats">
+.blur-two{
+  background:#8b5cf6;
+  bottom:-150px;
+  right:-100px;
+  animation:floatTwo 10s infinite alternate ease-in-out;
+}
 
-      <div class="stat-box">
-        <h3>8+</h3>
-        <span>Years</span>
-      </div>
+@keyframes floatOne{
+  from{
+    transform:translateY(0px);
+  }
 
-      <div class="stat-box">
-        <h3>250K+</h3>
-        <span>Users</span>
-      </div>
+  to{
+    transform:translateY(60px);
+  }
+}
 
-      <div class="stat-box">
-        <h3>99.8%</h3>
-        <span>Crash Free</span>
-      </div>
+@keyframes floatTwo{
+  from{
+    transform:translateX(0px);
+  }
 
-      <div class="stat-box">
-        <h3>40%</h3>
-        <span>ANR Reduction</span>
-      </div>
+  to{
+    transform:translateX(-50px);
+  }
+}
 
-    </div>
+/* Floating Icons */
 
-    <!-- Buttons -->
-    <div class="hero-buttons">
+.floating-icons{
+  position:absolute;
+  width:100%;
+  height:100%;
+  z-index:3;
+  pointer-events:none;
+}
 
-      <a href="#projects" class="primary-btn">
-        View Projects
-      </a>
+.floating-icons i{
+  position:absolute;
+  color:rgba(255,255,255,0.07);
+  font-size:42px;
+  animation:floating 6s infinite alternate ease-in-out;
+}
 
-      <a href="#contact" class="secondary-btn">
-        Contact Me
-      </a>
+.floating-icons i:nth-child(1){
+  top:18%;
+  left:12%;
+}
 
-      <a
-        href="https://github.com/nishantmodi92"
-        class="secondary-btn"
-      >
-        GitHub
-      </a>
+.floating-icons i:nth-child(2){
+  top:22%;
+  right:15%;
+}
 
-      <a
-        href="https://linkedin.com/in/nishantmodi92"
-        class="secondary-btn"
-      >
-        LinkedIn
-      </a>
+.floating-icons i:nth-child(3){
+  bottom:25%;
+  left:18%;
+}
 
-    </div>
+.floating-icons i:nth-child(4){
+  bottom:18%;
+  right:12%;
+}
 
-  </div>
+.floating-icons i:nth-child(5){
+  top:50%;
+  left:8%;
+}
 
-</section>
+@keyframes floating{
+
+  from{
+    transform:translateY(0px);
+  }
+
+  to{
+    transform:translateY(25px);
+  }
+
+}
+
+/* Content */
+
+.hero-content{
+  position:relative;
+  z-index:5;
+  max-width:1000px;
+  animation:fadeUp 1.2s ease;
+}
+
+@keyframes fadeUp{
+
+  from{
+    opacity:0;
+    transform:translateY(50px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0px);
+  }
+
+}
+
+/* Badge */
+
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 20px;
+  border-radius:50px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(12px);
+  margin-bottom:30px;
+}
+
+.hero-badge span{
+  color:#cbd5e1;
+  font-size:14px;
+}
+
+/* Heading */
+
+.hero h1{
+  font-size:90px;
+  font-weight:800;
+  line-height:1;
+  margin-bottom:18px;
+}
+
+.gradient-text{
+  background:linear-gradient(
+    90deg,
+    #6366f1,
+    #8b5cf6,
+    #06b6d4
+  );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero h2{
+  font-size:34px;
+  color:#e2e8f0;
+  margin-bottom:25px;
+}
+
+.hero p{
+  color:#94a3b8;
+  font-size:20px;
+  line-height:1.9;
+  max-width:850px;
+  margin:auto auto 45px;
+}
+
+/* Stats */
+
+.hero-stats{
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  flex-wrap:wrap;
+  margin-bottom:45px;
+}
+
+.stat-box{
+  min-width:160px;
+  padding:28px;
+  border-radius:24px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(20px);
+  transition:0.4s;
+}
+
+.stat-box:hover{
+  transform:translateY(-10px);
+  border-color:#6366f1;
+  box-shadow:0 0 30px rgba(99,102,241,0.25);
+}
+
+.stat-box h3{
+  font-size:38px;
+  color:#8b5cf6;
+  margin-bottom:10px;
+}
+
+.stat-box span{
+  color:#cbd5e1;
+}
+
+/* Buttons */
+
+.hero-buttons{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.primary-btn,
+.secondary-btn{
+  text-decoration:none;
+  padding:16px 32px;
+  border-radius:16px;
+  font-weight:600;
+  transition:0.4s;
+}
+
+.primary-btn{
+  background:linear-gradient(
+    90deg,
+    #6366f1,
+    #8b5cf6
+  );
+
+  color:white;
+  box-shadow:0 0 30px rgba(99,102,241,0.45);
+}
+
+.secondary-btn{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  color:white;
+  backdrop-filter:blur(12px);
+}
+
+.primary-btn:hover,
+.secondary-btn:hover{
+  transform:translateY(-6px);
+}
+
+.secondary-btn:hover{
+  border-color:#6366f1;
+  box-shadow:0 0 20px rgba(99,102,241,0.2);
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+  .hero h1{
+    font-size:56px;
+  }
+
+  .hero h2{
+    font-size:24px;
+  }
+
+  .hero p{
+    font-size:17px;
+  }
+
+  .stat-box{
+    min-width:130px;
+    padding:22px;
+  }
+
+}
