@@ -574,4 +574,248 @@
     </div>
 
     <div class="card glass project-card">
-      <img src="https://images.unsplash.com/photo
+      <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop" alt="project">
+
+      <h3>AI Smart Assistant</h3>
+
+      <p>
+        AI-powered Android assistant supporting contextual interactions,
+        voice workflows, and intelligent mobile experiences.
+      </p>
+
+      <div class="tags">
+        <span>Android</span>
+        <span>LLM APIs</span>
+        <span>AI</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Architecture & Scalability</h2>
+
+  <div class="grid">
+
+    <div class="card glass">
+      <h3>Modular Architecture</h3>
+      <p>Scalable engineering systems designed for maintainability and enterprise growth.</p>
+    </div>
+
+    <div class="card glass">
+      <h3>Concurrency Optimization</h3>
+      <p>High-performance threading, state management, and asynchronous workflows.</p>
+    </div>
+
+    <div class="card glass">
+      <h3>CI/CD Automation</h3>
+      <p>Automated pipelines, scalable deployments, and engineering productivity systems.</p>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">AI + Android Innovation</h2>
+
+  <div class="card glass" style="text-align:center; padding:60px;">
+    <h3 style="font-size:32px; margin-bottom:20px;">Future of Intelligent Mobile Systems</h3>
+
+    <p style="max-width:900px; margin:auto; line-height:2;">
+      Exploring AI-powered Android platforms through contextual systems,
+      intelligent workflows, scalable architecture, and next-generation mobile engineering.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Open Source & GitHub</h2>
+
+  <div class="grid">
+
+    <div class="card glass">
+      <h3>GitHub Engineering</h3>
+      <p>
+        Consistent engineering contributions focused on modern Android systems,
+        architecture scalability, and performance optimization.
+      </p>
+    </div>
+
+    <div class="card glass">
+      <h3>System Design Thinking</h3>
+      <p>
+        Focused on scalable architecture, modular engineering,
+        synchronization systems, and resilient mobile ecosystems.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">DSA & Problem Solving</h2>
+
+  <div class="card glass" style="text-align:center; padding:50px;">
+    <h3>Scalable Problem Solving</h3>
+
+    <p style="margin-top:20px; line-height:2;">
+      Focused on system design thinking, algorithm optimization,
+      scalable workflows, and advanced data structure engineering.
+    </p>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="section-title">Let's Build Scalable Systems</h2>
+
+  <div class="contact-box glass">
+
+    <form>
+      <input type="text" placeholder="Your Name">
+      <input type="email" placeholder="Your Email">
+      <textarea rows="6" placeholder="Your Message"></textarea>
+
+      <button class="btn primary-btn">Send Message</button>
+    </form>
+
+  </div>
+</section>
+
+<footer>
+  <h2>Nishant Modi</h2>
+
+  <p>
+    Senior Android Platform Engineer • AI Mobile Innovation •
+    Scalable Systems Engineering
+  </p>
+
+  <div class="socials">
+    <a href="https://github.com/nishantmodi92"><i class="fab fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/nishantmodi92"><i class="fab fa-linkedin"></i></a>
+    <a href="mailto:nishantmodimaster@gmail.com"><i class="fas fa-envelope"></i></a>
+  </div>
+</footer>
+
+<script>
+  new Typed('.typing', {
+    strings: [
+      'Senior Android Platform Engineer',
+      'Jetpack Compose Specialist',
+      'Offline-First Architect',
+      'AI Mobile Engineer',
+      'Performance Optimization Expert',
+      'Scalable Systems Builder',
+      'Modern Android Architect'
+    ],
+    typeSpeed: 70,
+    backSpeed: 40,
+    loop: true
+  });
+
+  particlesJS('particles-js', {
+    particles: {
+      number: {
+        value: 90
+      },
+      color: {
+        value: ['#00f5ff', '#8b5cf6', '#00ffcc']
+      },
+      shape: {
+        type: 'circle'
+      },
+      opacity: {
+        value: 0.6
+      },
+      size: {
+        value: 4,
+        random: true
+      },
+      line_linked: {
+        enable: true,
+        distance: 140,
+        color: '#00f5ff',
+        opacity: 0.4,
+        width: 1
+      },
+      move: {
+        enable: true,
+        speed: 3
+      }
+    }
+  });
+
+  ScrollReveal().reveal('.card, .timeline-item, .about-box, .project-card', {
+    delay: 200,
+    distance: '70px',
+    duration: 1400,
+    easing: 'ease',
+    reset: false
+  });
+
+  const themes = ['theme2', 'theme3'];
+  let current = 0;
+
+  setInterval(() => {
+    document.body.classList.remove(...themes);
+    document.body.classList.add(themes[current]);
+    current = (current + 1) % themes.length;
+  }, 10000);
+
+  const heroTexts = [
+    'Scalable Mobile Systems',
+    'AI Powered Android Experiences',
+    'Enterprise Architecture Engineering',
+    'Modern Android Platform Systems',
+    'Performance Optimized Mobile Applications'
+  ];
+
+  let heroIndex = 0;
+  const heroParagraph = document.querySelector('.hero p');
+
+  setInterval(() => {
+    heroParagraph.style.opacity = '0';
+
+    setTimeout(() => {
+      heroParagraph.innerHTML = heroTexts[heroIndex];
+      heroParagraph.style.opacity = '1';
+      heroIndex = (heroIndex + 1) % heroTexts.length;
+    }, 500);
+  }, 5000);
+
+  const projectImages = [
+    'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=1200&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop'
+  ];
+
+  const projectCards = document.querySelectorAll('.project-card img');
+
+  setInterval(() => {
+    projectCards.forEach((img, index) => {
+      img.style.opacity = '0.4';
+
+      setTimeout(() => {
+        img.src = projectImages[Math.floor(Math.random() * projectImages.length)];
+        img.style.opacity = '1';
+      }, 700);
+    });
+  }, 8000);
+
+  const colors = ['#00f5ff', '#8b5cf6', '#00ffcc', '#ff00ff'];
+
+  setInterval(() => {
+    document.querySelectorAll('.section-title').forEach(title => {
+      title.style.color = colors[Math.floor(Math.random() * colors.length)];
+    });
+  }, 3000);
+
+  window.addEventListener('mousemove', (e) => {
+    document.body.style.backgroundPositionX = e.clientX / 50 + 'px';
+    document.body.style.backgroundPositionY = e.clientY / 50 + 'px';
+  });
+</script>
+
+</body>
+</html>
