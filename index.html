@@ -1,10 +1,4 @@
-from pathlib import Path
-import zipfile
-
-out = Path("/mnt/data/Nishant_Modi_Portfolio_Complete")
-out.mkdir(exist_ok=True)
-
-html = r'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -371,30 +365,3 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 </html>
 '''
 
-(out / "index.html").write_text(html, encoding="utf-8")
-(out / "README.md").write_text("""# Nishant Modi — Complete Portfolio
-
-This is a **single-file GitHub Pages portfolio**. All CSS and JavaScript are inside `index.html`, so there are no external style/script dependencies.
-
-### Included
-- Automatic background theme rotation
-- Automatic text/accent color rotation
-- Automatic hero role/keyword rotation
-- Infinite technology marquee
-- Automatic project slider with arrows, dots and keyboard controls
-- Scroll reveal animations
-- Responsive mobile design
-- Resume-grounded experience, skills, AI, projects, achievement and education sections
-
-### GitHub Pages
-Put `index.html` in the repository root and enable GitHub Pages:
-**Settings → Pages → Deploy from a branch → main → /(root)**.
-""", encoding="utf-8")
-
-zip_path=Path("/mnt/data/Nishant_Modi_Portfolio_Complete.zip")
-with zipfile.ZipFile(zip_path,"w",zipfile.ZIP_DEFLATED) as z:
-    for p in out.iterdir():
-        z.write(p,p.name)
-
-print("Created:", zip_path)
-print("Created:", out/"index.html")
