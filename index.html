@@ -1,367 +1,278 @@
-<!DOCTYPE html>
+from pathlib import Path
+
+html = r'''<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Nishant Modi — Senior Android Platform Engineer | Kotlin | Jetpack Compose | AI-Enabled Android | Mobile System Design">
-<title>Nishant Modi | Senior Android Platform Engineer</title>
+<meta name="theme-color" content="#0b1020">
+<meta name="description" content="Nishant Modi — Senior Android Engineer specializing in Kotlin, Jetpack Compose, scalable architecture, performance engineering, offline-first systems, and AI-enabled mobile experiences.">
+<meta property="og:title" content="Nishant Modi | Senior Android Engineer">
+<meta property="og:description" content="Building reliable, high-performance Android experiences with Kotlin, Jetpack Compose, modern architecture, and AI integrations.">
+<title>Nishant Modi | Senior Android Engineer</title>
 <style>
-:root{
-  --bg:#060b16;--bg2:#0b1730;--surface:rgba(13,25,46,.72);
-  --surface2:rgba(255,255,255,.055);--text:#f5f8ff;--muted:#a8b5c9;
-  --line:rgba(255,255,255,.11);--accent:#55ddff;--accent2:#9d7cff;
-  --accent3:#67ffb0;--glow:rgba(85,221,255,.22);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  min-height:100vh;overflow-x:hidden;color:var(--text);
-  font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
-  background:
-    radial-gradient(circle at 12% 12%,var(--glow),transparent 27%),
-    radial-gradient(circle at 88% 18%,rgba(157,124,255,.16),transparent 29%),
-    radial-gradient(circle at 50% 100%,rgba(103,255,176,.08),transparent 30%),
-    linear-gradient(135deg,var(--bg),var(--bg2));
-  transition:background 1s ease,color .6s ease;
-}
-body.light{--bg:#f3f7fc;--bg2:#e5eef9;--surface:rgba(255,255,255,.75);--surface2:rgba(16,32,51,.045);--text:#102033;--muted:#586b82;--line:rgba(16,32,51,.13);--accent:#007ea6;--accent2:#6646d8;--accent3:#078d57;--glow:rgba(0,126,166,.12)}
-body.sunset{--bg:#1d0c0b;--bg2:#32150d;--accent:#ffbf5b;--accent2:#ff6f91;--accent3:#ffdc82;--glow:rgba(255,191,91,.18)}
-body.violet{--bg:#0e081d;--bg2:#1d1036;--accent:#d29cff;--accent2:#60d9ff;--accent3:#7bffcc;--glow:rgba(210,156,255,.18)}
-body.cyber{--bg:#020a08;--bg2:#061b16;--accent:#45ffae;--accent2:#52d9ff;--accent3:#d7ff5a;--glow:rgba(69,255,174,.16)}
-body.ocean{--bg:#03111b;--bg2:#07324a;--accent:#57e5ff;--accent2:#6b9cff;--accent3:#74ffc8;--glow:rgba(87,229,255,.2)}
-
-a{color:inherit;text-decoration:none}
-button{font:inherit}
-.container{width:min(1180px,92%);margin:auto}
-.nav{
-  position:sticky;top:0;z-index:100;background:rgba(4,9,18,.72);
-  backdrop-filter:blur(18px);border-bottom:1px solid var(--line)
-}
-body.light .nav{background:rgba(243,247,252,.78)}
-.nav-inner{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.logo{font-weight:950;font-size:18px;letter-spacing:.2px}
-.logo span{color:var(--accent);transition:color .6s}
-.nav-links{display:flex;gap:21px;align-items:center;color:var(--muted);font-size:13px}
-.nav-links a{transition:.25s}.nav-links a:hover{color:var(--accent)}
-.theme-btn{border:1px solid var(--line);background:var(--surface);color:var(--text);padding:9px 13px;border-radius:999px;cursor:pointer}
-.theme-name{color:var(--accent);font-weight:800}
-
-.hero{padding:100px 0 70px;position:relative}
-.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:45px;align-items:center}
-.badge{display:inline-flex;align-items:center;gap:9px;padding:8px 13px;border:1px solid var(--line);background:var(--surface);border-radius:999px;color:var(--muted);font-size:12px}
-.live-dot{width:8px;height:8px;border-radius:50%;background:var(--accent3);box-shadow:0 0 16px var(--accent3);animation:pulse 1.8s infinite}
-@keyframes pulse{50%{opacity:.35;transform:scale(.7)}}
-h1{font-size:clamp(48px,8vw,94px);line-height:.92;letter-spacing:-5px;margin:25px 0 20px}
-.gradient{
-  background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3),var(--accent));
-  background-size:300%;-webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:gradientMove 5s linear infinite
-}
-@keyframes gradientMove{to{background-position:300%}}
-.hero-role{font-size:clamp(20px,3vw,35px);font-weight:850;min-height:1.35em;transition:color .5s}
-.hero-role .dynamic{color:var(--accent)}
-.hero-desc{max-width:790px;color:var(--muted);font-size:17px;line-height:1.85;margin:20px 0 27px}
-.actions{display:flex;flex-wrap:wrap;gap:11px}
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 17px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-weight:800;transition:.25s}
-.btn:hover{transform:translateY(-2px);border-color:var(--accent);color:var(--accent)}
-.btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#04101a;border:0}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:48px}
-.stat{padding:18px;border:1px solid var(--line);background:var(--surface);border-radius:17px;box-shadow:0 20px 55px rgba(0,0,0,.2)}
-.stat strong{display:block;font-size:27px;color:var(--accent);transition:color .6s}.stat span{font-size:12px;color:var(--muted)}
-
-.hero-card{border:1px solid var(--line);background:var(--surface);border-radius:25px;padding:24px;box-shadow:0 25px 75px rgba(0,0,0,.3);transform:rotate(1deg)}
-.window{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#050a12}
-.window-bar{padding:11px 14px;border-bottom:1px solid var(--line);display:flex;gap:6px}.window-bar i{width:8px;height:8px;border-radius:50%;background:var(--accent)}
-.code{padding:20px;font:13px/2 Consolas,monospace;color:#dce8f5}
-.code .k{color:var(--accent)}.code .s{color:var(--accent3)}.code .v{color:var(--accent2)}
-
-.marquee-wrap{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:17px 0;background:rgba(255,255,255,.025)}
-.marquee{display:flex;width:max-content;animation:marquee 30s linear infinite}
-.marquee span{white-space:nowrap;color:var(--muted);font-size:12px;font-weight:900;letter-spacing:.12em;margin-right:38px}
-.marquee span::after{content:"✦";color:var(--accent);margin-left:38px}
-@keyframes marquee{to{transform:translateX(-50%)}}
-
-section{padding:88px 0}
-.kicker{font-size:11px;letter-spacing:.2em;font-weight:950;text-transform:uppercase;color:var(--accent);transition:color .6s}
-h2{font-size:clamp(31px,4vw,50px);line-height:1.05;letter-spacing:-2px;margin:9px 0 14px}
-.lead{color:var(--muted);line-height:1.85;max-width:830px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
-.card{border:1px solid var(--line);background:var(--surface);border-radius:20px;padding:23px;box-shadow:0 18px 55px rgba(0,0,0,.18);transition:.3s}
-.card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.22)}
-.card h3{font-size:18px;margin-bottom:10px;color:var(--text)}
-.card p,.card li{font-size:13px;color:var(--muted);line-height:1.75}
-.card ul{padding-left:17px}
-.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
-.tag{padding:6px 9px;border-radius:999px;border:1px solid var(--line);background:var(--surface2);color:var(--muted);font-size:11px}
-
-.impact{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:30px}
-.impact .card strong{font-size:29px;color:var(--accent);display:block;margin-bottom:5px}
-
-.timeline{border-left:1px solid var(--line);margin:32px 0 0 7px;padding-left:26px}
-.job{position:relative;margin-bottom:35px}.job:before{content:"";position:absolute;left:-32px;top:6px;width:11px;height:11px;border-radius:50%;background:var(--accent);box-shadow:0 0 17px var(--accent)}
-.job small{font-size:11px;font-weight:900;color:var(--accent)}.job h3{margin:6px 0 3px;font-size:20px}.job .meta{color:var(--muted);font-size:12px;margin-bottom:8px}.job p{color:var(--muted);font-size:14px;line-height:1.75}
-
-.slider{margin-top:32px}
-.slide{display:none;grid-template-columns:1.08fr .92fr;gap:18px}.slide.active{display:grid;animation:slideIn .5s ease}
-@keyframes slideIn{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
-.project-main,.project-side{border:1px solid var(--line);background:var(--surface);border-radius:24px;padding:30px;box-shadow:0 20px 60px rgba(0,0,0,.22)}
-.project-main{min-height:360px}
-.project-number{font-size:12px;font-weight:900;color:var(--accent)}
-.project-main h3{font-size:36px;margin:10px 0}.project-main p{color:var(--muted);line-height:1.85;font-size:14px}
-.project-side h4{color:var(--accent);margin-bottom:10px}.project-side .row{padding:15px 0;border-bottom:1px solid var(--line)}.project-side .row:last-child{border-bottom:0}.project-side b{display:block;font-size:13px;margin-bottom:4px}.project-side span{font-size:12px;color:var(--muted);line-height:1.6}
-.slider-bar{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
-.slider-status{font-size:12px;color:var(--muted)}.controls{display:flex;gap:8px}.control{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer}
-.dots{display:flex;gap:7px}.dot{width:8px;height:8px;border:0;border-radius:50%;background:var(--muted);cursor:pointer}.dot.active{background:var(--accent);transform:scale(1.35)}
-
-.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}
-.list-card{border:1px solid var(--line);background:var(--surface);border-radius:21px;padding:25px}
-.list-card h3{margin-bottom:12px}.list-card li{margin:9px 0;color:var(--muted);font-size:13px;line-height:1.65}
-
-.contact{display:flex;align-items:center;justify-content:space-between;gap:30px;border:1px solid var(--line);background:var(--surface);border-radius:25px;padding:32px}
-footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:12px}
-
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
-
-@media(max-width:900px){
-  .hero-grid{grid-template-columns:1fr}.hero-card{display:none}
-  .stats{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:repeat(2,1fr)}
-  .impact{grid-template-columns:repeat(3,1fr)}.slide{grid-template-columns:1fr}.two{grid-template-columns:1fr}
-}
-@media(max-width:620px){
-  .nav-links{display:none}.hero{padding-top:70px}h1{letter-spacing:-3px}
-  .stats,.grid,.impact{grid-template-columns:1fr}.contact{flex-direction:column;align-items:flex-start}
-  section{padding:65px 0}.project-main h3{font-size:29px}
-}
+:root{--bg:#080d1b;--panel:rgba(17,25,47,.76);--panel2:#111a31;--text:#f3f6ff;--muted:#a7b2cc;--line:rgba(255,255,255,.12);--accent:#8b7cff;--accent2:#27d8c4;--accent3:#ff79b0;--shadow:0 24px 70px rgba(0,0,0,.25);--radius:24px;color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;scroll-padding-top:88px}body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden;transition:background .7s,color .4s}body:before{content:"";position:fixed;inset:0;z-index:-3;background:radial-gradient(circle at 12% 15%,color-mix(in srgb,var(--accent) 20%,transparent),transparent 32%),radial-gradient(circle at 88% 30%,color-mix(in srgb,var(--accent2) 14%,transparent),transparent 30%),radial-gradient(circle at 50% 95%,color-mix(in srgb,var(--accent3) 10%,transparent),transparent 30%);pointer-events:none;transition:background .8s}body:after{content:"";position:fixed;inset:0;z-index:-2;opacity:.14;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:42px 42px}
+a{color:inherit;text-decoration:none}button{font:inherit}.container{width:min(1160px,calc(100% - 40px));margin-inline:auto}.section{padding:100px 0}.section-head{max-width:720px;margin-bottom:36px}.eyebrow{display:inline-flex;align-items:center;gap:9px;text-transform:uppercase;letter-spacing:.16em;font-size:.75rem;font-weight:800;color:var(--accent2);margin-bottom:14px}.eyebrow:before{content:"";width:22px;height:2px;background:currentColor}.section h2{font-size:clamp(2rem,4vw,3.2rem);line-height:1.12;letter-spacing:-.04em;margin-bottom:14px}.section-head p,.muted{color:var(--muted)}.gradient-text{background:linear-gradient(100deg,var(--accent),var(--accent2),var(--accent3));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gradientShift 7s linear infinite}@keyframes gradientShift{to{background-position:200% center}}
+header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.nav-wrap{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font-weight:900;letter-spacing:-.04em;font-size:1.15rem}.brand span{color:var(--accent2)}nav{display:flex;align-items:center;gap:22px}nav a{font-size:.88rem;color:var(--muted);transition:color .2s}nav a:hover{color:var(--text)}.nav-actions{display:flex;gap:9px;align-items:center}.icon-btn,.menu-btn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:12px;padding:10px 12px;cursor:pointer}.menu-btn{display:none}.btn{display:inline-flex;justify-content:center;align-items:center;gap:9px;padding:13px 18px;border-radius:13px;font-weight:800;font-size:.9rem;border:1px solid transparent;transition:transform .2s,box-shadow .2s,border-color .2s;cursor:pointer}.btn:hover{transform:translateY(-3px)}.btn-primary{background:linear-gradient(110deg,var(--accent),color-mix(in srgb,var(--accent2) 65%,var(--accent)));color:#fff;box-shadow:0 12px 30px color-mix(in srgb,var(--accent) 22%,transparent)}.btn-ghost{border-color:var(--line);background:var(--panel);color:var(--text)}
+.hero{min-height:calc(100vh - 74px);display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:50px;padding-top:70px;padding-bottom:80px}.status{display:inline-flex;align-items:center;gap:9px;padding:8px 12px;border:1px solid var(--line);background:var(--panel);border-radius:99px;color:var(--muted);font-size:.82rem;margin-bottom:25px}.status-dot{width:8px;height:8px;border-radius:50%;background:#45e3a5;box-shadow:0 0 0 5px rgba(69,227,165,.12)}.hero h1{font-size:clamp(2.9rem,6.5vw,5.7rem);line-height:.99;letter-spacing:-.065em;margin-bottom:22px}.hero .lead{font-size:clamp(1rem,1.5vw,1.15rem);color:var(--muted);max-width:660px;margin-bottom:28px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap}.hero-meta{display:flex;gap:24px;flex-wrap:wrap;margin-top:30px;color:var(--muted);font-size:.86rem}.hero-meta strong{color:var(--text)}.hero-visual{position:relative;min-height:430px;display:grid;place-items:center}.orb{position:absolute;width:min(390px,90%);aspect-ratio:1;border-radius:50%;background:linear-gradient(140deg,color-mix(in srgb,var(--accent) 38%,transparent),color-mix(in srgb,var(--accent2) 18%,transparent));filter:blur(2px);box-shadow:0 0 100px color-mix(in srgb,var(--accent) 15%,transparent);animation:float 7s ease-in-out infinite}.orbit{position:absolute;width:360px;max-width:90%;aspect-ratio:1;border:1px solid color-mix(in srgb,var(--accent2) 45%,transparent);border-radius:50%;animation:spin 24s linear infinite}.orbit:before,.orbit:after{content:"";position:absolute;width:13px;height:13px;border-radius:50%;background:var(--accent2);box-shadow:0 0 24px var(--accent2)}.orbit:before{top:15%;left:12%}.orbit:after{right:4%;bottom:28%;background:var(--accent3);box-shadow:0 0 24px var(--accent3)}@keyframes spin{to{transform:rotate(360deg)}}@keyframes float{50%{transform:translateY(-14px) scale(1.03)}}.code-card{position:relative;z-index:2;width:min(360px,90%);padding:24px;border:1px solid var(--line);border-radius:22px;background:color-mix(in srgb,var(--panel2) 86%,transparent);box-shadow:var(--shadow);backdrop-filter:blur(18px);transform:rotate(-3deg)}.code-top{display:flex;gap:7px;margin-bottom:22px}.code-top i{width:9px;height:9px;border-radius:50%;background:var(--accent3)}.code-top i:nth-child(2){background:#ffd166}.code-top i:nth-child(3){background:#45e3a5}.code-card pre{white-space:pre-wrap;font: .87rem/1.95 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--muted)}.code-card .c1{color:var(--accent2)}.code-card .c2{color:var(--accent3)}.code-card .c3{color:#ffd166}.floating-tag{position:absolute;z-index:3;padding:11px 14px;background:var(--panel2);border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow);font-size:.82rem;font-weight:800;animation:float 6s ease-in-out infinite}.tag-one{top:13%;right:0}.tag-two{bottom:13%;left:0;animation-delay:-2s}
+.marquee{overflow:hidden;border-block:1px solid var(--line);background:color-mix(in srgb,var(--panel) 65%,transparent);padding:16px 0}.marquee-track{display:flex;width:max-content;animation:marquee 32s linear infinite}.marquee:hover .marquee-track{animation-play-state:paused}.marquee span{padding:0 25px;color:var(--muted);font-size:.82rem;font-weight:850;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap}.marquee b{color:var(--accent2);margin-right:25px}@keyframes marquee{to{transform:translateX(-50%)}}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.stat-card,.panel,.skill-card,.project-card,.timeline-card,.learning-card,.contact-card{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);box-shadow:var(--shadow)}.stat-card{padding:24px}.stat-number{font-size:clamp(1.8rem,3vw,2.7rem);font-weight:900;letter-spacing:-.05em;line-height:1.1}.stat-card p{font-size:.86rem;color:var(--muted);margin-top:9px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.panel{padding:30px}.panel h3{font-size:1.2rem;margin-bottom:12px}.panel p{color:var(--muted)}.focus-list{display:grid;gap:14px;margin-top:18px}.focus-item{display:flex;gap:12px;align-items:flex-start}.check{display:grid;place-items:center;flex:0 0 27px;height:27px;border-radius:9px;background:color-mix(in srgb,var(--accent2) 15%,transparent);color:var(--accent2);font-weight:900}.focus-item p{font-size:.92rem}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.skill-card{padding:24px;transition:transform .25s,border-color .25s}.skill-card:hover,.project-card:hover,.learning-card:hover{transform:translateY(-5px);border-color:color-mix(in srgb,var(--accent) 55%,var(--line))}.skill-icon{width:43px;height:43px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(140deg,color-mix(in srgb,var(--accent) 24%,transparent),color-mix(in srgb,var(--accent2) 18%,transparent));font-size:1.2rem;margin-bottom:17px}.skill-card h3{font-size:1rem;margin-bottom:10px}.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:1px solid var(--line);border-radius:99px;padding:5px 9px;font-size:.75rem;color:var(--muted);background:color-mix(in srgb,var(--panel2) 65%,transparent)}
+.projects-shell{position:relative}.project-viewport{overflow:hidden}.project-track{display:flex;gap:18px;transition:transform .5s cubic-bezier(.2,.7,.2,1)}.project-card{flex:0 0 calc((100% - 36px)/3);padding:25px;display:flex;flex-direction:column;min-height:390px;transition:transform .25s,border-color .25s}.project-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:23px}.project-symbol{width:48px;height:48px;display:grid;place-items:center;border-radius:15px;font-size:1.45rem;background:linear-gradient(140deg,color-mix(in srgb,var(--accent) 25%,transparent),color-mix(in srgb,var(--accent2) 20%,transparent))}.project-type{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent2);font-weight:900}.project-card h3{font-size:1.25rem;margin-bottom:10px}.project-card>p{font-size:.91rem;color:var(--muted);margin-bottom:18px}.project-card .chips{margin-top:auto;padding-top:12px}.project-note{font-size:.78rem;color:var(--muted);margin-top:15px;border-top:1px solid var(--line);padding-top:13px}.slider-controls{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:22px}.slider-buttons{display:flex;gap:9px}.slider-btn{width:44px;height:44px;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:13px;cursor:pointer}.slider-btn:hover{border-color:var(--accent)}.slider-dots{display:flex;gap:7px}.slider-dot{width:8px;height:8px;border-radius:99px;background:var(--line);border:0;cursor:pointer}.slider-dot.active{width:24px;background:var(--accent2)}#slideCounter{font-size:.82rem;color:var(--muted)}
+.timeline{position:relative;display:grid;gap:18px}.timeline-card{padding:26px 28px;position:relative}.timeline-card:before{content:"";position:absolute;left:-7px;top:32px;width:12px;height:12px;border-radius:50%;background:var(--accent2);box-shadow:0 0 0 5px var(--bg)}.timeline-head{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:14px}.timeline-head h3{font-size:1.1rem}.timeline-head p{color:var(--accent2);font-size:.86rem;font-weight:750}.date{color:var(--muted);font-size:.82rem}.timeline-card ul{padding-left:19px;color:var(--muted);font-size:.92rem}.timeline-card li+li{margin-top:7px}.timeline-card .chips{margin-top:17px}
+.education-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.learning-card{padding:24px;transition:transform .25s,border-color .25s}.learning-card h3{font-size:1rem;margin-bottom:8px}.learning-card p{font-size:.88rem;color:var(--muted)}.learning-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent2);font-weight:900;margin-bottom:10px;display:block}
+.award{display:flex;align-items:center;gap:22px;padding:28px;border-radius:var(--radius);border:1px solid color-mix(in srgb,var(--accent2) 35%,var(--line));background:linear-gradient(115deg,color-mix(in srgb,var(--accent) 12%,var(--panel)),color-mix(in srgb,var(--accent2) 9%,var(--panel)))}.award-icon{font-size:2.4rem}.award h3{font-size:1.15rem}.award p{color:var(--muted);font-size:.9rem}
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:20px}.contact-card{padding:30px}.contact-card h3{font-size:1.3rem;margin-bottom:12px}.contact-card p{color:var(--muted);margin-bottom:20px}.contact-links{display:grid;gap:11px}.contact-link{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 14px;border:1px solid var(--line);border-radius:13px;background:color-mix(in srgb,var(--panel2) 50%,transparent);font-size:.9rem}.contact-link span:first-child{color:var(--muted)}.contact-link:hover{border-color:var(--accent2)}.contact-form{display:grid;gap:13px}.contact-form label{font-size:.82rem;color:var(--muted)}.contact-form input,.contact-form textarea{width:100%;margin-top:6px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:13px;color:var(--text);font:inherit;outline:none}.contact-form input:focus,.contact-form textarea:focus{border-color:var(--accent2)}.contact-form textarea{min-height:125px;resize:vertical}.form-hint{font-size:.78rem;color:var(--muted);margin:0!important}
+footer{border-top:1px solid var(--line);padding:25px 0;color:var(--muted);font-size:.82rem}.footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}.back-top{color:var(--accent2)}.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}.reveal.visible{opacity:1;transform:translateY(0)}.theme-caption{font-size:.7rem;color:var(--muted);margin-left:2px}.cursor-glow{position:fixed;pointer-events:none;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 10%,transparent),transparent 70%);transform:translate(-50%,-50%);z-index:-1}
+@media(max-width:1000px){nav{gap:13px}.hero{gap:20px}.skills-grid{grid-template-columns:repeat(2,1fr)}.project-card{flex-basis:calc((100% - 18px)/2)}.stats-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.container{width:min(100% - 30px,600px)}.section{padding:72px 0}.menu-btn{display:inline-flex}nav{display:none;position:absolute;top:74px;left:0;right:0;padding:18px 22px 22px;background:var(--bg);border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch}nav.open{display:flex}nav a{padding:8px}.hero{grid-template-columns:1fr;padding-top:58px;min-height:auto}.hero-visual{min-height:350px;grid-row:1}.hero h1{font-size:clamp(2.8rem,13vw,4.5rem)}.hero-copy{grid-row:2}.tag-one{right:2%}.tag-two{left:2%}.about-grid,.contact-grid,.education-grid{grid-template-columns:1fr}.skills-grid{grid-template-columns:1fr}.project-card{flex-basis:100%;min-height:350px}.stats-grid{gap:10px}.stat-card{padding:18px}.panel,.contact-card{padding:23px}.timeline-card{padding:23px 21px 23px 25px}.award{align-items:flex-start}.theme-caption{display:none}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-<nav class="nav">
-  <div class="container nav-inner">
-    <a class="logo" href="#home">Nishant<span>Modi</span></a>
-    <div class="nav-links">
-      <a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#ai">AI</a><a href="#achievement">Achievement</a><a href="#contact">Contact</a>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<header>
+  <div class="container nav-wrap">
+    <a class="brand" href="#home" aria-label="Nishant Modi home">NM<span>.</span></a>
+    <nav id="navLinks" aria-label="Main navigation">
+      <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#learning">Learning</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Change color theme" title="Change color theme">◐</button>
+      <span class="theme-caption" id="themeLabel">AUTO THEME</span>
+      <button class="menu-btn" id="menuToggle" type="button" aria-label="Toggle menu">☰</button>
     </div>
-    <button class="theme-btn" id="themeBtn">◐ <span id="themeName">Auto Theme</span></button>
   </div>
-</nav>
+</header>
 
-<main id="home">
-<section class="hero">
-<div class="container hero-grid">
-<div>
-  <div class="badge"><span class="live-dot"></span> Open to Remote · Relocation · Hybrid</div>
-  <h1>Nishant <span class="gradient">Modi</span></h1>
-  <div class="hero-role"><span id="roleBase">Senior Android Platform Engineer</span><br><span class="dynamic" id="dynamicRole">Kotlin • Jetpack Compose • Android Architecture</span></div>
-  <p class="hero-desc">8+ years building scalable, reliable Android applications with <b>AI-enabled experiences, offline-first systems, mobile system design, performance engineering and production ownership.</b></p>
-  <div class="actions">
-    <a class="btn primary" href="#projects">Explore Projects ↓</a>
-    <a class="btn" href="https://github.com/nishantmodi92" target="_blank" rel="noopener">GitHub ↗</a>
-    <a class="btn" href="https://www.linkedin.com/in/nishantmodi92" target="_blank" rel="noopener">LinkedIn ↗</a>
-    <a class="btn" href="mailto:nishantmodimaster@gmail.com">Email ↗</a>
+<main>
+<section class="container hero" id="home">
+  <div class="hero-copy">
+    <div class="status"><span class="status-dot"></span> Android engineering · Open to meaningful opportunities</div>
+    <h1>Building mobile<br>experiences that<br><span class="gradient-text" id="rotatingText">scale with purpose.</span></h1>
+    <p class="lead">I'm Nishant Modi, a Senior Android Engineer with 8+ years of experience building reliable, high-performance mobile applications using Kotlin, Jetpack Compose, modern Android architecture, and AI-enabled capabilities.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#projects">Explore my work <span aria-hidden="true">↗</span></a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/nishantmodi92" target="_blank" rel="noopener noreferrer">Connect on LinkedIn ↗</a>
+    </div>
+    <div class="hero-meta"><span><strong>8+ years</strong> engineering experience</span><span><strong>Kotlin-first</strong> Android development</span><span><strong>AI curious</strong> practical integrations</span></div>
   </div>
-  <div class="stats">
-    <div class="stat"><strong>8+</strong><span>Years Experience</span></div>
-    <div class="stat"><strong>250K+</strong><span>Users Supported</span></div>
-    <div class="stat"><strong>40+</strong><span>Modules Modernized</span></div>
-    <div class="stat"><strong>99.8%</strong><span>Crash-Free Sessions</span></div>
-  </div>
-</div>
-<div class="hero-card">
-  <div class="window">
-    <div class="window-bar"><i></i><i></i><i></i></div>
-    <div class="code">
-      <span class="k">class</span> AndroidPlatform {<br><br>
-      &nbsp;&nbsp;<span class="k">val</span> ui = <span class="s">"Jetpack Compose"</span><br>
-      &nbsp;&nbsp;<span class="k">val</span> architecture = <span class="s">"Clean + Modular"</span><br>
-      &nbsp;&nbsp;<span class="k">val</span> data = <span class="s">"Offline First"</span><br>
-      &nbsp;&nbsp;<span class="k">val</span> async = <span class="s">"Coroutines + Flow"</span><br>
-      &nbsp;&nbsp;<span class="k">val</span> ai = <span class="s">"Gemini + ML Kit"</span><br>
-      &nbsp;&nbsp;<span class="k">val</span> delivery = <span class="s">"CI/CD + Quality"</span><br><br>
-      &nbsp;&nbsp;<span class="v">// build reliable mobile systems</span><br>
-      }
+  <div class="hero-visual" aria-label="Animated Android engineering illustration">
+    <div class="orb"></div><div class="orbit"></div>
+    <div class="floating-tag tag-one">⚡ Performance-first</div>
+    <div class="floating-tag tag-two">✦ Compose · Kotlin · AI</div>
+    <div class="code-card">
+      <div class="code-top"><i></i><i></i><i></i></div>
+      <pre><span class="c1">class</span> AndroidEngineer {
+  <span class="c2">val</span> focus = listOf(
+    <span class="c3">"Architecture"</span>,
+    <span class="c3">"Performance"</span>,
+    <span class="c3">"Reliability"</span>,
+    <span class="c3">"AI experiences"</span>
+  )
+
+  <span class="c1">fun</span> buildImpact() =
+    <span class="c2">quality</span> + <span class="c2">craft</span>
+}</pre>
     </div>
   </div>
-</div>
-</div>
 </section>
 
-<div class="marquee-wrap"><div class="marquee">
-<span>KOTLIN</span><span>JETPACK COMPOSE</span><span>AI / GEMINI API</span><span>ML KIT</span><span>CLEAN ARCHITECTURE</span><span>MOBILE SYSTEM DESIGN</span><span>OFFLINE-FIRST</span><span>COROUTINES</span><span>FLOW</span><span>ROOM</span><span>WORKMANAGER</span><span>RETROFIT</span><span>FIREBASE</span><span>CI/CD</span><span>PERFORMANCE</span><span>SECURITY</span>
-<span>KOTLIN</span><span>JETPACK COMPOSE</span><span>AI / GEMINI API</span><span>ML KIT</span><span>CLEAN ARCHITECTURE</span><span>MOBILE SYSTEM DESIGN</span><span>OFFLINE-FIRST</span><span>COROUTINES</span><span>FLOW</span><span>ROOM</span><span>WORKMANAGER</span><span>RETROFIT</span><span>FIREBASE</span><span>CI/CD</span><span>PERFORMANCE</span><span>SECURITY</span>
+<div class="marquee" aria-label="Core technology areas"><div class="marquee-track">
+  <span>Kotlin <b>✦</b></span><span>Jetpack Compose <b>✦</b></span><span>Android Architecture <b>✦</b></span><span>Performance Engineering <b>✦</b></span><span>Offline-first Systems <b>✦</b></span><span>Generative AI <b>✦</b></span><span>CI/CD <b>✦</b></span>
+  <span>Kotlin <b>✦</b></span><span>Jetpack Compose <b>✦</b></span><span>Android Architecture <b>✦</b></span><span>Performance Engineering <b>✦</b></span><span>Offline-first Systems <b>✦</b></span><span>Generative AI <b>✦</b></span><span>CI/CD <b>✦</b></span>
 </div></div>
 
-<section id="about"><div class="container reveal">
-<div class="kicker">01 / About</div><h2>Android engineering with a platform mindset.</h2>
-<p class="lead">Senior Android Platform Engineer with 8+ years of experience building scalable, reliable Android applications using Kotlin, Jetpack Compose, Clean Architecture, MVVM and multi-module design. Experienced in offline-first systems, resilient networking, CI/CD, performance optimization and end-to-end production ownership. Recent work also includes AI-enabled Android experiences using Gemini API, ML Kit and AI-assisted engineering workflows.</p>
+<section class="section"><div class="container">
+  <div class="stats-grid">
+    <article class="stat-card reveal"><div class="stat-number gradient-text">8+</div><p>Years of software and Android engineering experience</p></article>
+    <article class="stat-card reveal"><div class="stat-number gradient-text">250K+</div><p>Users across product environments, as reflected in experience highlights</p></article>
+    <article class="stat-card reveal"><div class="stat-number gradient-text">99.8%</div><p>Crash-free sessions — resume-reported reliability metric</p></article>
+    <article class="stat-card reveal"><div class="stat-number gradient-text">40%</div><p>ANR reduction — resume-reported performance improvement</p></article>
+  </div>
 </div></section>
 
-<section id="skills"><div class="container">
-<div class="reveal"><div class="kicker">02 / Technical Expertise</div><h2>The engineering stack.</h2></div>
-<div class="grid">
-<div class="card reveal"><h3>Languages & Android</h3><p>Kotlin, Java, Android SDK, Jetpack Compose, AndroidX, XML, Material Design 3, CameraX, Media3, Google Maps SDK.</p><div class="tags"><span class="tag">Kotlin</span><span class="tag">Java</span><span class="tag">Compose</span><span class="tag">Android SDK</span></div></div>
-<div class="card reveal"><h3>Architecture & System Design</h3><p>MVVM, MVI, Clean Architecture, Multi-Module Architecture, SOLID, Design Patterns, Repository Pattern, Offline-First Architecture, API Design and Scalable Mobile Architecture.</p><div class="tags"><span class="tag">MVVM</span><span class="tag">MVI</span><span class="tag">HLD</span><span class="tag">LLD</span></div></div>
-<div class="card reveal"><h3>Modern Android & Jetpack</h3><p>ViewModel, Navigation Component, Room, WorkManager, Paging 3, DataStore, Lifecycle Components and background processing.</p><div class="tags"><span class="tag">Room</span><span class="tag">WorkManager</span><span class="tag">Paging 3</span></div></div>
-<div class="card reveal"><h3>Concurrency & Networking</h3><p>Kotlin Coroutines, Flow, StateFlow, SharedFlow, Structured Concurrency, Retrofit, OkHttp, REST APIs, JSON, caching, retry and resilient networking.</p><div class="tags"><span class="tag">Coroutines</span><span class="tag">Flow</span><span class="tag">Retrofit</span><span class="tag">OkHttp</span></div></div>
-<div class="card reveal"><h3>AI & Intelligent Mobile</h3><p>Gemini API, ML Kit, Generative AI, AI-powered mobile experiences, AI feature prototyping, intelligent insights and LLM API integration.</p><div class="tags"><span class="tag">Gemini API</span><span class="tag">ML Kit</span><span class="tag">LLM APIs</span></div></div>
-<div class="card reveal"><h3>Security & Reliability</h3><p>Android Keystore, Biometric Authentication, Encrypted SharedPreferences, Secure Local Storage, Credential Manager API, Play Integrity API, ANR analysis and root-cause analysis.</p><div class="tags"><span class="tag">Keystore</span><span class="tag">Biometric</span><span class="tag">Crash Monitoring</span></div></div>
-<div class="card reveal"><h3>Testing & Quality</h3><p>Unit, UI, integration and regression testing, testable architecture, production debugging and quality engineering.</p><div class="tags"><span class="tag">JUnit</span><span class="tag">UI Testing</span><span class="tag">Integration</span></div></div>
-<div class="card reveal"><h3>Build, CI/CD & Release</h3><p>Gradle, Git, GitHub, GitHub Actions, Jenkins, Fastlane, CI/CD, build optimization and release automation.</p><div class="tags"><span class="tag">Gradle</span><span class="tag">GitHub Actions</span><span class="tag">Fastlane</span></div></div>
-<div class="card reveal"><h3>Emerging Technologies</h3><p>Kotlin Multiplatform, Compose Multiplatform, Baseline Profiles, Macrobenchmark, Perfetto and JankStats.</p><div class="tags"><span class="tag">KMP</span><span class="tag">Macrobenchmark</span><span class="tag">Perfetto</span></div></div>
-</div></div></section>
-
-<section><div class="container">
-<div class="reveal"><div class="kicker">03 / Engineering Impact</div><h2>Measured production outcomes.</h2></div>
-<div class="impact">
-<div class="card reveal"><strong>40%</strong><p>ANR reduction through performance, networking and lifecycle optimization.</p></div>
-<div class="card reveal"><strong>30%</strong><p>Startup performance improvement across the modernized Android ecosystem.</p></div>
-<div class="card reveal"><strong>35%</strong><p>API latency improvement through performance and networking optimization.</p></div>
-<div class="card reveal"><strong>35%</strong><p>Build-time reduction across a 40+ module Android ecosystem.</p></div>
-<div class="card reveal"><strong>250K+</strong><p>Users supported with 99.8% crash-free sessions.</p></div>
-</div></div></section>
-
-<section id="experience"><div class="container">
-<div class="reveal"><div class="kicker">04 / Professional Experience</div><h2>From architecture to production.</h2></div>
-<div class="timeline">
-<div class="job reveal"><small>OCT 2023 — PRESENT</small><h3>EXL Service — Senior Software Engineer, Android Platform</h3><div class="meta">Noida, India · Client: Thames Water, United Kingdom · Enterprise Field Operations Platform</div><p>Architected enterprise Android applications using Kotlin, Jetpack Compose, Clean Architecture, MVVM and multi-module architecture. Built offline-first workflows with Room, WorkManager, Coroutines, Flow and DataStore; modernized a 40+ module ecosystem; improved startup by 30%, reduced build time by 35%, reduced ANRs by 40%, improved API latency by 35%, and supported 250K+ users with 99.8% crash-free sessions. Contributed to AI-enabled Android POCs and owned features through design, development, testing, CI/CD, release and production support.</p></div>
-<div class="job reveal"><small>MAY 2022 — OCT 2023</small><h3>Freelance — Senior Android Engineer</h3><div class="meta">Remote · International Clients · Product details confidential under NDA</div><p>Delivered Android applications using Kotlin/Java, Jetpack, MVVM, Clean Architecture, Coroutines, Flow, Room, Retrofit and Firebase. Owned features end-to-end from technical design and implementation through testing, release and production support, while collaborating with international stakeholders.</p></div>
-<div class="job reveal"><small>DEC 2017 — APR 2022</small><h3>EXL Service — Software Engineer, Android</h3><div class="meta">Noida, India · Client: Wolters Kluwer, USA</div><p>Developed enterprise Android applications using Java, Kotlin, Android SDK, XML, MVVM and Jetpack. Built reusable features, integrated REST APIs with Retrofit, implemented Room/SQLite persistence, and supported production debugging, lifecycle/background processing, Firebase integration and cross-functional releases.</p></div>
-</div></div></section>
-
-<section id="projects"><div class="container">
-<div class="reveal"><div class="kicker">05 / Featured Projects</div><h2>Selected engineering work.</h2><p class="lead">The project slider below is based on the projects listed in the current resume — no PolicyGuard or CarePath.</p></div>
-<div class="slider">
-<article class="slide active">
-<div class="project-main"><div class="project-number">PROJECT 01 · UTILITIES</div><h3>Enterprise Field Operations Platform</h3><p>Enterprise Android workflows for field operations with offline-first architecture, local persistence, background synchronization and resilient networking. Modernized application components with Jetpack Compose, reusable UI components and modular architecture across a large Android codebase.</p><div class="tags"><span class="tag">Kotlin</span><span class="tag">Compose</span><span class="tag">Clean Architecture</span><span class="tag">MVVM</span><span class="tag">Multi-Module</span><span class="tag">Room</span><span class="tag">WorkManager</span><span class="tag">Firebase</span></div></div>
-<div class="project-side"><h4>Engineering focus</h4><div class="row"><b>Architecture</b><span>Clean Architecture + MVVM + multi-module design.</span></div><div class="row"><b>Offline-first</b><span>Local persistence, background synchronization and resilient networking.</span></div><div class="row"><b>Performance</b><span>Startup, build-time, ANR and API latency improvements.</span></div><div class="row"><b>Security</b><span>Secure mobile development and production reliability practices.</span></div></div>
-</article>
-<article class="slide">
-<div class="project-main"><div class="project-number">PROJECT 02 · FINTECH</div><h3>AI-Enabled Personal Finance Platform — FinMate</h3><p>Modern Android finance platform supporting expense tracking, budgeting, financial insights and structured financial workflows. Includes a hands-on Gemini/AI proof of concept for AI-assisted financial insights and contextual mobile interactions.</p><div class="tags"><span class="tag">Kotlin</span><span class="tag">Compose</span><span class="tag">MVVM</span><span class="tag">Clean Architecture</span><span class="tag">Room</span><span class="tag">Retrofit</span><span class="tag">Firebase</span><span class="tag">Gemini / AI POC</span></div></div>
-<div class="project-side"><h4>Engineering focus</h4><div class="row"><b>Product</b><span>Expense tracking, budgeting and financial insights.</span></div><div class="row"><b>AI</b><span>AI-assisted financial insights and intelligent mobile interactions.</span></div><div class="row"><b>Architecture</b><span>Separation between presentation, business, data and AI integration layers.</span></div><div class="row"><b>Data</b><span>Room, Retrofit, Firebase and structured data-access patterns.</span></div></div>
-</article>
-<article class="slide">
-<div class="project-main"><div class="project-number">PROJECT 03 · HEALTHCARE & FITNESS</div><h3>Healthcare & Fitness Tracker — Healthify</h3><p>Android activity and fitness tracking experience using Google Fit APIs, modern architecture, reliable local data management and background processing. Designed reusable Compose experiences with attention to performance and maintainability.</p><div class="tags"><span class="tag">Kotlin</span><span class="tag">Compose</span><span class="tag">Google Fit API</span><span class="tag">Room</span><span class="tag">WorkManager</span></div></div>
-<div class="project-side"><h4>Engineering focus</h4><div class="row"><b>Tracking</b><span>Activity tracking and fitness insights.</span></div><div class="row"><b>Integration</b><span>Google Fit APIs with modern Android architecture.</span></div><div class="row"><b>Background</b><span>Room + WorkManager for reliable local processing and synchronization.</span></div><div class="row"><b>Intelligent UX</b><span>Explored data-driven mobile experiences with modular architecture.</span></div></div>
-</article>
-<div class="slider-bar"><div><span class="slider-status" id="sliderStatus">01 / 03</span></div><div class="dots"><button class="dot active"></button><button class="dot"></button><button class="dot"></button></div><div class="controls"><button class="control" id="prev">‹</button><button class="control" id="next">›</button></div></div>
-</div>
+<section class="section" id="about"><div class="container">
+  <div class="section-head reveal"><span class="eyebrow">About me</span><h2>Engineering with <span class="gradient-text">impact in mind.</span></h2><p>I enjoy solving the hard parts of Android development: maintainable architecture, smooth user experiences, reliable data flows, and delivery practices that help teams move confidently.</p></div>
+  <div class="about-grid">
+    <article class="panel reveal"><h3>My engineering approach</h3><p>I combine product thinking with practical engineering fundamentals—from clear boundaries and testable code to performance profiling, observability, and resilient offline behavior. I value readable solutions, thoughtful trade-offs, and collaboration across design, product, backend, and QA.</p><div class="focus-list">
+      <div class="focus-item"><span class="check">✓</span><p><strong>Build for scale</strong><br>Modular architecture, clean separation of concerns, and maintainable codebases.</p></div>
+      <div class="focus-item"><span class="check">✓</span><p><strong>Optimize what matters</strong><br>Startup performance, ANRs, API responsiveness, stability, and user experience.</p></div>
+      <div class="focus-item"><span class="check">✓</span><p><strong>Keep learning</strong><br>Exploring practical GenAI/LLM integrations and modern Android development.</p></div>
+    </div></article>
+    <article class="panel reveal"><h3>Highlights</h3><div class="focus-list">
+      <div class="focus-item"><span class="check">↗</span><p><strong>Performance engineering</strong><br>Resume-reported improvements include 30% faster startup, 40% fewer ANRs, and 35% lower API latency.</p></div>
+      <div class="focus-item"><span class="check">↗</span><p><strong>Modern Android</strong><br>Kotlin, Jetpack Compose, Coroutines, Flow, Room, WorkManager, and layered architecture.</p></div>
+      <div class="focus-item"><span class="check">↗</span><p><strong>AI-enabled mobile experiences</strong><br>Learning and prototyping around Gemini/LLM APIs and responsible, user-focused AI features.</p></div>
+      <div class="focus-item"><span class="check">↗</span><p><strong>Delivery and reliability</strong><br>CI/CD, Firebase Crashlytics, analytics, release quality, and collaborative code reviews.</p></div>
+    </div></article>
+  </div>
 </div></section>
 
-<section id="ai"><div class="container">
-<div class="reveal"><div class="kicker">06 / AI & Emerging Technology</div><h2>AI-enabled Android, grounded in engineering.</h2><p class="lead">The current resume positions AI as a hands-on engineering capability: Gemini API and ML Kit for Android experiences, AI feature prototyping, LLM API integration, and AI-assisted coding, debugging, test generation, code review and documentation.</p></div>
-<div class="two">
-<div class="list-card reveal"><h3>AI-enabled mobile experiences</h3><ul><li>Gemini API integration and AI feature proof-of-concept work.</li><li>ML Kit for intelligent Android capabilities.</li><li>AI-powered mobile experiences and contextual insights.</li><li>LLM API integration with separation between application layers.</li></ul></div>
-<div class="list-card reveal"><h3>AI-assisted engineering workflow</h3><ul><li>AI-assisted coding and debugging assistance.</li><li>Test generation and code review assistance.</li><li>Technical documentation and feature prototyping.</li><li>Generative AI learning across Google Cloud and AWS Educate.</li></ul></div>
-</div></div></section>
-
-<section id="achievement"><div class="container">
-<div class="reveal"><div class="kicker">07 / Achievement & Development</div><h2>Recognition + continuous learning.</h2></div>
-<div class="two">
-<div class="list-card reveal"><h3>⭐ Star Performance Award</h3><p class="lead">EXL Service Pvt. Ltd. · June 2026</p></div>
-<div class="list-card reveal"><h3>Generative AI Development</h3><ul><li>Google Cloud — Generative AI Learning Path</li><li>AWS Educate — Introduction to Generative AI</li><li>Google Cloud Skills Boost — Generative AI Explained</li></ul></div>
-</div>
-<div class="two">
-<div class="list-card reveal"><h3>Engineering & Leadership</h3><ul><li>Technical design, HLD and LLD</li><li>Mobile system design and architecture reviews</li><li>Code reviews and technical documentation</li><li>Mentoring and cross-functional collaboration</li></ul></div>
-<div class="list-card reveal"><h3>Education</h3><p class="lead"><b>Master of Computer Applications (MCA)</b><br>Institute of Engineering & Technology · 2014–2016</p></div>
-</div>
+<section class="section" id="skills"><div class="container">
+  <div class="section-head reveal"><span class="eyebrow">Technical toolkit</span><h2>Modern Android, <span class="gradient-text">end to end.</span></h2><p>A practical toolkit spanning app architecture, data and networking, quality, delivery, and emerging AI integrations.</p></div>
+  <div class="skills-grid">
+    <article class="skill-card reveal"><div class="skill-icon">📱</div><h3>Android development</h3><div class="chips"><span class="chip">Kotlin</span><span class="chip">Java</span><span class="chip">Android SDK</span><span class="chip">Jetpack Compose</span><span class="chip">Material Design</span><span class="chip">Custom Views</span></div></article>
+    <article class="skill-card reveal"><div class="skill-icon">🏗️</div><h3>Architecture & design</h3><div class="chips"><span class="chip">MVVM</span><span class="chip">MVI concepts</span><span class="chip">Clean Architecture</span><span class="chip">Modularization</span><span class="chip">SOLID</span><span class="chip">Design patterns</span></div></article>
+    <article class="skill-card reveal"><div class="skill-icon">🔄</div><h3>Concurrency & state</h3><div class="chips"><span class="chip">Coroutines</span><span class="chip">Flow</span><span class="chip">StateFlow</span><span class="chip">SharedFlow</span><span class="chip">Lifecycle</span><span class="chip">Reactive UI</span></div></article>
+    <article class="skill-card reveal"><div class="skill-icon">💾</div><h3>Data & networking</h3><div class="chips"><span class="chip">Room</span><span class="chip">DataStore</span><span class="chip">REST APIs</span><span class="chip">Retrofit</span><span class="chip">OkHttp</span><span class="chip">Offline-first</span><span class="chip">WorkManager</span></div></article>
+    <article class="skill-card reveal"><div class="skill-icon">🧪</div><h3>Quality & observability</h3><div class="chips"><span class="chip">Unit testing</span><span class="chip">UI testing</span><span class="chip">Firebase</span><span class="chip">Crashlytics</span><span class="chip">Analytics</span><span class="chip">ANR analysis</span><span class="chip">Profiling</span></div></article>
+    <article class="skill-card reveal"><div class="skill-icon">🚀</div><h3>Build, delivery & AI</h3><div class="chips"><span class="chip">Gradle</span><span class="chip">CI/CD</span><span class="chip">Git</span><span class="chip">Fastlane concepts</span><span class="chip">Gemini API POC</span><span class="chip">LLM APIs</span><span class="chip">ML Kit exploration</span></div></article>
+  </div>
 </div></section>
 
-<section id="contact"><div class="container">
-<div class="contact reveal">
-<div><div class="kicker">08 / Contact</div><h2>Let's build reliable mobile systems.</h2><p class="lead">Senior Android Engineer / Senior Android Platform Engineer · Noida, India · Open to Remote, Relocation and Hybrid.</p></div>
-<div class="actions"><a class="btn primary" href="mailto:nishantmodimaster@gmail.com">Email Me</a><a class="btn" href="https://github.com/nishantmodi92" target="_blank" rel="noopener">GitHub</a><a class="btn" href="https://www.linkedin.com/in/nishantmodi92" target="_blank" rel="noopener">LinkedIn</a></div>
-</div></div></section>
+<section class="section" id="projects"><div class="container">
+  <div class="section-head reveal"><span class="eyebrow">Selected projects</span><h2>Ideas turned into <span class="gradient-text">mobile experiences.</span></h2><p>Representative projects demonstrating architecture, offline data, productivity workflows, and AI exploration. Project descriptions are portfolio summaries; they do not imply independent production deployment or benchmark claims.</p></div>
+  <div class="projects-shell reveal">
+    <div class="project-viewport"><div class="project-track" id="projectTrack">
+      <article class="project-card"><div class="project-top"><div class="project-symbol">🧭</div><span class="project-type">Enterprise mobility</span></div><h3>Enterprise Field Operations Platform</h3><p>A mobile workflow concept for field teams, focused on reliable task handling, local persistence, and resilient synchronization in variable network conditions.</p><div class="chips"><span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">Room</span><span class="chip">WorkManager</span><span class="chip">Flow</span><span class="chip">Retrofit</span></div><div class="project-note">Focus: offline-first UX · background work · maintainable architecture</div></article>
+      <article class="project-card"><div class="project-top"><div class="project-symbol">✨</div><span class="project-type">AI proof of concept</span></div><h3>FinMate — AI Personal Finance</h3><p>A personal-finance app concept exploring expense organization, financial summaries, and optional AI-assisted insights through an LLM/Gemini API proof of concept.</p><div class="chips"><span class="chip">Kotlin</span><span class="chip">Compose</span><span class="chip">Room</span><span class="chip">Retrofit</span><span class="chip">Firebase</span><span class="chip">Gemini/LLM API POC</span></div><div class="project-note">Focus: clear data presentation · privacy-aware AI exploration</div></article>
+      <article class="project-card"><div class="project-top"><div class="project-symbol">💚</div><span class="project-type">Health & wellness</span></div><h3>Healthify — Wellness Companion</h3><p>A health and fitness app concept for activity insights, local data access, and dependable background refresh with user-friendly mobile screens.</p><div class="chips"><span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">Google Fit API</span><span class="chip">Room</span><span class="chip">WorkManager</span></div><div class="project-note">Focus: accessible UI · local-first data · background synchronization</div></article>
+      <article class="project-card"><div class="project-top"><div class="project-symbol">💬</div><span class="project-type">Messaging concept</span></div><h3>ChatConnect — AI Edition</h3><p>A messaging experience concept exploring conversation UI, clean state management, and AI-assisted summaries or suggested replies where appropriate.</p><div class="chips"><span class="chip">Kotlin</span><span class="chip">Compose</span><span class="chip">Coroutines</span><span class="chip">Flow</span><span class="chip">LLM API exploration</span></div><div class="project-note">Focus: reactive interfaces · useful AI assistance · modular design</div></article>
+    </div></div>
+    <div class="slider-controls"><span id="slideCounter">01 / 04</span><div class="slider-dots" id="sliderDots" aria-label="Choose project slide"></div><div class="slider-buttons"><button class="slider-btn" id="prevProject" aria-label="Previous project">←</button><button class="slider-btn" id="nextProject" aria-label="Next project">→</button></div></div>
+  </div>
+</div></section>
+
+<section class="section" id="experience"><div class="container">
+  <div class="section-head reveal"><span class="eyebrow">Career journey</span><h2>Experience grounded in <span class="gradient-text">delivery and reliability.</span></h2><p>Selected experience, presented at a high level. Client and project details may be confidential; descriptions should be aligned with your official employment records before publishing.</p></div>
+  <div class="timeline">
+    <article class="timeline-card reveal"><div class="timeline-head"><div><h3>Senior Android Engineer / Android Software Engineering</h3><p>EXL Service · Noida, India</p></div><span class="date">Oct 2023 – Present</span></div><ul><li>Contribute to Android application development with an emphasis on scalable architecture, maintainable implementation, and dependable user experiences.</li><li>Work across modern Android patterns, API integration, asynchronous processing, performance troubleshooting, and production quality practices.</li><li>Collaborate with cross-functional partners through code reviews, issue investigation, iterative delivery, and continuous improvement.</li></ul><div class="chips"><span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">Architecture</span><span class="chip">Performance</span><span class="chip">Reliability</span></div></article>
+    <article class="timeline-card reveal"><div class="timeline-head"><div><h3>Senior Android Engineer — Contract / Client Projects</h3><p>Independent / Contract · Remote</p></div><span class="date">May 2022 – Oct 2023</span></div><ul><li>Worked on Android development assignments for international clients, with a focus on feature implementation, code quality, and practical problem-solving.</li><li>Handled project requirements with attention to architecture, API integration, testing, and delivery expectations.</li><li>Client identities and detailed deliverables are intentionally omitted where covered by confidentiality commitments.</li></ul><div class="chips"><span class="chip">Android</span><span class="chip">Kotlin/Java</span><span class="chip">REST APIs</span><span class="chip">Delivery</span></div></article>
+    <article class="timeline-card reveal"><div class="timeline-head"><div><h3>Android Engineer / Software Engineering</h3><p>EXL Service · Noida, India</p></div><span class="date">Dec 2017 – Apr 2022</span></div><ul><li>Built and maintained Android application features, supporting implementation, debugging, integration, and iterative enhancements.</li><li>Collaborated with teammates to troubleshoot defects, improve maintainability, and support stable application releases.</li><li>Developed a foundation in software delivery, user-focused problem solving, and cross-functional teamwork.</li></ul><div class="chips"><span class="chip">Android SDK</span><span class="chip">Java</span><span class="chip">Kotlin</span><span class="chip">Debugging</span></div></article>
+  </div>
+</div></section>
+
+<section class="section" id="learning"><div class="container">
+  <div class="section-head reveal"><span class="eyebrow">Continuous learning</span><h2>Exploring what’s <span class="gradient-text">next.</span></h2><p>Ongoing professional development around cloud, Generative AI, and the responsible integration of AI into applications. List each item as completed only if you have earned the corresponding completion record or badge.</p></div>
+  <div class="education-grid">
+    <article class="learning-card reveal"><span class="learning-label">Learning path</span><h3>Google Cloud — Generative AI Learning Path</h3><p>Exploring core Generative AI concepts and how they can be applied to real product experiences.</p></article>
+    <article class="learning-card reveal"><span class="learning-label">Course / learning</span><h3>AWS Educate — Introduction to Generative AI</h3><p>Building foundational knowledge of Generative AI concepts and cloud-oriented use cases.</p></article>
+    <article class="learning-card reveal"><span class="learning-label">Course / learning</span><h3>Google Cloud Skills Boost — Generative AI Explained</h3><p>Developing an understanding of the fundamentals and terminology behind Generative AI.</p></article>
+    <article class="learning-card reveal"><span class="learning-label">Current exploration</span><h3>AI-enabled Android applications</h3><p>Exploring Gemini/LLM API integration patterns, helpful user experiences, privacy considerations, and graceful error handling.</p></article>
+  </div>
+  <div class="award reveal" style="margin-top:20px"><div class="award-icon">🏆</div><div><span class="learning-label">Recognition · June 2026</span><h3>Star Performance Award</h3><p>Recognized by EXL Service for performance and contribution.</p></div></div>
+</div></section>
+
+<section class="section" id="contact"><div class="container">
+  <div class="section-head reveal"><span class="eyebrow">Let's connect</span><h2>Have a meaningful Android challenge? <span class="gradient-text">Let's talk.</span></h2><p>I'm interested in opportunities where strong engineering fundamentals, product quality, and thoughtful collaboration make a measurable difference.</p></div>
+  <div class="contact-grid">
+    <article class="contact-card reveal"><h3>Find me online</h3><p>Reach out about Senior Android Engineer, Android Developer, or Android Platform Engineering opportunities.</p><div class="contact-links">
+      <a class="contact-link" href="https://www.linkedin.com/in/nishantmodi92" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><strong>Connect ↗</strong></a>
+      <a class="contact-link" href="https://github.com/nishantmodi92" target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>View code ↗</strong></a>
+      <a class="contact-link" href="https://nishantmodi92.github.io" target="_blank" rel="noopener noreferrer"><span>Portfolio</span><strong>Home ↗</strong></a>
+      <a class="contact-link" href="mailto:nishantmodi92@gmail.com"><span>Email</span><strong>Send email ↗</strong></a>
+    </div></article>
+    <article class="contact-card reveal"><h3>Send a message</h3><p>Fill this out and your email app will open with the message prepared.</p>
+      <form class="contact-form" id="contactForm">
+        <label>Your name<input id="senderName" name="name" autocomplete="name" required placeholder="Name"></label>
+        <label>Your email<input id="senderEmail" name="email" type="email" autocomplete="email" required placeholder="you@example.com"></label>
+        <label>Message<textarea id="senderMessage" name="message" required placeholder="Tell me a little about the opportunity or project…"></textarea></label>
+        <button class="btn btn-primary" type="submit">Prepare email ↗</button>
+        <p class="form-hint">This is a front-end-only form; it does not store or send data by itself.</p>
+      </form>
+    </article>
+  </div>
+</div></section>
 </main>
 
-<footer><div class="container">© 2026 Nishant Modi · Senior Android Platform Engineer · Kotlin · Jetpack Compose · AI-Enabled Android</div></footer>
+<footer><div class="container footer-inner"><span>© <span id="year"></span> Nishant Modi · Crafted with Kotlin-minded precision.</span><span>Built for performance, clarity & curiosity. <a class="back-top" href="#home">Back to top ↑</a></span></div></footer>
 
 <script>
-/* ---------- AUTOMATION ENGINE ---------- */
-const themes=[
-  {name:"Ocean",cls:"ocean"},
-  {name:"Cyber",cls:"cyber"},
-  {name:"Violet",cls:"violet"},
-  {name:"Sunset",cls:"sunset"},
-  {name:"Light",cls:"light"},
-  {name:"Midnight",cls:""}
-];
-let themeIndex=0;
-function applyTheme(i){
-  themeIndex=(i+themes.length)%themes.length;
-  document.body.className=themes[themeIndex].cls;
-  document.getElementById("themeName").textContent=themes[themeIndex].name;
-}
-applyTheme(0);
-setInterval(()=>applyTheme(themeIndex+1),7000);
-document.getElementById("themeBtn").addEventListener("click",()=>applyTheme(themeIndex+1));
+(() => {
+  const palettes = [
+    {name:"Violet / Teal",a:"#8b7cff",b:"#27d8c4",c:"#ff79b0"},
+    {name:"Blue / Aqua",a:"#4d8dff",b:"#38e0d0",c:"#b18cff"},
+    {name:"Rose / Gold",a:"#ff6fae",b:"#ffc857",c:"#8b7cff"},
+    {name:"Emerald / Blue",a:"#38d996",b:"#50b8ff",c:"#b3e86c"},
+    {name:"Orange / Pink",a:"#ff9955",b:"#ff6fae",c:"#69d9ff"}
+  ];
+  let paletteIndex = 0, manualUntil = 0;
+  const root = document.documentElement;
+  const themeToggle = document.getElementById("themeToggle");
+  const themeLabel = document.getElementById("themeLabel");
+  function applyPalette(index, manual=false){
+    paletteIndex = (index + palettes.length) % palettes.length;
+    const p = palettes[paletteIndex];
+    root.style.setProperty("--accent",p.a);
+    root.style.setProperty("--accent2",p.b);
+    root.style.setProperty("--accent3",p.c);
+    if(manual){manualUntil = Date.now() + 30000;themeLabel.textContent = "MANUAL THEME";}
+    else if(Date.now() >= manualUntil){themeLabel.textContent = "AUTO THEME";}
+    themeToggle.title = "Color theme: " + p.name + " — click to change";
+  }
+  themeToggle.addEventListener("click",()=>applyPalette(paletteIndex+1,true));
+  setInterval(()=>{if(Date.now()>=manualUntil){applyPalette(paletteIndex+1,false)}},12000);
 
-/* Automated text color cycle — headings, stats, kicker, dynamic role and logo accent all change with the theme. */
-const textPalettes=[
-  ["#55e5ff","#9d7cff","#67ffb0"],
-  ["#45ffae","#52d9ff","#d7ff5a"],
-  ["#d29cff","#60d9ff","#7bffcc"],
-  ["#ffbf5b","#ff6f91","#ffdc82"],
-  ["#007ea6","#6646d8","#078d57"],
-  ["#55ddff","#9d7cff","#67ffb0"]
-];
-let colorIndex=0;
-function applyTextColors(){
-  const root=document.documentElement;
-  const p=textPalettes[colorIndex];
-  root.style.setProperty("--accent",p[0]);
-  root.style.setProperty("--accent2",p[1]);
-  root.style.setProperty("--accent3",p[2]);
-  document.querySelectorAll(".kicker,.project-number,.stat strong,.impact strong").forEach((el,i)=>{
-    el.style.color=p[i%3];
+  const phrases = ["scale with purpose.","feel fast and fluid.","stay reliable offline.","make AI useful."];
+  let phraseIndex = 0;
+  const rotatingText = document.getElementById("rotatingText");
+  setInterval(()=>{
+    phraseIndex = (phraseIndex+1)%phrases.length;
+    rotatingText.animate([{opacity:1,transform:"translateY(0)"},{opacity:0,transform:"translateY(8px)"}],{duration:220,fill:"forwards"}).onfinish=()=>{
+      rotatingText.textContent=phrases[phraseIndex];
+      rotatingText.animate([{opacity:0,transform:"translateY(-8px)"},{opacity:1,transform:"translateY(0)"}],{duration:320,fill:"forwards"});
+    };
+  },3000);
+
+  const nav = document.getElementById("navLinks");
+  document.getElementById("menuToggle").addEventListener("click",()=>nav.classList.toggle("open"));
+  nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>nav.classList.remove("open")));
+
+  const revealObserver = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("visible");revealObserver.unobserve(entry.target)}});
+  },{threshold:.12});
+  document.querySelectorAll(".reveal").forEach(el=>revealObserver.observe(el));
+
+  const track = document.getElementById("projectTrack");
+  const cards = [...track.querySelectorAll(".project-card")];
+  const dotsWrap = document.getElementById("sliderDots");
+  const counter = document.getElementById("slideCounter");
+  let current = 0, startX = 0;
+  function perView(){return window.innerWidth<=760?1:window.innerWidth<=1000?2:3}
+  function maxIndex(){return Math.max(0,cards.length-perView())}
+  function makeDots(){
+    dotsWrap.innerHTML="";
+    for(let i=0;i<=maxIndex();i++){
+      const b=document.createElement("button");b.className="slider-dot";b.type="button";
+      b.setAttribute("aria-label","Show project group "+(i+1));b.addEventListener("click",()=>goTo(i));dotsWrap.appendChild(b);
+    }
+  }
+  function goTo(index){
+    current=Math.max(0,Math.min(index,maxIndex()));
+    const gap=parseFloat(getComputedStyle(track).gap)||0;
+    const cardWidth=cards[0].getBoundingClientRect().width;
+    track.style.transform=`translateX(-${current*(cardWidth+gap)}px)`;
+    [...dotsWrap.children].forEach((dot,i)=>dot.classList.toggle("active",i===current));
+    counter.textContent=String(current+1).padStart(2,"0")+" / "+String(maxIndex()+1).padStart(2,"0");
+  }
+  document.getElementById("prevProject").addEventListener("click",()=>goTo(current-1));
+  document.getElementById("nextProject").addEventListener("click",()=>goTo(current+1));
+  track.addEventListener("touchstart",e=>{startX=e.changedTouches[0].screenX},{passive:true});
+  track.addEventListener("touchend",e=>{const dx=e.changedTouches[0].screenX-startX;if(Math.abs(dx)>45)goTo(current+(dx<0?1:-1))},{passive:true});
+  window.addEventListener("resize",()=>{const old=current;makeDots();goTo(Math.min(old,maxIndex()))});
+  makeDots();goTo(0);
+
+  document.getElementById("contactForm").addEventListener("submit",e=>{
+    e.preventDefault();
+    const name=document.getElementById("senderName").value.trim();
+    const email=document.getElementById("senderEmail").value.trim();
+    const message=document.getElementById("senderMessage").value.trim();
+    const subject=encodeURIComponent("Portfolio enquiry from "+name);
+    const body=encodeURIComponent("Name: "+name+"\nEmail: "+email+"\n\n"+message);
+    window.location.href="mailto:nishantmodi92@gmail.com?subject="+subject+"&body="+body;
   });
-  document.querySelectorAll(".dynamic").forEach(el=>el.style.color=p[0]);
-  colorIndex=(colorIndex+1)%textPalettes.length;
-}
-applyTextColors();
-setInterval(applyTextColors,3500);
+  document.getElementById("year").textContent=new Date().getFullYear();
 
-/* Automated role text */
-const roles=[
-"Kotlin • Jetpack Compose • Android Architecture",
-"AI-Enabled Android • Gemini API • ML Kit",
-"Offline-First Systems • Resilient Networking",
-"Mobile System Design • Clean + Modular Architecture",
-"Performance Engineering • Reliability • Production Ownership",
-"Coroutines • Flow • Room • WorkManager • CI/CD"
-];
-let roleIndex=0;
-setInterval(()=>{
-  roleIndex=(roleIndex+1)%roles.length;
-  const el=document.getElementById("dynamicRole");
-  el.style.opacity="0";
-  setTimeout(()=>{el.textContent=roles[roleIndex];el.style.opacity="1"},220);
-},3000);
-
-/* Project slider */
-const slides=[...document.querySelectorAll(".slide")];
-const dots=[...document.querySelectorAll(".dot")];
-let current=0;
-function showSlide(i){
-  current=(i+slides.length)%slides.length;
-  slides.forEach((s,n)=>s.classList.toggle("active",n===current));
-  dots.forEach((d,n)=>d.classList.toggle("active",n===current));
-  document.getElementById("sliderStatus").textContent=String(current+1).padStart(2,"0")+" / 03";
-}
-document.getElementById("next").onclick=()=>showSlide(current+1);
-document.getElementById("prev").onclick=()=>showSlide(current-1);
-dots.forEach((d,n)=>d.onclick=()=>showSlide(n));
-setInterval(()=>showSlide(current+1),6500);
-document.addEventListener("keydown",e=>{
-  if(e.key==="ArrowRight")showSlide(current+1);
-  if(e.key==="ArrowLeft")showSlide(current-1);
-});
-
-/* Scroll reveal */
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add("visible")});
-},{threshold:.12});
-document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+  const glow=document.getElementById("cursorGlow");
+  window.addEventListener("pointermove",e=>{glow.style.left=e.clientX+"px";glow.style.top=e.clientY+"px"},{passive:true});
+})();
 </script>
 </body>
-</html>
-'''
+</html>'''
 
+path = Path("/mnt/data/nishant-modi-single-file-portfolio.html")
+path.write_text(html, encoding="utf-8")
+print(f"Created single-file portfolio: {path}\nSize: {path.stat().st_size:,} bytes\nIncludes embedded HTML, CSS, and JavaScript.")
